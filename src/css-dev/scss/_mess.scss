@@ -1,0 +1,218 @@
+
+@import  "./var-pc.scss";
+
+.message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: none;
+    text-align: center;
+
+    &:before {
+        content: "";
+        display: inline-block;
+        height: 90%;
+      
+        vertical-align: middle;
+    }
+}
+
+.message-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: #000;
+    filter: alpha(opacity=50);
+    /* for IE8 and earlier */
+    opacity: .4;
+    transition: all .5s;
+}
+
+
+/*confirm*/
+.confirm-box {
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 360px;
+    padding: 15px 20px;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+    //  outline: 10px solid rgba(255, 255, 255, .3);
+    box-shadow: 0 0 20px rgba(0,0,0,.075);
+    color: #606266;
+    // tip
+    .tip {
+        text-align: left;
+        font-size: 18px;
+    }
+    /*ttl*/
+    .ttl {
+        font-size: 14px;
+        font-weight: 400;
+        color: #606266;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+    /*按钮*/
+    .confirm-btn {
+        float: right;
+        margin-top: 20px;
+        padding: 8px 16px;
+        line-height: 1;
+        text-align: center;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        transition: all .25s;
+        outline: none;
+        margin-left: 20px;
+
+        &.ok {
+            background: $text-primary;
+
+            &:hover {
+                background: darken( $text-primary, 10%);
+                color: #f8f8f8;
+                box-shadow: -2px -2px 5px darken( $text-primary, 10%) inset;
+            }
+        }
+
+        &.cancel {
+            background: transparent;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #606266;
+
+            &:hover {
+                color: lighten( $text-primary, 10%);
+                border: 1px solid lighten( $text-primary, 10%);
+                //box-shadow: -2px -2px 5px darken( $text-warning, 10%) inset;
+            }
+        }
+
+        & + .confirm-btn {
+            margin-left: 25px;
+        }
+    }
+}
+
+
+/*alert*/
+.alert-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 150px;
+    margin-top: -75px;
+    margin-left: -175px;
+    z-index: 9999;
+    text-align: center;
+    background: #fff;
+    outline: 10px solid rgba(255, 255, 255, .3);
+    /*标题*/
+    .ttl {
+        margin-top: 35px;
+        font-size: 16px;
+        font-weight: 400;
+        color: #444;
+        text-align: center;
+    }
+    /*按钮*/
+    .alert-btn {
+        margin-top: 30px;
+        width: 120px;
+        height: 34px;
+        padding: 0;
+        line-height: 34px;
+        text-align: center;
+        border-radius: 5px;
+        transition: all 1;
+        outline: none;
+        &.ok {
+            color: #333;
+            background-color: #fff;
+            border: #ccc 1px solid;
+            &:hover {
+                color: #333;
+                background-color: #e6e6e6;
+                border-color: #ccc;
+            }
+        }
+        &+.alert-btn {
+            margin-left: 25px;
+        }
+    }
+}
+
+
+/*info*/
+.messageinfo {
+      display: none;
+}
+.info-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px;
+    margin-left: -60px;
+    z-index: 9999;
+    text-align: center;
+    outline:none;
+    
+    /*标题0*/
+    .ttl.default {
+        padding: 13px 20px;
+        min-width: 120px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #f8f8f8;
+        text-align: center;
+        background: #333;
+        border-radius: 4px;
+      
+    }
+    /*标题1*/
+    .ttl.success {
+        padding: 13px 20px;
+        min-width: 120px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #fff;
+        text-align: center;
+        background: $text-success;
+        border-radius: 4px;
+      
+    }
+    /*标题2*/
+    .ttl.warning {
+        padding: 13px 20px;
+        min-width: 120px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #fff;
+        text-align: center;
+        background: $text-warning;
+        border-radius: 4px;
+      
+    }
+    /*标题3*/
+    .ttl.danger {
+        padding: 13px 20px;
+        min-width: 120px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #fff;
+        text-align: center;
+        background: $text-danger;
+        border-radius: 4px;
+       
+    }
+}
