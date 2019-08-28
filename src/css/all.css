@@ -751,6 +751,7 @@ input:focus,
 
 /*confirm*/
 .confirm-box {
+  position: relative;
   display: inline-block;
   vertical-align: middle;
   min-width: 400px;
@@ -764,6 +765,16 @@ input:focus,
   color: #606266;
   /*ttl*/
   /*按钮*/ }
+  .confirm-box ._close {
+    position: absolute;
+    right: 12px;
+    top: 5px;
+    font-size: 20px;
+    font-weight: 100;
+    color: #999;
+    cursor: pointer; }
+    .confirm-box ._close:hover {
+      color: #2d80f6; }
   .confirm-box .tip {
     text-align: left;
     font-size: 18px;

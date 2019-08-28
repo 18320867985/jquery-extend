@@ -17,6 +17,7 @@
         height: 90%;
         vertical-align: middle;
     }
+
 }
 
 .message-mask {
@@ -36,6 +37,7 @@
 
 /*confirm*/
 .confirm-box {
+    position: relative;
     display: inline-block;
     vertical-align: middle;
     min-width: 400px;
@@ -47,6 +49,20 @@
     //  outline: 10px solid rgba(255, 255, 255, .3);
     box-shadow: 0 0 20px rgba(0,0,0,.075);
     color: #606266;
+
+    ._close {
+        position: absolute;
+        right: 12px;
+        top: 5px;
+        font-size: 20px;
+        font-weight: 100;
+        color: #999;
+        cursor: pointer;
+
+        &:hover {
+            color: $text-primary;
+        }
+    }
     // tip
     .tip {
         text-align: left;

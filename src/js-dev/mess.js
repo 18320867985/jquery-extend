@@ -49,6 +49,11 @@
             ttl.setAttribute("class", "ttl");
             ttl.innerText = mess;
 
+            var close = document.createElement("div");
+            close.setAttribute("class", "_close");
+            close.innerHTML = "&times;";
+            message_box.appendChild(close);
+
             var ok_btn = document.createElement("button");
             ok_btn.setAttribute("type", "button");
             ok_btn.setAttribute("class", "ok confirm-btn");
@@ -85,6 +90,11 @@
 
                     cancelfun.call(this);
                 }
+                $(".message").remove();
+            });
+
+            $(".message").on("click", "._close", function (e) {
+
                 $(".message").remove();
             });
 
@@ -129,13 +139,18 @@
             tipText = "提示";
             var tip = document.createElement("div");
             tip.setAttribute("class", "tip");
-            tip.innerText = tipText;
+            tip.innerHTML = tipText;
             message_box.appendChild(tip);
         }
 
         var ttl = document.createElement("h4");
         ttl.setAttribute("class", "ttl");
         ttl.innerText = mess;
+
+        var close = document.createElement("div");
+        close.setAttribute("class", "_close");
+        close.innerHTML = "&times;";
+        message_box.appendChild(close);
 
         var input = document.createElement("input");
         input.setAttribute("class", "txt");
@@ -195,6 +210,11 @@
             $(".message").remove();
         });
 
+        $(".message").on("click", "._close", function (e) {
+
+            $(".message").remove();
+        });
+
     }
 
 	
@@ -243,6 +263,12 @@
         ttl.setAttribute("class", "ttl");
         ttl.innerText = mess;
 
+        var close = document.createElement("div");
+        close.setAttribute("class", "_close");
+        close.innerHTML = "&times;";
+        message_box.appendChild(close);
+
+
         var ok_btn = document.createElement("button");
         ok_btn.setAttribute("type", "button");
         ok_btn.setAttribute("class", "ok confirm-btn");
@@ -264,6 +290,10 @@
                 okfun.call(this);
             }
 
+        });
+        $(".message").on("click", "._close", function (e) {
+
+            $(".message").remove();
         });
 
       
@@ -339,11 +369,9 @@
 				
 			});
 
-		}, 1500);
+		}, 2000);
 
     }
-
-
 
 
 })();
