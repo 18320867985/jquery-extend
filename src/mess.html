@@ -29,9 +29,16 @@
 
             </li>
             <li>
-        
+
                 <button class=" btn  btn-primary _alert  "> alert（提示框-单行）</button>
                 <button class=" btn  btn-primary _alert2"> alert（提示框-多行）</button>
+
+            </li>
+
+            <li>
+                <button class=" btn  btn-primary prompt "> prompt（文本输入框）</button>
+
+                <button class=" btn  btn-primary prompt2 "> prompt（密码输入框）</button>
 
             </li>
             <li>
@@ -56,6 +63,7 @@
 
     <script type="text/javascript">
         $(function () {
+          
 
             // confirm 框
             $(".confirm").click(function () {
@@ -95,7 +103,59 @@
                  });
 
 
+             });
+
+
+               // prompt 框
+            $(".prompt").click(function () {
+
+                // 1，提示 2.提示内容信息，3确认，4.取消，5修改对象
+                $.prompt("","请输入邮箱",
+                    // success
+                    function (v,errEl) {
+                        console.log("点击了确认", v, errEl);
+
+                        if (v == "") {
+                            errEl.html("邮箱不能为空")
+                            $(this).parents(".message").find("input.txt").focus();
+                            return false; 
+                        }
+                          return true; // 关闭弹框
+
+                      
+                    },
+                    // cancell
+                    function (e) {
+                        console.log("点击了取消");
+                    });
+
+
             });
+
+            $(".prompt2").click(function () {
+
+                // 1，提示 2.提示内容信息，3确认，4.取消，5修改对象
+                $.prompt("","请输入密码",
+                    // success
+                    function (v,errEl) {
+                        console.log("点击了确认", v, errEl);
+
+                        if (v == "") {
+                            errEl.html("密码不能为空")
+                            $(this).parents(".message").find("input.txt").focus();
+                            return false; 
+                        }
+                          return true; // 关闭弹框
+
+                    },
+                    // cancell
+                    function (e) {
+                        console.log("点击了取消");
+                    },"passwrod" );
+
+
+            });
+
 
               // info 框
             $(".info.btn-defualt").click(function () {

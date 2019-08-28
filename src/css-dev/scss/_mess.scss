@@ -1,5 +1,5 @@
 
-@import  "./var-pc.scss";
+@import "./var-pc.scss";
 
 .message {
     position: fixed;
@@ -14,8 +14,7 @@
     &:before {
         content: "";
         display: inline-block;
-        height: 100%;
-      
+        height: 90%;
         vertical-align: middle;
     }
 }
@@ -56,8 +55,8 @@
     }
     /*ttl*/
     .ttl {
-        margin-top: 15px;
-        text-indent: 2em;
+        /*margin-top: 15px;*/
+        padding-left: 2em;
         font-size: 14px;
         line-height: 24px;
         font-weight: 400;
@@ -68,7 +67,7 @@
     /*按钮*/
     .confirm-btn {
         float: right;
-        margin-top: 20px;
+        margin-top: 10px;
         padding: 8px 16px;
         line-height: 1;
         text-align: center;
@@ -83,7 +82,7 @@
             background: $text-primary;
 
             &:hover,
-            &:focus, 
+            &:focus,
             &:active {
                 background: darken( $text-primary, 10%);
                 color: #f8f8f8;
@@ -143,113 +142,192 @@
         border-radius: 5px;
         transition: all 1;
         outline: none;
+
         &.ok {
             color: #333;
             background-color: #fff;
             border: #ccc 1px solid;
+
             &:hover {
                 color: #333;
                 background-color: #e6e6e6;
                 border-color: #ccc;
             }
         }
-        &+.alert-btn {
+
+        & + .alert-btn {
             margin-left: 25px;
         }
     }
 }
 
+/*prompt*/
 
+.message input.txt {
+    box-sizing: border-box;
+    display: block;
+    height: 34px;
+    width: 80%;
+    margin: 10px 0 5px 2em;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,.075);
+
+    &:focus {
+        border: 1px solid lighten($text-primary,10%);
+        box-shadow: 0 0 4px lighten($text-primary,10%);
+    }
+}
+
+.message p.err{
+    padding-left:2em;
+     margin-bottom:0;
+    text-align:left;
+    color:$text-danger;
+}
 /*info*/
 .messageinfo {
-      display: none;
-      position:fixed;
-      left:0;
-      right:0;
-      top:0;
-      bottom:0;
-      z-index:10;
-      font-size:0;
-      text-align:center;
-      pointer-events:none;
-      &:before{
-          content:"";
-          display:inline-block;
-          height:90%;
-          
-          vertical-align:middle;
-      }
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    font-size: 0;
+    text-align: center;
+    pointer-events: none;
+
+    &:before {
+        content: "";
+        display: inline-block;
+        height: 90%;
+        vertical-align: middle;
+    }
 }
+
 .info-box {
     display: inline-block;
     vertical-align: middle;
     text-align: center;
     outline: none;
     font-size: 14px;
-    /*标题0*/
-    .ttl.default {
+
+    .ttl {
+        position: relative;
+        z-index: 0;
         padding: 13px 20px;
         min-width: 120px;
         font-size: 14px;
         font-weight: 400;
+        text-align: center;
+        border-radius: 4px;
+        background: #fff;
+    }
+    /*标题0*/
+    .ttl.default {
         text-align: center;
         border-radius: 4px;
         color: #f8f8f8;
-        background:#000;
-        background: rgba(#000,.8);
+        /*background:#000;
+        background: rgba(#000,.8);*/
+        border: 1px solid lighten( #000,20%);
         border: 1px solid rgba(#000,.8);
+
+        &:before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            background: #000;
+            filter: alpha(opacity=70);
+            opacity: .7;
+        }
     }
     /*标题1*/
     .ttl.success {
-        padding: 13px 20px;
-        min-width: 120px;
-        font-size: 14px;
-        font-weight: 400;
         text-align: center;
         border-radius: 4px;
         color: darken( $text-success,10%);
-        background: $text-success;
-        background: rgba($text-success,.2);
-        border: 1px solid rgba($text-success,.1);
+        /*background: $text-success;
+        background: rgba($text-success,.2);*/
+        border: 1px solid lighten( $text-success,20%);
+        border: 1px solid rgba($text-success,.3);
+
+        ._bg {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            background: $text-success;
+            filter: alpha(opacity=10);
+            opacity: .1;
+        }
     }
     /*标题2*/
     .ttl.warning {
-        padding: 13px 20px;
-        min-width: 120px;
-        font-size: 14px;
-        font-weight: 400;
-        text-align: center;
-        border-radius: 4px;
         color: darken( $text-warning,10%);
-        background: $text-warning;
-        background: rgba($text-warning,.2);
-        border: 1px solid rgba($text-warning,.1);
+        border: 1px solid lighten( $text-warning,20%);
+        border: 1px solid rgba($text-warning,.3);
+
+        ._bg {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            background: $text-warning;
+            filter: alpha(opacity=10);
+            opacity: .1;
+        }
     }
     /*标题3*/
     .ttl.danger {
-        padding: 13px 20px;
-        min-width: 120px;
-        font-size: 14px;
-        font-weight: 400;
-        text-align: center;
-        border-radius: 4px;
         color: darken( $text-danger,10%);
-        background: $text-danger;
-        background: rgba($text-danger,.2);
-        border: 1px solid rgba($text-danger,.1);
+        border: 1px solid lighten( $text-danger,20%);
+        border: 1px solid rgba($text-danger,.3);
+
+        ._bg {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            background: $text-danger;
+            filter: alpha(opacity=10);
+            opacity: .1;
         }
-        /*标题3*/
-        .ttl.info {
-            padding: 13px 20px;
-            min-width: 120px;
-            font-size: 14px;
-            font-weight: 400;
-            text-align: center;
-            border-radius: 4px;
-            color: darken( $text-info,10%);
-            background: $text-info;
-            background: rgba($text-info,.2);
-            border: 1px solid rgba($text-info,.1);
-        }
-        
     }
+    /*标题4*/
+    .ttl.info {
+        color: darken( $text-info,10%);
+        border: 1px solid lighten( $text-info,10%);
+        border: 1px solid rgba($text-info,.3);
+
+        ._bg {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            background: $text-info;
+            filter: alpha(opacity=10);
+            opacity: .1;
+        }
+    }
+}
