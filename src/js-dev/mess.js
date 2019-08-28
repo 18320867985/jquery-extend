@@ -50,206 +50,163 @@
 	//  confirm
 	jQuery.fn.extend({
 
-		confirm: function(tipText,mess, okfun, cancelfun,obj) {
-			if(!arguments.length >= 2) {
+        confirm: _confirm
 
-				throw new Error("property is must two");
-            }
+    });
+    jQuery.extend({
 
-           
-            obj = obj || {};
-			var _okText = obj.ok || "确认";
-			var _cancelText = obj.cancel || "取消";
+        confirm: _confirm
 
-			this.each(function(i, v) {
+    });
+
+    //  confirm
+    function _confirm(tipText, mess, okfun, cancelfun, obj) {
+        if (!arguments.length >= 2) {
+
+            throw new Error("property is must two");
+        }
+
+        obj = obj || {};
+        var _okText = obj.ok || "确认";
+        var _cancelText = obj.cancel || "取消";
+
+            mess = mess || "此操作将永久删除该文件, 是否继续?";
+            $(".message").remove();
+
+            var message = document.createElement("div");
+            message.setAttribute("class", "message");
+            var message_mask = document.createElement("div");
+            message_mask.setAttribute("class", "message-mask");
+            var message_box = document.createElement("div");
+            message_box.setAttribute("class", "confirm-box");
+
+            // 创建message
+            if (tipText !== null) {
                 tipText = "提示";
-                mess = mess || "此操作将永久删除该文件, 是否继续?";
-				$(".message").remove();
-
-				// 创建message
                 var tip = document.createElement("div");
                 tip.setAttribute("class", "tip");
                 tip.innerText = tipText;
-
-				var message = document.createElement("div");
-				message.setAttribute("class", "message");
-				var message_mask = document.createElement("div");
-				message_mask.setAttribute("class", "message-mask");
-
-				var message_box = document.createElement("div");
-				message_box.setAttribute("class", "confirm-box");
-
-				var ttl = document.createElement("h4");
-				ttl.setAttribute("class", "ttl");
-				ttl.innerText = mess;
-
-				var ok_btn = document.createElement("button");
-				ok_btn.setAttribute("type", "button");
-				ok_btn.setAttribute("class", "ok confirm-btn");
-				ok_btn.innerText = _okText;
-
-				var cancel_btn = document.createElement("button");
-				cancel_btn.setAttribute("type", "button");
-				cancel_btn.setAttribute("class", "cancel confirm-btn");
-				cancel_btn.innerText = _cancelText;
-
                 message_box.appendChild(tip);
-				message_box.appendChild(ttl);
-                message_box.appendChild(ok_btn);
-                message_box.appendChild(cancel_btn);
-           
-				message.appendChild(message_mask);
-				message.appendChild(message_box);
+            }
 
-				var elm = document.body || document.documentElement;
-				elm.appendChild(message);
+            var ttl = document.createElement("h4");
+            ttl.setAttribute("class", "ttl");
+            ttl.innerText = mess;
 
-				$(".message").fadeIn();
-				$(".message").on("click", ".confirm-btn.ok", function(e) {
+            var ok_btn = document.createElement("button");
+            ok_btn.setAttribute("type", "button");
+            ok_btn.setAttribute("class", "ok confirm-btn");
+            ok_btn.innerText = _okText;
 
-					if(typeof okfun === "function") {
-						$(".message").remove();
-						okfun.call(this,v);
-					}
+            var cancel_btn = document.createElement("button");
+            cancel_btn.setAttribute("type", "button");
+            cancel_btn.setAttribute("class", "cancel confirm-btn");
+            cancel_btn.innerText = _cancelText;
 
-				});
+            message_box.appendChild(ttl);
+            message_box.appendChild(ok_btn);
+            message_box.appendChild(cancel_btn);
+            message.appendChild(message_mask);
+            message.appendChild(message_box);
 
-				$(".message").on("click", ".confirm-btn.cancel", function(e) {
+            var elm = document.body || document.documentElement;
+            elm.appendChild(message);
 
-					if(typeof cancelfun === "function") {
+        $(".message").stop().fadeIn();
+        $(".confirm-btn.ok").focus();
+            $(".message").on("click", ".confirm-btn.ok", function (e) {
 
-						cancelfun.call(this,v);
-					}
-					$(".message").remove();
-				});
+                if (typeof okfun === "function") {
+                    $(".message").remove();
+                    okfun.call(this);
+                }
 
-			});
-		}
+            });
 
-	});
+            $(".message").on("click", ".confirm-btn.cancel", function (e) {
 
-	//  confirm
-	jQuery.extend({
-		confirm: function(mess, okfun, cancelfun, obj) {
-			if(!arguments.length >= 2) {
+                if (typeof cancelfun === "function") {
 
-				throw new Error("property is must two");
-			}
-			obj = obj || {};
-			var _okText = obj.ok || "确认";
-			var _cancelText = obj.cancel || "取消";
+                    cancelfun.call(this);
+                }
+                $(".message").remove();
+            });
 
-			mess = mess || "是否确认删除数据?";
-			$(".message").remove();
+    }
 
-			// 创建message
-			var message = document.createElement("div");
-			message.setAttribute("class", "message");
-			var message_mask = document.createElement("div");
-			message_mask.setAttribute("class", "message-mask");
-
-			var message_box = document.createElement("div");
-			message_box.setAttribute("class", "confirm-box");
-
-			var ttl = document.createElement("h4");
-			ttl.setAttribute("class", "ttl");
-			ttl.innerText = mess;
-
-			var ok_btn = document.createElement("button");
-			ok_btn.setAttribute("type", "button");
-			ok_btn.setAttribute("class", "ok confirm-btn");
-			ok_btn.innerText = _okText;
-
-			var cancel_btn = document.createElement("button");
-			cancel_btn.setAttribute("type", "button");
-			cancel_btn.setAttribute("class", "cancel confirm-btn");
-			cancel_btn.innerText = _cancelText;
-
-			message_box.appendChild(ttl);
-			message_box.appendChild(ok_btn);
-			message_box.appendChild(cancel_btn);
-			message.appendChild(message_mask);
-			message.appendChild(message_box);
-
-			var elm = document.body || document.documentElement;
-			elm.appendChild(message);
-
-			$(".message").fadeIn();
-			$(".message").on("click", ".confirm-btn.ok", function(e) {
-
-				if(typeof okfun === "function") {
-					$(".message").remove();
-					okfun();
-				}
-
-			});
-
-			$(".message").on("click", ".confirm-btn.cancel", function(e) {
-
-				if(typeof cancelfun === "function") {
-					cancelfun();
-				}
-				$(".message").remove();
-			});
-
-		},
-
-	});
-
-	//  alert
-	jQuery.fn.extend({
-
-		alert: _alert
-	});
-
-	//  alert
-	jQuery.extend({
-
-		alert: _alert
-	});
-
-	function _alert(mess, obj) {
-
-		obj = obj || {};
-		var _okText = obj.ok || "确定";
-
-			mess = mess || "没有选择数据！";
-			$(".message").remove();
-
-			// 创建message
-			var message = document.createElement("div");
-			message.setAttribute("class", "message");
-			var message_mask = document.createElement("div");
-			message_mask.setAttribute("class", "message-mask");
-
-			var message_box = document.createElement("div");
-			message_box.setAttribute("class", "alert-box");
-
-			var ttl = document.createElement("h4");
-			ttl.setAttribute("class", "ttl");
-			ttl.innerText = mess;
-
-			var ok_btn = document.createElement("button");
-			ok_btn.setAttribute("type", "button");
-			ok_btn.setAttribute("class", "ok alert-btn");
-			ok_btn.innerText = _okText;
-
-			message_box.appendChild(ttl);
-			message_box.appendChild(ok_btn);
-			message.appendChild(message_mask);
-			message.appendChild(message_box);
-
-			var elm = document.body || document.documentElement;
-			elm.appendChild(message);
-
-			$(".message").fadeIn();
-			$(".message").on("click", ".alert-btn.ok", function(e) {
-				$(".message").remove();
-			});
-
-		
-	}
 	
+	//  alert
+	jQuery.fn.extend({
+
+		alert: _alert
+	});
+
+	//  alert
+	jQuery.extend({
+
+		alert: _alert
+	});
+
+    //  alert
+    function _alert(tipText, mess,okfun,obj) {
+        if (!arguments.length >= 2) {
+
+            throw new Error("property is must two");
+        }
+
+        obj = obj || {};
+        var _okText = obj.ok || "确定";
+     
+        mess = mess || "这是提示信息";
+        $(".message").remove();
+
+        var message = document.createElement("div");
+        message.setAttribute("class", "message");
+        var message_mask = document.createElement("div");
+        message_mask.setAttribute("class", "message-mask");
+        var message_box = document.createElement("div");
+        message_box.setAttribute("class", "confirm-box");
+
+        // 创建message
+        if (tipText !== null) {
+            tipText = "提示";
+            var tip = document.createElement("div");
+            tip.setAttribute("class", "tip");
+            tip.innerText = tipText;
+            message_box.appendChild(tip);
+        }
+
+        var ttl = document.createElement("h4");
+        ttl.setAttribute("class", "ttl");
+        ttl.innerText = mess;
+
+        var ok_btn = document.createElement("button");
+        ok_btn.setAttribute("type", "button");
+        ok_btn.setAttribute("class", "ok confirm-btn");
+        ok_btn.innerText = _okText;
+
+        message_box.appendChild(ttl);
+        message_box.appendChild(ok_btn); 
+        message.appendChild(message_mask);
+        message.appendChild(message_box);
+
+        var elm = document.body || document.documentElement;
+        elm.appendChild(message);
+
+        $(".message").stop().fadeIn();
+        $(".confirm-btn.ok").focus();
+        $(".message").on("click", ".confirm-btn.ok", function (e) {
+            $(".message").remove();
+            if (typeof okfun === "function") {
+                okfun.call(this);
+            }
+
+        });
+
+      
+
+    }
+
 	//  info
 	jQuery.fn.extend({
 		info: _info
@@ -260,34 +217,20 @@
 		info: _info
 	});
 
-
+    var setTimeoutId_info = 0;
 	function _info(mess, type) {
-
+       
 		mess = mess || "信息提示框";
 		$(".messageinfo").remove();
 		var _class = "default";
-		if(typeof type === "number") {
-			switch(type) {
-				case 0:
-					_class = "default";
-					break;
-				case 1:
-					_class = "success";
-					break;
-				case 2:
-					_class = "warning";
-					break;
-				case 3:
-					_class = "danger";
-					break;
-				default:
-					_class = "default";
-			}
-		} else if(typeof type === "string") {
+		if(typeof type === "string") {
 			switch(type) {
 				case "default":
 					_class = "default";
-					break;
+                    break;
+                case "info":
+                    _class = "info";
+                    break;
 				case "success":
 					_class = "success";
 					break;
@@ -320,14 +263,15 @@
 		var elm = document.body || document.documentElement;
 		elm.appendChild(message);
 
-		$(".messageinfo").fadeIn(600);
-		var setTimeoutId = setTimeout(function() {
+        $(".messageinfo").fadeIn(600);
+        clearTimeout(setTimeoutId_info);
+        setTimeoutId_info = setTimeout(function () {
+           
 			$(".messageinfo").fadeOut().queue(function() {
 				$(".messageinfo").remove();
-				clearTimeout(setTimeoutId);
+				
 			});
 
-			//alert()
 		}, 1500);
 
 	}

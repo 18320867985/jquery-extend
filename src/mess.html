@@ -9,22 +9,43 @@
     <meta name="Description" content="" />
     <title>mess</title>
 
-
-    <link rel="stylesheet" type="text/css" href="css/cstfont/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="css/all.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <style>
         .container {
             margin: 100px;
         }
+        li + li {
+            margin-top:20px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <button class=" btn  btn-primary confirm "> confirm（确认框）</button>
-    </div>
+        <ul>
+            <li>
+                <button class=" btn  btn-primary confirm "> confirm（确认框）</button>
 
+            </li>
+            <li>
+        
+                <button class=" btn  btn-primary _alert  "> alert（提示框-单行）</button>
+                <button class=" btn  btn-primary _alert2"> alert（提示框-多行）</button>
+
+            </li>
+            <li>
+                <button class=" btn  btn-defualt info "> info (默认信息框)</button>
+                <button class=" btn  btn-info info "> info (消息信息框)</button>
+                <button class=" btn  btn-success info ">info (成功信息框)</button>
+                <button class=" btn  btn-warning info ">info (警告信息框)</button>
+                <button class=" btn  btn-danger info ">info (危险信息框)</button>
+            </li>
+        </ul>
+      
+      
+       
+    </div>
 
 
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
@@ -36,21 +57,83 @@
     <script type="text/javascript">
         $(function () {
 
+            // confirm 框
             $(".confirm").click(function () {
 
                 // 1，提示 2.提示内容信息，3确认，4.取消，5修改对象
-                $(this).confirm("","",
+                $.confirm("","",
                     // success
                     function (e) {
-
                         console.log("点击了确认");
-
                     },
                     // cancell
                     function (e) {
                         console.log("点击了取消");
                     }
                 );
+
+
+            });
+
+            // alert 框
+             $("._alert").click(function () {
+
+                  // 1，提示 2.提示内容信息，3确认,4修改对象
+                  $.alert("", "这是单行提示内容信息。", function() {
+                       console.log("点击了确定");
+                  });
+
+
+             });
+
+             // alert 框
+             $("._alert2").click(function () {
+
+                // 1，提示 2.提示内容信息，3确认,4修改对象
+                 $.alert("", "当用户进行操作时会被触发，该对话框中断用户操作，直到用户确认知晓后才可关闭。这是多行提示！", function () {
+                      console.log("点击了确定");
+                 });
+
+
+            });
+
+              // info 框
+            $(".info.btn-defualt").click(function () {
+
+                // 1.提示内容信息
+                $.info("这是默认信息提示框" );
+            });
+
+            // info 框
+            $(".info.btn-info").click(function () {
+
+                // 1.提示内容信息
+                $.info("这是消息信息提示框","info" );
+            });
+
+              // info 框
+             $(".info.btn-success").click(function () {
+
+                // 1.提示内容信息，
+                $.info("这是成功信息提示框","success" );
+
+
+             });
+
+              // info 框
+             $(".info.btn-warning").click(function () {
+
+                // 1.提示内容信息，
+                $.info("这是警告信息提示框","warning" );
+
+
+             });
+
+              // info 框
+             $(".info.btn-danger").click(function () {
+
+                // 1.提示内容信息，
+                $(this).info("这是危险信息提示框","danger" );
 
 
             });

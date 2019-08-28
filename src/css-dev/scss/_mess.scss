@@ -14,7 +14,7 @@
     &:before {
         content: "";
         display: inline-block;
-        height: 90%;
+        height: 100%;
       
         vertical-align: middle;
     }
@@ -39,7 +39,8 @@
 .confirm-box {
     display: inline-block;
     vertical-align: middle;
-    min-width: 360px;
+    min-width: 400px;
+    max-width: 500px;
     padding: 15px 20px;
     text-align: center;
     background: #fff;
@@ -51,13 +52,17 @@
     .tip {
         text-align: left;
         font-size: 18px;
+        color: #444;
     }
     /*ttl*/
     .ttl {
+        margin-top: 15px;
+        text-indent: 2em;
         font-size: 14px;
+        line-height: 24px;
         font-weight: 400;
         color: #606266;
-        text-align: center;
+        text-align: left;
         letter-spacing: 1px;
     }
     /*按钮*/
@@ -77,7 +82,9 @@
         &.ok {
             background: $text-primary;
 
-            &:hover {
+            &:hover,
+            &:focus, 
+            &:active {
                 background: darken( $text-primary, 10%);
                 color: #f8f8f8;
                 box-shadow: -2px -2px 5px darken( $text-primary, 10%) inset;
@@ -156,28 +163,41 @@
 /*info*/
 .messageinfo {
       display: none;
+      position:fixed;
+      left:0;
+      right:0;
+      top:0;
+      bottom:0;
+      z-index:10;
+      font-size:0;
+      text-align:center;
+      pointer-events:none;
+      &:before{
+          content:"";
+          display:inline-block;
+          height:90%;
+          
+          vertical-align:middle;
+      }
 }
 .info-box {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -20px;
-    margin-left: -60px;
-    z-index: 9999;
+    display: inline-block;
+    vertical-align: middle;
     text-align: center;
-    outline:none;
-    
+    outline: none;
+    font-size: 14px;
     /*标题0*/
     .ttl.default {
         padding: 13px 20px;
         min-width: 120px;
         font-size: 14px;
         font-weight: 400;
-        color: #f8f8f8;
         text-align: center;
-        background: #333;
         border-radius: 4px;
-      
+        color: #f8f8f8;
+        background:#000;
+        background: rgba(#000,.8);
+        border: 1px solid rgba(#000,.8);
     }
     /*标题1*/
     .ttl.success {
@@ -185,11 +205,12 @@
         min-width: 120px;
         font-size: 14px;
         font-weight: 400;
-        color: #fff;
         text-align: center;
-        background: $text-success;
         border-radius: 4px;
-      
+        color: darken( $text-success,10%);
+        background: $text-success;
+        background: rgba($text-success,.2);
+        border: 1px solid rgba($text-success,.1);
     }
     /*标题2*/
     .ttl.warning {
@@ -197,11 +218,12 @@
         min-width: 120px;
         font-size: 14px;
         font-weight: 400;
-        color: #fff;
         text-align: center;
-        background: $text-warning;
         border-radius: 4px;
-      
+        color: darken( $text-warning,10%);
+        background: $text-warning;
+        background: rgba($text-warning,.2);
+        border: 1px solid rgba($text-warning,.1);
     }
     /*标题3*/
     .ttl.danger {
@@ -209,10 +231,25 @@
         min-width: 120px;
         font-size: 14px;
         font-weight: 400;
-        color: #fff;
         text-align: center;
-        background: $text-danger;
         border-radius: 4px;
-       
+        color: darken( $text-danger,10%);
+        background: $text-danger;
+        background: rgba($text-danger,.2);
+        border: 1px solid rgba($text-danger,.1);
+        }
+        /*标题3*/
+        .ttl.info {
+            padding: 13px 20px;
+            min-width: 120px;
+            font-size: 14px;
+            font-weight: 400;
+            text-align: center;
+            border-radius: 4px;
+            color: darken( $text-info,10%);
+            background: $text-info;
+            background: rgba($text-info,.2);
+            border: 1px solid rgba($text-info,.1);
+        }
+        
     }
-}

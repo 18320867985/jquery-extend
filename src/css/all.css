@@ -732,7 +732,7 @@ input:focus,
   .message:before {
     content: "";
     display: inline-block;
-    height: 90%;
+    height: 100%;
     vertical-align: middle; }
 
 .message-mask {
@@ -753,7 +753,8 @@ input:focus,
 .confirm-box {
   display: inline-block;
   vertical-align: middle;
-  min-width: 360px;
+  min-width: 400px;
+  max-width: 500px;
   padding: 15px 20px;
   text-align: center;
   background: #fff;
@@ -765,12 +766,16 @@ input:focus,
   /*按钮*/ }
   .confirm-box .tip {
     text-align: left;
-    font-size: 18px; }
+    font-size: 18px;
+    color: #444; }
   .confirm-box .ttl {
+    margin-top: 15px;
+    text-indent: 2em;
     font-size: 14px;
+    line-height: 24px;
     font-weight: 400;
     color: #606266;
-    text-align: center;
+    text-align: left;
     letter-spacing: 1px; }
   .confirm-box .confirm-btn {
     float: right;
@@ -787,7 +792,7 @@ input:focus,
     margin-left: 20px; }
     .confirm-box .confirm-btn.ok {
       background: #2d80f6; }
-      .confirm-box .confirm-btn.ok:hover {
+      .confirm-box .confirm-btn.ok:hover, .confirm-box .confirm-btn.ok:focus, .confirm-box .confirm-btn.ok:active {
         background: #0a65e6;
         color: #f8f8f8;
         -webkit-box-shadow: -2px -2px 5px #0a65e6 inset;
@@ -848,54 +853,85 @@ input:focus,
 
 /*info*/
 .messageinfo {
-  display: none; }
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  font-size: 0;
+  text-align: center;
+  pointer-events: none; }
+  .messageinfo:before {
+    content: "";
+    display: inline-block;
+    height: 90%;
+    vertical-align: middle; }
 
 .info-box {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -20px;
-  margin-left: -60px;
-  z-index: 9999;
+  display: inline-block;
+  vertical-align: middle;
   text-align: center;
   outline: none;
+  font-size: 14px;
   /*标题0*/
   /*标题1*/
   /*标题2*/
+  /*标题3*/
   /*标题3*/ }
   .info-box .ttl.default {
     padding: 13px 20px;
     min-width: 120px;
     font-size: 14px;
     font-weight: 400;
-    color: #f8f8f8;
     text-align: center;
-    background: #333;
-    border-radius: 4px; }
+    border-radius: 4px;
+    color: #f8f8f8;
+    background: #000;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8); }
   .info-box .ttl.success {
     padding: 13px 20px;
     min-width: 120px;
     font-size: 14px;
     font-weight: 400;
-    color: #fff;
     text-align: center;
+    border-radius: 4px;
+    color: #449d44;
     background: #5cb85c;
-    border-radius: 4px; }
+    background: rgba(92, 184, 92, 0.2);
+    border: 1px solid rgba(92, 184, 92, 0.1); }
   .info-box .ttl.warning {
     padding: 13px 20px;
     min-width: 120px;
     font-size: 14px;
     font-weight: 400;
-    color: #fff;
     text-align: center;
+    border-radius: 4px;
+    color: #ec971f;
     background: #f0ad4e;
-    border-radius: 4px; }
+    background: rgba(240, 173, 78, 0.2);
+    border: 1px solid rgba(240, 173, 78, 0.1); }
   .info-box .ttl.danger {
     padding: 13px 20px;
     min-width: 120px;
     font-size: 14px;
     font-weight: 400;
-    color: #fff;
     text-align: center;
-    background: #f05a00;
-    border-radius: 4px; }
+    border-radius: 4px;
+    color: #c9302c;
+    background: #d9534f;
+    background: rgba(217, 83, 79, 0.2);
+    border: 1px solid rgba(217, 83, 79, 0.1); }
+  .info-box .ttl.info {
+    padding: 13px 20px;
+    min-width: 120px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 4px;
+    color: #31b0d5;
+    background: #5bc0de;
+    background: rgba(91, 192, 222, 0.2);
+    border: 1px solid rgba(91, 192, 222, 0.1); }
