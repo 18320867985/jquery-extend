@@ -13,7 +13,8 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <style>
         .container {
-            margin: 100px;
+            margin-top: 100px;
+           margin-bottom: 100px;
         }
 
         li + li {
@@ -74,10 +75,12 @@
                     // success
                     function (e) {
                         console.log("点击了确认");
+                        $.info("提示内容信息：点击了确认按钮","success");
                     },
                     // cancell
                     function (e) {
                         console.log("点击了取消");
+                         $.info("提示内容信息：点击了取消按钮","info");
                     }
                 );
 
