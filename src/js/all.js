@@ -461,10 +461,13 @@
                         }
                     }
                 });
+
                 $(this).trigger("v-checkbtn-group", [list]);
 
                 return;
             } else if (args instanceof Array) {
+                var list2 = [];
+
                 for (var i2 = 0; i2 < items.length; i2++) {
                     var item2 = items[i2];
                     var v = $(item2).attr("data-val") || "";
@@ -479,7 +482,7 @@
                     }
 
                     // 触发自定义的事件
-                    var list2 = [];
+                    list2 = [];
                     $(".v-checkbtn-item", this).each(function () {
                         if ($(this).hasClass("active")) {
                             var v = $(this).attr("data-val") || "";
@@ -488,8 +491,8 @@
                             }
                         }
                     });
-                    $(this).trigger("v-checkbtn-group", [list2]);
                 }
+                $(this).trigger("v-checkbtn-group", [list2]);
             } else {
 
                 $(".v-checkbtn-item", this).each(function () {
