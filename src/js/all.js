@@ -364,156 +364,341 @@
 })();
 
 /*
- * v-checkbtn 组件
- * <div class="v-checkbtn">
-		<div class="v-checkbtn-item " data-val="true">
-			爱心
-		</div>
-	</div>
-	
-	 // 自定义事件
-	$(".v-checkbtn").on("v-checkbtn", function(event, el,bl) {
-
-		$.alert("选择的值为:"+bl);
-	});
-	
-	// set 
-	$(".v-checkbtn.a1").VuecheCkbtn(true);
-	// get
-	 var v=$(".v-checkbtn.a1").VueCheckbtn();
-	 alert(v)
-	
- * */
+  <div class="v-checkbtn">
+      <div class="v-checkbtn-item ">
+          爱心
+      </div>
+   </div>
+ */
 
 (function () {
 
-	// 单选
-	$(document).on("click", ".v-checkbtn .v-checkbtn-item", function () {
+    // 单选
+    $(document).on("click", ".v-checkbtn .v-checkbtn-item", function () {
 
-		$(this).toggleClass("active");
-		var bl = $(this).hasClass("active");
+        $(this).toggleClass("active");
+        var bl = $(this).hasClass("active");
 
-		// 触发自定义的事件
-		$(this).trigger("v-checkbtn", [bl]);
-	});
+        // 触发自定义的事件
+        $(this).trigger("v-checkbtn", [bl, this]);
+    });
 
-	$.fn.extend({
+    $.fn.extend({
 
-		VueCheckbtn: function VueCheckbtn(v) {
-			if (typeof v !== "undefined") {
-				v = !!v;
+        VCheckbtn: function VCheckbtn(v) {
+            if (typeof v !== "undefined") {
+                v = !!v;
 
-				if (v) {
-					$(this).find(".v-checkbtn-item").addClass("active");
-				} else {
-					$(this).find(".v-checkbtn-item").removeClass("active");
-				}
-			} else {
+                if (v) {
+                    $(this).find(".v-checkbtn-item").addClass("active");
+                    $(this).trigger("v-checkbtn", [true, $(this).find(".v-checkbtn-item")[0]]);
+                } else {
+                    $(this).find(".v-checkbtn-item").removeClass("active");
+                    $(this).trigger("v-checkbtn", [false, $(this).find(".v-checkbtn-item")[0]]);
+                }
+            } else {
 
-				return $(this).find(".v-checkbtn-item").hasClass("active");
-			}
-		}
-	});
+                return $(this).find(".v-checkbtn-item").hasClass("active");
+            }
+        }
+    });
 
-	// 多选
+    /* 多选
+        * 
+        <div class="v-checkbtn-group">
+           <div class="v-checkbtn-item " data-val="js">js</div>
+           <div class="v-checkbtn-item " data-val="jquery">jquery</div>
+           <div class="v-checkbtn-item " data-val="java">java</div>
+           <div class="v-checkbtn-item " data-val="c#">c#</div>
+           <div class="v-checkbtn-item " data-val="nodejs">nodejs</div>
+       </div>
+    
+       */
 
-	/*
- 	* v-checkbtn-group 组件
-  <div class="v-checkbtn-group">
- 		<div class="v-checkbtn-item " data-val="js">js</div>
- 		<div class="v-checkbtn-item " data-val="jquery">jquery</div>
- 		<div class="v-checkbtn-item " data-val="java">java</div>
- 		<div class="v-checkbtn-item " data-val="c#">c#</div>
- 		<div class="v-checkbtn-item " data-val="nodejs">nodejs</div>
- 		</div>
- </div>
+    $(document).on("click", ".v-checkbtn-group .v-checkbtn-item", function () {
+
+        $(this).toggleClass("active");
+        var arrs = [];
+        var p = $(this).parents(".v-checkbtn-group");
+        $(".v-checkbtn-item", p).each(function () {
+
+            if ($(this).hasClass("active")) {
+                var v = $(this).attr("data-val") || "";
+                if ($.trim(v) !== "") {
+                    arrs.push(v);
+                }
+            }
+        });
+
+        // 触发自定义的事件
+        $(this).trigger("v-checkbtn-group", [arrs]);
+    });
+
+    $.fn.extend({
+
+        VCheckbtnGroup: function VCheckbtnGroup(args) {
+            var items = $(this).find(".v-checkbtn-item");
+            var arrs = [];
+            if (typeof args === "function") {
+
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    var val = $(item).attr("data-val") || "";
+                    var bl = args(val);
+                    if (bl) {
+                        $(item).addClass("active");
+                    } else {
+                        $(item).removeClass("active");
+                    }
+                }
+                // 触发自定义的事件
+                var list = [];
+                $(".v-checkbtn-item", this).each(function () {
+                    if ($(this).hasClass("active")) {
+                        var v = $(this).attr("data-val") || "";
+                        if ($.trim(v) !== "") {
+                            list.push(v);
+                        }
+                    }
+                });
+                $(this).trigger("v-checkbtn-group", [list]);
+
+                return;
+            } else if (args instanceof Array) {
+                for (var i2 = 0; i2 < items.length; i2++) {
+                    var item2 = items[i2];
+                    var v = $(item2).attr("data-val") || "";
+                    for (var y = 0; y < args.length; y++) {
+                        if (v === args[y]) {
+                            $(item2).addClass("active");
+
+                            break;
+                        } else {
+                            $(item2).removeClass("active");
+                        }
+                    }
+
+                    // 触发自定义的事件
+                    var list2 = [];
+                    $(".v-checkbtn-item", this).each(function () {
+                        if ($(this).hasClass("active")) {
+                            var v = $(this).attr("data-val") || "";
+                            if ($.trim(v) !== "") {
+                                list2.push(v);
+                            }
+                        }
+                    });
+                    $(this).trigger("v-checkbtn-group", [list2]);
+                }
+            } else {
+
+                $(".v-checkbtn-item", this).each(function () {
+                    if ($(this).hasClass("active")) {
+                        var v = $(this).attr("data-val") || "";
+                        if ($.trim(v) !== "") {
+                            arrs.push(v);
+                        }
+                    }
+                });
+
+                return arrs;
+            }
+        }
+    });
+
+    /* v-radiobtn-group  单选组件
+      <div class="v-radiobtn-group">
+        <div class="v-radiobtn-item" data-val="lingju">灵聚</div>
+        <div class="v-radiobtn-item" data-val="tengxun">腾讯</div>
+        <div class="v-radiobtn-item" data-val="xunfei">科大讯飞</div>
+     </div>
+      */
+
+    $(document).on("click", ".v-radiobtn-item", function () {
+
+        var p = $(this).parents(".v-radiobtn-group");
+        p.find(".v-radiobtn-item").removeClass("active");
+        $(this).addClass("active");
+
+        // 触发自定义的事件
+        $(this).trigger("v-radiobtn-group", [$(this).attr("data-val"), this]);
+    });
+
+    $.fn.extend({
+
+        VRadiobtnGroup: function VRadiobtnGroup(index) {
+
+            if (arguments.length >= 1) {
+                if (!isNaN(index)) {
+                    index = Number(index);
+                    $(this).find(".v-radiobtn-item").removeClass("active");
+                    $(this).find(".v-radiobtn-item").eq(index).addClass("active");
+                } else if (typeof index === "string") {
+                    var $list = $(this).find(".v-radiobtn-item");
+                    $list.removeClass("active");
+                    $list.each(function () {
+
+                        var v = $.trim($(this).attr("data-val") || "");
+                        if (index === v) {
+                            $(this).addClass("active");
+                        }
+                    });
+                }
+            } else {
+
+                return $(this).find(".v-radiobtn-item.active").attr("data-val") || "";
+            }
+        }
+    });
+})();
+
+/*
+	  
+ <div class="v-number" >
+    <button class="minus btn" type="button">-</button>
+	<input class="num" type="number" value="1" data-min="0" data-max="9999" data-step="1" />
+	<button class="plus btn" type="button">+</button>
+	  
+</div>
  
- // v-checkbtn-group自定义事件
- $(".v-checkbtn-group").on("v-checkbtn-group", function(event, el,bl,arrs) {
- 	
- 	$.alert("选择的值为:"+arrs);
- });
- 
- //set 
- $(".v-checkbtn-group").VueCheckbtnGroup(["js","c#"]);
- 
- // get
- var v=$(".v-checkbtn-group").VueCheckbtnGroup();
- alert(v)
- 
- //set 
- //var dst = ["视频监控", "音视频通话", "查看机器人状态","设置机器人"];
- //$(" ._select-module .v-checkbtn-group").VueCheckbtnGroup(item=>dst.some(o => o == item));
- // get
- //var v=$("._select-module .v-checkbtn-group").VueCheckbtnGroup();
- * */
-
-	$(document).on("click", ".v-checkbtn-group .v-checkbtn-item", function () {
-
-		$(this).toggleClass("active");
-		var bl = $(this).hasClass("active");
-		var arrs = [];
-		var p = $(this).parents(".v-checkbtn-group");
-		$(".v-checkbtn-item", p).each(function () {
-
-			if ($(this).hasClass("active")) {
-				var v = $(this).attr("data-val") || "";
-				if (v.trim() !== "") {
-					arrs.push(v);
-				}
-			}
+	 * 数字框组件start
+	 * 事件：v-number
+	 *
+	 * 点击事件
+		$(document).on("v-number",function(event,element){			
+			//element 当前点击的元素	
+			var p=$(element).parents(".v-number");
+			alert($(p).find(".num").val());
+								
 		});
+		
+		//	$(".v-number").VNumber("8");
+		// get
+		//var v=$(".v-number").VNumber();
+	 * */
 
-		// 触发自定义的事件
-		$(this).trigger("v-checkbtn-group", [bl, arrs]);
-	});
+(function () {
 
-	$.fn.extend({
+			//minus
+			$(document).on("click", ".minus", function (e) {
 
-		VueCheckbtnGroup: function VueCheckbtnGroup(args) {
-			var items = $(this).find(".v-checkbtn-item");
-			if (typeof args === "function") {
+						e.stopPropagation();
+						e.preventDefault();
 
-				for (var i = 0; i < items.length; i++) {
-					var item = items[i];
-					var val = $(item).attr("data-val") || "";
-					var bl = args(val);
-					if (bl) {
-						$(item).addClass("active");
-					} else {
-						$(item).removeClass("active");
-					}
-				}
+						var p = $(this).parents(".v-number");
 
-				return;
-			} else if (args instanceof Array) {
-				for (var i2 = 0; i2 < items.length; i2++) {
-					var item2 = items[i2];
-					var v = $(item2).attr("data-val") || "";
-					for (var y = 0; y < args.length; y++) {
-						if (v === args[y]) {
-							$(item2).addClass("active");
-							break;
-						} else {
-							$(item2).removeClass("active");
+						//步长
+						var step = Number($(".num", p).attr("data-step"));
+						step = window.isNaN(step) ? 1 : step;
+
+						//最大值
+						//			var max=Number($(".num",p).attr("data-max"));
+						//				max=window.isNaN(max)?9999:max;
+						//最小值
+						var min = Number($(".num", p).attr("data-min"));
+						min = window.isNaN(min) ? 0 : min;
+
+						var v = Number($(".num", p).val());
+						v = window.isNaN(v) ? min : v;
+
+						//计算
+						v = v > min ? v - step : min;
+
+						if (v <= min) {
+									v = min;
 						}
-					}
-				}
-			} else {
-				var arrs = [];
-				$(".v-checkbtn-item", this).each(function () {
-					if ($(this).hasClass("active")) {
-						var v = $(this).attr("data-val") || "";
-						if (v.trim() !== "") {
-							arrs.push(v);
-						}
-					}
-				});
 
-				return arrs;
-			}
-		}
-	});
+						$(".num", p).val(v);
+
+						//点击触发自定义事件
+						$(this).trigger("v-number", [v, p.get(0)]);
+			});
+
+			//plus
+			$(document).on("click", ".plus", function (e) {
+						e.stopPropagation();
+						e.preventDefault();
+						var p = $(this).parents(".v-number");
+
+						//步长
+						var step = Number($(".num", p).attr("data-step"));
+						step = window.isNaN(step) ? 1 : step;
+
+						//最大值
+						var max = Number($(".num", p).attr("data-max"));
+						max = window.isNaN(max) ? 9999 : max;
+						//最小值
+						var min = Number($(".num", p).attr("data-min"));
+						min = window.isNaN(min) ? 0 : min;
+
+						var v = Number($(".num", p).val());
+						v = window.isNaN(v) ? min : v;
+
+						//计算
+						v = v < max ? v + step : max;
+
+						if (v >= max) {
+									v = max;
+						}
+
+						$(".num", p).val(v);
+						//点击触发自定义事件
+						$(this).trigger("v-number", [v, p.get(0)]);
+			});
+
+			// value
+			$(document).on("blur", ".num", function (e) {
+						var p = $(this).parents(".v-number");
+						//最大值
+						var max = Number($(".num", p).attr("data-max"));
+						max = window.isNaN(max) ? 9999 : max;
+						//最小值
+						var min = Number($(".num", p).attr("data-min"));
+						min = window.isNaN(min) ? 0 : min;
+
+						var v = Number($(".num", p).val());
+						v = window.isNaN(v) ? min : v;
+
+						if (v > max) {
+									v = max;
+						}
+
+						if (v < min) {
+									v = min;
+						}
+
+						$(".num", p).val(v);
+						//点击触发自定义事件
+						$(this).trigger("v-number", [v, p.get(0)]);
+			});
+
+			$.fn.extend({
+
+						VNumber: function VNumber(v) {
+									var $el = $(this).find(".num");
+									if (arguments.length >= 1) {
+
+												var min = parseFloat($el.attr("data-min") || 0);
+												var max = parseFloat($el.attr("data-max") || 9999);
+
+												if (isNaN(v)) {
+															v = min;
+												} else {
+															v = parseFloat(v);
+															v = v < min ? min : v;
+															v = v > max ? max : v;
+												}
+
+												$el.val(v);
+
+												//点击触发自定义事件
+												$(this).trigger("v-number", [v, $(this).get(0)]);
+									} else if (arguments.length === 0) {
+												return $el.val();
+									}
+						}
+
+			});
 })();
 
 })));

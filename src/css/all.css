@@ -1049,3 +1049,66 @@ input:focus,
     .v-checkbtn-group .v-checkbtn-item.active {
       background: #2d80f6;
       color: #fff; }
+
+.v-radiobtn-group {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px; }
+
+.v-radiobtn-item {
+  float: left;
+  padding: 10px 15px;
+  color: #666;
+  background: #f0f0f0;
+  border-radius: 10px;
+  cursor: pointer; }
+  .v-radiobtn-item.v-radiobtn-item {
+    margin-left: 10px; }
+  .v-radiobtn-item.active {
+    background: #2d80f6;
+    color: #fff; }
+
+/*自定义函数 
+ * 
+ *
+         数字框组件
+     <div class="v-number" >
+       <button class="minus btn" type="button">-</button>
+      <input class="num" type="number" value="1"data-min="0" data-max="9999" data-step="1" />
+        <button class="plus btn" type="button">+</button>
+     </div>
+ * 
+ * */
+.v-number {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px;
+  width: 160px; }
+  .v-number .btn,
+  .v-number .num {
+    display: inline-block;
+    float: left;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    height: 34px;
+    line-height: 34px;
+    padding: 0;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 0;
+    border: 1px solid #ddd; }
+  .v-number .btn {
+    width: 40px;
+    background: #f8f8f8;
+    color: #333;
+    border: 1px solid #ddd; }
+    .v-number .btn:active {
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      -webkit-box-shadow: none;
+              box-shadow: none; }
+  .v-number .num {
+    width: 80px;
+    border-left: none;
+    border-right: none;
+    background: #fff; }

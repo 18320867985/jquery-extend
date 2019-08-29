@@ -1,0 +1,61 @@
+/*自定义函数 
+ * 
+ *
+         数字框组件
+     <div class="v-number" >
+       <button class="minus btn" type="button">-</button>
+      <input class="num" type="number" value="1"data-min="0" data-max="9999" data-step="1" />
+        <button class="plus btn" type="button">+</button>
+     </div>
+ * 
+ * */
+ 
+@mixin  v-number($width:160px,$height:34px,$br:#ddd,$fonf-size:14px){
+   
+   .v-number {
+         display: inline-block;
+         vertical-align: middle;
+         margin-left: 20px;
+       
+         width:$width;
+         .btn,
+         .num
+         {
+             display: inline-block;
+             float: left;
+           box-sizing:border-box;
+             height: $height;
+             line-height:$height;
+             padding: 0;
+             text-align: center;
+             font-size: $fonf-size;
+             border-radius:0 ;
+             border: 1px solid $br;
+            
+         }
+         .btn{
+               width:$width*0.25; 
+                background: #f8f8f8;
+                 color:#333;
+                   border: 1px solid $br;
+                 &:active{
+                    background:#f8f8f8; 
+                    border: 1px solid $br; 
+                    box-shadow: none; 
+                 }
+         }
+        .num{
+         width:$width * 0.5; 
+            border-left: none;
+            border-right: none;
+             background: #fff;
+           
+        }
+    
+    }
+}
+
+
+
+// 执行函数
+@include  v-number();

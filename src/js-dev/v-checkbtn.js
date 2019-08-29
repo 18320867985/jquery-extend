@@ -1,24 +1,12 @@
-/*
- * v-checkbtn 组件
- * <div class="v-checkbtn">
-		<div class="v-checkbtn-item " data-val="true">
-			爱心
-		</div>
-	</div>
-	
-	 // 自定义事件
-	$(".v-checkbtn").on("v-checkbtn", function(event, el,bl) {
 
-		$.alert("选择的值为:"+bl);
-	});
-	
-	// set 
-	$(".v-checkbtn.a1").VuecheCkbtn(true);
-	// get
-	 var v=$(".v-checkbtn.a1").VueCheckbtn();
-	 alert(v)
-	
- * */
+
+/*
+  <div class="v-checkbtn">
+      <div class="v-checkbtn-item ">
+          爱心
+      </div>
+   </div>
+ */
 
 (function() {
 	
@@ -29,20 +17,22 @@
         var bl = $(this).hasClass("active");
 
 		// 触发自定义的事件
-		$(this).trigger("v-checkbtn", [bl]);
+		$(this).trigger("v-checkbtn", [bl,this]);
 	});
 	
 
 $.fn.extend({
 
-		VueCheckbtn: function(v) {
+		VCheckbtn: function(v) {
 			if(typeof v!=="undefined") {
-				v=!!v;
-				
+                v = !!v;
+                
 				if(v){
-					$(this).find(".v-checkbtn-item").addClass("active");
+                    $(this).find(".v-checkbtn-item").addClass("active");
+                    $(this).trigger("v-checkbtn", [true, $(this).find(".v-checkbtn-item")[0]]);
 				}else{
-					$(this).find(".v-checkbtn-item").removeClass("active");
+                    $(this).find(".v-checkbtn-item").removeClass("active");
+                    $(this).trigger("v-checkbtn", [false, $(this).find(".v-checkbtn-item")[0]]);
 				}
 				
 			} else {
@@ -53,50 +43,28 @@ $.fn.extend({
 	});
 	
 	
-	// 多选
+	/* 多选
+     * 
+     <div class="v-checkbtn-group">
+        <div class="v-checkbtn-item " data-val="js">js</div>
+        <div class="v-checkbtn-item " data-val="jquery">jquery</div>
+        <div class="v-checkbtn-item " data-val="java">java</div>
+        <div class="v-checkbtn-item " data-val="c#">c#</div>
+        <div class="v-checkbtn-item " data-val="nodejs">nodejs</div>
+    </div>
 	
-	/*
- 	* v-checkbtn-group 组件
-	 <div class="v-checkbtn-group">
-			<div class="v-checkbtn-item " data-val="js">js</div>
-			<div class="v-checkbtn-item " data-val="jquery">jquery</div>
-			<div class="v-checkbtn-item " data-val="java">java</div>
-			<div class="v-checkbtn-item " data-val="c#">c#</div>
-			<div class="v-checkbtn-item " data-val="nodejs">nodejs</div>
-			</div>
-	</div>
-	
-	// v-checkbtn-group自定义事件
-	$(".v-checkbtn-group").on("v-checkbtn-group", function(event, el,bl,arrs) {
-		
-		$.alert("选择的值为:"+arrs);
-	});
-	
-	//set 
-	$(".v-checkbtn-group").VueCheckbtnGroup(["js","c#"]);
-	
-	// get
-	var v=$(".v-checkbtn-group").VueCheckbtnGroup();
-	alert(v)
-	
-	//set 
-	//var dst = ["视频监控", "音视频通话", "查看机器人状态","设置机器人"];
-	//$(" ._select-module .v-checkbtn-group").VueCheckbtnGroup(item=>dst.some(o => o == item));
-	// get
-	//var v=$("._select-module .v-checkbtn-group").VueCheckbtnGroup();
- * */
+    */
 
 	$(document).on("click", ".v-checkbtn-group .v-checkbtn-item", function() {
 
         $(this).toggleClass("active");
-        var bl = $(this).hasClass("active");
         var arrs = [];
         var p = $(this).parents(".v-checkbtn-group");
         $(".v-checkbtn-item", p).each(function () {
 
             if ($(this).hasClass("active")) {
                 var v = $(this).attr("data-val") || "";
-                if (v.trim() !== "") {
+                if ($.trim(v) !== "") {
                     arrs.push(v);
                 }
             }
@@ -104,14 +72,15 @@ $.fn.extend({
         });
         
 		// 触发自定义的事件
-		$(this).trigger("v-checkbtn-group", [bl,arrs]);
+		$(this).trigger("v-checkbtn-group", [arrs]);
 	});
 	
 	
 	$.fn.extend({
 
-		VueCheckbtnGroup: function(args) {
-			var items=$(this).find(".v-checkbtn-item");
+		VCheckbtnGroup: function(args) {
+            var items = $(this).find(".v-checkbtn-item");
+            var arrs = [];
 			if(typeof args==="function"){
 			
                 for (var i = 0; i < items.length; i++){
@@ -123,7 +92,19 @@ $.fn.extend({
 					}else{
 						$(item).removeClass("active");	
 					}
-				}
+                }
+                // 触发自定义的事件
+                var list = [];
+                $(".v-checkbtn-item", this).each(function () {
+                    if ($(this).hasClass("active")) {
+                        var v = $(this).attr("data-val") || "";
+                        if ($.trim(v) !== "") {
+                            list.push(v);
+                        }
+                    }
+
+                });
+                $(this).trigger("v-checkbtn-group", [list]);
 				
 				return;
 			}
@@ -135,20 +116,34 @@ $.fn.extend({
 					for(var y=0; y<args.length; y++){
                         if (v === args[y]) {
                             $(item2).addClass("active");
+
                             break;
                         } else {
                             $(item2).removeClass("active");
                         }
-					}
+                    }
+
+                    // 触发自定义的事件
+                    var list2 = [];
+                    $(".v-checkbtn-item", this).each(function () {
+                        if ($(this).hasClass("active")) {
+                            var v = $(this).attr("data-val") || "";
+                            if ($.trim(v) !== "") {
+                                list2.push(v);
+                            }
+                        }
+
+                    });
+                    $(this).trigger("v-checkbtn-group", [list2]);
 					
 				}
 				
 			}else{
-				var arrs = [];
+				
 				$(".v-checkbtn-item", this).each(function() {
 					if($(this).hasClass("active")) {
 						var v = $(this).attr("data-val") || "";
-						if(v.trim() !== "") {
+						if($.trim(v) !== "") {
 							arrs.push(v);
 						}
 					}
@@ -159,7 +154,57 @@ $.fn.extend({
 			}
 			
 		}
-	});
+    });
+
+    /* v-radiobtn-group  单选组件
+      <div class="v-radiobtn-group">
+        <div class="v-radiobtn-item" data-val="lingju">灵聚</div>
+        <div class="v-radiobtn-item" data-val="tengxun">腾讯</div>
+        <div class="v-radiobtn-item" data-val="xunfei">科大讯飞</div>
+     </div>
+
+    */
+
+    $(document).on("click", ".v-radiobtn-item", function () {
+
+        var p = $(this).parents(".v-radiobtn-group");
+        p.find(".v-radiobtn-item").removeClass("active");
+        $(this).addClass("active");
+
+        // 触发自定义的事件
+        $(this).trigger("v-radiobtn-group", [$(this).attr("data-val"),this]);
+    });
+
+    $.fn.extend({
+
+        VRadiobtnGroup: function (index) {
+          
+            if (arguments.length >= 1) {
+                if (!isNaN(index)) {
+                    index = Number(index);
+                    $(this).find(".v-radiobtn-item").removeClass("active");
+                    $(this).find(".v-radiobtn-item").eq(index).addClass("active");
+                }
+                else if (typeof index === "string") {
+                    var $list = $(this).find(".v-radiobtn-item");
+                        $list.removeClass("active");
+                    $list.each(function () {
+
+                        var v =$.trim($(this).attr("data-val")||"");
+                        if (index === v) {
+                            $(this).addClass("active");
+                        }
+                      
+                    });
+
+
+                }
+            } else {
+
+                return $(this).find(".v-radiobtn-item.active").attr("data-val")||"";
+            }
+        }
+    });
 	
 })();
 

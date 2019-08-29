@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>数字框</title>
+
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <style>
+        .container {
+            margin: 100px;
+        }
+
+        li + li {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        pre {
+            margin: 10px;
+        }
+
+        p {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <ul>
+
+            <li>
+                <h2>
+                    v-number 组件-数字框
+                </h2>
+
+                <div class="v-number">
+                    <button class="minus btn" type="button">-</button>
+                    <input class="num" type="text" value="10" data-min="0" data-max="100" data-step="10" />
+                    <button class="plus btn" type="button">+</button>
+
+                </div>
+
+                <p>选择值为: <span class="v-number-val">1</span></p>
+                <a class="btn btn-success v-number-get">获取选择的值</a>
+                <a class="btn btn-danger v-number-set">设置的值 为80 </a>
+
+                <!-- &lt;div&gt;-->
+                <pre>
+                    &lt;div  class="v-number" &gt;
+                         &lt;button class="minus btn" type="button" &gt;- &lt;/button&gt;
+                         &lt;inputclass="num" type="text" value="10" data-min="0" data-max="100" data-step="10"  /&gt;
+                         &lt;button  class="plus btn" type="button" &gt; + &lt;/button&gt;
+                   &lt;/div&gt;
+
+                     触发自定义的事件
+                      $(document).on("v-number", function (e, v, el) {	
+                        // v 选择是数值
+                        //el 当前点击的元素
+                        console.log(v, el);
+                        $(".v-number-val").text(v);
+									
+                    });
+                        
+                        // 获取值
+                        var v = $(".v-number").VNumber();
+                        $.alert("","数值:"+v)
+
+                        // 设置值
+                      $(".v-number").VNumber(80);
+                </pre>
+
+            </li>
+
+        </ul>
+
+
+
+    </div>
+
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+    <!--[if lte IE 8]>
+        <script src="js/ie8.js" type="text/javascript" charset="utf-8"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        $(function () {
+
+            //点击事件
+            $(document).on("v-number", function (e, v, el) {
+                // v 选择是数值
+                //el 当前点击的元素
+                console.log(v, el);
+                $(".v-number-val").text(v);
+
+            });
+
+              $(".v-number-val").text( $(".v-number .num").val());
+
+            //get
+            $(".v-number-get").click(function (e) {
+                var v = $(".v-number").VNumber();
+                $.alert("", "数值:" + v)
+            });
+
+            //set
+            $(".v-number-set").click(function (e) {
+                $(".v-number").VNumber(80);
+
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>

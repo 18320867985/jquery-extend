@@ -1,46 +1,74 @@
- 
+
 @import "./var-pc.scss";
 
 .v-checkbtn {
-     position: relative;
-     display: inline-block;
-     vertical-align: middle;
-      margin-left: 15px;
-     cursor: pointer;
-     .v-checkbtn-item {
-         padding: 5px 10px;
-         color: #666;
-         background: #f0f0f0;
-         border-radius: 10px;
-         cursor: pointer;
-         &.active {
-             background: $text-primary;
-             color: #fff;
-         }
-     }
- }
- 
- .v-checkbtn-group {
-     position: relative;
-     display: inline-block;
-     margin-left: 15px;
-     vertical-align: middle;
-     cursor: pointer;
-     .v-checkbtn-item {
-         display: inline-block;
-         vertical-align: middle;
-         padding: 5px 10px;
-         color: #666;
-         background: #f0f0f0;
-         border-radius: 10px;
-         cursor: pointer;
-         &+.v-checkbtn-item{
-             margin-left: 15px;
-         }
-         &.active {
-             background: $text-primary;
-             color: #fff;
-         }
-     }
- }
- 
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+    cursor: pointer;
+
+    .v-checkbtn-item {
+        padding: 5px 10px;
+        color: #666;
+        background: #f0f0f0;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &.active {
+            background: $text-primary;
+            color: #fff;
+        }
+    }
+}
+
+.v-checkbtn-group {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+
+    .v-checkbtn-item {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 5px 10px;
+        color: #666;
+        background: #f0f0f0;
+        border-radius: 10px;
+        cursor: pointer;
+
+        & + .v-checkbtn-item {
+            margin-left: 15px;
+        }
+
+        &.active {
+            background: $text-primary;
+            color: #fff;
+        }
+    }
+}
+
+.v-radiobtn-group {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 20px;
+}
+
+.v-radiobtn-item {
+    float: left;
+    padding: 10px 15px;
+    color: #666;
+    background: #f0f0f0;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &.v-radiobtn-item {
+        margin-left: 10px;
+    }
+
+    &.active {
+        background: $text-primary;
+        color: #fff;
+    }
+}
