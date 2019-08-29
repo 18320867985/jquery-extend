@@ -38,7 +38,7 @@
 
             // 创建message
             if (tipText !== null) {
-                tipText = "提示";
+                tipText = tipText || "提示";
                 var tip = document.createElement("div");
                 tip.setAttribute("class", "tip");
                 tip.innerText = tipText;
@@ -136,7 +136,7 @@
 
         // 创建message
         if (tipText !== null) {
-            tipText = "提示";
+            tipText = tipText || "提示";
             var tip = document.createElement("div");
             tip.setAttribute("class", "tip");
             tip.innerHTML = tipText;
@@ -252,7 +252,8 @@
 
         // 创建message
         if (tipText !== null) {
-            tipText = "提示";
+        
+            tipText = tipText||"提示";
             var tip = document.createElement("div");
             tip.setAttribute("class", "tip");
             tip.innerText = tipText;

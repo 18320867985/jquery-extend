@@ -214,9 +214,8 @@ a:hover,
 a:active {
   text-decoration: none; }
 
-a,
-a:link {
-  color: #2d80f6; }
+a {
+  color: red; }
 
 a:hover,
 a:active {
@@ -925,7 +924,9 @@ input:focus,
     font-weight: 400;
     text-align: center;
     border-radius: 4px;
-    background: #fff; }
+    background: #fff;
+    -webkit-box-shadow: 0 0 20px rgba(153, 153, 153, 0.5);
+            box-shadow: 0 0 20px rgba(153, 153, 153, 0.5); }
   .info-box .ttl.default {
     text-align: center;
     border-radius: 4px;
@@ -1010,3 +1011,40 @@ input:focus,
       background: #5bc0de;
       filter: alpha(opacity=10);
       opacity: .1; }
+
+/*全局*/
+.v-checkbtn {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 15px;
+  cursor: pointer; }
+  .v-checkbtn .v-checkbtn-item {
+    padding: 5px 10px;
+    color: #666;
+    background: #f0f0f0;
+    border-radius: 10px;
+    cursor: pointer; }
+    .v-checkbtn .v-checkbtn-item.active {
+      background: #2d80f6;
+      color: #fff; }
+
+.v-checkbtn-group {
+  position: relative;
+  display: inline-block;
+  margin-left: 15px;
+  vertical-align: middle;
+  cursor: pointer; }
+  .v-checkbtn-group .v-checkbtn-item {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px 10px;
+    color: #666;
+    background: #f0f0f0;
+    border-radius: 10px;
+    cursor: pointer; }
+    .v-checkbtn-group .v-checkbtn-item + .v-checkbtn-item {
+      margin-left: 15px; }
+    .v-checkbtn-group .v-checkbtn-item.active {
+      background: #2d80f6;
+      color: #fff; }

@@ -1,1 +1,3 @@
-import "./mess.js"
+
+import "./message";
+import "./v-checkbtn";
