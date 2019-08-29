@@ -184,6 +184,10 @@ $.fn.extend({
                     index = Number(index);
                     $(this).find(".v-radiobtn-item").removeClass("active");
                     $(this).find(".v-radiobtn-item").eq(index).addClass("active");
+
+                    // 触发自定义的事件
+                    var $active = $(this).find(".v-radiobtn-item.active");
+                    $(this).trigger("v-radiobtn-group", [$active.attr("data-val") || "", $active.get(0)]);
                 }
                 else if (typeof index === "string") {
                     var $list = $(this).find(".v-radiobtn-item");
@@ -194,10 +198,12 @@ $.fn.extend({
                         if (index === v) {
                             $(this).addClass("active");
                         }
-                      
+                       
                     });
 
-
+                    // 触发自定义的事件
+                    var $active2 = $(this).find(".v-radiobtn-item.active");
+                    $(this).trigger("v-radiobtn-group", [$active2.attr("data-val") || "", $active2.get(0)]);
                 }
             } else {
 
