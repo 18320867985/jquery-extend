@@ -20,6 +20,9 @@
         li + li {
             margin-top: 20px;
         }
+        pre {
+             margin:10px 0;
+        }
          p {
             margin: 10px;
         }
@@ -30,7 +33,33 @@
     <div class="container">
         <ul>
             <li>
-                <button class=" btn  btn-primary confirm "> confirm（确认框）</button>
+                <button class=" btn  btn-primary confirm "> confirm（确认框）-默认标题</button>
+                <button class=" btn  btn-warning confirm2 "> confirm（确认框）-自定标题</button>
+                <button class=" btn  btn-danger confirm3 "> confirm（确认框）-自定义按钮</button>
+                <pre>
+                   
+                 默认     
+                 1.如果是空""默认是“提示”，设置为null就没显示;
+                 2.提示内容信息
+                 3.确认 执行的函数
+                 4.取消 执行的函数
+                 5.修改对象 {ok:"确认",cancel:"取消"}
+                $.confirm("", "",
+                    // success
+                    function (e) {
+                        console.log("点击了确认");
+                        $.info("提示内容信息：点击了确认按钮","success");
+                    },
+                    // cancell
+                    function (e) {
+                        console.log("点击了取消");
+                         $.info("提示内容信息：点击了取消按钮","info");
+                    },{
+                        ok: "确认按钮",
+                        cancel:"取消按钮"
+                    }
+                );
+                </pre>
 
             </li>
             <li>
@@ -84,6 +113,50 @@
                     function (e) {
                         console.log("点击了取消");
                          $.info("提示内容信息：点击了取消按钮","info");
+                    }
+                );
+
+
+            });
+
+             // confirm 框
+            $(".confirm2").click(function () {
+
+                // 1，提示 2.提示内容信息，3确认，4.取消，5修改对象
+                $.confirm("(确认框)-自定标题", "提示内容信息",
+                    // success
+                    function (e) {
+                        console.log("点击了确认");
+                        $.info("提示内容信息：点击了确认按钮","success");
+                    },
+                    // cancell
+                    function (e) {
+                        console.log("点击了取消");
+                         $.info("提示内容信息：点击了取消按钮","info");
+                    }
+                );
+
+
+            });
+
+            
+             // confirm 框
+            $(".confirm3").click(function () {
+
+                // 1，提示 2.提示内容信息，3确认，4.取消，5修改对象
+                $.confirm("(确认框)-自定标题", "提示内容信息",
+                    // success
+                    function (e) {
+                        console.log("点击了确认");
+                        $.info("提示内容信息：点击了确认按钮","success");
+                    },
+                    // cancell
+                    function (e) {
+                        console.log("点击了取消");
+                         $.info("提示内容信息：点击了取消按钮","info");
+                    },{
+                        ok: "确认按钮",
+                        cancel:"取消按钮"
                     }
                 );
 
