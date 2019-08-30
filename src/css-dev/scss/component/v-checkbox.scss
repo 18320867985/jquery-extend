@@ -1,0 +1,61 @@
+/*v-checkbox*/
+
+.v-checkbox {
+    display: inline-block;
+    vertical-align: middle;
+
+    > * {
+        vertical-align: middle;
+    }
+
+    cursor: pointer;
+
+    .v-checkbox-item {
+        font-size: 30px;
+
+        &:before {
+            content: '\e74a';
+            color: #999;
+        }
+
+        &.active {
+            &:before {
+                content: '\e74b';
+                color: $text-primary;
+            }
+        }
+    }
+}
+
+.v-checkbox-group {
+    display: inline-block;
+    vertical-align: middle;
+	
+	
+    .v-checkbox-group-item {
+		display: inline-block;
+        cursor: pointer;
+		
+		&+.v-checkbox-group-item{
+			margin-left: 10px;
+		}
+		>* {
+			vertical-align: middle;
+		}
+
+        .v-checkbox-item {
+            font-size: 24px;
+
+            &:before {
+                content: '\e602';
+                color: #999;
+            }
+            &.active {
+                &:before {
+                    content: '\e9c4';
+                    color: $text-primary;
+                }
+            }
+        }
+    }
+}

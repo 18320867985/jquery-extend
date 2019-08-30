@@ -139,9 +139,33 @@ $.fn.extend({
                     });
 
                 }
+
                 $(this).trigger("v-checkbtn-group", [list2]);
 				
-			}else{
+            }
+            // 全选 与 反选
+            else if (typeof args === "boolean") {
+                
+                var objs = $(this).find(".v-checkbtn-item");
+                var objs_list = [];
+                    objs.each(function () {
+                    if (args) {
+                        var v = $(this).attr("data-val") || "";
+                        $(this).addClass("active");
+                        objs_list.push(v);
+                    } else {
+                     
+                        $(this).removeClass("active");
+                      
+                    }
+
+                    $(this).trigger("v-checkbtn-group", [objs_list]);
+                    
+
+                });
+
+            }
+            else {
 				
 				$(".v-checkbtn-item", this).each(function() {
 					if($(this).hasClass("active")) {

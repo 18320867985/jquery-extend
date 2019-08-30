@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <meta name="Keywords" content="" />
     <meta name="Description" content="" />
-    <title>选择按钮框</title>
+    <title>radio,checkbox框</title>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/all.css" />
     <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+
     <style>
         .container {
             margin-top: 50px;
@@ -40,13 +41,11 @@
 
             <li>
                 <h2>
-                    v-checkbtn 组件-单项选择
+                    v-checkbox 组件-单项选择
                 </h2>
 
-                <div class="v-checkbtn">
-                    <div class="v-checkbtn-item ">
-                        爱心
-                    </div>
+                <div class="v-checkbox">
+                    <span class="v-checkbox-item iconfont"></span>
                 </div>
 
                 <p>选择值为: <span class="v-checkbtn-val"></span></p>
@@ -55,24 +54,22 @@
 
                 <!-- &lt;div&gt;-->
                 <pre>
-                    &lt;div class="v-checkbtn" &gt;
-                         &lt;div class="v-checkbtn-item">
-                            爱心
-                        &lt;/div&gt;
+                    &lt;div class="v-checkbox" &gt;
+                         &lt;span class="v-checkbox-item iconfont"&gt;
+                        &lt;/span&gt;
                    &lt;/div&gt;
 
-                     触发自定义的事件
-                      $(".v-checkbtn").on("v-checkbtn", function (e,bl,el) {
-                        console.log(bl,el)
-                        bl = !!bl;
-                        $(".v-checkbtn-val").text(bl)
-                      });
+                     $(".v-checkbox").on("v-checkbox", function (e, bl, el) {
+                         console.log(bl,el)
+                          bl = !!bl;
+                         $(".v-checkbtn-val").text(bl)
+                     });
                         
                         // 获取值
-                       $(".v-checkbtn").VCheckbtn();
+                       $(".v-checkbox").VCheckbox();
 
                         // 设置值
-                       $(".v-checkbtn").VCheckbtn(true);
+                       $(".v-checkbox").VCheckbox(true);
                 </pre>
 
             </li>
@@ -187,9 +184,9 @@
     <script type="text/javascript">
         $(function () {
 
-            //  v-checkbtn 单选
+     
             // "v-checkbtn 触发自定义的事件
-            $(".v-checkbtn").on("v-checkbtn", function (e, bl,el) {
+            $(".v-checkbox").on("v-checkbox", function (e, bl, el) {
                 console.log(bl,el)
                 bl = !!bl;
                 $(".v-checkbtn-val").text(bl)
@@ -197,7 +194,7 @@
 
             // get
             $(".v-checkbtn-get").click(function (e) {
-                var v = $(".v-checkbtn").VCheckbtn();
+                var v = $(".v-checkbox").VCheckbox();
                 v = !!v;
                 $.alert("获取选择的值", v + "");
 
@@ -205,7 +202,8 @@
             });
             // set
             $(".v-checkbtn-set").click(function (e) {
-                $(".v-checkbtn").VCheckbtn(true);
+           
+                $(".v-checkbox").VCheckbox(true);
 
             });
 

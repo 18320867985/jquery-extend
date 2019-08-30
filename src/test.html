@@ -9,7 +9,9 @@
     <meta name="Description" content="" />
     <title>mess</title>
 
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
 
     <style>
         .container {
@@ -25,9 +27,6 @@
 <body>
     <div class="container">
      
-
-        <a  href="#">content</a>
-
     </div>
 
 
@@ -39,135 +38,6 @@
 
     <script type="text/javascript">
         $(function () {
-
-
-            // confirm 框
-            $(".confirm").click(function () {
-
-                // 1，提示 2.提示内容信息，3确认，4.取消，5修改对象
-                $.confirm("", "",
-                    // success
-                    function (e) {
-                        console.log("点击了确认");
-                    },
-                    // cancell
-                    function (e) {
-                        console.log("点击了取消");
-                    }
-                );
-
-
-            });
-
-            // alert 框
-            $("._alert").click(function () {
-
-                // 1，提示 2.提示内容信息，3确认,4修改对象
-                $.alert("", "这是单行提示内容信息。", function () {
-                    console.log("点击了确定");
-                });
-
-
-            });
-
-            // alert 框
-            $("._alert2").click(function () {
-
-                // 1，提示 2.提示内容信息，3确认,4修改对象
-                $.alert("", "当用户进行操作时会被触发，该对话框中断用户操作，直到用户确认知晓后才可关闭。这是多行提示！", function () {
-                    console.log("点击了确定");
-                });
-
-
-            });
-
-            // prompt 框
-            $(".prompt").click(function () {
-
-                // 1，提示 2.提示内容信息，3确认，4.取消，5修改对象
-                $.prompt("", "请输入邮箱",
-                    // success
-                    function (v, errEl) {
-                        console.log("点击了确认", v, errEl);
-
-                        if (v == "") {
-                            errEl.html("邮箱不能为空")
-                            $(this).parents(".message").find("input.txt").focus();
-                            return false;
-                        }
-                        return true; // 关闭弹框
-
-
-                    },
-                    // cancell
-                    function (e) {
-                        console.log("点击了取消");
-                    });
-
-
-            });
-
-            $(".prompt2").click(function () {
-
-                // 1，提示 2.提示内容信息，3确认，4.取消，5修改对象
-                $.prompt("", "请输入密码",
-                    // success
-                    function (v, errEl) {
-                        console.log("点击了确认", v, errEl);
-
-                        if (v == "") {
-                            errEl.html("密码不能为空")
-                            $(this).parents(".message").find("input.txt").focus();
-                            return false;
-                        }
-                        return true; // 关闭弹框
-
-                    },
-                    // cancell
-                    function (e) {
-                        console.log("点击了取消");
-                    }, "passwrod");
-
-
-            });
-
-            // info 框
-            $(".info.btn-defualt").click(function () {
-
-                // 1.提示内容信息
-                $.info("这是默认信息提示框");
-            });
-
-            // info 框
-            $(".info.btn-info").click(function () {
-
-                // 1.提示内容信息
-                $.info("这是消息信息提示框", "info");
-            });
-
-            // info 框
-            $(".info.btn-success").click(function () {
-
-                // 1.提示内容信息，
-                $.info("这是成功信息提示框", "success");
-
-            });
-
-            // info 框
-            $(".info.btn-warning").click(function () {
-
-                // 1.提示内容信息，
-                $.info("这是警告信息提示框", "warning");
-
-            });
-
-            // info 框
-            $(".info.btn-danger").click(function () {
-
-                // 1.提示内容信息，
-                $(this).info("这是危险信息提示框", "danger");
-
-            });
 
 
         });

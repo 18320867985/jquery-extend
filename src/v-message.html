@@ -8,22 +8,24 @@
     <meta name="Keywords" content="" />
     <meta name="Description" content="" />
     <title>mess</title>
-
-    <link rel="stylesheet" type="text/css" href="css/all.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
     <style>
         .container {
-           margin-top: 50px;
-           margin-bottom: 50px;
+            margin-top: 50px;
+            margin-bottom: 50px;
         }
 
         li + li {
             margin-top: 20px;
         }
+
         pre {
-             margin:10px 0;
+            margin: 10px 0;
         }
-         p {
+
+        p {
             margin: 10px;
         }
     </style>
@@ -36,6 +38,9 @@
                 <button class=" btn  btn-primary confirm "> confirm（确认框）-默认标题</button>
                 <button class=" btn  btn-warning confirm2 "> confirm（确认框）-自定标题</button>
                 <button class=" btn  btn-danger confirm3 "> confirm（确认框）-自定义按钮</button>
+                <div  style="margin:15px 0;"></div>
+                <button class=" btn  btn-primary _alert  "> alert（提示框-单行）</button>
+                <button class=" btn  btn-primary _alert2"> alert（提示框-多行）</button>
                 <pre>
                    
                  默认     
@@ -62,17 +67,44 @@
                 </pre>
 
             </li>
-            <li>
-
-                <button class=" btn  btn-primary _alert  "> alert（提示框-单行）</button>
-                <button class=" btn  btn-primary _alert2"> alert（提示框-多行）</button>
-
-            </li>
+           
 
             <li>
                 <button class=" btn  btn-primary prompt "> prompt（文本输入框）</button>
 
                 <button class=" btn  btn-primary prompt2 "> prompt（密码输入框）</button>
+                <pre>
+                   
+                 
+                 默认     
+                 1.如果是空""默认是“提示”，设置为null就没显示;
+                 2.提示内容信息
+                 3.确认 执行的函数
+                 4.取消 执行的函数
+                 5.password为密码框 默认为文本框
+
+                $.prompt("", "请输入邮箱",
+                    // success
+                    function (v, errEl) {
+                        console.log("点击了确认", v, errEl);
+
+                        if (v == "") {
+                            errEl.html("邮箱不能为空")
+                            $(this).parents(".message").find("input.txt").focus();
+                            return false;
+                        }
+                        return true; // 关闭弹框
+
+
+                    },
+                    // cancell
+                    function (e) {
+                        console.log("点击了取消");
+                    }, "passwrod"
+
+                    );
+
+                </pre>
 
             </li>
             <li>
@@ -81,6 +113,11 @@
                 <button class=" btn  btn-success info ">info (成功信息框)</button>
                 <button class=" btn  btn-warning info ">info (警告信息框)</button>
                 <button class=" btn  btn-danger info ">info (危险信息框)</button>
+                <pre>
+                1.提示内容信息，
+                2.类型：1,defualt 2.info 3.success 4.warning 5.dabger  默认为defualt 例如 $(this).info("这是危险信息提示框");
+                $(this).info("这是危险信息提示框", "danger");
+                </pre>
             </li>
         </ul>
 

@@ -7,151 +7,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <meta name="Keywords" content="" />
     <meta name="Description" content="" />
-    <title>mess</title>
+    <title> jquery 扩展组件与插件</title>
 
-    <link rel="stylesheet" type="text/css" href="css/all.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
 
     <style>
-    
+
         html, body {
-            height:100%;
-            min-width:1400px;
+            height: 100%;
+            min-width: 1400px;
         }
+
         body {
-           
         }
+
         .top {
-            position:absolute;
-            left:0;
-            right:0;
-            z-index:100;
-            height:60px;
-             
-            padding-left:40px;
-            background:#f2f2f2;
-            border-bottom:1px solid #ddd;
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding-left: 40px;
+            background: #f2f2f2;
+            border-bottom: 1px solid #ddd;
         }
+
             .top h3 {
-                margin:0;
-                line-height:60px;
-
+                margin: 0;
+                line-height: 60px;
             }
-            .top img {
-                 height:40px;
-                  margin-right:20px;
-                  vertical-align:middle;
 
+            .top img {
+                height: 40px;
+                margin-right: 20px;
+                vertical-align: middle;
             }
 
         .side, .cnt {
-            padding-top:60px;
-            height:100%;
+            padding-top: 60px;
+            height: 100%;
+            box-sizing: border-box;
         }
 
         .side {
-            width:200px;
-            overflow:auto;
-            /*background:#f8f6f6;*/
+            width: 200px;
             border-right: 1px solid #ddd;
         }
+
+        .side-pwr {
+            overflow: auto;
+            height: 100%;
+        }
+
         .cnt {
-           
-           
+            overflow: hidden;
         }
 
         ul {
-            margin:10px;
-            background:#ccc;
+            margin: 10px;
+            background: #ccc;
         }
+
         #iframe {
-            border:0;
-          height:100%;
-            width:100%;
+            border: 0;
+            height: 100%;
+            width: 100%;
         }
+
         dl {
-             padding-top:20px;
-             padding-left:20px;
+            padding-top: 20px;
+            padding-left: 20px;
         }
 
         dt {
-            font-weight:400;
-            font-size:20px;
-            margin:10px 0;
-          
+            font-weight: 400;
+            font-size: 20px;
+            margin: 10px 0;
         }
 
         dd {
-             margin-left:10px;
-            font-size:16px;
+            margin-left: 10px;
+            font-size: 16px;
+        }
 
-        }
-        dd + dd {
-                margin-top:5px;
-        }
-        dd a ,
-        dd a:link {
-            color:#444;
-             text-decoration:none;
-        }
-            dd a.active {
-                font-size:18px;
-                color:#ac2925;
-                
+            dd + dd {
+                margin-top: 5px;
             }
-      
 
+            dd a,
+            dd a:link {
+                color: #444;
+                text-decoration: none;
+            }
 
+                dd a.active {
+                    font-size: 18px;
+                    color: #ac2925;
+                }
     </style>
 </head>
 
 <body>
 
     <div class="top">
-        <h3> <img src="./img/plug-in.png" alt="Alternate Text" />jquery 扩展与插件 </h3>
+        <h3> <img src="./img/plug-in.png" alt="Alternate Text" /> jquery 扩展组件与插件 </h3>
     </div>
     <div class="side fl">
-        <dl>
-            <dt>组件</dt>
-            <dd>
-                <a class="active" href="./v-message.html">信息提示框</a>
-            </dd>
-            <dd>
-                <a href="./v-checkbtn.html">选择按钮框</a>
-            </dd>
-            <dd>
-                <a href="./v-number.html">数字加减框</a>
-            </dd>
-            <dt>插件</dt>
-           
+        <div class="side-pwr">
+            <dl>
+                <dt>组件</dt>
 
-        </dl>
-   
+                <dd>
+                    <a class="" href="./v-checkbtn.html">选择按钮框</a>
+                </dd>
+                <dd>
+                    <a class="active" href="./v-checkbox.html">radio,checkbox框</a>
+                </dd>
+                <dd>
+                    <a href="./v-number.html">数字加减框</a>
+                </dd>
+
+                <dd>
+                    <a href="./test.html">测试</a>
+                </dd>
+
+                <dt>插件 </dt>
+                <dd>
+                    <a href="./v-message.html">信息提示框</a>
+                </dd>
+
+            </dl>
+        </div>
+
+
     </div>
-    <div class="cnt bfc">
-        <iframe src="./v-message.html" id="iframe" frameborder="0"></iframe>
-
+    <div class="cnt ">
+        <iframe src="./v-message.html" id="iframe" frameborder="0"  data-start="./v-checkbox.html" ></iframe>
     </div>
-  
-
 
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
-    <!--[if lte IE 8]>
-        <script src="js/ie8.js" type="text/javascript" charset="utf-8"></script>
-    <![endif]-->
 
     <script type="text/javascript">
 
         $(function () {
+
             $(".side dl dd a").click(function (e) {
                 e.preventDefault();
                 $(".side dl dd a").removeClass("active");
                 $(this).addClass("active");
                 var href = $(this).prop("href");
-                $("#iframe").prop("src",href)
+                $("#iframe").prop("src", href)
             });
 
+            var href = $("#iframe").attr("data-start");
+             $("#iframe").attr("src", href)
+    
         });
 
     </script>
