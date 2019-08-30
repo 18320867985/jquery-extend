@@ -3,12 +3,11 @@
 .v-checkbox {
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
 
     > * {
         vertical-align: middle;
     }
-
-    cursor: pointer;
 
     .v-checkbox-item {
         font-size: 30px;
