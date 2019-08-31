@@ -3,7 +3,7 @@
 .v-checkbox-group,
 .v-checkbox {
     .iconfont {
-        font-size:30px;
+        font-size: 30px;
     }
 }
 
@@ -18,7 +18,21 @@
     }
 
     .v-checkbox-item {
-      
+
+        &:before {
+            content: '\e74a';
+            color: #999;
+        }
+
+        &.active {
+            &:before {
+                content: '\e74b';
+                color: $text-primary;
+            }
+        }
+    }
+
+    .v-checkbtnitem {
 
         &:before {
             content: '\e74a';
@@ -107,4 +121,3 @@
         }
     }
 }
-

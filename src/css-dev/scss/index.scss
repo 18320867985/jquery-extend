@@ -47,10 +47,16 @@
         background: #ccc;
     }
 
-    #iframe {
+    .iframe {
         border: 0;
         height: 100%;
         width: 100%;
+        display: none;
+
+        &.active {
+            display: block;
+            animation: index-iframe 1s both;
+        }
     }
 
     dl {
@@ -83,7 +89,16 @@
         font-size: 18px;
         color: #ac2925;
     }
-
-
 }
 
+@keyframes index-iframe{
+    0% {
+        opacity: 0;
+        transform: translateX(50%) scale(0);
+        
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}

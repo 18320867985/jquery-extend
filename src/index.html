@@ -57,7 +57,8 @@
 
     </div>
     <div class="cnt ">
-        <iframe class="active" src="./v-message.html" id="iframe" frameborder="0"  data-start="./v-checkbox.html" ></iframe>
+        <iframe class="iframe active" src="./v-checkbox.html" id="iframe" frameborder="0" ></iframe>
+        <iframe class="iframe"  id="iframe2" frameborder="0" ></iframe>
     </div>
 
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
@@ -72,15 +73,22 @@
                 $(".side dl dd a").removeClass("active");
                 $(this).addClass("active");
                 var href = $(this).prop("href");
-                $("#iframe").prop("src", href);
-                console.log($("#iframe").hasClass("active"))
 
+                if ($("#iframe").hasClass("active")) {
+                    $("#iframe").removeClass("active");
+                    $("#iframe2").addClass("active")
+                   
+                } 
 
+                else if($("#iframe2").hasClass("active")) {
+                    $("#iframe2").removeClass("active");
+                    $("#iframe").addClass("active")
+                }
+                
+               $(".iframe.active").prop("src", href);
             });
 
-            var href = $("#iframe").attr("data-start");
-             $("#iframe").attr("src", href)
-    
+          
         });
 
     </script>

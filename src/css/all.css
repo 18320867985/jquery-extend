@@ -758,10 +758,15 @@ input:focus,
   margin: 10px;
   background: #ccc; }
 
-.index #iframe {
+.index .iframe {
   border: 0;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  display: none; }
+  .index .iframe.active {
+    display: block;
+    -webkit-animation: index-iframe 1s both;
+            animation: index-iframe 1s both; }
 
 .index dl {
   padding-top: 20px;
@@ -787,6 +792,26 @@ input:focus,
 .index dd a.active {
   font-size: 18px;
   color: #ac2925; }
+
+@-webkit-keyframes index-iframe {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(50%) scale(0);
+            transform: translateX(50%) scale(0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1); } }
+
+@keyframes index-iframe {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(50%) scale(0);
+            transform: translateX(50%) scale(0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1); } }
 
 /*全局*/
 .message {
@@ -1197,6 +1222,12 @@ input:focus,
     content: '\e74a';
     color: #999; }
   .v-checkbox .v-checkbox-item.active:before {
+    content: '\e74b';
+    color: #2d80f6; }
+  .v-checkbox .v-checkbtnitem:before {
+    content: '\e74a';
+    color: #999; }
+  .v-checkbox .v-checkbtnitem.active:before {
     content: '\e74b';
     color: #2d80f6; }
 

@@ -190,6 +190,42 @@
 	
                 </pre>
 
+                <h4>修改radio checkbox 图标</h4>
+                <pre>
+                    在v-checkbox.scss v-checkbtn.scss 中修改
+
+                    1.v-checkbox.scss
+                     .v-checkbox-item {
+      
+                    &:before {
+                        content: '\ea2a';
+                        color: #999;
+                    }
+
+                    &.active {
+                        &:before {
+                            content: '\e86a';
+                          
+                        }
+                    }
+
+                 2.v-checkbtn.scss  
+                .v-checkbtn-item {
+      
+                    &:before {
+                        content: '\e74a';
+                        color: #999;
+                    }
+
+                    &.active {
+                        &:before {
+                            content: '\e74b';
+                          
+                        }
+                    }
+                
+                </pre>
+
             </li>
 
         </ul>
