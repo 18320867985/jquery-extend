@@ -1217,3 +1217,26 @@ input:focus,
     .v-checkbox-group .v-checkbox-item .v-checkbox-icon:before {
       content: '\e74a';
       color: #999; }
+
+/*v-radiokbox*/
+.v-radiobox-group {
+  display: inline-block;
+  vertical-align: middle; }
+  .v-radiobox-group .v-radiobox-item {
+    font-size: 15px;
+    color: #777;
+    cursor: pointer; }
+    .v-radiobox-group .v-radiobox-item:before {
+      margin-right: 5px;
+      font-size: 24px;
+      content: '\ea2a';
+      color: #999;
+      vertical-align: middle; }
+    .v-radiobox-group .v-radiobox-item.active:before {
+      margin-right: 5px;
+      font-size: 24px;
+      content: '\e86a';
+      color: #2d80f6;
+      vertical-align: middle; }
+    .v-radiobox-group .v-radiobox-item + .v-radiobox-item {
+      margin-left: 10px; }

@@ -69,3 +69,42 @@
         }
     }
 }
+
+/*v-radiokbox*/
+.v-radiobox-group {
+    display: inline-block;
+    vertical-align: middle;
+
+    .v-radiobox-item {
+        font-size: 15px;
+        color: #777;
+        cursor: pointer;
+
+        > * {
+            //vertical-align: middle;
+        }
+
+        &:before {
+            margin-right: 5px;
+            font-size: 24px;
+            content: '\ea2a';
+            color: #999;
+            vertical-align: middle;
+        }
+
+        &.active {
+            &:before {
+                margin-right: 5px;
+                font-size: 24px;
+                content: '\e86a';
+                color: $text-primary;
+                vertical-align: middle;
+            }
+        }
+
+        & + .v-radiobox-item {
+            margin-left: 10px;
+        }
+    }
+}
+

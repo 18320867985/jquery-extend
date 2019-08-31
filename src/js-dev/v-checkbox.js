@@ -209,4 +209,112 @@
     });
     
    })();
-   
+
+
+/*
+ * v-radiobox 组件
+ 	
+ 	<div class="v-radiobox" >
+		<span class="v-radiobox-item iconfont">慢</span>
+		<span class="v-radiobox-item iconfont">中</span>
+		<span class="v-radiobox-item iconfont">快</span>
+	</div>
+	
+	 // 自定义事件
+	$(".v-radiobox").on("v-radiobox", function(event, el,bl) {
+
+		$.alert("选择的值为:"+bl);
+	});
+	
+	//set 1
+	$(".v-radiobox").VRadiobox(1);
+	
+	//set2
+	var v="快";
+	$(".v-radiobox").VRadiobox((val)=>{
+		return	val==v;
+			
+	});
+	
+	//get
+	var v=$(".v-radiobox").VRadiobox();
+	alert(v);
+
+	
+	
+ * */
+
+
+(function () {
+
+    // 单选 v-radiobox
+    $(document).on("click", ".v-radiobox-item", function () {
+     
+        var p = $(this).parents(".v-radiobox-group");
+        $(".v-radiobox-item", p).removeClass("active");
+        $(this).addClass("active");
+        var v=  $(this).attr("data-val") || "";
+
+        // 触发自定义的事件
+        $(this).trigger("v-radiobox-group", [v,this]);
+    });
+
+
+    $.fn.extend({
+
+        VRadioboxGroup: function (args) {
+            var items = $(this).find(".v-radiobox-item");
+            if (typeof args === "string") {
+                items.removeClass("active");
+                var v = "";
+                items.each(function () {
+                    var v2 = $(this).attr("data-val") || "";
+                    if ($.trim(v2) === args) {
+                        $(this).addClass("active");
+                        v = v2; 
+                        return false;
+                    }
+                });
+
+                // 触发自定义的事件
+                $(this).trigger("v-radiobox-group", [v, $(this).find(".v-radiobox-item.active").get(0)]);
+               
+            }
+
+            else if (typeof args === "number") {
+               
+                  items.removeClass("active");
+                if (args > 0) {
+                    args = args >= 1 ? args - 1 : 0;
+                    items.eq(args).addClass("active");
+                }
+
+                return;
+            }
+
+            else if (typeof args === "function") {
+              
+                items.removeClass("active");
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    var val = $(item).attr("data-val") || "";
+                    var bl = args(val);
+                    if (bl) {
+                        $(item).addClass("active");
+                        break;
+                    } else {
+                        $(item).removeClass("active");
+                    }
+                }
+
+                return;
+            } else {
+                return $(this).find(".v-radiobox-item.active").attr("data-val")||"";
+            }
+
+
+        }
+    });
+
+
+})();

@@ -151,40 +151,42 @@
 
             <li>
                 <h2>
-                    v-radiobtn-group 组件-单选
+                    v-radiobox-group 组件-单选
                 </h2>
 
-                <div class="v-radiobtn-group">
-                    <div class="v-radiobtn-item" data-val="lingju">灵聚</div>
-                    <div class="v-radiobtn-item" data-val="tengxun">腾讯</div>
-                    <div class="v-radiobtn-item" data-val="xunfei">科大讯飞</div>
+                <div class="v-radiobox-group">
+                    <span class="v-radiobox-item iconfont" data-val="慢">慢</span>
+                    <span class="v-radiobox-item iconfont" data-val="中">中</span>
+                    <span class="v-radiobox-item iconfont" data-val="快">快</span>
                 </div>
                 <br />
                 <p>选择值为: <span class="v-radiobtn-group-val"></span></p>
                 <a class="btn btn-success v-radiobtn-group-get">获取选择的值</a>
-                <a class="btn btn-danger v-radiobtn-group-set">设置的值 "腾讯" </a>
+                <a class="btn btn-danger v-radiobtn-group-set">设置的值 "中" </a>
+
 
                 <!-- &lt;div&gt;-->
                 <pre>
                    &lt;div class="v-radiobtn-group" &gt;
-                         &lt;div class="v-radiobtn-item" data-val="lingju">灵聚 &lt;/div&gt;
-                         &lt;div class="v-radiobtn-item" data-val="tengxun">腾讯 &lt;/div&gt;
-                         &lt;div class="v-radiobtn-item" data-val="xunfei">科大讯飞 &lt;/div&gt;
+                         &lt;span class="v-radiobox-item iconfont"  data-val="慢">慢  &lt;/span>
+                         &lt;span class="v-radiobox-item iconfont"  data-val="中">中  &lt;/span>
+                         &lt;span class="v-radiobox-item iconfont"  data-val="快">快  &lt;/span>
                    &lt;/div&gt;
 
-                     set
-	                 1. $(".v-radiobtn-group").VRadiobtnGroup("tengxun");
-                     2. 或者指定下标index  例如 $(".v-radiobtn-group").VRadiobtnGroup(1);
-                
-	                get
-	                var v = $(".v-radiobtn-group").VRadiobtnGroup();
-                    $.alert("", "选择的值：" + v);
+                 单选 v-radiobox-group 自定事件
+                 $(".v-radiobox-group").on("v-radiobox-group", function (e, v, el) {
+                     console.log(v, el)
+                     $(".v-radiobtn-group-val").text(JSON.stringify(v));
+                 });
+
+                  设置的值
+	             $(".v-radiobox-group").VRadioboxGroup("中");
+                    
+	             获取选择的值
+	             var v = $(".v-radiobtn-group").VRadioboxGroup();
+                 $.alert("", "选择的值：" + v);
 	
-	               单选 vue-radiobtn-group 自定事件
-                    $(".v-radiobtn-group").on("v-radiobtn-group", function (e, v,el) {
-                        console.log(v,el);
-		                $(".v-radiobtn-group-val").text(JSON.stringify(v));
-	                });
+	              
 	
                 </pre>
 
@@ -204,10 +206,10 @@
     <script type="text/javascript">
         $(function () {
 
-     
+
             // "v-checkbtn 触发自定义的事件
             $(".v-checkbox").on("v-checkbox", function (e, bl, el) {
-                console.log(bl,el)
+                console.log(bl, el)
                 bl = !!bl;
                 $(".v-checkbtn-val").text(bl)
             });
@@ -222,17 +224,17 @@
             });
             // set
             $(".v-checkbtn-set").click(function (e) {
-           
+
                 $(".v-checkbox").VCheckbox(true);
 
             });
 
             //  v-checkbtn-group 多选 触发自定义的事件
-            $(".v-checkbox-group").on("v-checkbox-group", function (e, arrs,el) {
+            $(".v-checkbox-group").on("v-checkbox-group", function (e, arrs, el) {
 
                 $(".v-checkbtn-group-val").text(JSON.stringify(arrs));
-                 console.log(arrs,el)
-               // $.alert("","选择的值为:"+arrs);
+                console.log(arrs, el)
+                // $.alert("","选择的值为:"+arrs);
             });
 
             $(".v-checkbtn-group-get").click(function (e) {
@@ -251,10 +253,10 @@
 
                     for (var i = 0; i < arrs.length; i++) {
 
-                    if (arrs[i] === v) {
-                        return true;
-                        break;
-                       }
+                        if (arrs[i] === v) {
+                            return true;
+                            break;
+                        }
                     }
 
                 });
@@ -263,21 +265,28 @@
 
             // 全选
             $(".v-checkbtn-group-all").click(function () {
-                 $(".v-checkbox-group").VChekboxGroup(true);
+                $(".v-checkbox-group").VChekboxGroup(true);
 
             });
 
             // 反选
-             $(".v-checkbtn-group-no").click(function () {
-                 $(".v-checkbox-group").VChekboxGroup(false);
+            $(".v-checkbtn-group-no").click(function () {
+                $(".v-checkbox-group").VChekboxGroup(false);
 
             });
 
 
-            //  v-checkbtn-group 单选
+            //  v-checkbox-group 单选
+
+            // 单选 v-radiobox-group 自定事件
+            $(".v-radiobox-group").on("v-radiobox-group", function (e, v, el) {
+                console.log(v, el)
+                $(".v-radiobtn-group-val").text(JSON.stringify(v));
+            });
+
             // set
             $(".v-radiobtn-group-set").click(function () {
-                $(".v-radiobtn-group").VRadiobtnGroup("tengxun");
+                $(".v-radiobox-group").VRadioboxGroup("中");
                 // 或者指定下标index
                 //$(".v-radiobtn-group").VRadiobtnGroup(1);
 
@@ -285,18 +294,9 @@
 
             // get
             $(".v-radiobtn-group-get").click(function () {
-                var v = $(".v-radiobtn-group").VRadiobtnGroup();
+                var v = $(".v-radiobox-group").VRadioboxGroup();
                 $.alert("", "选择的值：" + v);
             });
-
-
-            // 单选 vue-radiobtn-group 自定事件
-            $(".v-radiobtn-group").on("v-radiobtn-group", function (e, v, el) {
-                console.log(v, el)
-                $(".v-radiobtn-group-val").text(JSON.stringify(v));
-            });
-
-
 
 
         });
