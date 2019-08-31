@@ -51,7 +51,7 @@
 	$.fn.extend({
 
         VCheckbox: function (v) {
-            console.log(v)
+    
             if (arguments.length>0) {
 				v=!!v;
 				if(v){
@@ -113,94 +113,100 @@
 	*/
    
    
-   (function() {
-   	
-   	// 单选组 v-checkbox-group
-   	$(document).on("click", ".v-checkbox-group  .v-checkbox-item", function() {
-   		
-   		$(this).toggleClass("active");
-    	var p=$(this).parents(".v-checkbox-group");
+(function () {
+    // 单选组 v-checkbox-group
+    $(document).on("click", ".v-checkbox-group  .v-checkbox-item", function () {
+        $(this).toggleClass("active");
+        var p = $(this).parents(".v-checkbox-group");
 		var vals=[];
-		$(".v-checkbox-item.active",p).each(function(){
-			var v=$(this).attr("data-val");
+        $(".v-checkbox-item.active",p).each(function(){
+            var v = $(this).attr("data-val");
 			vals.push(v);
 			
 		});
-    		
-   		// 触发自定义的事件
-   		$(this).trigger("v-checkbox-group", [this,vals]);
-   	});
-   	
-   	// 单选 v-checkbox
-   	$(document).on("click", ".v-checkbox-group  .v-checkbox-text", function() {
-   		
-   		var p=$(this).parents(".v-checkbox-group-item");
-   		$(".v-checkbox-item",p).toggleClass("active");
-   		var p2=$(this).parents(".v-checkbox-group");
-   		var vals=[];
-   		$(".v-checkbox-item.active",p2).each(function(){
-   			var v=$(this).attr("data-val");
-   			vals.push(v);
-   			
-   		});
-   		
-   		// 触发自定义的事件
-   		$(this).trigger("v-checkbox-group", [this,vals]);
-   	});
-   	
-   	
-   	$.fn.extend({
-   
-   		VueCheckboxGroup: function(args) {
-   			
-   						if(typeof args==="function"){
-   							var items=$(this).find(".v-checkbox-item");
-   							for(var i=0;i<items.length;i++){
-   								 var item=items[i];
-   								 var val=$(item).attr("data-val")||"";
-   								 var bl=args(val);
-   								if(bl){
-   									$(item).addClass("active");	
-   								}else{
-   									$(item).removeClass("active");	
-   								}
-   							}
-   							
-   							return;
-   						}
-   						
-   						if( args instanceof Array){
-   							
-   							var items=$(this).find(".v-checkbox-item");
-   							for(var i=0;i<items.length;i++){
-   								 var item=items[i];
-   								for(var y=0;y<args.length;y++){
-   									if((i+1)==args[y]){
-   										$(item).addClass("active");	
-   										break;
-   									}
-   								}
-   								
-   							}
-   							
-   						}else{
-   							var arrs = [];
-   							$(".v-checkbox-item", this).each(function() {
-   								if($(this).hasClass("active")) {
-   									var v = $(this).attr("data-val") || "";
-   									if(v.trim() != "") {
-   										arrs.push(v);
-   									}
-   								}
-   			
-   							});
-   							
-   							return arrs;
-   						}
-   						
-   		}
-   	});
-   	
-   	
+
+        // 触发自定义的事件
+        $(this).trigger("v-checkbox-group", [vals, p]);
+
+    });
+
+    $.fn.extend({
+        VChekboxGroup: function (args) {
+            var items = $(this).find(".v-checkbox-item");
+
+            if (typeof args === "function") {
+                var list = [];
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    $(item).removeClass("active");
+                    var val = $(item).attr("data-val") || "";
+                    var bl = args(val);
+                    if (bl) {
+                        $(item).addClass("active");
+                        list.push(val); 
+                    } 
+                }
+                // 触发自定义的事件
+                $(this).trigger("v-checkbox-group", [list, this]);
+
+                return;
+            }
+
+            // 全选 与 反选
+            else if (typeof args === "boolean") {
+              
+                var list1 = [];
+                items.each(function () {
+                        if (args) {
+                            $(this).addClass("active");
+                            list1.push($(this).attr("data-val") || "");
+                        } else {
+                            $(this).removeClass("active");
+                          
+                        }
+                 });
+
+                 // 触发自定义的事件
+                 $(this).trigger("v-checkbox-group", [list1, this]);
+
+              
+
+            }
+
+            else if (args instanceof Array) {
+                var list2 = [];
+                for (var i2 = 0; i2 < items.length; i2++) {
+                    var item2 = items[i2];
+                    $(item2).removeClass("active");
+                    for (var y = 0; y < args.length; y++) {
+                        var v = $(item2).attr("data-val")||"";
+                        if ( v=== args[y]) {
+                            $(item2).addClass("active");
+                            list2.push(v);
+                            break;
+                          
+                        } 
+                    }
+                }
+                // 触发自定义的事件
+                $(this).trigger("v-checkbox-group", [list2, this]);
+            } else {
+                var arrs = [];
+                items.each(function () {
+               
+                    if ($(this).hasClass("active")) {
+                        var v = $(this).attr("data-val") || "";
+                       
+                        if ($.trim(v) !== "") {
+                            arrs.push(v);
+                        }
+                    }
+                });
+               
+                return arrs;
+            }
+        }
+    });
+    
    })();
    

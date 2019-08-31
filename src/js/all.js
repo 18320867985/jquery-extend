@@ -364,6 +364,155 @@
 })();
 
 /*
+	  
+ <div class="v-number" >
+    <button class="minus btn" type="button">-</button>
+	<input class="num" type="number" value="1" data-min="0" data-max="9999" data-step="1" />
+	<button class="plus btn" type="button">+</button>
+	  
+</div>
+ 
+	 * 数字框组件start
+	 * 事件：v-number
+	 *
+	 * 点击事件
+		$(document).on("v-number",function(event,element){			
+			//element 当前点击的元素	
+			var p=$(element).parents(".v-number");
+			alert($(p).find(".num").val());
+								
+		});
+		
+		//	$(".v-number").VNumber("8");
+		// get
+		//var v=$(".v-number").VNumber();
+	 * */
+
+(function () {
+
+			//minus
+			$(document).on("click", ".minus", function (e) {
+
+						e.stopPropagation();
+						e.preventDefault();
+
+						var p = $(this).parents(".v-number");
+
+						//步长
+						var step = Number($(".num", p).attr("data-step"));
+						step = window.isNaN(step) ? 1 : step;
+
+						//最大值
+						//			var max=Number($(".num",p).attr("data-max"));
+						//				max=window.isNaN(max)?9999:max;
+						//最小值
+						var min = Number($(".num", p).attr("data-min"));
+						min = window.isNaN(min) ? 0 : min;
+
+						var v = Number($(".num", p).val());
+						v = window.isNaN(v) ? min : v;
+
+						//计算
+						v = v > min ? v - step : min;
+
+						if (v <= min) {
+									v = min;
+						}
+
+						$(".num", p).val(v);
+
+						//点击触发自定义事件
+						$(this).trigger("v-number", [v, p.get(0)]);
+			});
+
+			//plus
+			$(document).on("click", ".plus", function (e) {
+						e.stopPropagation();
+						e.preventDefault();
+						var p = $(this).parents(".v-number");
+
+						//步长
+						var step = Number($(".num", p).attr("data-step"));
+						step = window.isNaN(step) ? 1 : step;
+
+						//最大值
+						var max = Number($(".num", p).attr("data-max"));
+						max = window.isNaN(max) ? 9999 : max;
+						//最小值
+						var min = Number($(".num", p).attr("data-min"));
+						min = window.isNaN(min) ? 0 : min;
+
+						var v = Number($(".num", p).val());
+						v = window.isNaN(v) ? min : v;
+
+						//计算
+						v = v < max ? v + step : max;
+
+						if (v >= max) {
+									v = max;
+						}
+
+						$(".num", p).val(v);
+						//点击触发自定义事件
+						$(this).trigger("v-number", [v, p.get(0)]);
+			});
+
+			// value
+			$(document).on("blur", ".num", function (e) {
+						var p = $(this).parents(".v-number");
+						//最大值
+						var max = Number($(".num", p).attr("data-max"));
+						max = window.isNaN(max) ? 9999 : max;
+						//最小值
+						var min = Number($(".num", p).attr("data-min"));
+						min = window.isNaN(min) ? 0 : min;
+
+						var v = Number($(".num", p).val());
+						v = window.isNaN(v) ? min : v;
+
+						if (v > max) {
+									v = max;
+						}
+
+						if (v < min) {
+									v = min;
+						}
+
+						$(".num", p).val(v);
+						//点击触发自定义事件
+						$(this).trigger("v-number", [v, p.get(0)]);
+			});
+
+			$.fn.extend({
+
+						VNumber: function VNumber(v) {
+									var $el = $(this).find(".num");
+									if (arguments.length >= 1) {
+
+												var min = parseFloat($el.attr("data-min") || 0);
+												var max = parseFloat($el.attr("data-max") || 9999);
+
+												if (isNaN(v)) {
+															v = min;
+												} else {
+															v = parseFloat(v);
+															v = v < min ? min : v;
+															v = v > max ? max : v;
+												}
+
+												$el.val(v);
+
+												//点击触发自定义事件
+												$(this).trigger("v-number", [v, $(this).get(0)]);
+									} else if (arguments.length === 0) {
+												return $el.val();
+									}
+						}
+
+			});
+})();
+
+/*
   <div class="v-checkbtn">
       <div class="v-checkbtn-item ">
           爱心
@@ -583,155 +732,6 @@
 })();
 
 /*
-	  
- <div class="v-number" >
-    <button class="minus btn" type="button">-</button>
-	<input class="num" type="number" value="1" data-min="0" data-max="9999" data-step="1" />
-	<button class="plus btn" type="button">+</button>
-	  
-</div>
- 
-	 * 数字框组件start
-	 * 事件：v-number
-	 *
-	 * 点击事件
-		$(document).on("v-number",function(event,element){			
-			//element 当前点击的元素	
-			var p=$(element).parents(".v-number");
-			alert($(p).find(".num").val());
-								
-		});
-		
-		//	$(".v-number").VNumber("8");
-		// get
-		//var v=$(".v-number").VNumber();
-	 * */
-
-(function () {
-
-			//minus
-			$(document).on("click", ".minus", function (e) {
-
-						e.stopPropagation();
-						e.preventDefault();
-
-						var p = $(this).parents(".v-number");
-
-						//步长
-						var step = Number($(".num", p).attr("data-step"));
-						step = window.isNaN(step) ? 1 : step;
-
-						//最大值
-						//			var max=Number($(".num",p).attr("data-max"));
-						//				max=window.isNaN(max)?9999:max;
-						//最小值
-						var min = Number($(".num", p).attr("data-min"));
-						min = window.isNaN(min) ? 0 : min;
-
-						var v = Number($(".num", p).val());
-						v = window.isNaN(v) ? min : v;
-
-						//计算
-						v = v > min ? v - step : min;
-
-						if (v <= min) {
-									v = min;
-						}
-
-						$(".num", p).val(v);
-
-						//点击触发自定义事件
-						$(this).trigger("v-number", [v, p.get(0)]);
-			});
-
-			//plus
-			$(document).on("click", ".plus", function (e) {
-						e.stopPropagation();
-						e.preventDefault();
-						var p = $(this).parents(".v-number");
-
-						//步长
-						var step = Number($(".num", p).attr("data-step"));
-						step = window.isNaN(step) ? 1 : step;
-
-						//最大值
-						var max = Number($(".num", p).attr("data-max"));
-						max = window.isNaN(max) ? 9999 : max;
-						//最小值
-						var min = Number($(".num", p).attr("data-min"));
-						min = window.isNaN(min) ? 0 : min;
-
-						var v = Number($(".num", p).val());
-						v = window.isNaN(v) ? min : v;
-
-						//计算
-						v = v < max ? v + step : max;
-
-						if (v >= max) {
-									v = max;
-						}
-
-						$(".num", p).val(v);
-						//点击触发自定义事件
-						$(this).trigger("v-number", [v, p.get(0)]);
-			});
-
-			// value
-			$(document).on("blur", ".num", function (e) {
-						var p = $(this).parents(".v-number");
-						//最大值
-						var max = Number($(".num", p).attr("data-max"));
-						max = window.isNaN(max) ? 9999 : max;
-						//最小值
-						var min = Number($(".num", p).attr("data-min"));
-						min = window.isNaN(min) ? 0 : min;
-
-						var v = Number($(".num", p).val());
-						v = window.isNaN(v) ? min : v;
-
-						if (v > max) {
-									v = max;
-						}
-
-						if (v < min) {
-									v = min;
-						}
-
-						$(".num", p).val(v);
-						//点击触发自定义事件
-						$(this).trigger("v-number", [v, p.get(0)]);
-			});
-
-			$.fn.extend({
-
-						VNumber: function VNumber(v) {
-									var $el = $(this).find(".num");
-									if (arguments.length >= 1) {
-
-												var min = parseFloat($el.attr("data-min") || 0);
-												var max = parseFloat($el.attr("data-max") || 9999);
-
-												if (isNaN(v)) {
-															v = min;
-												} else {
-															v = parseFloat(v);
-															v = v < min ? min : v;
-															v = v > max ? max : v;
-												}
-
-												$el.val(v);
-
-												//点击触发自定义事件
-												$(this).trigger("v-number", [v, $(this).get(0)]);
-									} else if (arguments.length === 0) {
-												return $el.val();
-									}
-						}
-
-			});
-})();
-
-/*
  * v-checkbox 组件
  	
  	<div class="v-checkbox" >
@@ -781,7 +781,7 @@
   $.fn.extend({
 
     VCheckbox: function VCheckbox(v) {
-      console.log(v);
+
       if (arguments.length > 0) {
         v = !!v;
         if (v) {
@@ -839,10 +839,8 @@
 	*/
 
 (function () {
-
   // 单选组 v-checkbox-group
   $(document).on("click", ".v-checkbox-group  .v-checkbox-item", function () {
-
     $(this).toggleClass("active");
     var p = $(this).parents(".v-checkbox-group");
     var vals = [];
@@ -852,70 +850,77 @@
     });
 
     // 触发自定义的事件
-    $(this).trigger("v-checkbox-group", [this, vals]);
-  });
-
-  // 单选 v-checkbox
-  $(document).on("click", ".v-checkbox-group  .v-checkbox-text", function () {
-
-    var p = $(this).parents(".v-checkbox-group-item");
-    $(".v-checkbox-item", p).toggleClass("active");
-    var p2 = $(this).parents(".v-checkbox-group");
-    var vals = [];
-    $(".v-checkbox-item.active", p2).each(function () {
-      var v = $(this).attr("data-val");
-      vals.push(v);
-    });
-
-    // 触发自定义的事件
-    $(this).trigger("v-checkbox-group", [this, vals]);
+    $(this).trigger("v-checkbox-group", [vals, p]);
   });
 
   $.fn.extend({
-
-    VueCheckboxGroup: function VueCheckboxGroup(args) {
+    VChekboxGroup: function VChekboxGroup(args) {
+      var items = $(this).find(".v-checkbox-item");
 
       if (typeof args === "function") {
-        var items = $(this).find(".v-checkbox-item");
+        var list = [];
         for (var i = 0; i < items.length; i++) {
           var item = items[i];
+          $(item).removeClass("active");
           var val = $(item).attr("data-val") || "";
           var bl = args(val);
           if (bl) {
             $(item).addClass("active");
-          } else {
-            $(item).removeClass("active");
+            list.push(val);
           }
         }
+        // 触发自定义的事件
+        $(this).trigger("v-checkbox-group", [list, this]);
 
         return;
       }
 
-      if (args instanceof Array) {
+      // 全选 与 反选
+      else if (typeof args === "boolean") {
 
-        var items = $(this).find(".v-checkbox-item");
-        for (var i = 0; i < items.length; i++) {
-          var item = items[i];
-          for (var y = 0; y < args.length; y++) {
-            if (i + 1 == args[y]) {
-              $(item).addClass("active");
-              break;
+          var list1 = [];
+          items.each(function () {
+            if (args) {
+              $(this).addClass("active");
+              list1.push($(this).attr("data-val") || "");
+            } else {
+              $(this).removeClass("active");
+            }
+          });
+
+          // 触发自定义的事件
+          $(this).trigger("v-checkbox-group", [list1, this]);
+        } else if (args instanceof Array) {
+          var list2 = [];
+          for (var i2 = 0; i2 < items.length; i2++) {
+            var item2 = items[i2];
+            $(item2).removeClass("active");
+            for (var y = 0; y < args.length; y++) {
+              var v = $(item2).attr("data-val") || "";
+              if (v === args[y]) {
+                $(item2).addClass("active");
+                list2.push(v);
+                break;
+              }
             }
           }
+          // 触发自定义的事件
+          $(this).trigger("v-checkbox-group", [list2, this]);
+        } else {
+          var arrs = [];
+          items.each(function () {
+
+            if ($(this).hasClass("active")) {
+              var v = $(this).attr("data-val") || "";
+
+              if ($.trim(v) !== "") {
+                arrs.push(v);
+              }
+            }
+          });
+
+          return arrs;
         }
-      } else {
-        var arrs = [];
-        $(".v-checkbox-item", this).each(function () {
-          if ($(this).hasClass("active")) {
-            var v = $(this).attr("data-val") || "";
-            if (v.trim() != "") {
-              arrs.push(v);
-            }
-          }
-        });
-
-        return arrs;
-      }
     }
   });
 })();

@@ -24,7 +24,7 @@
         }
 
         pre {
-            margin: 10px;
+            margin: 10px 0;
         }
 
         p {
@@ -91,6 +91,7 @@
                 <p>选择值为: <span class="v-checkbtn-group-val"></span></p>
                 <a class="btn btn-success v-checkbtn-group-get">获取选择的值</a>
                 <a class="btn btn-danger v-checkbtn-group-set">设置的值 [ "js","c#" ] </a>
+                <a class="btn btn-warning v-checkbtn-group-fn">设置的值 执行回调函数 [ "js","jquery" ] </a>
 
                 <a class="btn btn-info v-checkbtn-group-all">全选</a>
                 <a class="btn btn-info  v-checkbtn-group-no">反选</a>
@@ -114,11 +115,11 @@
 
                  
                 获取选择的值
-                var v=$(".v-checkbtn-group").VueCheckbtnGroup();
+                var v=$(".v-checkbtn-group").VCheckbtnGroup();
                 $.alert("获取选择的值",v)
 
                 设置的值
-                $(".v-checkbtn-group").VueCheckbtnGroup(["js","c#"]);
+                $(".v-checkbtn-group").VCheckbtnGroup(["js","c#"]);
 
                 全选 参数为true
                 $(".v-checkbtn-group").VCheckbtnGroup(true);
@@ -224,6 +225,22 @@
 
             $(".v-checkbtn-group-set").click(function (e) {
                 $(".v-checkbtn-group").VCheckbtnGroup(["js", "c#"]);
+
+            });
+
+            $(".v-checkbtn-group-fn").click(function (e) {
+
+                 $(".v-checkbtn-group").VCheckbtnGroup(function (v) {
+                     var arrs = ["js", "jquery"];
+                    for (var i = 0; i < arrs.length; i++) {
+
+                    if (arrs[i] === v) {
+                        return true;
+                        break;
+                       }
+                    }
+
+                 });
 
             });
 

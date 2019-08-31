@@ -719,6 +719,75 @@ input:focus,
 .container-fluid-12 .form-inline .has-feedback .form-control-feedback {
   top: 0; }
 
+.index .top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-left: 40px;
+  background: #f2f2f2;
+  border-bottom: 1px solid #ddd; }
+
+.index .top h3 {
+  margin: 0;
+  line-height: 60px; }
+
+.index .top img {
+  height: 40px;
+  margin-right: 20px;
+  vertical-align: middle; }
+
+.index .side, .index .cnt {
+  padding-top: 60px;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.index .side {
+  width: 200px;
+  border-right: 1px solid #ddd; }
+
+.index .side-pwr {
+  overflow: auto;
+  height: 100%; }
+
+.index .cnt {
+  overflow: hidden; }
+
+.index ul {
+  margin: 10px;
+  background: #ccc; }
+
+.index #iframe {
+  border: 0;
+  height: 100%;
+  width: 100%; }
+
+.index dl {
+  padding-top: 20px;
+  padding-left: 20px; }
+
+.index dt {
+  font-weight: 400;
+  font-size: 20px;
+  margin: 10px 0; }
+
+.index dd {
+  margin-left: 10px;
+  font-size: 16px; }
+
+.index dd + dd {
+  margin-top: 5px; }
+
+.index dd a,
+.index dd a:link {
+  color: #444;
+  text-decoration: none; }
+
+.index dd a.active {
+  font-size: 18px;
+  color: #ac2925; }
+
 /*全局*/
 .message {
   position: fixed;
@@ -1113,6 +1182,10 @@ input:focus,
     border-right: none;
     background: #fff; }
 
+.v-checkbox-group .iconfont,
+.v-checkbox .iconfont {
+  font-size: 30px; }
+
 /*v-checkbox*/
 .v-checkbox {
   display: inline-block;
@@ -1120,30 +1193,27 @@ input:focus,
   cursor: pointer; }
   .v-checkbox > * {
     vertical-align: middle; }
-  .v-checkbox .v-checkbox-item {
-    font-size: 30px; }
-    .v-checkbox .v-checkbox-item:before {
-      content: '\e74a';
-      color: #999; }
-    .v-checkbox .v-checkbox-item.active:before {
-      content: '\e74b';
-      color: #2d80f6; }
+  .v-checkbox .v-checkbox-item:before {
+    content: '\e74a';
+    color: #999; }
+  .v-checkbox .v-checkbox-item.active:before {
+    content: '\e74b';
+    color: #2d80f6; }
 
+/*v-checkbox-group*/
 .v-checkbox-group {
   display: inline-block;
   vertical-align: middle; }
-  .v-checkbox-group .v-checkbox-group-item {
+  .v-checkbox-group .v-checkbox-item {
     display: inline-block;
     cursor: pointer; }
-    .v-checkbox-group .v-checkbox-group-item + .v-checkbox-group-item {
+    .v-checkbox-group .v-checkbox-item.active .v-checkbox-icon:before {
+      content: '\e74b';
+      color: #2d80f6; }
+    .v-checkbox-group .v-checkbox-item + .v-checkbox-item {
       margin-left: 10px; }
-    .v-checkbox-group .v-checkbox-group-item > * {
+    .v-checkbox-group .v-checkbox-item > * {
       vertical-align: middle; }
-    .v-checkbox-group .v-checkbox-group-item .v-checkbox-item {
-      font-size: 24px; }
-      .v-checkbox-group .v-checkbox-group-item .v-checkbox-item:before {
-        content: '\e602';
-        color: #999; }
-      .v-checkbox-group .v-checkbox-group-item .v-checkbox-item.active:before {
-        content: '\e9c4';
-        color: #2d80f6; }
+    .v-checkbox-group .v-checkbox-item .v-checkbox-icon:before {
+      content: '\e74a';
+      color: #999; }

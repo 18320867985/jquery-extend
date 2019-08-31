@@ -25,7 +25,7 @@
         }
 
         pre {
-            margin: 10px;
+            margin: 10px 0;
         }
 
         p {
@@ -76,52 +76,72 @@
 
             <li>
 
-                <h2>v-checkbtn-group 组件 多选</h2>
+                <h2>v-checkbox-group 组件 多选</h2>
 
-                <div class="v-checkbtn-group">
-                    <div class="v-checkbtn-item " data-val="js">js</div>
-                    <div class="v-checkbtn-item " data-val="jquery">jquery</div>
-                    <div class="v-checkbtn-item " data-val="java">java</div>
-                    <div class="v-checkbtn-item " data-val="c#">c#</div>
-                    <div class="v-checkbtn-item " data-val="nodejs">nodejs</div>
+
+                <div class="v-checkbox-group">
+                    <div class="v-checkbox-item" data-val="js">
+                        <span class="v-checkbox-icon iconfont"></span>
+                        <span class="v-checkbox-text">js</span>
+                    </div>
+                    <div class="v-checkbox-item" data-val="jquery">
+                        <span class="v-checkbox-icon iconfont"></span>
+                        <span class="v-checkbox-text">jquery</span>
+                    </div>
+                    <div class="v-checkbox-item" data-val="c#">
+                        <span class="v-checkbox-icon iconfont"></span>
+                        <span class="v-checkbox-text">c#</span>
+                    </div>
+
                 </div>
+
                 <p>选择值为: <span class="v-checkbtn-group-val"></span></p>
                 <a class="btn btn-success v-checkbtn-group-get">获取选择的值</a>
                 <a class="btn btn-danger v-checkbtn-group-set">设置的值 [ "js","c#" ] </a>
+                <a class="btn btn-warning v-checkbtn-group-fn">设置的值 执行回调函数 [ "js","jquery" ] </a>
 
                 <a class="btn btn-info v-checkbtn-group-all">全选</a>
                 <a class="btn btn-info  v-checkbtn-group-no">反选</a>
 
                 <pre>
-                 &lt;div class="v-checkbtn-group">
+                 &lt;div class="v-checkbox-group">
+                    &lt;div class="v-checkbox-item " data-val="js">
+                        &lt;span class="v-checkbox-icon iconfont"> &lt;/span>
+                        &lt;span class="v-checkbox-text">js &lt;/span>
+                    &lt;/div&gt;
 
-                    &lt;div class="v-checkbtn-item " data-val="js">js  &lt;/div&gt;
-                    &lt;div class="v-checkbtn-item " data-val="jquery">jquery  &lt;/div&gt;
-                    &lt;divclass="v-checkbtn-item " data-val="java">java   &lt;/div&gt;
-                    &lt;div class="v-checkbtn-item " data-val="c#">c#   &lt;/div&gt;
-                    &lt;divclass="v-checkbtn-item " data-val="nodejs">nodejs   &lt;/div&gt;
+                    &lt;div class="v-checkbtn-item " data-val="jquery">
+                        &lt;span class="v-checkbox-icon iconfont"> &lt;/span>
+                        &lt;span class="v-checkbox-text">jquery &lt;/span>
+                    &lt;/div&gt;
 
+                    &lt;div class="v-checkbtn-item " data-val="c#">
+                        &lt;span class="v-checkbox-icon iconfont"> &lt;/span>
+                        &lt;span class="v-checkbox-text">#"> &lt;/span>
+                    &lt;/div&gt;
+      
                 &lt;/div&gt;
 
-                 v-checkbtn-group自定义事件
-                $(".v-checkbtn-group").on("v-checkbtn-group", function(e,arrs) {
-                      $(".v-checkbtn-group-val").text(JSON.stringify(arrs));
-                    //$.alert("提示","选择的值为:"+arrs);
-                 });
+                 v-checkbtn-group 多选 触发自定义的事件
+                $(".v-checkbox-group").on("v-checkbox-group", function (e, arrs,el) {
+                     $(".v-checkbtn-group-val").text(JSON.stringify(arrs));
+                     console.log(arrs,el)
+                   
+                });
 
                  
                 获取选择的值
-                var v=$(".v-checkbtn-group").VueCheckbtnGroup();
+                var v= $(".v-checkbox-group").VChekboxGroup();
                 $.alert("获取选择的值",v)
 
                 设置的值
-                $(".v-checkbtn-group").VueCheckbtnGroup(["js","c#"]);
+                $(".v-checkbtn-group").VCheckboxGroup(["js","c#"]);
 
                 全选 参数为true
-                $(".v-checkbtn-group").VCheckbtnGroup(true);
+                $(".v-checkbtn-group").VCheckboxGroup(true);
 
                 反选  参数为false
-                $(".v-checkbtn-group").VCheckbtnGroup(false);
+                $(".v-checkbtn-group").VCheckboxGroup(false);
 
          
                 </pre>
@@ -207,37 +227,51 @@
 
             });
 
-            //  v-checkbtn-group 多选
-            $(".v-checkbtn-group").on("v-checkbtn-group", function (e, arrs) {
+            //  v-checkbtn-group 多选 触发自定义的事件
+            $(".v-checkbox-group").on("v-checkbox-group", function (e, arrs,el) {
 
                 $(".v-checkbtn-group-val").text(JSON.stringify(arrs));
-                 console.log(arrs)
-                //$.alert("","选择的值为:"+arrs);
+                 console.log(arrs,el)
+               // $.alert("","选择的值为:"+arrs);
             });
 
             $(".v-checkbtn-group-get").click(function (e) {
-                var v = $(".v-checkbtn-group").VCheckbtnGroup();
+                var v = $(".v-checkbox-group").VChekboxGroup();
                 $.alert("获取选择的值", "[" + v + "]");
             });
 
             $(".v-checkbtn-group-set").click(function (e) {
-                $(".v-checkbtn-group").VCheckbtnGroup(["js", "c#"]);
+                $(".v-checkbox-group").VChekboxGroup(["js", "c#"]);
+
+            });
+
+            $(".v-checkbtn-group-fn").click(function (e) {
+                var arrs = ["js", "jquery"];
+                $(".v-checkbox-group").VChekboxGroup(function (v) {
+
+                    for (var i = 0; i < arrs.length; i++) {
+
+                    if (arrs[i] === v) {
+                        return true;
+                        break;
+                       }
+                    }
+
+                });
 
             });
 
             // 全选
             $(".v-checkbtn-group-all").click(function () {
-                 $(".v-checkbtn-group").VCheckbtnGroup(true);
+                 $(".v-checkbox-group").VChekboxGroup(true);
 
             });
 
             // 反选
              $(".v-checkbtn-group-no").click(function () {
-                 $(".v-checkbtn-group").VCheckbtnGroup(false);
+                 $(".v-checkbox-group").VChekboxGroup(false);
 
             });
-
-
 
 
             //  v-checkbtn-group 单选
