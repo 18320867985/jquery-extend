@@ -1,4 +1,5 @@
 
+@import "../var-pc.scss";
 
 .v-checkbox-group,
 .v-checkbox {
@@ -49,6 +50,14 @@
 }
 
 /*v-checkbox-group*/
+
+.v-radiobox-item {
+    .iconfont {
+        font-size: 24px;
+         line-height:1;
+    }
+}
+
 .v-checkbox-group {
     display: inline-block;
     vertical-align: middle;
@@ -57,6 +66,15 @@
     .v-checkbox-item {
         display: inline-block;
         cursor: pointer;
+
+        .v-checkbox-icon {
+            &:before {
+                content: '\e74a';
+                color: #999;
+            }
+        }
+
+        .v-checkbox-txt{font-size:14px;}
 
         &.active {
             .v-checkbox-icon:before {
@@ -72,15 +90,6 @@
         > * {
             vertical-align: middle;
         }
-
-        .v-checkbox-icon {
-
-
-            &:before {
-                content: '\e74a';
-                color: #999;
-            }
-        }
     }
 }
 
@@ -90,29 +99,36 @@
     vertical-align: middle;
 
     .v-radiobox-item {
-        font-size: 15px;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
         color: #777;
         cursor: pointer;
 
         > * {
-            //vertical-align: middle;
-        }
-
-        &:before {
-            margin-right: 5px;
-            font-size: 24px;
-            content: '\ea2a';
-            color: #999;
             vertical-align: middle;
         }
 
+        .v-radiobox-icon:before {
+            margin-right: 5px;
+            content: '\ea2a';
+            color: #999;
+          
+        }
+
+        .v-radiobox-txt {
+            display: inline-block;
+            margin-left:-5px;
+            font-size: 14px;
+           
+        }
+
         &.active {
-            &:before {
+            .v-radiobox-icon:before {
                 margin-right: 5px;
-                font-size: 24px;
                 content: '\e86a';
                 color: $text-primary;
-                vertical-align: middle;
+                
             }
         }
 

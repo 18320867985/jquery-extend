@@ -1173,6 +1173,7 @@ input:focus,
      </div>
  * 
  * */
+/*全局*/
 .v-number {
   display: inline-block;
   vertical-align: middle;
@@ -1207,6 +1208,7 @@ input:focus,
     border-right: none;
     background: #fff; }
 
+/*全局*/
 .v-checkbox-group .iconfont,
 .v-checkbox .iconfont {
   font-size: 30px; }
@@ -1232,12 +1234,21 @@ input:focus,
     color: #2d80f6; }
 
 /*v-checkbox-group*/
+.v-radiobox-item .iconfont {
+  font-size: 24px;
+  line-height: 1; }
+
 .v-checkbox-group {
   display: inline-block;
   vertical-align: middle; }
   .v-checkbox-group .v-checkbox-item {
     display: inline-block;
     cursor: pointer; }
+    .v-checkbox-group .v-checkbox-item .v-checkbox-icon:before {
+      content: '\e74a';
+      color: #999; }
+    .v-checkbox-group .v-checkbox-item .v-checkbox-txt {
+      font-size: 14px; }
     .v-checkbox-group .v-checkbox-item.active .v-checkbox-icon:before {
       content: '\e74b';
       color: #2d80f6; }
@@ -1245,29 +1256,30 @@ input:focus,
       margin-left: 10px; }
     .v-checkbox-group .v-checkbox-item > * {
       vertical-align: middle; }
-    .v-checkbox-group .v-checkbox-item .v-checkbox-icon:before {
-      content: '\e74a';
-      color: #999; }
 
 /*v-radiokbox*/
 .v-radiobox-group {
   display: inline-block;
   vertical-align: middle; }
   .v-radiobox-group .v-radiobox-item {
-    font-size: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
     color: #777;
     cursor: pointer; }
-    .v-radiobox-group .v-radiobox-item:before {
+    .v-radiobox-group .v-radiobox-item > * {
+      vertical-align: middle; }
+    .v-radiobox-group .v-radiobox-item .v-radiobox-icon:before {
       margin-right: 5px;
-      font-size: 24px;
       content: '\ea2a';
-      color: #999;
-      vertical-align: middle; }
-    .v-radiobox-group .v-radiobox-item.active:before {
+      color: #999; }
+    .v-radiobox-group .v-radiobox-item .v-radiobox-txt {
+      display: inline-block;
+      margin-left: -5px;
+      font-size: 14px; }
+    .v-radiobox-group .v-radiobox-item.active .v-radiobox-icon:before {
       margin-right: 5px;
-      font-size: 24px;
       content: '\e86a';
-      color: #2d80f6;
-      vertical-align: middle; }
+      color: #2d80f6; }
     .v-radiobox-group .v-radiobox-item + .v-radiobox-item {
       margin-left: 10px; }

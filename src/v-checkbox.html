@@ -155,9 +155,19 @@
                 </h2>
 
                 <div class="v-radiobox-group">
-                    <span class="v-radiobox-item iconfont" data-val="慢">慢</span>
-                    <span class="v-radiobox-item iconfont" data-val="中">中</span>
-                    <span class="v-radiobox-item iconfont" data-val="快">快</span>
+                    <div class="v-radiobox-item " data-val="慢">
+                        <span class="v-radiobox-icon iconfont"></span>
+                        <span class="v-radiobox-txt">慢</span>
+                    </div>
+                    <div class="v-radiobox-item " data-val="中">
+                        <span class="v-radiobox-icon iconfont"></span>
+                        <span class="v-radiobox-txt">中</span>
+                    </div>
+                    <div class="v-radiobox-item " data-val="快">
+                        <span class="v-radiobox-icon iconfont"></span>
+                        <span class="v-radiobox-txt">快</span>
+                    </div>
+
                 </div>
                 <br />
                 <p>选择值为: <span class="v-radiobtn-group-val"></span></p>
@@ -168,9 +178,22 @@
                 <!-- &lt;div&gt;-->
                 <pre>
                    &lt;div class="v-radiobtn-group" &gt;
-                         &lt;span class="v-radiobox-item iconfont"  data-val="慢">慢  &lt;/span>
-                         &lt;span class="v-radiobox-item iconfont"  data-val="中">中  &lt;/span>
-                         &lt;span class="v-radiobox-item iconfont"  data-val="快">快  &lt;/span>
+
+                    &lt;div class="v-radiobox-item " data-val="慢">
+                       &lt;span class="v-radiobox-icon iconfont"> &lt;/span>
+                       &lt;span class="v-radiobox-txt">慢 &lt;/span>
+                    &lt;/div>
+
+                    &lt;div class="v-radiobox-item " data-val="中">
+                       &lt;span class="v-radiobox-icon iconfont"> &lt;/span>
+                       &lt;span class="v-radiobox-txt">中 &lt;/span>
+                    &lt;/div>
+
+                    &lt;div class="v-radiobox-item " data-val="快">
+                       &lt;span class="v-radiobox-icon iconfont"> &lt;/span>
+                       &lt;span class="v-radiobox-txt">快 &lt;/span>
+                    &lt;/div>
+               
                    &lt;/div&gt;
 
                  单选 v-radiobox-group 自定事件
@@ -192,25 +215,10 @@
 
                 <h4>修改radio checkbox 图标</h4>
                 <pre>
-                    在v-checkbox.scss v-checkbtn.scss 中修改
+                    在v-checkbox.scss中修改
 
-                    1.v-checkbox.scss
+                    1.v-checkbox
                      .v-checkbox-item {
-      
-                    &:before {
-                        content: '\ea2a';
-                        color: #999;
-                    }
-
-                    &.active {
-                        &:before {
-                            content: '\e86a';
-                          
-                        }
-                    }
-
-                 2.v-checkbtn.scss  
-                .v-checkbtn-item {
       
                     &:before {
                         content: '\e74a';
@@ -221,6 +229,20 @@
                         &:before {
                             content: '\e74b';
                           
+                        }
+                    }
+
+                 2.v-radiokbox
+                .v-radiobox-item {
+      
+                    &:before {
+                        content: '\ea2a';
+                    }
+
+                    &.active {
+                        &:before {
+                            content: '\e86a';
+
                         }
                     }
                 
