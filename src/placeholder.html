@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="Keywords" content="" />
+		<meta name="Description" content="" />
+		<title>数字框</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/all.css" />
+		<link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+		<style>
+			.container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        li + li {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+		
+		/*  在css里面添加.ie8-pwd 的class */
+		.ie8-pwd {
+		    position: absolute;
+		    z-index: 1;
+		    display: inline - block;
+		    color: rgb(204,204,204);
+		    text-indent: 10px;
+		}
+    </style>
+	</head>
+
+	<body>
+		<div class="container">
+
+			<ul>
+
+				<li>
+					<h2>
+						v-number 组件-数字框
+					</h2>
+					<div>
+						<a class="btn-link" href="./js/placeholder.js">查看 placeholder.js</a>
+
+					</div>
+
+					<div class="form-group">
+						<label class="control-label">用户名：</label>
+						<input class="form-control" type="text" placeholder="请输入用户名">
+					</div>
+					<div class="form-group">
+						<label>密码：</label>
+						<input class="form-control" type="password" placeholder="请输入密码">
+					</div>
+
+					<div class="form-group">
+						<label class="control-label">文本内容：</label>
+						<textarea class="form-control" rows="20" cols="10" placeholder="请填写文本内容"></textarea>
+
+					</div>
+
+					<!-- &lt;div&gt;-->
+					<pre>
+				在IE浏览器ie8 ie9查看效果 
+				在ie8 ie9 引用 placeholder.js
+				 &lt;!--[if lte IE 9]>
+					 &lt;script src="js/placeholder.js" type="text/javascript" charset="utf-8"> &lt;/script>
+				 &lt;![endif]-->
+					
+                   在css里面添加.ie8-pwd 的class
+                   .ie8-pwd {
+                       position: absolute;
+                       z-index: 1;
+                       display: inline-block;
+                       color: $text-placeholer;
+                       text-indent: 10px;
+                   }
+                   
+                </pre>
+
+				</li>
+
+			</ul>
+
+		</div>
+
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+		<!--[if lte IE 9]>
+		<script src="js/placeholder.js" type="text/javascript" charset="utf-8"></script>
+	<![endif]-->
+
+		<script type="text/javascript">
+			$(function() {
+
+
+			});
+		</script>
+	</body>
+
+</html>

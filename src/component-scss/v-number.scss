@@ -9,7 +9,7 @@
      </div>
  * 
  * */
-@import "../var-pc.scss";
+@import "../css-dev/scss/var-pc.scss";
 @mixin  v-number($width:160px,$height:34px,$br:#ddd,$fonf-size:14px){
    
    .v-number {

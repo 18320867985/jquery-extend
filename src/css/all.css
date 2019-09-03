@@ -719,6 +719,14 @@ input:focus,
 .container-fluid-12 .form-inline .has-feedback .form-control-feedback {
   top: 0; }
 
+.btn-link {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.btn-link + .btn-link {
+  margin-left: 50px; }
+
 .index .top {
   position: absolute;
   left: 0;
