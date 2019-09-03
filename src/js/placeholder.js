@@ -25,7 +25,7 @@ $(function () {
         var h = $(this).outerHeight();
         var bf = document.createElement("div");
         bf.setAttribute("class", "ie8-pwd");
-		if( ($(this).get(0).tagName||"").toLocaleLowerCase()=="textarea"){
+		if( ($(this).get(0).tagName||"").toLocaleLowerCase()==="textarea"){
 			bf.setAttribute("style", "line-height:34px");
 		}else{
 			bf.setAttribute("style", "line-height:" + h + "px");
