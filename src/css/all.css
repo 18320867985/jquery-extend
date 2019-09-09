@@ -1291,3 +1291,110 @@ input:focus,
       color: #2d80f6; }
     .v-radiobox-group .v-radiobox-item + .v-radiobox-item {
       margin-left: 10px; }
+
+/*全局*/
+.paging {
+  padding: 10px;
+  margin: 15px; }
+
+.paging .item, .paging > input {
+  display: inline-block;
+  padding: 5px 8px;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  background: #fff;
+  vertical-align: middle; }
+
+.paging .count-items, .paging .count-num {
+  display: inline-block;
+  padding: 5px 8px;
+  margin-top: 0;
+  vertical-align: middle; }
+
+.paging a, span, input {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+/*鼠标移动的样式 */
+.paging a:hover {
+  cursor: pointer;
+  color: #fff !important;
+  border: 1px solid #599bf8;
+  border-radius: 0;
+  background: #599bf8; }
+
+/*激活的样式*/
+.paging a.active {
+  color: #418cf7;
+  border: 1px solid #599bf8; }
+
+.paging a.active:active {
+  color: #106ef5;
+  background: #106ef5;
+  border: 1px solid #106ef5; }
+
+/*禁用的样式*/
+.paging span.disabled {
+  color: #777; }
+
+/*数字禁用的样式*/
+.paging .disabled.num {
+  color: #666;
+  border: none;
+  background: transparent; }
+
+.paging .item + .item {
+  margin-left: 10px; }
+
+/*跳转页*/
+.paging .skip-txt {
+  width: 60px;
+  margin-left: 10px;
+  padding: 7px 8px;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  text-indent: 5px;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+  .paging .skip-txt:focus {
+    border: 1px solid #106ef5 !important; }
+
+.paging .skip-btn {
+  margin-left: 3px;
+  padding: 5px 10px !important;
+  color: #fff;
+  outline: 0;
+  border: 1px solid #fff;
+  border-radius: 0;
+  background: #418cf7; }
+  .paging .skip-btn:active {
+    color: #106ef5;
+    background: #106ef5;
+    border: 1px solid #106ef5; }
+
+.paging .skip-btn:hover {
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0; }
+
+.paging .count-items {
+  margin-left: 10px; }
+
+.paging .count-items strong {
+  color: #666; }
+
+/*总页数*/
+.paging .count-num {
+  margin-left: 10px; }
+
+.paging .count-num strong {
+  color: #666; }
+
+.paging .no-data {
+  color: orangered;
+  font-size: 24px; }

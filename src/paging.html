@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>分页</title>
+
+    <link rel="stylesheet" href="css/paging-all.css" />
+    <link rel="stylesheet" href="css/all.css" />
+    <style type="text/css">
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        li + li {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+    </style>
+
+</head>
+
+<body class=" relative" data-spy="scroll" data-tagget="huating">
+
+    <section>
+
+        <div class="index-cont container">
+
+            <div class="input-group" style="width:600px;">
+                <input type="text" class="form-control txt" value="美女" placeholder="输入查询的内容">
+                <span class="input-group-addon btn btn-primary" id="btn">查询</span>
+            </div>
+            <br />
+            <!--公告列表-->
+            <div class="noticelist container-12">
+
+                <div class="noticelist-cont clearfix">
+
+                    <div class="col-xs-12 col-padding">
+                        <ul class="list-group">
+                            <li class="list-group-item col-xs-12  ttl rd-no2 ">
+                                <span class="pull-left">标题</span>
+                                <span class="pull-right"> 发表时间</span>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!--内容列表-->
+                <div class="noticelist-cont clearfix">
+
+                    <ul class="list-group noticelist-cont-2 clearfix">
+
+                        <li class="list-group-item col-xs-12   rd-no2  ">
+                            <a href="javascript:;" class="text-primary pull-left">花歌吉宏新上架花歌吉宏新上架花歌吉花歌吉宏新上架花歌吉宏新上架花歌吉花歌吉宏新上架花歌吉宏新上架花歌吉花歌吉宏新上架花歌吉宏新上架花歌吉花歌吉宏新上架花歌吉宏新上架花歌吉</a>
+                            <span class="date pull-right "> 2017-08-02 12:45:23</span>
+                        </li>
+                        <li class="list-group-item col-xs-12   rd-no2  ">
+                            <a href="javascript:;" class="text-primary pull-left">花歌吉宏新上架花歌吉宏新上架花歌吉花歌吉宏新上架花歌吉宏新上架花歌吉花歌吉宏新上架花歌吉宏新上架花歌吉花歌吉宏新上架花歌吉宏新上架花歌吉花歌吉宏新上架花歌吉宏新上架花歌吉</a>
+                            <span class="date pull-right "> 2017-08-02 12:45:23</span>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <!-- 分页-->
+        <div class="container">
+
+            <div class="paging" style="text-align:center;"></div>
+
+            <pre>
+                  
+          &lt;div class="paging" style="text-align:center;"> &lt;/div>
+
+           $(function () {
+
+            // 分页
+            paging.init({
+                data: { txt: $(".txt").val() }, // 查询数据
+                index: 1, //	当前页
+                //pageItem: 5, //  每页条数
+                //allItem: 100, //  总条数
+                showCount: 5, //  显示的页码数目
+                pageItem: 5,   // 每页条数
+                selector: ".paging", //分页父元素
+                isAnimation: true, //是否显示动画
+                isShowSkip: true, // 是否显示跳转页
+                isShowCount: true,  // 是否显示总页数
+                isShowAllItems: true,  // 是否显示总条目
+                //prevText: "&lt;&lt;",
+                //nextText: "&gt;&gt;",
+                //firstText:"第一页",
+                //lastText:"后一页",
+                //prevGroupText:"...",
+                //nextGroupText:"...",
+                //isShowNumber:true ,   //是否显示数字
+                //isShowPrevNext:true, // 是否显示上下页
+                //isShowFirstLast: false, // 是否显示第一页和后一页
+                //isShowPrevNextGroup:true, // 是否显示上下页组
+                callback: callback,
+            });
+
+            function callback(obj) {
+
+                obj.data = $(".txt").val();
+                obj.pageItem = 20; //  每页条数
+
+                //obj.data        // 页面数据
+                console.log(obj.data)
+
+                $.get("./js/paging.json?id=" + obj.index, obj.data, function (data) {
+
+                    // 成功之后赋值
+                    obj.allItem = 100; //  总条数
+                    obj.render();
+
+                    var data = data.map(function (item) {
+                        item.content = obj.index + "页：" + item.content;
+                        return item;
+
+                    });
+
+                    var html = Mustache.render($("#must").html(), {
+                        must: data
+                    });
+
+                    $(".noticelist-cont-2 ").html(html);
+
+                });
+
+            }
+
+            //点击页码触发事件
+            $(document).on("paging_click", function (event, id) {
+                //id 当前点击的元素的页码
+                console.log("当前点击的元素的页码",id);
+
+            });
+
+            //点击其他元素触发事件
+            $("#btn").on("click", function () {
+                var pageIndex = 1;                              // 页码
+                $(this).trigger("pagingCallback", pageIndex);    // 触发 callback 函数
+
+            });
+
+
+        });
+              </pre>
+
+        </div>
+
+
+    </section>
+
+    <!--mustache模板-->
+    <script type="text/html" id="must">
+
+        <ul>
+            {{#must}}
+            <li class="list-group-item col-xs-12   rd-no2  ">
+                <a href="javascript:;" class="text-primary pull-left">{{content}}</a>
+                <span class="date pull-right ">{{date}}</span>
+            </li>
+            {{/must}}
+        </ul>
+
+    </script>
+
+    <!--js -->
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/paging.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/mustache.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            // 分页
+            paging.init({
+                data: { txt: $(".txt").val() }, // 查询数据
+                index: 1, //	当前页
+                //pageItem: 5, //  每页条数
+                //allItem: 100, //  总条数
+                showCount: 5, //  显示的页码数目
+                pageItem: 5,   // 每页条数
+                selector: ".paging", //分页父元素
+                isAnimation: true, //是否显示动画
+                isShowSkip: true, // 是否显示跳转页
+                isShowCount: true,  // 是否显示总页数
+                isShowAllItems: true,  // 是否显示总条目
+                //prevText: "&lt;&lt;",
+                //nextText: "&gt;&gt;",
+                //firstText:"第一页",
+                //lastText:"后一页",
+                //prevGroupText:"...",
+                //nextGroupText:"...",
+                //isShowNumber:true ,   //是否显示数字
+                //isShowPrevNext:true, // 是否显示上下页
+                //isShowFirstLast: false, // 是否显示第一页和后一页
+                //isShowPrevNextGroup:true, // 是否显示上下页组
+                callback: callback,
+            });
+
+            function callback(obj) {
+
+                obj.data = $(".txt").val();
+                obj.pageItem = 20; //  每页条数
+
+                //obj.data        // 页面数据
+                console.log("自定义数据：",obj.data)
+
+                $.get("./js/paging.json?id=" + obj.index, obj.data, function (data) {
+
+                    // 成功之后赋值
+                    obj.allItem = 100; //  总条数
+                    obj.render();
+
+                    var data = data.map(function (item) {
+                        item.content = obj.index + "页：" + item.content;
+                        return item;
+
+                    });
+
+                    var html = Mustache.render($("#must").html(), {
+                        must: data
+                    });
+
+                    $(".noticelist-cont-2 ").html(html);
+
+                });
+
+            }
+
+            //点击页码触发事件
+            $(document).on("paging_click", function (event, id) {
+                //id 当前点击的元素的页码
+                console.log("当前点击的元素的页码：",id);
+
+            });
+
+            //点击其他元素触发事件
+            $("#btn").on("click", function () {
+                var pageIndex = 1;                              // 页码
+                $(this).trigger("pagingCallback", pageIndex);    // 触发 callback 函数
+
+            });
+
+
+        });
+
+    </script>
+
+</body>
+
+</html>
