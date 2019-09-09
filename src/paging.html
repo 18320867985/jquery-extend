@@ -18,17 +18,25 @@
             margin-bottom: 50px;
         }
 
-        li + li {
-            margin-top: 20px;
-            border-top: 1px solid #ddd;
-        }
-
+      
         pre {
             margin: 10px 0;
         }
 
         p {
             margin: 10px;
+        }
+        .btn-link{
+             color:#2d80f6  !important;
+        }
+       
+      
+        .input-group .form-control.txt:focus{
+             border:#2d80f6  1px solid  !important;
+        }
+        .list-group .list-group-item:hover  a,
+        .list-group .list-group-item:hover  span{
+             color:#2d80f0  !important;
         }
     </style>
 
@@ -42,9 +50,14 @@
 
             <div class="input-group" style="width:600px;">
                 <input type="text" class="form-control txt" value="美女" placeholder="输入查询的内容">
-                <span class="input-group-addon btn btn-primary" id="btn">查询</span>
+                <span class="input-group-addon  btn" id="btn">查询</span>
             </div>
+
             <br />
+            <div>
+                <a class="btn-link" href="./js/paging.js">查看 paging.js</a>
+                <a class="btn-link" href="./component-scss/paging.scss">查看 paging.scss</a>
+            </div>
             <!--公告列表-->
             <div class="noticelist container-12">
 
