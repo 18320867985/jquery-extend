@@ -1,8 +1,8 @@
 
 
-@import "../css-dev/scss/var-pc.scss";
+@import "../var-base.scss";
 
-$bg-head :lighten($text-primary,4%);
+$bg-head :lighten($bg-active,4%);
 $text-blue:$bg-head;
 
 .paging {
@@ -28,15 +28,18 @@ $count-item-color:#666;
 }
 
 .paging .count-items,.paging .count-num{
+	
     display: inline-block;
 	padding: 5px 8px;
+	margin-bottom: 15px;
 	margin-top: 0;
 	vertical-align: middle;
     
 }
-.paging a,span,input{
+.paging a, .paging span {
     user-select:none;
 }
+
 /*鼠标移动的样式 */
 .paging a:hover {
     cursor: pointer;
@@ -84,18 +87,14 @@ $count-item-color:#666;
 /*跳转页*/
 
 .paging .skip-txt {
-    width: 60px;
+    width: 50px;
     margin-left: 10px;
-    padding: 7px 8px;
+    padding: 5px;
     border: 1px solid #ddd;
     border-radius: $ping-rd;
     text-indent: 5px;
-    text-align: center;
-    user-select: none;
-
-    &:focus {
-        border: 1px solid darken($bg-head,10%) !important;
-    }
+    text-align:center;
+  
 }
 
 .paging .skip-btn {
