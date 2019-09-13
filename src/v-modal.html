@@ -40,16 +40,17 @@
     <div class="container">
         <h1>模态框-modal</h1>
         <div>
-            <a class="btn-link" href="./js/v-modal.js">查看 v-message.js</a>
-            <a class="btn-link" href="./component-scss/v-message.scss">查看 v-message.scss</a>
+            <a class="btn-link" href="./js/v-modal.js">查看 v-modal.js</a>
+            <a class="btn-link" href="./component-scss/v-modal.scss">查看 v-modal.scss</a>
         </div>
         <ul>
             <li>
                 <h2>模态框-默认</h2>
                 <button class=" btn  btn-primary confirm " data-toggle="v-modal" data-target=".v-modal-1"> modal（模态框)-默认</button>
-                <!--<button class=" btn  btn-warning confirm2 "> confirm（确认框）-自定标题</button>
-                <button class=" btn  btn-danger confirm3 "> confirm（确认框）-自定义按钮</button>-->
-                <!--modal-->
+              
+                <h4>
+                  html触发：  data-toggle="v-modal"  data-target=".v-modal-1"
+                </h4>
 
                 <div class="v-modal v-modal-1" data-backdrop="true">
 
@@ -72,7 +73,7 @@
 
                 <pre>
                 &lt;button class=" btn  btn-primary confirm " data-toggle="v-modal"  data-target=".v-modal-1"> modal（模态框)-默认  &lt;button>
-                   
+
                  &lt;div class="v-modal v-modal-1"  >
 
                     &lt;div class="v-modal-mask">
@@ -94,9 +95,7 @@
             <li>
                 <h2>点击mask不能关闭</h2>
                 <button class=" btn  btn-success  " data-toggle="v-modal" data-target=".v-modal-2">点击mask不能关闭 data-backdrop="false"</button>
-                <h2>js触发modal</h2>
-                <button class=" btn  btn-danger  v-modal-btn-js">js触发mdal VModal()  参数【bl=false=关闭 bl=true=显示, targetEl=目标元素】</button>
-
+              
                 <!--modal-->
 
                 <div class="v-modal v-modal-2" data-backdrop="false">
@@ -182,6 +181,26 @@
 
     </pre>
 
+            </li>
+
+            <li>
+                <h2>js触发modal</h2>
+                <button class=" btn  btn-danger  v-modal-btn-js">js触发mdal VModal()  参数【bl=false=关闭 bl=true=显示, targetEl=目标元素】</button>
+                <pre>
+                    $(".v-modal-btn-js").click(function () {
+                       //bl=false=关闭 bl=true=显示, targetEl=目标元素
+                        $(".v-modal-2").VModal(true,this);
+                    });
+
+                    // 自定义事件
+                    $(".v-modal-2").on("v-modal", function (e, bl, targetEl, btnEl) {
+                        // 0. e 事件对象
+                        // 1. bl=false=关闭 bl=true=显示, 
+                        // 2. targetEl = 目标v-modal元素
+                        // 3. btnEl =触发按钮的元素
+                        console.log("bl：",bl,"targetEl:",targetEl,"btnEl:",btnEl)
+                    });
+                </pre>
             </li>
 
 
