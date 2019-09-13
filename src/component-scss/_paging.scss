@@ -1,8 +1,8 @@
 
 
-@import "../var-base.scss";
+@import "../css-dev/scss/var-pc.scss";
 
-$bg-head :lighten($bg-active,4%);
+$bg-head :lighten($text-primary,4%);
 $text-blue:$bg-head;
 
 .paging {
@@ -13,11 +13,8 @@ $text-blue:$bg-head;
 }
 
 $paing-color:$bg-head;
-
 $ping-rd:0;
-
 $count-item-color:#666;
-
 
 .paging .item,.paging >input{
     display: inline;
@@ -30,7 +27,7 @@ $count-item-color:#666;
 
 .paging .count-items,.paging .count-num{
 	
-    display: inline-block;
+    display: inline;
 	padding: 5px 8px;
 	margin-bottom: 15px;
 	margin-top: 0;

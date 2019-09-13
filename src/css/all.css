@@ -1294,11 +1294,11 @@ input:focus,
 
 /*全局*/
 .paging {
-  padding: 10px;
-  margin: 15px; }
+  margin: 15px;
+  line-height: 40px; }
 
 .paging .item, .paging > input {
-  display: inline-block;
+  display: inline;
   padding: 5px 8px;
   border: 1px solid #ddd;
   border-radius: 0;
@@ -1306,12 +1306,13 @@ input:focus,
   vertical-align: middle; }
 
 .paging .count-items, .paging .count-num {
-  display: inline-block;
+  display: inline;
   padding: 5px 8px;
+  margin-bottom: 15px;
   margin-top: 0;
   vertical-align: middle; }
 
-.paging a, span, input {
+.paging a, .paging span {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -1352,17 +1353,11 @@ input:focus,
 .paging .skip-txt {
   width: 60px;
   margin-left: 10px;
-  padding: 7px 8px;
+  padding: 5px 2px;
   border: 1px solid #ddd;
   border-radius: 0;
   text-indent: 5px;
-  text-align: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none; }
-  .paging .skip-txt:focus {
-    border: 1px solid #106ef5 !important; }
+  text-align: center; }
 
 .paging .skip-btn {
   margin-left: 3px;

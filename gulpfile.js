@@ -41,7 +41,7 @@ var autoprefixer = require('autoprefixer'); // npm install --save-dev autoprefix
  * 使用：sass().on('error', sass.logError)
  */
 var sass = require('gulp-sass');
-var img = require('gulp-imagemin'); //gulp-imagemin:压缩png、jpj、git、svg格式图片 npm install --save-dev gulp-imagemin
+//var img = require('gulp-imagemin'); //gulp-imagemin:压缩png、jpj、git、svg格式图片 npm install --save-dev gulp-imagemin
 var eslint = require("gulp-eslint"); // 检查es5 ees6 js gulp-eshint
 
 
@@ -57,7 +57,7 @@ gulp.task('del', function(cd) {
 var paths = {
 
 	// sass文件
-	scssPath: ['./src/css-dev/**/*.scss'],
+    scssPath: ['./src/css-dev/**/*.scss','./src/component-scss**/*.scss'],
 
 	allscss: ['./src/css-dev/scss/all.scss'],
 
