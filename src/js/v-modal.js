@@ -40,7 +40,7 @@
     $(document).on("click", "[data-toggle=v-modal]", function (e) {
     
         var target = $(this).attr("data-target") || "";
-        console.log($(target).length);
+       
         var bl = false;
         if ($(target).length > 0) {
           
@@ -75,8 +75,8 @@
     });
 
     // [data-dismiss=v-modal]
-    $(document).on("click", "[data-dismiss=v-modal]", function () {
-
+    $(document).on("click", "[data-dismiss=v-modal]", function (e) {
+        e.preventDefault();
         $(this).parents(".v-modal").removeClass("in");
         $("html").removeClass("html-v-modal");
         // 触发自定义的事件

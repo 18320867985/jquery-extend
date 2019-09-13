@@ -1318,8 +1318,10 @@ input:focus,
     vertical-align: middle;
     min-width: 300px;
     min-height: 200px;
+    padding: 10px;
     background: #fff;
     font-size: 14px;
+    text-align: left;
     -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125);
             box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125); }
   .v-modal .v-modal-colse {
