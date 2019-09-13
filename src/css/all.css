@@ -1275,6 +1275,100 @@ input:focus,
     .v-radiobox-group .v-radiobox-item + .v-radiobox-item {
       margin-left: 10px; }
 
+.html-v-modal {
+  overflow: hidden;
+  padding-right: 17px; }
+
+.v-modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  display: none;
+  text-align: center;
+  font-size: 0; }
+  .v-modal.in {
+    display: block;
+    -webkit-animation: modal-mask .25s ease both;
+            animation: modal-mask .25s ease both; }
+  .v-modal:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    background: red;
+    vertical-align: middle; }
+  .v-modal .v-modal-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background: #000;
+    filter: alpha(opacity=40);
+    /* for IE8 and earlier */
+    opacity: .4; }
+  .v-modal .v-modal-cnt {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 300px;
+    min-height: 200px;
+    background: #fff;
+    font-size: 14px;
+    -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125);
+            box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125); }
+  .v-modal .v-modal-colse {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    line-height: 1;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    font-weight: 100; }
+    .v-modal .v-modal-colse:hover {
+      color: gray; }
+  .v-modal.in .v-modal-cnt {
+    -webkit-animation: modal-cnt-in .5s ease both;
+            animation: modal-cnt-in .5s ease both; }
+
+@-webkit-keyframes modal-cnt-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateZ(0) translateY(-800px) scale(0);
+            transform: translateZ(0) translateY(-800px) scale(0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none; } }
+
+@keyframes modal-cnt-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateZ(0) translateY(-800px) scale(0);
+            transform: translateZ(0) translateY(-800px) scale(0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none; } }
+
+@-webkit-keyframes modal-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes modal-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
 /*全局*/
 .paging {
   margin: 15px;

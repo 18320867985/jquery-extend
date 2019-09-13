@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>模态框-modal</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        li + li {
+            margin-top: 20px;
+        }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>模态框-modal</h1>
+        <div>
+            <a class="btn-link" href="./js/v-modal.js">查看 v-message.js</a>
+            <a class="btn-link" href="./component-scss/v-message.scss">查看 v-message.scss</a>
+        </div>
+        <ul>
+            <li>
+                <button class=" btn  btn-primary confirm " data-toggle="v-modal" data-target=".v-modal-1"> modal（模态框)-默认</button>
+                <!--<button class=" btn  btn-warning confirm2 "> confirm（确认框）-自定标题</button>
+                <button class=" btn  btn-danger confirm3 "> confirm（确认框）-自定义按钮</button>-->
+                <!--modal-->
+
+                <div class="v-modal v-modal-1" data-backdrop="false">
+
+                    <!--mask modal -->
+                    <div class="v-modal-mask"></div>
+
+                    <!--content modal-->
+                    <div class="v-modal-cnt cfx">
+                        <!--colse modal-->
+                        <div class="v-modal-colse" data-dismiss="v-modal">
+                            <span>&times;</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <pre>
+                &lt;button class=" btn  btn-primary confirm " data-toggle="v-modal"> modal（模态框)-默认  &lt;button>
+                   
+                 &lt;div class="v-modal " id="v-modal-1" data-backdrop="false">
+
+                    &lt;div class="v-modal-mask">
+                    &lt;/div>
+
+                    &lt;div class="v-modal-cnt cfx">
+                         &lt;div class="v-modal-colse" data-dismiss="v-modal">
+                            &lt;span> & times; &lt;/span>
+                        &lt;/div>
+                    &lt;/div>
+
+                  &lt;/div>
+
+                    data-toggle="v-modal" 
+                
+                </pre>
+
+            </li>
+
+
+        </ul>
+
+
+
+    </div>
+
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-modal.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+
+
+
+        });
+
+    </script>
+</body>
+
+</html>

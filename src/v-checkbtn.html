@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -42,12 +42,12 @@
                 <h2>
                     v-checkbtn 组件-单项选择
                 </h2>
-				
-				<div>
-					<a class="btn-link" href="./js/v-checkbtn.js">查看 v-checkbtn.js</a>
-					<a class="btn-link" href="./component-scss/v-checkbtn.scss">查看 v-checkbtn.scss</a>
-				</div>
-			
+
+                <div>
+                    <a class="btn-link" href="./js/v-checkbtn.js">查看 v-checkbtn.js</a>
+                    <a class="btn-link" href="./component-scss/v-checkbtn.scss">查看 v-checkbtn.scss</a>
+                </div>
+
 
                 <div class="v-checkbtn">
                     <div class="v-checkbtn-item ">
@@ -186,16 +186,17 @@
 
 
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-	 <script src="./js/v-checkbtn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/v-checkbtn.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
-   
+
     <script type="text/javascript">
         $(function () {
 
             //  v-checkbtn 单选
             // "v-checkbtn 触发自定义的事件
-            $(".v-checkbtn").on("v-checkbtn", function (e, bl,el) {
-                console.log(bl,el)
+            $(".v-checkbtn").on("v-checkbtn", function (e, bl, el) {
+                console.log(bl, el)
                 bl = !!bl;
                 $(".v-checkbtn-val").text(bl)
             });
@@ -218,7 +219,7 @@
             $(".v-checkbtn-group").on("v-checkbtn-group", function (e, arrs) {
 
                 $(".v-checkbtn-group-val").text(JSON.stringify(arrs));
-                 console.log(arrs)
+                console.log(arrs)
                 //$.alert("","选择的值为:"+arrs);
             });
 
@@ -234,29 +235,29 @@
 
             $(".v-checkbtn-group-fn").click(function (e) {
 
-                 $(".v-checkbtn-group").VCheckbtnGroup(function (v) {
-                     var arrs = ["js", "jquery"];
+                $(".v-checkbtn-group").VCheckbtnGroup(function (v) {
+                    var arrs = ["js", "jquery"];
                     for (var i = 0; i < arrs.length; i++) {
 
-                    if (arrs[i] === v) {
-                        return true;
-                        break;
-                       }
+                        if (arrs[i] === v) {
+                            return true;
+                            break;
+                        }
                     }
 
-                 });
+                });
 
             });
 
             // 全选
             $(".v-checkbtn-group-all").click(function () {
-                 $(".v-checkbtn-group").VCheckbtnGroup(true);
+                $(".v-checkbtn-group").VCheckbtnGroup(true);
 
             });
 
             // 反选
-             $(".v-checkbtn-group-no").click(function () {
-                 $(".v-checkbtn-group").VCheckbtnGroup(false);
+            $(".v-checkbtn-group-no").click(function () {
+                $(".v-checkbtn-group").VCheckbtnGroup(false);
 
             });
 
