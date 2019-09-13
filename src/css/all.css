@@ -822,7 +822,11 @@ input:focus,
             transform: translateX(0) scale(1); } }
 
 /*全局*/
-.message {
+.html-v-message {
+  overflow: hidden;
+  padding-right: 17px; }
+
+.v-message {
   position: fixed;
   top: 0;
   left: 0;
@@ -831,21 +835,21 @@ input:focus,
   z-index: 10;
   display: none;
   text-align: center; }
-  .message:before {
+  .v-message:before {
     content: "";
     display: inline-block;
     height: 90%;
     vertical-align: middle; }
 
-.message-mask {
-  position: fixed;
+.v-message-mask {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: -1;
   background: #000;
-  filter: alpha(opacity=50);
+  filter: alpha(opacity=40);
   /* for IE8 and earlier */
   opacity: .4;
   -webkit-transition: all .5s;
@@ -865,6 +869,8 @@ input:focus,
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.075);
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.075);
   color: #606266;
+  -webkit-animation: confirm-box-in .5s ease  both;
+          animation: confirm-box-in .5s ease  both;
   /*ttl*/
   /*按钮*/ }
   .confirm-box ._close {
@@ -921,51 +927,28 @@ input:focus,
     .confirm-box .confirm-btn + .confirm-btn {
       margin-left: 25px; }
 
-/*alert*/
-.alert-box {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 350px;
-  height: 150px;
-  margin-top: -75px;
-  margin-left: -175px;
-  z-index: 9999;
-  text-align: center;
-  background: #fff;
-  outline: 10px solid rgba(255, 255, 255, 0.3);
-  /*标题*/
-  /*按钮*/ }
-  .alert-box .ttl {
-    margin-top: 35px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #444;
-    text-align: center; }
-  .alert-box .alert-btn {
-    margin-top: 30px;
-    width: 120px;
-    height: 34px;
-    padding: 0;
-    line-height: 34px;
-    text-align: center;
-    border-radius: 5px;
-    -webkit-transition: all 1;
-    transition: all 1;
-    outline: none; }
-    .alert-box .alert-btn.ok {
-      color: #333;
-      background-color: #fff;
-      border: #ccc 1px solid; }
-      .alert-box .alert-btn.ok:hover {
-        color: #333;
-        background-color: #e6e6e6;
-        border-color: #ccc; }
-    .alert-box .alert-btn + .alert-btn {
-      margin-left: 25px; }
+@-webkit-keyframes confirm-box-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateZ(0) translateY(-800px) scale(0);
+            transform: translateZ(0) translateY(-800px) scale(0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none; } }
+
+@keyframes confirm-box-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateZ(0) translateY(-800px) scale(0);
+            transform: translateZ(0) translateY(-800px) scale(0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none; } }
 
 /*prompt*/
-.message input.txt {
+.v-message input.txt {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   display: block;
@@ -978,19 +961,19 @@ input:focus,
   border: 1px solid #ddd;
   -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.075);
           box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.075); }
-  .message input.txt:focus {
+  .v-message input.txt:focus {
     border: 1px solid #5e9ef8;
     -webkit-box-shadow: 0 0 4px #5e9ef8;
             box-shadow: 0 0 4px #5e9ef8; }
 
-.message p.err {
+.v-message p.err {
   padding-left: 2em;
   margin-bottom: 0;
   text-align: left;
   color: #d9534f; }
 
 /*info*/
-.messageinfo {
+.v-messageinfo {
   display: none;
   position: fixed;
   left: 0;
@@ -1001,7 +984,7 @@ input:focus,
   font-size: 0;
   text-align: center;
   pointer-events: none; }
-  .messageinfo:before {
+  .v-messageinfo:before {
     content: "";
     display: inline-block;
     height: 90%;

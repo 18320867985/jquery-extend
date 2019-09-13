@@ -3,6 +3,13 @@
 
 (function() {
 
+    function addHtmlPadding() {
+        var win_h = $(window).outerHeight();
+        var doc_h = $(document).outerHeight();
+        if (doc_h > win_h) {
+            $("html").addClass("html-v-message");
+        }
+    }
 	//  confirm
 	jQuery.fn.extend({
 
@@ -22,21 +29,22 @@
             throw new Error("property is must two");
         }
 
+        addHtmlPadding();
         obj = obj || {};
         var _okText = obj.ok || "确认";
         var _cancelText = obj.cancel || "取消";
 
             mess = mess || "此操作将永久删除该文件, 是否继续?";
-            $(".message").remove();
+            $(".v-message").remove();
 
             var message = document.createElement("div");
-            message.setAttribute("class", "message");
+            message.setAttribute("class", "v-message");
             var message_mask = document.createElement("div");
-            message_mask.setAttribute("class", "message-mask");
+            message_mask.setAttribute("class", "v-message-mask");
             var message_box = document.createElement("div");
             message_box.setAttribute("class", "confirm-box");
 
-            // 创建message
+            // 创建v-message
             if (tipText !== null) {
                 tipText = tipText || "提示";
                 var tip = document.createElement("div");
@@ -73,29 +81,32 @@
             var elm = document.body || document.documentElement;
             elm.appendChild(message);
 
-        $(".message").stop().fadeIn();
+        $(".v-message").stop().fadeIn();
         $(".confirm-btn.ok").focus();
-            $(".message").on("click", ".confirm-btn.ok", function (e) {
+            $(".v-message").on("click", ".confirm-btn.ok", function (e) {
 
                 if (typeof okfun === "function") {
-                    $(".message").remove();
+                    $(".v-message").remove();
+                    $("html").removeClass("html-v-message");
                     okfun.call(this);
+                   
                 }
 
             });
 
-            $(".message").on("click", ".confirm-btn.cancel", function (e) {
+            $(".v-message").on("click", ".confirm-btn.cancel", function (e) {
 
                 if (typeof cancelfun === "function") {
-
                     cancelfun.call(this);
                 }
-                $(".message").remove();
+                $(".v-message").remove();
+                $("html").removeClass("html-v-message");
             });
 
-            $(".message").on("click", "._close", function (e) {
+            $(".v-message").on("click", "._close", function (e) {
 
-                $(".message").remove();
+                $(".v-message").remove();
+                $("html").removeClass("html-v-message");
             });
 
     }
@@ -119,22 +130,22 @@
 
             throw new Error("property is must two");
         }
-
+        addHtmlPadding();
        var obj= {};
         var _okText = obj.ok || "确认";
         var _cancelText = obj.cancel || "取消";
 
         mess = mess || "此操作将永久删除该文件, 是否继续?";
-        $(".message").remove();
+        $(".v-message").remove();
 
         var message = document.createElement("div");
-        message.setAttribute("class", "message");
+        message.setAttribute("class", "v-message");
         var message_mask = document.createElement("div");
-        message_mask.setAttribute("class", "message-mask");
+        message_mask.setAttribute("class", "v-message-mask");
         var message_box = document.createElement("div");
         message_box.setAttribute("class", "confirm-box");
 
-        // 创建message
+        // 创建v-message
         if (tipText !== null) {
             tipText = tipText || "提示";
             var tip = document.createElement("div");
@@ -186,33 +197,36 @@
         var elm = document.body || document.documentElement;
         elm.appendChild(message);
 
-        $(".message").stop().fadeIn();
-        $(".message .txt").focus();
-        $(".message").on("click", ".confirm-btn.ok", function (e) {
+        $(".v-message").stop().fadeIn();
+        $(".v-message .txt").focus();
+        $(".v-message").on("click", ".confirm-btn.ok", function (e) {
 
             if (typeof okfun === "function") {
 
-                var p = $(this).parents(".message");
+                var p = $(this).parents(".v-message");
                 var v = $(".txt", p).val();
                 if (okfun.call(this,v,$("p.err",p))) {
-                    $(".message").remove();
+                    $(".v-message").remove();
+                    $("html").removeClass("html-v-message");
                 }
             }
 
         });
 
-        $(".message").on("click", ".confirm-btn.cancel", function (e) {
+        $(".v-message").on("click", ".confirm-btn.cancel", function (e) {
 
             if (typeof cancelfun === "function") {
 
                 cancelfun.call(this);
             }
-            $(".message").remove();
+            $(".v-message").remove();
+            $("html").removeClass("html-v-message");
         });
 
-        $(".message").on("click", "._close", function (e) {
+        $(".v-message").on("click", "._close", function (e) {
 
-            $(".message").remove();
+            $(".v-message").remove();
+            $("html").removeClass("html-v-message");
         });
 
     }
@@ -237,20 +251,20 @@
             throw new Error("property is must two");
         }
 
+        addHtmlPadding();
         obj = obj || {};
         var _okText = obj.ok || "确定";
      
         mess = mess || "这是提示信息";
-        $(".message").remove();
-
+        $(".v-message").remove();
         var message = document.createElement("div");
-        message.setAttribute("class", "message");
+        message.setAttribute("class", "v-message");
         var message_mask = document.createElement("div");
-        message_mask.setAttribute("class", "message-mask");
+        message_mask.setAttribute("class", "v-message-mask");
         var message_box = document.createElement("div");
         message_box.setAttribute("class", "confirm-box");
 
-        // 创建message
+        // 创建v-message
         if (tipText !== null) {
         
             tipText = tipText||"提示";
@@ -283,18 +297,20 @@
         var elm = document.body || document.documentElement;
         elm.appendChild(message);
 
-        $(".message").stop().fadeIn();
+        $(".v-message").stop().fadeIn();
         $(".confirm-btn.ok").focus();
-        $(".message").on("click", ".confirm-btn.ok", function (e) {
-            $(".message").remove();
+        $(".v-message").on("click", ".confirm-btn.ok", function (e) {
+            $(".v-message").remove();
+            $("html").removeClass("html-v-message");
             if (typeof okfun === "function") {
                 okfun.call(this);
             }
 
         });
-        $(".message").on("click", "._close", function (e) {
+        $(".v-message").on("click", "._close", function (e) {
 
-            $(".message").remove();
+            $(".v-message").remove();
+            $("html").removeClass("html-v-message");
         });
 
       
@@ -315,7 +331,7 @@
 	function _info(mess, type) {
        
 		mess = mess || "信息提示框";
-		$(".messageinfo").remove();
+		$(".v-messageinfo").remove();
 		var _class = "default";
 		if(typeof type === "string") {
 			switch(type) {
@@ -340,9 +356,9 @@
 
 		}
 
-		// 创建message
+		// 创建v-message
 		var message = document.createElement("div");
-		message.setAttribute("class", "messageinfo");
+		message.setAttribute("class", "v-messageinfo");
 
 		var message_box = document.createElement("div");
 		message_box.setAttribute("class", "info-box");
@@ -361,12 +377,12 @@
 		var elm = document.body || document.documentElement;
 		elm.appendChild(message);
 
-        $(".messageinfo").fadeIn(600);
+        $(".v-messageinfo").fadeIn(600);
         clearTimeout(setTimeoutId_info);
         setTimeoutId_info = setTimeout(function () {
            
-			$(".messageinfo").fadeOut().queue(function() {
-				$(".messageinfo").remove();
+			$(".v-messageinfo").fadeOut().queue(function() {
+				$(".v-messageinfo").remove();
 				
 			});
 

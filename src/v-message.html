@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -35,7 +35,7 @@
     <div class="container">
 		<h1>信息提示框</h1>
 		<div>
-			<a class="btn-link" href="./js/message.js">查看 v-message.js</a>
+			<a class="btn-link" href="./js/v-message.js">查看 v-message.js</a>
 			<a class="btn-link" href="./component-scss/v-message.scss">查看 v-message.scss</a>
 		</div>
         <ul>
@@ -95,7 +95,7 @@
 
                         if (v == "") {
                             errEl.html("邮箱不能为空")
-                            $(this).parents(".message").find("input.txt").focus();
+                            $(this).parents(".v-message").find("input.txt").focus();
                             return false;
                         }
                         return true; // 关闭弹框
@@ -132,7 +132,7 @@
 
 
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/v-message.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
@@ -236,7 +236,7 @@
 
                         if (v == "") {
                             errEl.html("邮箱不能为空")
-                            $(this).parents(".message").find("input.txt").focus();
+                            $(this).parents(".v-message").find("input.txt").focus();
                             return false;
                         }
                         return true; // 关闭弹框
@@ -261,7 +261,7 @@
 
                         if (v == "") {
                             errEl.html("密码不能为空")
-                            $(this).parents(".message").find("input.txt").focus();
+                            $(this).parents(".v-message").find("input.txt").focus();
                             return false;
                         }
                         return true; // 关闭弹框
