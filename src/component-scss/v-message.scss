@@ -24,7 +24,6 @@
         height: 90%;
         vertical-align: middle;
     }
-
 }
 
 .v-message-mask {
@@ -56,8 +55,8 @@
     //  outline: 10px solid rgba(255, 255, 255, .3);
     box-shadow: 0 0 20px rgba(0,0,0,.075);
     color: #606266;
-    animation: confirm-box-in .5s ease  both;
-    
+    animation: confirm-box-in .5s ease both;
+
     ._close {
         position: absolute;
         right: 12px;
@@ -133,15 +132,16 @@
     }
 }
 
-@keyframes confirm-box-in{
+@keyframes confirm-box-in {
 
-    0%{
-        opacity:0;
-        transform:translateZ(0) translateY(-800px) scale(0);
+    0% {
+        opacity: 0;
+        transform: translateZ(0) translateY(-800px) scale(0);
     }
-    100%{
-         opacity:1;
-         transform:none;
+
+    100% {
+        opacity: 1;
+        transform: none;
     }
 }
 
@@ -165,11 +165,11 @@
     }
 }
 
-.v-message p.err{
-    padding-left:2em;
-     margin-bottom:0;
-    text-align:left;
-    color:$text-danger;
+.v-message p.err {
+    padding-left: 2em;
+    margin-bottom: 0;
+    text-align: left;
+    color: $text-danger;
 }
 /*info*/
 .v-messageinfo {

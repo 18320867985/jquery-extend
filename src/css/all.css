@@ -869,8 +869,8 @@ input:focus,
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.075);
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.075);
   color: #606266;
-  -webkit-animation: confirm-box-in .5s ease  both;
-          animation: confirm-box-in .5s ease  both;
+  -webkit-animation: confirm-box-in .5s ease both;
+          animation: confirm-box-in .5s ease both;
   /*ttl*/
   /*按钮*/ }
   .confirm-box ._close {
