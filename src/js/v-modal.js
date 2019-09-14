@@ -86,10 +86,10 @@
 
   
     $.fn.extend({
-        // bl=false=关闭 bl=true=显示, targetEl=目标元素
+        // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
         VModal: function (bl,targetEl) {
             var $this = $(this);
-            if (bl) {
+            if (bl==="show") {
                 $this.addClass("in");
                 addHtmlPadding();
                 var isBack = $this.attr("data-backdrop") || "true";
@@ -110,7 +110,7 @@
                 // 触发自定义的事件
                 $this.trigger("v-modal", [true, $(this).get(0), targetEl]);
 
-            } else {
+            } else if (bl === "hide") {
                 $this.removeClass("in");
                 $("html").removeClass("html-v-modal");
 
