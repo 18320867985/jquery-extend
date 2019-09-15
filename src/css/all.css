@@ -838,7 +838,7 @@ input:focus,
   .v-message:before {
     content: "";
     display: inline-block;
-    height: 90%;
+    height: 100%;
     vertical-align: middle; }
 
 .v-message-mask {
@@ -1286,13 +1286,17 @@ input:focus,
   top: 0;
   bottom: 0;
   z-index: 10;
-  display: none;
+  visibility: hidden;
   text-align: center;
-  font-size: 0; }
+  padding: 30px 0;
+  font-size: 0;
+  opacity: 0;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+  overflow-y: auto; }
   .v-modal.in {
-    display: block;
-    -webkit-animation: modal-mask .25s ease both;
-            animation: modal-mask .25s ease both; }
+    visibility: visible;
+    opacity: 1; }
   .v-modal:before {
     content: "";
     display: inline-block;
@@ -1301,7 +1305,8 @@ input:focus,
     background: red;
     vertical-align: middle; }
   .v-modal .v-modal-mask {
-    position: absolute;
+    position: fixed;
+    z-index: -1;
     top: 0;
     left: 0;
     right: 0;
@@ -1310,7 +1315,8 @@ input:focus,
     background: #000;
     filter: alpha(opacity=40);
     /* for IE8 and earlier */
-    opacity: .4; }
+    opacity: .4;
+    pointer-events: none; }
   .v-modal .v-modal-cnt {
     position: relative;
     z-index: 1;
@@ -1323,21 +1329,31 @@ input:focus,
     font-size: 14px;
     text-align: left;
     -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125);
-            box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125); }
+            box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125);
+    visibility: visible;
+    -webkit-transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
+            transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
+    opacity: 0;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease; }
+  .v-modal.in .v-modal-cnt {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none; }
   .v-modal .v-modal-colse {
     position: absolute;
     right: 10px;
     top: 5px;
     line-height: 1;
     font-size: 24px;
-    color: #999;
+    color: #cccccc;
+    color: rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 0 #fff;
     cursor: pointer;
     font-weight: 100; }
     .v-modal .v-modal-colse:hover {
-      color: gray; }
-  .v-modal.in .v-modal-cnt {
-    -webkit-animation: modal-cnt-in .5s ease both;
-            animation: modal-cnt-in .5s ease both; }
+      color: #b3b3b3; }
 
 @-webkit-keyframes modal-cnt-in {
   0% {

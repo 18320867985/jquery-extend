@@ -29,7 +29,8 @@
             margin: 10px;
         }
 
-        .v-modal-2 .v-modal-cnt {
+        .v-modal-2 .v-modal-cnt,
+        .v-modal-3 .v-modal-cnt {
             width: 600px;
             padding: 30px;
         }
@@ -52,7 +53,7 @@
                   html触发：  data-toggle="v-modal"  data-target=".v-modal-1"
                 </h4>
 
-                <div class="v-modal v-modal-1" data-backdrop="true">
+                <div class="v-modal v-modal-1 " data-backdrop="true">
 
                     <!--mask modal -->
                     <div class="v-modal-mask"></div>
@@ -96,7 +97,6 @@
                 <button class=" btn  btn-success  " data-toggle="v-modal" data-target=".v-modal-2">点击mask不能关闭 data-backdrop="false"</button>
               
                 <!--modal-->
-
                 <div class="v-modal v-modal-2" data-backdrop="false">
 
                     <!--mask modal -->
@@ -127,6 +127,7 @@
                                     <input type="checkbox"> Check me out
                                 </label>
                             </div>
+
                             <button type="button" data-dismiss="v-modal" class="btn btn-default">cancell</button>
                             <button type="button" class="btn btn-primary">Submit</button>
                         </form>
@@ -185,6 +186,80 @@
             <li>
                 <h2>js触发modal</h2>
                 <button class=" btn  btn-danger  v-modal-btn-js">js触发mdal VModal()  参数【bl=false=关闭 bl=true=显示, targetEl=目标元素】</button>
+
+                <!--modal-->
+                <div class="v-modal v-modal-3" data-backdrop="false">
+                    <!--mask modal -->
+                    <div class="v-modal-mask"></div>
+                    <!--content modal-->
+                    <div class="v-modal-cnt cfx">
+                        <!--colse modal-->
+                        <div class="v-modal-colse" data-dismiss="v-modal">
+                            <span>&times;</span>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" id="exampleInputFile">
+                                <p class="help-block">Example block-level help text here.</p>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Check me out
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" id="exampleInputFile">
+                                <p class="help-block">Example block-level help text here.</p>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Check me out
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" id="exampleInputFile">
+                                <p class="help-block">Example block-level help text here.</p>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Check me out
+                                </label>
+                            </div>
+                            <button type="button" data-dismiss="v-modal" class="btn btn-default">cancell</button>
+                            <button type="button" class="btn btn-primary">Submit</button>
+                        </form>
+
+                    </div>
+
+                </div>
+
                 <pre>
                   
                     $(".v-modal-btn-js").click(function () {
@@ -194,7 +269,7 @@
                     });
 
                     // 自定义事件
-                    $(".v-modal-2").on("v-modal", function (e, bl, targetEl, btnEl) {
+                    $(".v-modal-3").on("v-modal", function (e, bl, targetEl, btnEl) {
                         // 0. e 事件对象
                         // 1. bl=false='hide'=关闭  bl=true='show'=显示
                         // 2. targetEl = 目标v-modal元素
@@ -222,12 +297,12 @@
 
             $(".v-modal-btn-js").click(function () {
               // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
-                var targetEl = this;
-                $(".v-modal-2").VModal('show',targetEl);
+                var targetEl= this;
+                $(".v-modal-3").VModal('show',targetEl);
             });
 
             // 自定义事件
-            $(".v-modal-2").on("v-modal", function (e, bl, targetEl, btnEl) {
+            $(".v-modal-3").on("v-modal", function (e, bl, targetEl, btnEl) {
                 // 0. e 事件对象
                 // 1. bl=false='hide'=关闭  bl=true='show'=显示
                 // 2. targetEl = 目标v-modal元素

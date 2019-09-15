@@ -12,26 +12,29 @@
 
         var $this = $(this);
         var bl = $this.hasClass("in");
-     
-        // 触发自定义的事件
-        $this.trigger("v-modal", [bl, $this.get(0), $this.get(0)]);
+        if (bl) {
+            addHtmlPadding();
+            // 触发自定义的事件
+            $this.trigger("v-modal", [bl, $this.get(0), $this.get(0)]);
 
-        var isBack = $this.attr("data-backdrop") || "true";
+            var isBack = $this.attr("data-backdrop") || "true";
 
-        if ("true" === $.trim(isBack)) {
+            if ("true" === $.trim(isBack)) {
 
-            $(document).on("click", ".v-modal-cnt", function (e) {
-                e.stopPropagation();
-            });
+                $(document).on("click", ".v-modal-cnt", function (e) {
+                    e.stopPropagation();
+                });
 
-            $this.find(".v-modal-mask").one("click", function (e) {
-                $this.removeClass("in");
-                $("html").removeClass("html-v-modal");
-                // 触发自定义的事件
-                $this.trigger("v-modal", [false, $this.get(0), $this.get(0)]);
+                $(document).one("click",".v-modal", function (e) {
+                    $this.removeClass("in");
+                    $("html").removeClass("html-v-modal");
+                    // 触发自定义的事件
+                    $this.trigger("v-modal", [false, $this.get(0), $this.get(0)]);
 
-            });
+                });
+            }
         }
+       
 
     });
 
@@ -53,15 +56,14 @@
 
             // 触发自定义的事件
             $(target).trigger("v-modal", [bl, $(target).get(0),this]);
-
             var isBack = $(target).attr("data-backdrop") || "true";
             if ("true" === $.trim(isBack)) {
                 $(document).on("click", ".v-modal-cnt", function (e) {
                     e.stopPropagation();
                 });
 
-                $(p).find(".v-modal-mask").one("click", function (e) { 
-                    $(target).removeClass("in");
+                $(document).one("click",".v-modal",function (e) { 
+                    $(p).removeClass("in");
                     $("html").removeClass("html-v-modal");
                     // 触发自定义的事件
                     $(target).trigger("v-modal", [false, $(target).get(0),this]);
@@ -76,6 +78,8 @@
 
     // [data-dismiss=v-modal]
     $(document).on("click", "[data-dismiss=v-modal]", function (e) {
+
+        $(document).off("click", ".v-modal");
         e.preventDefault();
         $(this).parents(".v-modal").removeClass("in");
         $("html").removeClass("html-v-modal");
@@ -87,7 +91,8 @@
   
     $.fn.extend({
         // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
-        VModal: function (bl,targetEl) {
+        VModal: function (bl, targetEl) {
+           
             var $this = $(this);
             if (bl==="show") {
                 $this.addClass("in");
@@ -100,8 +105,8 @@
                         e.stopPropagation();
                     });
 
-                    $this.find(".v-modal-mask").one("click", function (e) {
-                        $this.removeClass("in");
+                    $(document).one("click", ".v-modal", function (e) {
+                        $(".v-modal").removeClass("in");
                         $("html").removeClass("html-v-modal");
                         // 触发自定义的事件
                         $this.trigger("v-modal", [false, $this.get(0), targetEl]);

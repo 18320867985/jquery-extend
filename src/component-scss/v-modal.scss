@@ -11,14 +11,21 @@
     top: 0;
     bottom: 0;
     z-index: 10;
-    display: none;
+    //display: none;
+    visibility: hidden;
     text-align: center;
+    padding:30px 0;
     font-size: 0;
+    opacity: 0;
+    transition: all .5s ease;
+    overflow-y:auto;
 
 
     &.in {
-       display:block;
-       animation: modal-mask .25s ease both;
+     
+        visibility: visible;
+        opacity: 1;
+    
     }
 
     &:before {
@@ -33,7 +40,8 @@
 
 
     .v-modal-mask {
-        position: absolute;
+        position: fixed;
+        z-index:-1;
         top: 0;
         left: 0;
         right: 0;
@@ -43,6 +51,8 @@
         filter: alpha(opacity=40);
         /* for IE8 and earlier */
         opacity: .4;
+         pointer-events:none;
+      
     }
 
 
@@ -54,11 +64,22 @@
         vertical-align: middle;
         min-width: 300px;
         min-height: 200px;
-        padding:10px;
+        padding: 10px;
         background: #fff;
         font-size: 14px;
-        text-align:left;
+        text-align: left;
         box-shadow: 0 0 10px 5px rgba(0,0,0,.125);
+        visibility: visible;
+        transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
+        opacity: 0;
+        transition: all .5s ease;
+    }
+
+    &.in .v-modal-cnt {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        //animation: modal-cnt-in .5s ease both;
     }
 
     .v-modal-colse {
@@ -67,17 +88,15 @@
         top: 5px;
         line-height: 1;
         font-size: 24px;
-        color: #999;
+        color: rgb(204,204,204); // for ie8
+        color: rgba(#000,.2);
+        text-shadow: 0 1px 0 #fff;
         cursor: pointer;
         font-weight: 100;
 
         &:hover {
-            color: darken(#999,10%);
+            color: darken(rgb(204,204,204),10%);
         }
-    }
-
-    &.in .v-modal-cnt {
-        animation: modal-cnt-in .5s ease both;
     }
 }
 
