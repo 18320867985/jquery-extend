@@ -1288,11 +1288,7 @@ input:focus,
   z-index: 10;
   visibility: hidden;
   text-align: center;
-  padding: 30px 0;
   font-size: 0;
-  opacity: 0;
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease;
   overflow-y: auto; }
   .v-modal.in {
     visibility: visible;
@@ -1313,10 +1309,17 @@ input:focus,
     bottom: 0;
     z-index: 0;
     background: #000;
+    filter: alpha(opacity=0);
+    /* for IE8 and earlier */
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: all .5s;
+    transition: all .5s; }
+  .v-modal.in .v-modal-mask {
+    background: #000;
     filter: alpha(opacity=40);
     /* for IE8 and earlier */
-    opacity: .4;
-    pointer-events: none; }
+    opacity: .4; }
   .v-modal .v-modal-cnt {
     position: relative;
     z-index: 1;
@@ -1324,13 +1327,13 @@ input:focus,
     vertical-align: middle;
     min-width: 300px;
     min-height: 200px;
+    margin: 30px 0;
     padding: 10px;
     background: #fff;
     font-size: 14px;
     text-align: left;
     -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125);
             box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125);
-    visibility: visible;
     -webkit-transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
             transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
     opacity: 0;

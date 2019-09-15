@@ -14,18 +14,13 @@
     //display: none;
     visibility: hidden;
     text-align: center;
-    padding:30px 0;
     font-size: 0;
-    opacity: 0;
-    transition: all .5s ease;
-    overflow-y:auto;
+    overflow-y: auto;
 
 
     &.in {
-     
         visibility: visible;
         opacity: 1;
-    
     }
 
     &:before {
@@ -41,21 +36,26 @@
 
     .v-modal-mask {
         position: fixed;
-        z-index:-1;
+        z-index: -1;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         z-index: 0;
         background: #000;
+        filter: alpha(opacity=0);
+        /* for IE8 and earlier */
+        opacity: 0;
+        pointer-events: none;
+        transition: all .5s;
+    }
+
+    &.in .v-modal-mask {
+        background: #000;
         filter: alpha(opacity=40);
         /* for IE8 and earlier */
         opacity: .4;
-         pointer-events:none;
-      
     }
-
-
 
     .v-modal-cnt {
         position: relative;
@@ -64,12 +64,12 @@
         vertical-align: middle;
         min-width: 300px;
         min-height: 200px;
+        margin: 30px 0;
         padding: 10px;
         background: #fff;
         font-size: 14px;
         text-align: left;
         box-shadow: 0 0 10px 5px rgba(0,0,0,.125);
-        visibility: visible;
         transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
         opacity: 0;
         transition: all .5s ease;
@@ -79,7 +79,6 @@
         visibility: visible;
         opacity: 1;
         transform: none;
-        //animation: modal-cnt-in .5s ease both;
     }
 
     .v-modal-colse {
