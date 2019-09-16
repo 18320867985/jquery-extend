@@ -34,7 +34,7 @@
 
 
 
-    .v-modal-mask {
+    .v-ie8-mask {
         position: fixed;
         z-index: -1;
         top: 0;
@@ -43,19 +43,9 @@
         bottom: 0;
         z-index: 0;
         background: #000;
-        filter: alpha(opacity=0);
-        /* for IE8 and earlier */
-        opacity: 0;
-        pointer-events: none;
-        transition: all .5s;
     }
 
-    &.in .v-modal-mask {
-        background: #000;
-        filter: alpha(opacity=40);
-        /* for IE8 and earlier */
-        opacity: .4;
-    }
+
 
     .v-modal-cnt {
         position: relative;
@@ -126,3 +116,32 @@
     }
 }
 
+
+// supper ie8
+.v-modal {
+
+    .v-ie8-mask {
+        background: #000;
+        /* for IE8 and earlier */
+        filter: alpha(opacity=0);
+    }
+
+    &.in .v-ie8-mask {
+        /* for IE8 and earlier */
+        filter: alpha(opacity=40);
+    }
+}
+
+:root .v-modal {
+    background: #000;
+    background: rgba(#000,.0);
+    transition: all .5s ease;
+
+    &.in {
+        background: rgba(#000,.4);
+    }
+
+    .v-ie8-mask {
+        display: none;
+    }
+}

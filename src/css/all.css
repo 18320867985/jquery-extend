@@ -1300,7 +1300,7 @@ input:focus,
     width: 0;
     background: red;
     vertical-align: middle; }
-  .v-modal .v-modal-mask {
+  .v-modal .v-ie8-mask {
     position: fixed;
     z-index: -1;
     top: 0;
@@ -1308,18 +1308,7 @@ input:focus,
     right: 0;
     bottom: 0;
     z-index: 0;
-    background: #000;
-    filter: alpha(opacity=0);
-    /* for IE8 and earlier */
-    opacity: 0;
-    pointer-events: none;
-    -webkit-transition: all .5s;
-    transition: all .5s; }
-  .v-modal.in .v-modal-mask {
-    background: #000;
-    filter: alpha(opacity=40);
-    /* for IE8 and earlier */
-    opacity: .4; }
+    background: #000; }
   .v-modal .v-modal-cnt {
     position: relative;
     z-index: 1;
@@ -1389,6 +1378,25 @@ input:focus,
     opacity: 0; }
   100% {
     opacity: 1; } }
+
+.v-modal .v-ie8-mask {
+  background: #000;
+  /* for IE8 and earlier */
+  filter: alpha(opacity=0); }
+
+.v-modal.in .v-ie8-mask {
+  /* for IE8 and earlier */
+  filter: alpha(opacity=40); }
+
+:root .v-modal {
+  background: #000;
+  background: rgba(0, 0, 0, 0);
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease; }
+  :root .v-modal.in {
+    background: rgba(0, 0, 0, 0.4); }
+  :root .v-modal .v-ie8-mask {
+    display: none; }
 
 /*全局*/
 .paging {
