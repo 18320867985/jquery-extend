@@ -1,7 +1,10 @@
 
-.html-v-modal{
-     overflow:hidden;
-     padding-right:17px;
+
+@import "../css-dev/scss/var-pc.scss";
+
+.html-v-modal {
+    overflow: hidden;
+    padding-right: 17px;
 }
 
 .v-modal {
@@ -10,17 +13,28 @@
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: 10;
-    //display: none;
+    z-index: -1;
     visibility: hidden;
     text-align: center;
     font-size: 0;
     overflow-y: auto;
 
 
+
     &.in {
         visibility: visible;
-        opacity: 1;
+        z-index: 10;
+        animation: modal-in .5s ease both;
+    }
+
+
+    &.out {
+
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+      
+        animation: modal-out .5s ease both;
     }
 
     &:before {
@@ -34,7 +48,7 @@
 
 
 
-    .v-modal-mask {
+    .v-ie8-mask {
         position: fixed;
         z-index: -1;
         top: 0;
@@ -43,19 +57,9 @@
         bottom: 0;
         z-index: 0;
         background: #000;
-        filter: alpha(opacity=0);
-        /* for IE8 and earlier */
-        opacity: 0;
-        pointer-events: none;
-        transition: all .5s;
     }
 
-    &.in .v-modal-mask {
-        background: #000;
-        filter: alpha(opacity=40);
-        /* for IE8 and earlier */
-        opacity: .4;
-    }
+
 
     .v-modal-cnt {
         position: relative;
@@ -70,15 +74,14 @@
         font-size: 14px;
         text-align: left;
         box-shadow: 0 0 10px 5px rgba(0,0,0,.125);
-        transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
-        opacity: 0;
-        transition: all .5s ease;
     }
 
     &.in .v-modal-cnt {
-        visibility: visible;
-        opacity: 1;
-        transform: none;
+        animation: modal-cnt-in .5s ease both;
+    }
+
+    &.out .v-modal-cnt {
+        animation: modal-cnt-out .5s ease both;
     }
 
     .v-modal-colse {
@@ -99,30 +102,72 @@
     }
 }
 
-@keyframes modal-cnt-in{
-    0% {
-        opacity: 0;
-        transform: translateZ(0) translateY(-800px) scale(0);
-    }
-    100% {
-     
-        opacity:1;
-        transform:none;
-    }
-
-}
-
 @keyframes modal-in {
     0% {
-     
-      opacity: 0;
+        opacity: 0;
+        background: rgba(#000,.0);
+    }
+
+    100% {
+        opacity: 1;
+        background: rgba(#000,.4);
+    }
+}
+
+@keyframes modal-cnt-in {
+    0% {
+        transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
+    }
+
+    100% {
+        transform: none;
+    }
+}
+
+@keyframes modal-out {
+    0% {
+        opacity: 1;
+        z-index: 10;
+        visibility: visible;
        
     }
 
     100% {
-      
-        opacity: 1;
-     
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
     }
 }
 
+@keyframes modal-cnt-out {
+    0% {
+        transform: none;
+    }
+
+    100% {
+        transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
+    }
+}
+
+
+
+.v-modal {
+
+    .v-ie8-mask {
+        background: #000;
+        filter: alpha(opacity=0);
+    }
+
+    &.in .v-ie8-mask {
+        filter: alpha(opacity=40);
+    }
+}
+
+:root .v-modal {
+
+    background: rgba(#000,.4);
+
+    .v-ie8-mask {
+        display: none;
+    }
+}
