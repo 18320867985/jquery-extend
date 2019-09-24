@@ -116,11 +116,13 @@
 
 @keyframes modal-cnt-in {
     0% {
-        transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
+        opacity:0;
+        transform: translateZ(0) translateY(-800px) ;
     }
 
     100% {
         transform: none;
+        opacity:1;
     }
 }
 
@@ -142,10 +144,13 @@
 @keyframes modal-cnt-out {
     0% {
         transform: none;
+        opacity:1;
+
     }
 
     100% {
-        transform: translateZ(0) translateY(-800px) rotate(-360deg) scale(0);
+        opacity:0;
+        transform: translateZ(0) translateY(-800px) ;
     }
 }
 
