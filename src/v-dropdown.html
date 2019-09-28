@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>下拉框-dropdown</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        li + li {
+            margin-top: 20px;
+        }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+        .v-modal-2 .v-modal-cnt,
+        .v-modal-3 .v-modal-cnt {
+            width: 600px;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>下拉框-dropdown</h1>
+        <div>
+            <a class="btn-link" href="./js/v-modal.js">查看 v-dropdown.js</a>
+            <a class="btn-link" href="./component-scss/v-modal.scss">查看 v-dropdown.scss</a>
+        </div>
+        <ul>
+            <li>
+                <h2>模态框-默认</h2>
+                <button class=" btn  btn-primary confirm " data-toggle="v-modal" data-target=".v-modal-1"> modal（模态框)-默认</button>
+              
+                <h4>
+                  html触发：  data-toggle="v-modal"  data-target=".v-modal-1"
+                </h4>
+
+                <div class="v-modal v-modal-1 " data-backdrop="true">
+
+                    <!--  supper ie8  v-ie8-mask -->
+                    <div class="v-ie8-mask"></div>
+
+                    <!--content modal-->
+                    <div class="v-modal-cnt cfx">
+                        <!--colse modal-->
+                        <div class="v-modal-colse" data-dismiss="v-modal">
+                            <span>&times;</span>
+                        </div>
+
+                        <h5 style="margin-top:80px; text-align:center;">html内容自定义</h5>
+
+                    </div>
+
+                </div>
+
+                <pre>
+                &lt;button class=" btn  btn-primary confirm " data-toggle="v-modal"  data-target=".v-modal-1"> modal（模态框)-默认  &lt;button>
+
+                 &lt;div class="v-modal v-modal-1"  >
+
+                    &lt;!--  supper ie8  v-ie8-mask -->
+                    &lt;div class="v-ie8-mask">
+                    &lt;/div>
+
+                    &lt;div class="v-modal-cnt cfx">
+                         &lt;div class="v-modal-colse" data-dismiss="v-modal">
+                            &lt;span> &times; &lt;/span>
+                        &lt;/div>
+                    &lt;/div>
+
+                  &lt;/div>
+
+                   
+                
+                </pre>
+
+            </li>
+
+      
+        </ul>
+
+
+
+    </div>
+
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-dropdown.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $(".v-modal-btn-js").click(function () {
+              // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
+                var targetEl= this;
+                $(".v-modal-3").VModal('show',targetEl);
+            });
+
+            // 自定义事件
+            $(".v-modal-3").on("v-modal", function (e, bl, targetEl, btnEl) {
+                // 0. e 事件对象
+                // 1. bl=false='hide'=关闭  bl=true='show'=显示
+                // 2. targetEl = 目标v-modal元素
+                // 3. btnEl =触发按钮的元素
+                console.log("bl：",bl,"targetEl:",targetEl,"btnEl:",btnEl)
+            });
+
+
+        });
+
+    </script>
+</body>
+
+</html>
