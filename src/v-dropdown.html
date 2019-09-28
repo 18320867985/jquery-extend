@@ -17,9 +17,9 @@
             margin-bottom: 50px;
         }
 
-        li + li {
-            margin-top: 20px;
-        }
+            .container > li + li {
+                margin-top: 20px;
+            }
 
         pre {
             margin: 10px 0;
@@ -42,59 +42,152 @@
         <h1>下拉框-dropdown</h1>
         <div>
             <a class="btn-link" href="./js/v-modal.js">查看 v-dropdown.js</a>
-            <a class="btn-link" href="./component-scss/v-modal.scss">查看 v-dropdown.scss</a>
+            <a class="btn-link" href="./component-scss/v-dropdown.scss">查看 v-dropdown.scss</a>
         </div>
         <ul>
+
             <li>
-                <h2>模态框-默认</h2>
-                <button class=" btn  btn-primary confirm " data-toggle="v-modal" data-target=".v-modal-1"> modal（模态框)-默认</button>
-              
-                <h4>
-                  html触发：  data-toggle="v-modal"  data-target=".v-modal-1"
-                </h4>
+                <h2>下拉框-按钮</h2>
+                <div class="v-dropdown " data-event="click" data-toggle="v-dropdown">
+                    <button class="v-dropdown-btn  btn btn-primary">
+                        默认-dropdown
+                    </button>
 
-                <div class="v-modal v-modal-1 " data-backdrop="true">
+                    <ul class="v-dropdown-menu ie8-border">
+                        <li><a href="javascript:;">高光泽性1</a></li>
+                        <li><a href="javascript:;">超高刚性2</a></li>
+                        <li><a href="javascript:;">特佳弯曲强</a></li>
+                        <li><a href="javascript:;">硬度4</a></li>
+                    </ul>
 
-                    <!--  supper ie8  v-ie8-mask -->
-                    <div class="v-ie8-mask"></div>
+                </div>
+                <pre>
+                触发条件类型： data-toggle="v-dropdown"
 
-                    <!--content modal-->
-                    <div class="v-modal-cnt cfx">
-                        <!--colse modal-->
-                        <div class="v-modal-colse" data-dismiss="v-modal">
-                            <span>&times;</span>
-                        </div>
+                触发事件类型： data-event="click" || data-event="focus" ||data-event="hover"
 
-                        <h5 style="margin-top:80px; text-align:center;">html内容自定义</h5>
+             &lt;div class="v-dropdown " data-event="click" data-toggle="v-dropdown">
 
-                    </div>
+                  &lt;button class="v-dropdown-btn  btn btn-primary">
+                        默认-dropdown
+                  &lt;/button>
+
+                 &lt;ul class="v-dropdown-menu ">
+                         &lt;li>
+                            &lt;a href="javascript:;">
+                            高光泽性1 &lt;/a>
+                        &lt;/li>
+                        &lt;li>
+                            &lt;a href="javascript:;">超高刚性2
+                            &lt;/a>
+                        &lt;/li>
+                        &lt;li>
+                            &lt;a href="javascript:;">
+                            特佳弯曲强 &lt;/a> 
+                        &lt;/li>
+                        &lt;li>
+                            &lt;a href="javascript:;">硬度4
+                            &lt;/a>
+                        &lt;/li>
+                 &lt;/ul>
+
+            &lt;/div>
+
+            </pre>
+                <h2>下拉框-按钮-hover</h2>
+                <div class="v-dropdown " data-event="hover" data-toggle="v-dropdown" style="display:inline-block">
+                    <button class="v-dropdown-btn  btn btn-primary">
+                        默认-dropdown
+                    </button>
+
+                    <ul class="v-dropdown-menu ">
+                        <li><a href="javascript:;">高光泽性1</a></li>
+                        <li><a href="javascript:;">超高刚性2</a></li>
+                        <li><a href="javascript:;">特佳弯曲强</a></li>
+                        <li><a href="javascript:;">硬度4</a></li>
+                    </ul>
+
+                </div>
+                <pre>
+
+                  &lt;div class="v-dropdown  " data-event="hover" data-toggle="v-dropdown" style="width:280px;"  style="display:inline-block"> &lt;/div>
+
+                </pre>
+                <h2>下拉框-文本框</h2>
+                <div class="v-dropdown " data-event="focus" data-toggle="v-dropdown" style="width:280px;">
+                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" />
+
+                    <ul class="v-dropdown-menu ">
+                        <li><a href="javascript:;">高光泽性1</a></li>
+                        <li><a href="javascript:;">超高刚性2</a></li>
+                        <li><a href="javascript:;">特佳弯曲强</a></li>
+                        <li><a href="javascript:;">硬度4</a></li>
+                    </ul>
 
                 </div>
 
                 <pre>
-                &lt;button class=" btn  btn-primary confirm " data-toggle="v-modal"  data-target=".v-modal-1"> modal（模态框)-默认  &lt;button>
 
-                 &lt;div class="v-modal v-modal-1"  >
-
-                    &lt;!--  supper ie8  v-ie8-mask -->
-                    &lt;div class="v-ie8-mask">
-                    &lt;/div>
-
-                    &lt;div class="v-modal-cnt cfx">
-                         &lt;div class="v-modal-colse" data-dismiss="v-modal">
-                            &lt;span> &times; &lt;/span>
-                        &lt;/div>
-                    &lt;/div>
-
-                  &lt;/div>
-
-                   
-                
+                  &lt;div class="v-dropdown " data-event="focus" data-toggle="v-dropdown" style="width:280px;"> &lt;/div>
                 </pre>
+
+                <h2>下拉框-文本框 v-dropdown-right</h2>
+
+                <div class="v-dropdown v-dropdown-right " data-event="focus" data-toggle="v-dropdown" style="width:280px;">
+                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" />
+
+                    <ul class="v-dropdown-menu  ">
+                        <li><a href="javascript:;">高光泽性1</a></li>
+                        <li><a href="javascript:;">超高刚性2</a></li>
+                        <li><a href="javascript:;">特佳弯曲强</a></li>
+                        <li><a href="javascript:;">硬度4</a></li>
+                    </ul>
+
+                </div>
+                <pre>
+
+                  &lt;div class="v-dropdown v-dropdown-right " data-event="focus" data-toggle="v-dropdown" style="width:280px;"> &lt;/div>
+                </pre>
+
+                <h2>下拉框-文本框 v-dropdown-100</h2>
+                <div class="v-dropdown v-dropdown-right " data-event="focus" data-toggle="v-dropdown" style="width:280px;">
+                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" />
+
+                    <ul class="v-dropdown-menu  v-dropdown-100 ">
+                        <li><a href="javascript:;">高光泽性1</a></li>
+                        <li><a href="javascript:;">超高刚性2</a></li>
+                        <li><a href="javascript:;">特佳弯曲强</a></li>
+                        <li><a href="javascript:;">硬度4</a></li>
+                    </ul>
+
+                </div>
+
+                <pre>
+
+               &lt;ul class="v-dropdown-menu  v-dropdown-menu-100">
+                         &lt;li>
+                            &lt;a href="javascript:;">
+                            高光泽性1 &lt;/a>
+                        &lt;/li>
+                        &lt;li>
+                            &lt;a href="javascript:;">超高刚性2
+                            &lt;/a>
+                        &lt;/li>
+                        &lt;li>
+                            &lt;a href="javascript:;">
+                            特佳弯曲强 &lt;/a> 
+                        &lt;/li>
+                        &lt;li>
+                            &lt;a href="javascript:;">硬度4
+                            &lt;/a>
+                        &lt;/li>
+                 &lt;/ul>
+                </pre>
+
+
 
             </li>
 
-      
         </ul>
 
 
@@ -111,9 +204,9 @@
         $(function () {
 
             $(".v-modal-btn-js").click(function () {
-              // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
-                var targetEl= this;
-                $(".v-modal-3").VModal('show',targetEl);
+                // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
+                var targetEl = this;
+                $(".v-modal-3").VModal('show', targetEl);
             });
 
             // 自定义事件
@@ -122,7 +215,7 @@
                 // 1. bl=false='hide'=关闭  bl=true='show'=显示
                 // 2. targetEl = 目标v-modal元素
                 // 3. btnEl =触发按钮的元素
-                console.log("bl：",bl,"targetEl:",targetEl,"btnEl:",btnEl)
+                console.log("bl：", bl, "targetEl:", targetEl, "btnEl:", btnEl)
             });
 
 

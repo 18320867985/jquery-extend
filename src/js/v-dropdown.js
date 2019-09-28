@@ -32,6 +32,9 @@
 
                         // 点击按钮 触发自定义的事件
                         $(this).trigger("v-dropdown-btn", [this]);
+
+                        if (eventType === "mouseenter") {
+                            $(".v-dropdown-btn").each(function () { this.blur(); });}
                     }
 
                 });
@@ -48,7 +51,8 @@
 
                 // 没有冒泡行为 focus 类型事件
                 $this.find(".v-dropdown-btn").on(eventType, function (e) {
-                        e.stopPropagation();
+                    e.stopPropagation();
+                  
                         $(".v-dropdown").removeClass("in");
                         $(this).parents(".v-dropdown").addClass("in");
                         $(document).one("click", function (e) {
