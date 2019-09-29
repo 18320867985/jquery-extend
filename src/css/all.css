@@ -1451,6 +1451,9 @@ input:focus,
   .v-dropdown.v-dropdown-right .v-dropdown-menu {
     right: 0; }
 
+.v-dropdown-btn {
+  cursor: pointer; }
+
 .v-dropdown-menu {
   position: absolute;
   z-index: 10;
@@ -1473,7 +1476,8 @@ input:focus,
     min-width: 150px;
     padding: 8px 10px;
     color: #333;
-    white-space: nowrap; }
+    white-space: nowrap;
+    cursor: pointer; }
 
 .v-dropdown-menu {
   border: 1px  solid #ddd; }

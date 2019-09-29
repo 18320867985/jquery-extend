@@ -2,8 +2,9 @@
 
 @import "../css-dev/scss/var-pc.scss";
 
-.v-dropdown {
 
+.v-dropdown {
+ 
     &.v-dropdown-left {
         position: relative;
 
@@ -21,7 +22,10 @@
         }
     }
 }
-
+.v-dropdown-btn{
+    //  supper ios 
+    cursor:pointer;
+}
 
 .v-dropdown-menu {
     position: absolute;
@@ -50,6 +54,8 @@
         padding: 8px 10px;
         color: #333;
         white-space: nowrap;
+        //  supper ios
+        cursor: pointer;
     }
 }
 

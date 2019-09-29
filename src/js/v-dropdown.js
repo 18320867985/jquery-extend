@@ -3,8 +3,34 @@
  v-dropdown
  */
 +function () {
- 
+
+    // 是否为移动端
+    function isMobile() {
+
+        var userAgentInfo = navigator.userAgent.toString().toLowerCase();
+        var Agents = ["Android", "iPhone",
+            "SymbianOS", "Windows Phone",
+            "iPad", "iPod"
+        ];
+        //console.log(userAgentInfo)
+        var flag = false;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v].toLowerCase()) > 0) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
+
+
     $(function () {
+      
+        if (isMobile()) {
+
+            // 兼容ios safari click事件
+            $("body").css("cursor", "pointer");
+        }
 
         $("[data-toggle=v-dropdown].v-dropdown").each(function () {
             var $this = $(this);
@@ -20,7 +46,6 @@
             // click  hover 类型事件 具有冒泡行为
             if (eventType === "click" || eventType === "mouseenter") {
 
-             
                 $(document).on(eventType, ".v-dropdown-btn", function (e) {
                   
                     var p2 = $(this).parents(".v-dropdown").get(0);
@@ -29,10 +54,10 @@
                         $(".v-dropdown").removeClass("in out");
                         $(this).parents(".v-dropdown").addClass("in");
 
-                        $(document).one("click", function (e) {
+                        $(document).one("click ", function (e) {
                             $(".v-dropdown").removeClass("in out");
                             $this.addClass("out");
-                               
+                            
                         });
 
                         // 点击按钮 触发自定义的事件
@@ -58,7 +83,7 @@
             } else {
                
                 // 没有冒泡行为 focus 类型事件
-                $this.find(".v-dropdown-btn").on(eventType, function (e) {
+                $this.on(eventType,".v-dropdown-btn", function (e) {
                     e.stopPropagation();
                     $(".v-dropdown").removeClass("in out");
                     $(this).closest(".v-dropdown").addClass("in");
@@ -106,5 +131,5 @@
         });
 
     });
- 
+
 }();
