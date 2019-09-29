@@ -115,7 +115,7 @@
                 </pre>
                 <h2>下拉框-文本框</h2>
                 <div class="v-dropdown " data-event="focus" data-toggle="v-dropdown" style="width:280px;">
-                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" />
+                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
 
                     <ul class="v-dropdown-menu ">
                         <li><a href="javascript:;">高光泽性1</a></li>
@@ -134,7 +134,7 @@
                 <h2>下拉框-文本框 v-dropdown-right</h2>
 
                 <div class="v-dropdown v-dropdown-right " data-event="focus" data-toggle="v-dropdown" style="width:280px;">
-                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" />
+                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
 
                     <ul class="v-dropdown-menu  ">
                         <li><a href="javascript:;">高光泽性1</a></li>
@@ -151,7 +151,7 @@
 
                 <h2>下拉框-文本框 v-dropdown-100</h2>
                 <div class="v-dropdown v-dropdown-right " data-event="focus" data-toggle="v-dropdown" style="width:280px;">
-                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" />
+                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
 
                     <ul class="v-dropdown-menu  v-dropdown-100 ">
                         <li><a href="javascript:;">高光泽性1</a></li>
@@ -186,6 +186,130 @@
 
             </li>
 
+            <li>
+                <h2>触发的事件</h2>
+                <div class="v-dropdown v-dropdown-right slt-1" id="" data-event="focus" data-toggle="v-dropdown" style="width:280px;">
+                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
+
+                    <ul class="v-dropdown-menu  v-dropdown-100 " style="max-height:300px; overflow:auto;">
+                        <li><a href="javascript:;">高光泽性1</a></li>
+                        <li><a href="javascript:;">超高刚性2</a></li>
+                        <li><a href="javascript:;">特佳弯曲强2</a></li>
+                        <li><a href="javascript:;">硬度4</a></li>
+                        <li><a href="javascript:;">高光泽性5</a></li>
+                        <li><a href="javascript:;">超高刚性6</a></li>
+                        <li><a href="javascript:;">特佳弯曲强7</a></li>
+                        <li><a href="javascript:;">硬度8</a></li>
+                        <li><a href="javascript:;">高光泽性9</a></li>
+                        <li><a href="javascript:;">超高刚性10</a></li>
+                        <li><a href="javascript:;">特佳弯曲强11</a></li>
+                        <li><a href="javascript:;">硬度12</a></li>
+                        <li><a href="javascript:;">高光泽性13</a></li>
+                        <li><a href="javascript:;">超高刚性14</a></li>
+                        <li><a href="javascript:;">特佳弯曲强15</a></li>
+                        <li><a href="javascript:;">硬度16</a></li>
+                    </ul>
+
+                </div>
+                <pre>
+                   html：
+                   &lt;div class="v-dropdown v-dropdown-right slt-1" id="" data-event="focus" data-toggle="v-dropdown" style="width:280px;">  &lt;/div>
+                     &lt;ul class="v-dropdown-menu  v-dropdown-menu-100" style="max-height:300px; overflow:auto;">
+                             &lt;li>
+                                &lt;a href="javascript:;">
+                                高光泽性1 &lt;/a>
+                            &lt;/li>
+                            &lt;li>
+                                &lt;a href="javascript:;">超高刚性2
+                                &lt;/a>
+                            &lt;/li>
+                            &lt;li>
+                                &lt;a href="javascript:;">
+                                特佳弯曲强 &lt;/a> 
+                            &lt;/li>
+                            &lt;li>
+                                &lt;a href="javascript:;">硬度4
+                                &lt;/a>
+                            &lt;/li>
+                     &lt;/ul>
+                </pre>
+
+                <pre>
+                        js：
+                         // 下拉选择框 选择按钮触发的事件
+                        $(".slt-1").on("v-dropdown-btn", function (e, el) {
+                        // el 选择的项的元素
+                        console.log("选择按钮触发的事件:","el", $(el).parents(".v-dropdown").get(0));
+                        });
+
+                        // 下拉选择框 选择每一项触发的事件
+                        $(".slt-1 .v-dropdown-menu").on("v-dropdown-select", function (e, el) {
+                        // el 选择的项的元素
+                        console.log("选择每一项触发的事件:","el", el);
+
+                        // 设置inpunt 的值
+                        var v = $(el).html();
+                        var $p = $(el).parents(".v-dropdown");
+                        $(".v-dropdown-btn", $p).val(v).blur();
+
+                        });
+
+                </pre>
+
+            </li>
+
+            <li>
+                <h2>v-dropdown-menu 选择框-不隐藏  data-click-hide="false"</h2>
+                <div class="v-dropdown v-dropdown-right slt-1" data-event="focus" data-toggle="v-dropdown" data-click-hide="false" style="width:280px;">
+                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
+
+                    <ul class="v-dropdown-menu  v-dropdown-100 " style="max-height:300px; overflow:auto;">
+                        <li><a href="javascript:;">高光泽性1</a></li>
+                        <li><a href="javascript:;">超高刚性2</a></li>
+                        <li><a href="javascript:;">特佳弯曲强2</a></li>
+                        <li><a href="javascript:;">硬度4</a></li>
+                        <li><a href="javascript:;">高光泽性5</a></li>
+                        <li><a href="javascript:;">超高刚性6</a></li>
+                        <li><a href="javascript:;">特佳弯曲强7</a></li>
+                        <li><a href="javascript:;">硬度8</a></li>
+                        <li><a href="javascript:;">高光泽性9</a></li>
+                        <li><a href="javascript:;">超高刚性10</a></li>
+                        <li><a href="javascript:;">特佳弯曲强11</a></li>
+                        <li><a href="javascript:;">硬度12</a></li>
+                        <li><a href="javascript:;">高光泽性13</a></li>
+                        <li><a href="javascript:;">超高刚性14</a></li>
+                        <li><a href="javascript:;">特佳弯曲强15</a></li>
+                        <li><a href="javascript:;">硬度16</a></li>
+                    </ul>
+
+                </div>
+
+                <pre>
+                   html：
+                   &lt;div class="v-dropdown v-dropdown-right slt-1 " data-event="focus" data-toggle="v-dropdown" data-click-hide="false" style="width:280px;">  &lt;/div>
+                     &lt;ul class="v-dropdown-menu  v-dropdown-menu-100" style="max-height:300px; overflow:auto;">
+                             &lt;li>
+                                &lt;a href="javascript:;">
+                                高光泽性1 &lt;/a>
+                            &lt;/li>
+                            &lt;li>
+                                &lt;a href="javascript:;">超高刚性2
+                                &lt;/a>
+                            &lt;/li>
+                            &lt;li>
+                                &lt;a href="javascript:;">
+                                特佳弯曲强 &lt;/a> 
+                            &lt;/li>
+                            &lt;li>
+                                &lt;a href="javascript:;">硬度4
+                                &lt;/a>
+                            &lt;/li>
+                     &lt;/ul>
+                </pre>
+
+
+            </li>
+
         </ul>
 
     </div>
@@ -199,19 +323,22 @@
     <script type="text/javascript">
         $(function () {
 
-            $(".v-modal-btn-js").click(function () {
-                // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
-                var targetEl = this;
-                $(".v-modal-3").VModal('show', targetEl);
+            // 下拉选择框 选择按钮触发的事件
+            $(".slt-1").on("v-dropdown-btn", function (e, el) {
+            // el 选择的项的元素
+            console.log("选择按钮触发的事件:","el", $(el).parents(".v-dropdown").get(0));
             });
 
-            // 自定义事件
-            $(".v-modal-3").on("v-modal", function (e, bl, targetEl, btnEl) {
-                // 0. e 事件对象
-                // 1. bl=false='hide'=关闭  bl=true='show'=显示
-                // 2. targetEl = 目标v-modal元素
-                // 3. btnEl =触发按钮的元素
-                console.log("bl：", bl, "targetEl:", targetEl, "btnEl:", btnEl)
+            // 下拉选择框 选择每一项触发的事件
+            $(".slt-1 .v-dropdown-menu").on("v-dropdown-select", function (e, el) {
+            // el 选择的项的元素
+            console.log("选择每一项触发的事件:","el", el);
+
+            // 设置inpunt 的值
+            var v = $(el).html();
+            var $p = $(el).parents(".v-dropdown");
+            $(".v-dropdown-btn", $p).val(v).blur();
+
             });
 
 

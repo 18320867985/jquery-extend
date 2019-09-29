@@ -1461,11 +1461,7 @@ input:focus,
   background: #fff;
   color: #777;
   border-radius: 0 0 5px 5px;
-  opacity: 0;
-  -webkit-transform: translateY(50px);
-          transform: translateY(50px);
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease; }
+  -webkit-overflow-scrolling: touch; }
   .v-dropdown-menu > li {
     /*&+li{
              border-top: 1px solid #f2f2f2;
@@ -1481,12 +1477,71 @@ input:focus,
 
 .v-dropdown.in .v-dropdown-menu {
   visibility: visible;
-  -webkit-transform: none;
-          transform: none;
-  opacity: 1; }
+  -webkit-animation: v-dropdown-in .5s ease both;
+          animation: v-dropdown-in .5s ease both; }
+
+.v-dropdown.out .v-dropdown-menu {
+  -webkit-animation: v-dropdown-out .5s ease both;
+          animation: v-dropdown-out .5s ease both; }
 
 .v-dropdown-menu.v-dropdown-100 {
   width: 100%; }
+
+@-webkit-keyframes v-dropdown-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease; }
+  100% {
+    visibility: visible;
+    -webkit-transform: none;
+            transform: none;
+    opacity: 1; } }
+
+@keyframes v-dropdown-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease; }
+  100% {
+    visibility: visible;
+    -webkit-transform: none;
+            transform: none;
+    opacity: 1; } }
+
+@-webkit-keyframes v-dropdown-out {
+  0% {
+    visibility: visible;
+    -webkit-transform: none;
+            transform: none;
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    z-index: -1;
+    visibility: hidden; } }
+
+@keyframes v-dropdown-out {
+  0% {
+    visibility: visible;
+    -webkit-transform: none;
+            transform: none;
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    z-index: -1;
+    visibility: hidden; } }
 
 /*全局*/
 .paging {
