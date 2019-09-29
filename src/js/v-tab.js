@@ -10,16 +10,15 @@
         var $p = $(this).closest(".v-tab");
         $(".v-tab-btn", $p).removeClass("active");
         $(this).addClass("active");
-        var target = $(this).attr("data-target")||"";
+        var target = $(this).attr("data-target") || "";
 
         //  content
-       $(".v-tab-cnt-item", $p).removeClass("active");
-       $(target, $p).addClass("active");
+        $(".v-tab-cnt-item", $p).removeClass("active");
+        $(target, $p).addClass("active");
 
-        // ×Ô¶¨ÒåÊÂ¼þ
+        // è‡ªå®šä¹‰äº‹ä»¶
         $(this).trigger("v-tab", [this, $(target, $p).get(0)]);
-     
+
     });
 
 }();
-

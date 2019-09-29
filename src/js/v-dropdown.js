@@ -4,7 +4,7 @@
  */
 +function () {
 
-    // ÊÇ·ñÎªÒÆ¶¯¶Ë
+    // æ˜¯å¦ä¸ºç§»åŠ¨ç«¯
     function isMobile() {
 
         var userAgentInfo = navigator.userAgent.toString().toLowerCase();
@@ -28,7 +28,7 @@
       
         if (isMobile()) {
 
-            // ¼æÈİios safari clickÊÂ¼ş
+            // å…¼å®¹ios safari clickäº‹ä»¶
             $("body").css("cursor", "pointer");
         }
 
@@ -39,11 +39,11 @@
             if (eventType === "hover") {
                 eventType = "mouseenter";
             }
-           // data-click-hide=true Îªtrue ×èÖ¹Ã°Åİ
+           // data-click-hide=true ä¸ºtrue é˜»æ­¢å†’æ³¡
             var isStop = $(this).closest(".v-dropdown").attr("data-click-hide");
             eventType = $.trim(eventType);
 
-            // click  hover ÀàĞÍÊÂ¼ş ¾ßÓĞÃ°ÅİĞĞÎª
+            // click  hover ç±»å‹äº‹ä»¶ å…·æœ‰å†’æ³¡è¡Œä¸º
             if (eventType === "click" || eventType === "mouseenter") {
 
                 $(document).on(eventType, ".v-dropdown-btn", function (e) {
@@ -60,7 +60,7 @@
                             
                         });
 
-                        // µã»÷°´Å¥ ´¥·¢×Ô¶¨ÒåµÄÊÂ¼ş
+                        // ç‚¹å‡»æŒ‰é’® è§¦å‘è‡ªå®šä¹‰çš„äº‹ä»¶
                         $(this).trigger("v-dropdown-btn", [this]);
 
                         if (eventType === "mouseenter") {
@@ -82,7 +82,7 @@
 
             } else {
                
-                // Ã»ÓĞÃ°ÅİĞĞÎª focus ÀàĞÍÊÂ¼ş
+                // æ²¡æœ‰å†’æ³¡è¡Œä¸º focus ç±»å‹äº‹ä»¶
                 $this.on(eventType,".v-dropdown-btn", function (e) {
                     e.stopPropagation();
                     $(".v-dropdown").removeClass("in out");
@@ -93,7 +93,7 @@
                         $this.addClass("out");
                     });
 
-                        // µã»÷°´Å¥ ´¥·¢×Ô¶¨ÒåµÄÊÂ¼ş
+                        // ç‚¹å‡»æŒ‰é’® è§¦å‘è‡ªå®šä¹‰çš„äº‹ä»¶
                         $(this).trigger("v-dropdown-btn", [this]);
                 });
 
@@ -115,13 +115,13 @@
                         $(this).parents(".v-dropdown").removeClass("in").addClass("out");
                     }
                       
-                    // Ñ¡ÔñÁĞ±íÏî ´¥·¢×Ô¶¨ÒåµÄÊÂ¼ş
+                    // é€‰æ‹©åˆ—è¡¨é¡¹ è§¦å‘è‡ªå®šä¹‰çš„äº‹ä»¶
                     $(this).trigger("v-dropdown-select", [this]);
                 }
              
             });
 
-            //  data-click-hide Îªtrue ×èÖ¹Ã°Åİ
+            //  data-click-hide ä¸ºtrue é˜»æ­¢å†’æ³¡
             $(document).on("click", ".v-dropdown-menu", function (e) {
                 if (isStop) {
                     e.stopPropagation();
