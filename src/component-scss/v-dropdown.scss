@@ -53,6 +53,15 @@
     }
 }
 
+// IE8 
+.v-dropdown-menu {
+    border:1px  solid #ddd;
+}
+:root .v-dropdown-menu {
+    border:none;
+    box-shadow: 0 0 10px 5px rgba(0,0,0,.125);
+}
+
 
 .v-dropdown.in .v-dropdown-menu {
    

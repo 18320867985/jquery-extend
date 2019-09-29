@@ -1475,6 +1475,14 @@ input:focus,
     color: #333;
     white-space: nowrap; }
 
+.v-dropdown-menu {
+  border: 1px  solid #ddd; }
+
+:root .v-dropdown-menu {
+  border: none;
+  -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125);
+          box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.125); }
+
 .v-dropdown.in .v-dropdown-menu {
   visibility: visible;
   -webkit-animation: v-dropdown-in .5s ease both;
