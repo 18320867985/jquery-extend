@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>标签页-tab</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+            .container > li + li {
+                margin-top: 20px;
+            }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+        .v-modal-2 .v-modal-cnt,
+        .v-modal-3 .v-modal-cnt {
+            width: 600px;
+            padding: 30px;
+        }
+        h2 {
+             margin-bottom:30px;
+        }
+
+        .v-tab {
+             margin-top:30px;
+        }
+        .v-tab-cnt {
+             height:200px;
+             border: 1px solid #ddd;
+        }
+
+        .v-tab-cnt-item {
+             height:100%;
+             padding:20px;
+             color:#fff;
+             font-size:16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>标签页-tab</h1>
+        <div>
+            <a class="btn-link" href="./js/v-tab.js">查看 v-tab.js</a>
+            <a class="btn-link" href="./component-scss/v-tab.scss">查看 v-tab.scss</a>
+        </div>
+        <ul>
+
+            <li>
+
+                <div class="v-tab">
+
+                    <!--tab 按钮列表-->
+                    <ul class="v-tab-btns">
+                        <li class="v-tab-btn active" data-toggle="v-tab" data-target="#a">
+                            通用塑料
+                        </li>
+                        <li class="v-tab-btn" data-toggle="v-tab" data-target="#b">
+                            工程塑料
+                        </li>
+
+                        <li class="v-tab-btn" data-toggle="v-tab" data-target="#c">
+                            塑料助剂
+                        </li>
+                        <li class="v-tab-btn" data-toggle="v-tab" data-target="#d">
+                            再生塑料
+                        </li>
+                        <li class="v-tab-btn" data-toggle="v-tab" data-target="#e">
+                            塑料管材
+                        </li>
+
+
+                    </ul>
+
+                    <!--tab 内容 -->
+                    <div class="v-tab-cnt ">
+                        <!--tab 内容每一项 -->
+                        <div class="v-tab-cnt-item active" id="a" style="background:red;">
+                            通用塑料
+                        </div>
+
+                        <!--tab 内容每一项 -->
+                        <div class="v-tab-cnt-item " id="b" style="background:green;">
+                            工程塑料
+                        </div>
+
+
+                        <!--tab 内容每一项 -->
+                        <div class="v-tab-cnt-item " id="c" style="background:blue;">
+                            塑料助剂
+                        </div>
+
+                        <!--tab 内容每一项 -->
+                        <div class="v-tab-cnt-item " id="d" style="background:orange; ">
+                            再生塑料
+                        </div>
+
+                        <!--tab 内容每一项 -->
+                        <div class="v-tab-cnt-item " id="e" style="background:#411df8; ">
+                            塑料管材
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <pre>
+                   html：
+
+                    触发条件类型： data-toggle="v-tab"
+                    触发目标元素： data-target="#b"
+
+                     &lt;!--tab 标题按钮-->
+                     &lt;ul class="v-tab-btns">
+                        &lt;li class="v-tab-btn active" data-toggle="v-tab" data-target="#a">
+                            通用塑料
+                         &lt;/li>
+                         &lt;li class="v-tab-btn" data-toggle="v-tab" data-target="#b">
+                            工程塑料
+                         &lt;/li>
+
+                         &lt;li class="v-tab-btn" data-toggle="v-tab" data-target="#c">
+                            塑料助剂
+                         &lt;/li>
+                         &lt;li class="v-tab-btn" data-toggle="v-tab" data-target="#d">
+                            再生塑料
+                         &lt;/li>
+                         &lt;li class="v-tab-btn" data-toggle="v-tab" data-target="#e">
+                            塑料管材
+                         &lt;/li>
+                     &lt;/ul>
+
+                     &lt;!--tab 内容 -->
+                     &lt;div class="v-tab-cnt ">
+                         &lt;!--tab 内容每一项 -->
+                         &lt;div class="v-tab-cnt-item active" id="a" style="background:red;">
+                            通用塑料
+                        &lt;/div>
+                        &lt;div class="v-tab-cnt-item " id="b" style="background:green;">
+                            工程塑料
+                        &lt;/div>
+                        &lt;div class="v-tab-cnt-item " id="c" style="background:blue;">
+                            塑料助剂
+                        &lt;/div>
+                        &lt;div class="v-tab-cnt-item " id="d" style="background:orange; ">
+                            再生塑料
+                        &lt;/div>
+                        &lt;div class="v-tab-cnt-item " id="e" style="background:#411df8; ">
+                            塑料管材
+                        &lt;/div>
+
+                     &lt;/div>
+
+                 &lt;/div>
+
+
+             </pre>
+              
+                <pre>
+                    js:
+
+                    // v-tab-btn 点击触发自定义事件
+                    $(".v-tab").on("v-tab", function (e, btnEl, cntEl) {
+
+                        // btnEl  v-tab-btn 对象
+                        // cntEl  v-tab-cnt-item 对象
+
+                        console.log("v-tab-btn 对象:", btnEl);
+                        console.log("v-tab-cnt-item 对象:",cntEl);
+                    });
+
+                </pre>
+
+
+    </li>
+
+    </ul>
+
+    </div>
+
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-tab.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            // v-tab-btn 点击触发自定义事件
+            $(".v-tab").on("v-tab", function (e, btnEl, cntEl) {
+
+                // btnEl  v-tab-btn 对象
+                // cntEl  v-tab-cnt-item 对象
+
+                console.log("v-tab-btn 对象:", btnEl);
+                console.log("v-tab-cnt-item 对象:",cntEl);
+            });
+
+
+        });
+
+    </script>
+</body>
+
+</html>

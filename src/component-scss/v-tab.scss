@@ -1,0 +1,58 @@
+
+@import "../css-dev/scss/var-pc.scss";
+
+.v-tab {
+
+   margin-bottom:10px;
+}
+
+
+.v-tab-btns {
+    font-size: 0;
+
+    .v-tab-btn {
+        display: inline-block;
+        margin-bottom:15px;
+        font-size: 16px;
+        vertical-align: top;
+        cursor: pointer;
+       
+        &.active {
+            color: $text-primary;
+        }
+
+        &+.v-tab-btn {
+             margin-left:20px;
+        }
+    }
+}
+
+
+.v-tab-cnt {
+
+
+    .v-tab-cnt-item {
+        display: none;
+
+        &.active {
+            display: block;
+            animation: v-tab-in 1s ease both;
+        }
+    }
+
+}
+
+@keyframes v-tab-in{
+    0%{
+        opacity:0;
+        transform: scale(0);
+      
+    }
+    100% {
+        opacity: 1;
+        transform:none;
+        
+    }
+}
+
+

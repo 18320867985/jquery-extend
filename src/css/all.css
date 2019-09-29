@@ -1556,6 +1556,50 @@ input:focus,
     visibility: hidden; } }
 
 /*全局*/
+.v-tab {
+  margin-bottom: 10px; }
+
+.v-tab-btns {
+  font-size: 0; }
+  .v-tab-btns .v-tab-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 16px;
+    vertical-align: top;
+    cursor: pointer; }
+    .v-tab-btns .v-tab-btn.active {
+      color: #2d80f6; }
+    .v-tab-btns .v-tab-btn + .v-tab-btn {
+      margin-left: 20px; }
+
+.v-tab-cnt .v-tab-cnt-item {
+  display: none; }
+  .v-tab-cnt .v-tab-cnt-item.active {
+    display: block;
+    -webkit-animation: v-tab-in 1s ease both;
+            animation: v-tab-in 1s ease both; }
+
+@-webkit-keyframes v-tab-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none; } }
+
+@keyframes v-tab-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none; } }
+
+/*全局*/
 .paging {
   margin: 15px;
   line-height: 40px; }
