@@ -26,20 +26,56 @@
         }
 
         /*
-            轮播图v-fade 高度
+            大框默认宽100% 设置高度
         */
         .v-fade {
             height: 400px;
         }
 
         /*
-            轮播图v-fade-wrap 宽度=
+            主体内容设置宽度 水平居中
         */
 
         .v-fade-wrap {
             width: 1200px;
             margin: 0 auto;
         }
+
+        
+        /*默认样式*/ 
+        ._fade-img {
+                  right:100px;
+          }
+
+        /*激活样式*/ 
+         .active ._fade-img {
+                display:inline-block;
+                opacity: 1;
+                animation: v-dafe-in 2s ease both;
+          }
+
+        /*动画*/
+        @-webkit-keyframes v-dafe-in {
+          0% {
+            visibility: visible;
+            opacity: 0;
+            -webkit-transform: translateX(-1200px) rotateY(0deg) scale(0);
+                    transform: translateX(-1200px) rotateY(0deg) scale(0); }
+          100% {
+            opacity: 1;
+            -webkit-transform: translateX(0) rotateY(360deg);
+                    transform: translateX(0) rotateY(360deg); } }
+
+        @keyframes v-dafe-in {
+          0% {
+            visibility: visible;
+            opacity: 0;
+            -webkit-transform: translateX(-1200px) rotateY(0deg) scale(0);
+                    transform: translateX(-1200px) rotateY(0deg) scale(0); }
+          100% {
+            opacity: 1;
+         -webkit-transform: translateX(0) rotateY(360deg);
+         transform: translateX(0) rotateY(360deg); } }
     </style>
 </head>
 
@@ -53,24 +89,23 @@
 
     </div>
 
+    <h3 class="container">默认轮播</h3>
     <!--v-fade-->
     <div class="v-fade " data-time="3000">
 
         <!-- setting vfade width -->
         <div class="v-fade-wrap">
 
-            <ul class="clearfix _cont">
+            <ul class=" _cont">
                 <li class="init" data-bg="rgb(254,211,133)">
                     <a href="#">
                         <img src="./img/0.jpg" alt="" />
-
                     </a>
 
                 </li>
                 <li data-bg="rgb(200,47,52)">
                     <a href="#">
                         <img src="./img/1.jpg" alt="" />
-
                     </a>
 
                 </li>
@@ -99,14 +134,32 @@
         </div>
 
     </div>
+
     <div class="container">
+        <pre>
+
+           CSS: 
+
+            /* 大框默认宽100% 设置高度 */
+           .v-fade {
+                height: 400px;
+             }
+
+            /*主体内容设置宽度 水平居中  */
+            .v-fade-wrap {
+                width: 1200px;
+                margin: 0 auto;
+            }
+
+        </pre>
 
         <pre>
+          html:
            &lt;!--v-fade-->
              &lt;div class="v-fade " data-time="3000">
-                     &lt;!-- setting vfade width -->
+                     &lt;!-- 设置主体的宽度 -->
                      &lt;div class="v-fade-wrap">
-                         &lt;ul class="clearfix _cont">
+                         &lt;ul class=" _cont">
                              &lt;li class="init" data-bg="rgb(254,211,133)">
                                  &lt;a href="#">
                                      &lt;img src="./img/0.jpg" alt="" />
@@ -134,7 +187,118 @@
                     &lt;/div>
                 &lt;/div>
             &lt;/div>
-</pre>
+         </pre>
+        <pre>
+            js:
+            // 触发v-fade轮播图
+            $(".v-fade").VFade();
+
+        </pre>
+
+        <pre>
+            js:
+            // 触发v-fade轮播图
+            $(".v-fade").VFade();
+
+        </pre>
+
+    </div>
+
+    <h3 class="container"> 每一项 自定义动画</h3>
+    <!--v-fade-->
+    <div class="v-fade " data-time="3000">
+
+        <!-- setting vfade width -->
+        <div class="v-fade-wrap">
+
+            <ul class=" _cont">
+                <li class="init" data-bg="#2d50d1">
+                    <a href="#">
+                        <img src="./img/v-fade/1.png" alt="" />
+                        <img class="_fade-img" src="./img/v-fade/1-slide.png"alt="自定义动画图片" />
+                    </a>
+
+                </li>
+                <li data-bg="#4439c3">
+                    <a href="#">
+                        <img src="./img/v-fade/2.png" alt="" />
+                        <img class="_fade-img" src="./img/v-fade//2-slide.png"alt="自定义动画图片" />
+                    </a>
+
+                </li>
+
+            </ul>
+
+            <div class="_radius-list">
+                <span class="active"></span>
+                <span></span>
+
+            </div>
+
+            <!-- 居中块   放在v-fade-wrap元素里-->
+            <!--100%全屏  放在v-fade元素里-->
+            <div class="_btn-list">
+                <a href="javascript:;" class="v-fade-btn v-fade-btn-l ">
+
+                    <span class="iconfont iconarrow-l"></span>
+
+                </a>
+                <a href="javascript:;" class="v-fade-btn v-fade-btn-r">
+                    <span class="iconfont iconarrow-r"></span>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        
+        <pre>
+          htmml:
+           &lt;a href="#">
+                &lt;img class="_fade-img" src="./img/v-fade//2-slide.png" alt="自定义动画图片" />
+           &lt;/a>
+     </pre>
+        <pre>
+
+            CSS: 动画元素
+
+            /*默认样式*/ 
+            ._fade-img {
+                      right:100px;
+              }
+
+            /*激活样式*/ 
+             &.active ._fade-img {
+                    display:inline-block;
+                    opacity: 1;
+                    animation: v-dafe-in 2s ease both;
+              }
+
+            /*动画*/
+            @-webkit-keyframes v-dafe-in {
+              0% {
+                visibility: visible;
+                opacity: 0;
+                -webkit-transform: translateX(-1200px) rotateY(0deg) scale(0);
+                        transform: translateX(-1200px) rotateY(0deg) scale(0); }
+              100% {
+                opacity: 1;
+                -webkit-transform: translateX(0) rotateY(360deg);
+                        transform: translateX(0) rotateY(360deg); } }
+
+            @keyframes v-dafe-in {
+              0% {
+                visibility: visible;
+                opacity: 0;
+                -webkit-transform: translateX(-1200px) rotateY(0deg) scale(0);
+                        transform: translateX(-1200px) rotateY(0deg) scale(0); }
+              100% {
+                opacity: 1;
+             -webkit-transform: translateX(0) rotateY(360deg);
+             transform: translateX(0) rotateY(360deg); } }
+        </pre>
 
     </div>
 
@@ -145,8 +309,16 @@
 
     <script type="text/javascript">
         $(function () {
+
+            // 触发v-fade轮播图
             $(".v-fade").VFade();
 
+            // 触发v-fade轮播图每一项事件
+            $(".v-fade").on("v-fade-show", function (e, itemEl, index) {
+                // itemEl 播图每一元素对象
+                // index  每一元素对象的索引值
+                console.log("itemEl:", itemEl, "index", index);
+            });
         });
 
     </script>

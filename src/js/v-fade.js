@@ -68,12 +68,12 @@
                         var color = $(this).attr("data-bg") || "#fff";
                         var vfade = $(this).closest(".v-fade");
                         vfade.css("background", color);
+                        $(this).siblings().css("opacity", 0);
                         //v-fade.css("-webkit-transition", ".2s");
                         //v-fade.css("-o-transition", ".2s");
                         //v-fade.css("-zom-transition", ".2s");
                         //v-fade.css("-ms-transition", ".2s");
                         //v-fade.css("transition", ".2s");
-                        $(this).siblings().css("opacity", 0);
 
                         return false;
                     }
@@ -100,7 +100,7 @@
                 setRadius(index);
 
                 // 触发自定义事件
-                lis.eq(index).trigger("v-fade-show", lis.eq(index));
+                lis.eq(index).trigger("v-fade-show", [lis.get(index),index]);
 
             }
 

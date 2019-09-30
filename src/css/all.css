@@ -822,6 +822,108 @@ input:focus,
             transform: translateX(0) scale(1); } }
 
 /*全局*/
+.paging {
+  margin: 15px;
+  line-height: 40px; }
+
+.paging .item, .paging > input {
+  display: inline;
+  padding: 5px 8px;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  background: #fff;
+  vertical-align: middle; }
+
+.paging .count-items, .paging .count-num {
+  display: inline;
+  padding: 5px 8px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  vertical-align: middle; }
+
+.paging a, .paging span {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+/*鼠标移动的样式 */
+.paging a:hover {
+  cursor: pointer;
+  color: #fff !important;
+  border: 1px solid #599bf8;
+  border-radius: 0;
+  background: #599bf8; }
+
+/*激活的样式*/
+.paging a.active {
+  color: #418cf7;
+  border: 1px solid #599bf8; }
+
+.paging a.active:active {
+  color: #106ef5;
+  background: #106ef5;
+  border: 1px solid #106ef5; }
+
+/*禁用的样式*/
+.paging span.disabled {
+  color: #777; }
+
+/*数字禁用的样式*/
+.paging .disabled.num {
+  color: #666;
+  border: none;
+  background: transparent; }
+
+.paging .item + .item {
+  margin-left: 10px; }
+
+/*跳转页*/
+.paging .skip-txt {
+  width: 60px;
+  margin-left: 10px;
+  padding: 5px 2px;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  text-indent: 5px;
+  text-align: center; }
+
+.paging .skip-btn {
+  margin-left: 3px;
+  padding: 5px 10px !important;
+  color: #fff;
+  outline: 0;
+  border: 1px solid #fff;
+  border-radius: 0;
+  background: #418cf7; }
+  .paging .skip-btn:active {
+    color: #106ef5;
+    background: #106ef5;
+    border: 1px solid #106ef5; }
+
+.paging .skip-btn:hover {
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0; }
+
+.paging .count-items {
+  margin-left: 10px; }
+
+.paging .count-items strong {
+  color: #666; }
+
+/*总页数*/
+.paging .count-num {
+  margin-left: 10px; }
+
+.paging .count-num strong {
+  color: #666; }
+
+.paging .no-data {
+  color: orangered;
+  font-size: 24px; }
+
+/*全局*/
 .html-v-message {
   overflow: hidden;
   padding-right: 17px; }
@@ -1613,30 +1715,31 @@ input:focus,
   height: 100%;
   float: left; }
   .v-fade-wrap ._cont li a {
+    position: relative;
     display: block;
     width: 100%;
     height: 100%; }
+    .v-fade-wrap ._cont li a img {
+      width: 100%;
+      height: 100%; }
   .v-fade-wrap ._cont li ._fade-img {
     position: absolute;
-    right: 20px;
-    bottom: 50px;
-    z-index: 2;
-    visibility: hidden;
-    -webkit-transform: translateX(-200%) rotateY(0deg) scale(0);
-            transform: translateX(-200%) rotateY(0deg) scale(0);
-    opacity: .5; }
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    margin: auto;
+    display: none;
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    margin-left: 60px;
+    vertical-align: middle; }
   .v-fade-wrap ._cont li.active ._fade-img {
-    -webkit-transition: all 2s;
-    transition: all 2s;
-    visibility: visible;
-    -webkit-transform: translateX(0) rotateY(360deg) scale(1);
-            transform: translateX(0) rotateY(360deg) scale(1);
+    display: inline-block;
     opacity: 1; }
   .v-fade-wrap ._cont li.init ._fade-img {
-    visibility: visible;
-    opacity: 1;
-    -webkit-transform: none;
-            transform: none; }
+    display: inline-block; }
 
 .v-fade-wrap ._cont li a img {
   width: 100%;
@@ -1690,13 +1793,18 @@ input:focus,
   transition: .4s; }
   .v-fade-btn .iconfont {
     display: inline-block;
-    color: #fff;
     font-size: 28px;
     line-height: 1;
-    vertical-align: middle;
-    opacity: .8;
-    -webkit-transition: .4s;
-    transition: .4s; }
+    vertical-align: middle; }
+
+.v-fade-btn .iconfont {
+  color: #2d80f6; }
+
+:root .v-fade-btn .iconfont {
+  color: #fff;
+  opacity: .8;
+  -webkit-transition: .4s;
+  transition: .4s; }
 
 .v-fade-btn-l {
   left: 0;
@@ -1719,104 +1827,14 @@ input:focus,
     opacity: 1;
     color: #2d80f6; }
 
-/*全局*/
-.paging {
-  margin: 15px;
-  line-height: 40px; }
-
-.paging .item, .paging > input {
-  display: inline;
-  padding: 5px 8px;
-  border: 1px solid #ddd;
-  border-radius: 0;
-  background: #fff;
-  vertical-align: middle; }
-
-.paging .count-items, .paging .count-num {
-  display: inline;
-  padding: 5px 8px;
-  margin-bottom: 15px;
-  margin-top: 0;
-  vertical-align: middle; }
-
-.paging a, .paging span {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none; }
-
-/*鼠标移动的样式 */
-.paging a:hover {
-  cursor: pointer;
-  color: #fff !important;
-  border: 1px solid #599bf8;
-  border-radius: 0;
-  background: #599bf8; }
-
-/*激活的样式*/
-.paging a.active {
-  color: #418cf7;
-  border: 1px solid #599bf8; }
-
-.paging a.active:active {
-  color: #106ef5;
-  background: #106ef5;
-  border: 1px solid #106ef5; }
-
-/*禁用的样式*/
-.paging span.disabled {
-  color: #777; }
-
-/*数字禁用的样式*/
-.paging .disabled.num {
-  color: #666;
-  border: none;
-  background: transparent; }
-
-.paging .item + .item {
-  margin-left: 10px; }
-
-/*跳转页*/
-.paging .skip-txt {
-  width: 60px;
-  margin-left: 10px;
-  padding: 5px 2px;
-  border: 1px solid #ddd;
-  border-radius: 0;
-  text-indent: 5px;
-  text-align: center; }
-
-.paging .skip-btn {
-  margin-left: 3px;
-  padding: 5px 10px !important;
-  color: #fff;
-  outline: 0;
-  border: 1px solid #fff;
-  border-radius: 0;
-  background: #418cf7; }
-  .paging .skip-btn:active {
-    color: #106ef5;
-    background: #106ef5;
-    border: 1px solid #106ef5; }
-
-.paging .skip-btn:hover {
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 0; }
-
-.paging .count-items {
-  margin-left: 10px; }
-
-.paging .count-items strong {
-  color: #666; }
-
-/*总页数*/
-.paging .count-num {
-  margin-left: 10px; }
-
-.paging .count-num strong {
-  color: #666; }
-
-.paging .no-data {
-  color: orangered;
-  font-size: 24px; }
+/*@keyframes v-dafe-in{
+    0% {
+      
+        opacity: 0;
+        transform: translateX(-1200px) rotateY(0deg) scale(0) ;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotateY(360deg) ;
+    }
+}*/
