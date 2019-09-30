@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>轮播图-fade</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+            .container > li + li {
+                margin-top: 20px;
+            }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        /*
+            轮播图v-fade 高度
+        */
+        .v-fade {
+             height:400px;
+        }
+
+         /*
+            轮播图v-fade-wrap 宽度=
+        */
+
+           .v-fade-wrap {
+             width:1200px;
+             margin:0 auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container ">
+        <h1>轮播图-fade</h1>
+        <div>
+            <a class="btn-link" href="./js/v-fade.js">查看 v-fade.js</a>
+            <a class="btn-link" href="./component-scss/v-fade.scss">查看 v-fade.scss</a>
+        </div>
+
+    </div>
+    <!--v-fade-->
+    <div class="v-fade " data-time="3000">
+
+        <!-- setting vfade width -->
+        <div class="v-fade-wrap">
+
+            <ul class="clearfix _cont">
+                <li class="init" data-bg="rgb(254,211,133)">
+                    <a href="#">
+                        <img src="./img/0.jpg" alt="" />
+
+                    </a>
+
+                </li>
+                <li data-bg="rgb(200,47,52)">
+                    <a href="#">
+                        <img src="./img/1.jpg" alt="" />
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+            <div class="_radius-list">
+                <span class="active"></span>
+                <span></span>
+
+            </div>
+
+            <!-- 居中块   放在v-fade-wrap元素里-->
+            <!--100%全屏  放在v-fade元素里-->
+            <div class="_btn-list">
+                <a href="javascript:;" class="v-fade-btn v-fade-btn-l ">
+
+                    <span class="iconfont iconarrow-l"></span>
+
+                </a>
+                <a href="javascript:;" class="v-fade-btn v-fade-btn-r">
+                    <span class="iconfont iconarrow-r"></span>
+                </a>
+            </div>
+
+        </div>
+
+        
+
+    </div>
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-fade.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".v-fade").Vfade();
+
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+@import "../css-dev/scss/var-pc.scss";
+
+.v-fade {
+    position: relative;
+}
+
+.v-fade-wrap {
+    position: relative;
+    height: 100%;
+}
+
+.v-fade-wrap ._cont {
+    height: 100%;
+    width:100%;
+    overflow: hidden;
+}
+
+.v-fade-wrap ._cont li {
+    width: 100%;
+    height: 100%;
+    float: left;
+   
+    a {
+        display:block;
+        width: 100%;
+        height: 100%;
+    }
+
+    ._fade-img {
+        position: absolute;
+        right: 20px;
+        bottom: 50px;
+        z-index: 2;
+        visibility: hidden;
+        transform: translateX(-200%) rotateY(0deg) scale(0);
+        opacity: .5;
+    }
+
+    &.active ._fade-img {
+        transition: all 2s;
+        visibility: visible;
+        transform: translateX(0) rotateY(360deg) scale(1);
+        opacity: 1;
+    }
+
+    &.init ._fade-img {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.v-fade-wrap ._cont li a img {
+    width: 100%;
+    height: 100%;
+}
+
+.v-fade ._radius-list {
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    z-index: 1;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.v-fade ._radius-list span {
+    display: inline-block;
+    padding: 4px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    
+}
+
+.v-fade ._radius-list span.active {
+    background: #fff;
+   
+}
+
+.v-fade ._radius-list span + span {
+    margin-left: 5px;
+}
+
+.v-fade ._btn-list {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.v-fade-btn {
+    position: absolute;
+    z-index: 0;
+    display: none;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    top: 50%;
+    margin-top: -25px;
+    text-align: center;
+    font-size: 0;
+    background: #fff;
+    background: rgba(0,0,0, .15);
+    overflow: hidden;
+    transition: .4s;
+
+    .iconfont {
+      
+        display:inline-block; 
+        color: #fff;
+        font-size: 28px;
+        line-height: 1;
+        vertical-align:middle;
+       
+        opacity: .8;
+        transition: .4s;
+    }
+ 
+}
+
+.v-fade-btn-l {
+     left:0;
+     border-radius: 50% ;
+}
+
+.v-fade-btn-l:hover {
+    background: rgba(#fff, .6);
+
+    .iconfont {
+        opacity: 1;
+        color: $text-primary;
+    }
+}
+
+.v-fade-btn-r {
+    right: 0;
+    border-radius: 50%;
+}
+
+.v-fade-btn-r:hover {
+    background: rgba(#fff, .6);
+    color: #fff;
+
+    .iconfont {
+        opacity: 1;
+        color: $text-primary;
+    }
+}
