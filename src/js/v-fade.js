@@ -3,7 +3,7 @@
 	
 	$.fn.extend({
 
-    Vfade: function () {
+    VFade: function () {
 
         for (var i = 0; i < this.length; i++) {
             checkObj(this[i]);

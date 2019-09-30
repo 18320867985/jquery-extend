@@ -14,7 +14,7 @@
     <style>
         .container {
             margin-top: 50px;
-            margin-bottom: 50px;
+            margin-bottom: 15px;
         }
 
             .container > li + li {
@@ -29,18 +29,17 @@
             轮播图v-fade 高度
         */
         .v-fade {
-             height:400px;
+            height: 400px;
         }
 
-         /*
+        /*
             轮播图v-fade-wrap 宽度=
         */
 
-           .v-fade-wrap {
-             width:1200px;
-             margin:0 auto;
+        .v-fade-wrap {
+            width: 1200px;
+            margin: 0 auto;
         }
-
     </style>
 </head>
 
@@ -53,6 +52,7 @@
         </div>
 
     </div>
+
     <!--v-fade-->
     <div class="v-fade " data-time="3000">
 
@@ -98,7 +98,43 @@
 
         </div>
 
-        
+    </div>
+    <div class="container">
+
+        <pre>
+           &lt;!--v-fade-->
+             &lt;div class="v-fade " data-time="3000">
+                     &lt;!-- setting vfade width -->
+                     &lt;div class="v-fade-wrap">
+                         &lt;ul class="clearfix _cont">
+                             &lt;li class="init" data-bg="rgb(254,211,133)">
+                                 &lt;a href="#">
+                                     &lt;img src="./img/0.jpg" alt="" />
+                                 &lt;/a>
+                             &lt;/li>
+                             &lt;li data-bg="rgb(200,47,52)">
+                                 &lt;a href="#">
+                                    &lt;img src="./img/1.jpg" alt="" />
+                                 &lt;/a>
+                             &lt;/li>
+                         &lt;/ul>
+                        &lt;div class="_radius-list">
+                            &lt;span class="active"> &lt;/span>
+                            &lt;span> &lt;/span>
+                        &lt;/div>
+                        &lt;!-- 居中块   放在v-fade-wrap元素里-->
+                        &lt;!--100%全屏  放在v-fade元素里-->
+                        &lt;div class="_btn-list">
+                            &lt;a href="javascript:;" class="v-fade-btn v-fade-btn-l ">
+                                 &lt;span class="iconfont iconarrow-l"> &lt;/span>
+                            &lt;/a>
+                            &lt;a href="javascript:;" class="v-fade-btn v-fade-btn-r">
+                                 &lt;span class="iconfont iconarrow-r"> &lt;/span>
+                            &lt;/a>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+</pre>
 
     </div>
 
@@ -109,7 +145,7 @@
 
     <script type="text/javascript">
         $(function () {
-            $(".v-fade").Vfade();
+            $(".v-fade").VFade();
 
         });
 
