@@ -151,7 +151,7 @@
                // ie8 
                 console.log(script.readyState);
                 if (script.readyState) {
-                    if (script.readyState === "loading" || script.readyState === "loaded" || script.readyState === "complete") {
+                    if (script.readyState === "loaded" || script.readyState === "complete") {
                         script.onreadystatechange = function () {
                             
                             var itrObj = itr.next();
