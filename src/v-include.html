@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="Keywords" content="" />
+		<meta name="Description" content="" />
+		<title>include-异步加载html css js</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/all.css" />
+		<link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+		<style>
+			.container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+            .container > li + li {
+                margin-top: 20px;
+            }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+        .v-modal-2 .v-modal-cnt,
+        .v-modal-3 .v-modal-cnt {
+            width: 600px;
+            padding: 30px;
+        }
+        h2 {
+             margin-bottom:30px;
+        }
+
+        .v-tab {
+             margin-top:30px;
+        }
+        .v-tab-cnt {
+             height:200px;
+             border: 1px solid #ddd;
+        }
+
+        .v-tab-cnt-item {
+             height:100%;
+             padding:20px;
+             color:#fff;
+             font-size:16px;
+        }
+		
+		 .jq-define { margin-top: 20px;
+		                 height:200px;
+		                 border: 2px solid red;
+		            }
+    </style>
+	</head>
+
+	<body>
+		<div class="container">
+			<h1>include-异步加载html css js</h1>
+			<div>
+				<a class="btn-link" href="./js/include.js">查看 v-include.js</a>
+
+			</div>
+			<ul>
+				<li>
+					<pre>
+	页面上的引用：页面导航active激活的样式
+	&lt;include src="in.html" data-nav data-index="0"> &lt;/include>            
+				   </pre>
+
+					<div>
+						<include src="./include/in.html?sid=1234" data-nav data-index="2" obj='{"id":1234,"age":12}'></include>
+					</div>
+					<hr>
+					<div>
+						<include src="./include/in2.html?sid=1234" data-nav data-index="2" obj='{"id":1234,"age":12}'></include>
+					</div>
+
+					<h3>异步加载js</h3>
+					<button type="button" id="btn">
+						异步并行加载js 全部加载完成再执行函数
+					</button>
+					<div class="jq-define">
+
+					</div>
+
+				</li>
+
+			</ul>
+
+		</div>
+
+
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/include.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			$(function() {
+
+				//require(["http://localhost:8888/amd1.js"], function (a) {
+				//    console.log(a)
+
+				//});
+
+				$(function() {
+
+
+					$("#btn").on("click", function(e) {
+
+						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js", "./include/amd3.js",
+							"./include/amd6.js", "http://localhost:8888/include/jquery-1.11.0.js"
+						], function(a, b, c, d, jq) {
+
+							var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
+							console.log(res);
+							console.log(include.caches)
+							console.log(jq(".jq-define").css("background", "orange"))
+							console.log("done");
+
+						});
+
+
+					});
+
+				});
+
+
+			});
+		</script>
+	</body>
+
+</html>

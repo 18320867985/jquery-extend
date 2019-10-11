@@ -1,0 +1,19 @@
+li.active {
+	color: slategrey;
+	font-size: 60px;
+}
+
+.nav-item {
+	display: block;
+	padding: 10px;
+	
+}
+
+.nav-item.active {
+	color: #a127e2;
+	font-size: 120px;
+	
+}
+
+ 
+	 
