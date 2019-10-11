@@ -1,27 +1,4 @@
 
-/*
- * 页面上的引用： <include src="../../template/_nav2.html" ></include>
- * 页面导航active激活的样式  data-nav data-index="0" 
- 1.
-    <nav class="nav">
-        <a  class ="nav-item  active" href="#">全部</a>
-        <a  class ="nav-item "href="#">行业新闻</a>
-        <a  class ="nav-item "href="#">上游动态</a>
-        <a  class ="nav-item " href="#">品名日评</a>
-        <a  class ="nav-item " href="#">塑料期货</a>
-    </nav>
-2.
-<ul class="nav">
-    <li class="active"><a href="../index">首页</a></li>
-    <li class=""><a href="../pricevs"><img src="../../static/images/index/hot.png" alt="价格对比" /> 价格对</a></li>
-    <li class=""><a href="../hyzx/index.html">行业资讯</a></li>
-    <li class=""><a href="../xuelian/information.html">行业资料</a></li>
-    <li class=""><a href="javascript:;">价格走势</a></li>
-    <li class=""><a href="../matter">物性表</a></li>
-    <li class=""><a href="javascript:;">关于我们</a></li>
-</ul>
-
-*/
 
 (function() {
 
