@@ -488,6 +488,7 @@
 		*/
 		ajax: function(opt) {
 
+
 			// 参数object对象
 			opt = opt || {};
 			opt.type = typeof opt.type === "string" ? opt.type.toUpperCase() : "GET";
