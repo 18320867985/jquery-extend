@@ -101,7 +101,8 @@
 								&lt;/li>
 
 							&lt;/ul>
-							第1项被选中
+                            &lt;include src="./include/in.html?sid=1234" data-nav data-index="0" obj='{"id":1234,"age":12}'>&lt;/include>
+						
 						</pre>
 						<include src="./include/in.html?sid=1234" data-nav data-index="0" obj='{"id":1234,"age":12}'></include>
 					</div>
@@ -115,16 +116,36 @@
 							    &lt;a  class ="nav-item " href="#">品名日评</a>
 							    &lt;a  class ="nav-item " href="#">塑料期货</a>
 							&lt;/nav>
-							第3项被选中
-							
+&lt;include src="./include/in2.html?sid=1234" data-nav data-index="0" obj='{"id":1234,"age":12}'>&lt;/include>
+						
 						</pre>
 						<include src="./include/in2.html?sid=1234" data-nav data-index="2" obj='{"id":1234,"age":12}'></include>
 					</div>
 
 					<h3>异步加载js</h3>
-					<button type="button" id="btn">
-						异步并行加载js 全部加载完成再执行函数
-					</button>
+					
+					<h3>
+						define 定义函数
+					</h3>
+					<pre>
+						include.define(function () {
+						
+						    return  function (a1, b1) {
+						       
+						        return a1 + b1;
+						    };
+						
+						});
+					</pre>
+					<h3>
+						require 调用函数
+					</h3>
+					<pre>
+						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
+							console.log(amd1);
+							console.log(amd2);
+						});
+					</pre>
 					<pre>
 						$("#btn").on("click", function(e) {
 						
@@ -143,6 +164,9 @@
 						
 						});
 					</pre>
+					<button type="button" id="btn">
+						异步并行加载js 全部加载完成再执行函数
+					</button>
 					<div class="jq-define">
 
 					</div>
