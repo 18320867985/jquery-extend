@@ -1,17 +1,17 @@
 li.active {
 	color: slategrey;
-	font-size: 60px;
+	font-size: 40px;
 }
 
 .nav-item {
-	display: block;
+	display:  inline-block;
 	padding: 10px;
 	
 }
 
 .nav-item.active {
 	color: #a127e2;
-	font-size: 120px;
+	font-size: 50px;
 	
 }
 

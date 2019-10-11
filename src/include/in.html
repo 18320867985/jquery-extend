@@ -3,13 +3,13 @@
 <link rel="stylesheet" type="text/css" href="./include/a.css" />
  
 <ul class="nav">
-
-	<li class="active a b"> ul li</li>
-	<li class="active a b">ul li</li>
-	<li class="active a b">ul li</li>
-	<li class="active a b">ul li</li>
-	<li class="active a b">ul li</li>
-	<li class="active a b">ul li</li>
+	<li class="active"><a href="#">首页</a></li>
+    <li class=""><a href="#"> 价格对</a></li>
+    <li class=""><a href="#">行业资讯</a></li>
+    <li class=""><a href="#">行业资料</a></li>
+    <li class=""><a href="#">价格走势</a></li>
+    <li class=""><a href="#">物性表</a></li>
+    <li class=""><a href="#">关于我们</a></li>
 </ul>
 
 
@@ -40,6 +40,10 @@
 
     include.define(function () {
         console.log("define js22")
+			$(function() {
+				$(".nav li").css("color","blue")
+				
+			});
 
     })
 
