@@ -55,7 +55,7 @@
     };
 
     // 定义执行函数
-    window.define= include.define = function () {
+   window.define=include.def=include.define = function () {
        
         var arg1;
       
@@ -104,7 +104,7 @@
     window.define.extend({ amd: true });
 
     // 异步并行加载js  全部加载完成再执行函数
-    window.require= include.require  = function () {
+    window.require=window.req= include.require  = function () {
 
         if (arguments.length >= 2 && arguments[0] instanceof Array && typeof arguments[1] === "function") {
             var arg1 = arguments[0];
