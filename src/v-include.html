@@ -70,10 +70,7 @@
 			<ul>
 				<li>
                     <pre>
-
   &lt;include src="./include/in.html?sid=1234" data-nav data-index="0" obj='{"id":1234,"age":12}'>&lt;/include>
-
-         
 				   </pre>
 
 					<div>
@@ -129,7 +126,7 @@
                         <include src="./include/in2.html?sid=1234" data-nav data-index="2" obj='{"id":1234,"age":12}'></include>
                     </div>
                     <hr style="border-bottom:2px solid red;" />
-					<h1>异步加载js 兼容ie9+ </h1>
+					<h1>异步加载js 兼容ie8+ </h1>
 					
 					<h3>
 						define 定义函数
@@ -191,15 +188,14 @@
 		<script src="js/include.js" type="text/javascript" charset="utf-8"></script>
 
 		<script type="text/javascript">
-		
+		 
 				require(["./include/amd1.js"], function (a) {
-				    console.log(a)
-
+                    console.log(a(12, 13));
 				});
+          
 
 				$(function() {
-
-
+           
 					$("#btn").on("click", function(e) {
                      
 						require(["./include/amd1.js", "./include/amd2.js", "./include/amd3.js",

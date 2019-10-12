@@ -1,4 +1,7 @@
 
+/*
+ hqs include.js
+ */
 
 (function() {
 
@@ -62,17 +65,12 @@
 
         if (arguments.length >= 1) {
             var src = _getCurrentScript();
-
             include.fineObjs[name] = {
                 fn: arg1,
                 isOnlyRun: true,
                 url: src
             };
-
-      
         }
-       
- 
         return this;
     };
 
@@ -100,17 +98,18 @@
 
             // 遍历器
             var activeUrls = _activeUrls(arg1);
-           
-           // console.log("arg1", arg1);
             var itr = include.iterator(activeUrls);
-          
+           // console.log("itr", itr);
+            
             var bl = true;
             for (var i = 0; i < activeUrls.length; i++) {
+                
                 if (include.ckUrl(activeUrls[i])) {
                     include.urls.push(activeUrls[i]);
                     _addAllIterator(itr, fn2, activeUrls[i], arg1);
                     bl = false;
                 }
+               
             }
 
             if (bl) {
@@ -131,48 +130,47 @@
             script.type = "text/javascript";
             script.src = _url;
             script.setAttribute("data-src", _url);
-            doc.appendChild(script);
-        
+       
             //js加载完成执行方法 ie9+
             if (window.addEventListener) {
-
-                script.onload = function (e) {
-
-                    var itrObj = itr.next();
-                    
+         
+                script.onload = function () {
+                     var itrObj = itr.next();
                     if (itrObj.done) {   
                         include.runIncludeAndCache();
                         fn2.apply(null, _getCaches(arrs));
                     }     
-                
                 };
+                doc.appendChild(script);
             } else {
 
-               // ie8 
-                console.log(script.readyState);
-                if (script.readyState) {
-                    if (script.readyState === "loaded" || script.readyState === "complete") {
-                        script.onreadystatechange = function () {
-                            
-                            var itrObj = itr.next();
-                            if (itrObj.done) {
-                                include.runIncludeAndCache();
-                                var lst = _getCaches(arrs);
-                                fn2.apply(null, lst);
-
-                            } 
-                            script.onreadystatechange = null;
-                        };
+               // 兼容 ie6-ie8
+                setTimeout(function () { 
+                   
+                    if (script.readyState) {
+                        if (script.readyState === "loaded" || script.readyState === "complete") {
+                            script.onreadystatechange = function () {
+                               // console.log(script.readyState);
+                                var itrObj = itr.next();
+                                if (itrObj.done) {
+                                    include.runIncludeAndCache();
+                                    var lst = _getCaches(arrs);
+                                    fn2.apply(null, lst);
+                                } 
+                                script.onreadystatechange = null;
+                            };
+                        }
                     }
-                }
-            }
+                    doc.appendChild(script);
+                }, 100);
+             }
+            
         }
                
     // run include.define and  caches
     include.runIncludeAndCache = function () {
-    
+       // console.log("fineObjs", include.fineObjs);
         for (var name in include.fineObjs) {
-
             var o = include.fineObjs[name];
             if (typeof o === "object") {
                 if (typeof o.fn === "function" && o.isOnlyRun === true) {
@@ -183,11 +181,10 @@
                         v: res,
                         url:o.url
                     });
-
-                   
                 }
             }
         }
+
     };
 
     // run include.define
@@ -255,12 +252,14 @@
             return document.currentScript.getAttribute("data-src") || "";
         }
         else {
-            var stack, e, saf, nodes = document.getElementsByTagName("script");
+            var stack, e, nodes = document.getElementsByTagName("script");
             for (var i = 0, node; i < nodes.length; i++) {
                 node = nodes[i];
+               
                 if (node.readyState === "interactive") {
                     // ie8 ,ie9 ie10
                     return node.getAttribute("data-src") || "";
+
                 }
                 else if (!node.readyState) {
 
@@ -594,9 +593,9 @@
 		});
 	}
 
-	function includeHtml() {
-		var _htmls = document.getElementsByTagName("include");
+    function includeHtml() {
 
+		var _htmls = document.getElementsByTagName("include");
 		for (var i = 0; i < _htmls.length; i++) {
 
 			(function(obj) {
@@ -703,7 +702,6 @@
                             if (el2.src) {
                                
                                 script.src = el2.getAttribute("src") || "";
-                              
                                 if (window.addEventListener) {
                                     doc.insertBefore(script, doc_script.childNodes[0]);
                                 } else {
@@ -714,12 +712,12 @@
                                 //js加载完成执行方法 ie9+
                                 if (window.addEventListener) {
                                     script.onload = function (e) {
-                                         include.runInclude();
+                                    include.runInclude();
 
                                     };
                                 } else {
 
-                                    // ie8 
+                                    // ie6-ie8 
                                     if (script.readyState) {
                                         if (script.readyState === "loading" ||script.readyState === "loaded" || script.readyState ==="complete") {
                                             script.onreadystatechange = function () {
