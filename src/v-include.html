@@ -65,16 +65,15 @@
 			<h1>include-异步加载html css js  兼容ie8+</h1>
 			<div>
 				<a class="btn-link" href="./js/include.js">查看 v-include.js</a>
-
 			</div>
 			<ul>
-				<li>
+                <li>
                     <pre>
   &lt;include src="./include/in.html?sid=1234" data-nav data-index="0" obj='{"id":1234,"age":12}'>&lt;/include>
 				   </pre>
 
-					<div>
-						<pre>
+                    <div>
+                        <pre>
 							&lt;ul>
 								&lt;li class="active">
 									&lt;a href="../index">首页</a>
@@ -105,10 +104,11 @@
 						</pre>
                         <pre> &lt;include src="./include/in.html?sid=1234" data-nav data-index="0" obj='{"id":1234,"age":12}'>&lt;/include> 
                         属性：data-nav data-index="0"=》页面active激活的样式索引</pre>
-                       
-						<include src="./include/in.html?sid=1234" data-nav data-index="0" obj='{"id":1234,"age":12}'></include>
-					</div>
-					<hr>
+
+                        <h3>in.html</h3>
+                        <include src="./include/in.html?sid=1234" data-nav data-index="0" obj='{"id":1234,"age":12}'></include>
+                    </div>
+                    <hr>
                     <div>
                         <pre>
 							&lt;nav class="nav">
@@ -123,15 +123,16 @@
 						</pre>
                         <pre> &lt;include src="./include/in.html?sid=1234" data-nav data-index="0" obj='{"id":1234,"age":12}'>&lt;/include> 
                         属性：data-nav data-index="2"=》页面active激活的样式索引</pre>
-                        <include src="./include/in2.html?sid=1234" data-nav data-index="2" obj='{"id":1234,"age":12}'></include>
+                        <h3>in2.html</h3>
+                        <include src="./include/in2.html" data-nav data-index="2"></include>
                     </div>
                     <hr style="border-bottom:2px solid red;" />
-					<h1>异步加载js 兼容ie8+ </h1>
-					
-					<h3>
-						define 定义函数
-					</h3>
-					<pre>
+                    <h1>异步加载js 兼容ie8+ </h1>
+
+                    <h3>
+                        define 定义函数
+                    </h3>
+                    <pre>
 						include.define(function () {
 						
 						    return  function (a1, b1) {
@@ -141,16 +142,16 @@
 						
 						});
 					</pre>
-					<h3>
-						require 调用函数 
-					</h3>
-					<pre>
+                    <h3>
+                        require 调用函数
+                    </h3>
+                    <pre>
 						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
 							console.log(amd1);
 							console.log(amd2);
 						});
 					</pre>
-					<pre>
+                    <pre>
 						$("#btn").on("click", function(e) {
 						
 							require(["http://localhost:8888/include/amd1.js", "./include/amd2.js", "./include/amd3.js",
@@ -168,14 +169,17 @@
 						
 						});
 					</pre>
-					<button type="button" id="btn">
-						异步并行加载js 全部加载完成再执行函数
-					</button>
-					<div class="jq-define">
+                    <button type="button" id="btn">
+                        异步并行加载js 全部加载完成再执行函数
+                    </button>
+                    <div class="jq-define">
 
-					</div>
+                    </div>
 
-				</li>
+                    <h3>in3.html</h3>
+                    <include src="./include/in3.html" data-nav data-index="0"></include>
+
+                </li>
 
 			</ul>
 
