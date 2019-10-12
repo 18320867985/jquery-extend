@@ -1,5 +1,5 @@
 /*
- * 分页组件
+ hqs  paging
  * */
 
 window.paging = (function ($) {

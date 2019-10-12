@@ -1,5 +1,5 @@
 
-/*  hqs */
+/*  hqs v-message */
 
 (function() {
 

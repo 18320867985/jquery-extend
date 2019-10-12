@@ -1,4 +1,9 @@
-/**jq extend**/
+/*
+ hqs v-fade
+ *
+ **/
+
+
 +function($){
 	
 	$.fn.extend({

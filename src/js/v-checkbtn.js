@@ -1,12 +1,7 @@
-
-
 /*
-  <div class="v-checkbtn">
-      <div class="v-checkbtn-item ">
-          爱心
-      </div>
-   </div>
- */
+ hqs  v-checkbtn
+ * */
+
 
 (function() {
 	

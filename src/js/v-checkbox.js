@@ -1,29 +1,8 @@
 
+
 /*
- * v-checkbox 组件
- 	
- 	<div class="v-checkbox" >
-		<span class="v-checkbox-item iconfont"></span>
-	</div>
-	
-	 // 自定义事件
-	$(".v-checkbox").on("v-checkbox", function(event, el,bl) {
-
-		$.alert("选择的值为:"+bl);
-	});
-	
-	// set 
-	$(".v-checkbox").VueCheckbox(true,fn);
-	fn回调执行的函数
-	$(".v-checkbox").VueCheckbox(true, (el) => {
-		$(el).parents("li").addClass("active");
-	});
-	
-	// get
-	 var v=$(".v-checkbox").VueCheckbox();
-	 alert(v)
+ hqs  v-checkbox
  * */
-
 
 (function() {
 	

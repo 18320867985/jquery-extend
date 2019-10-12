@@ -1,6 +1,6 @@
 
 /*
- v-dropdown
+ hqs v-dropdown
  */
 +function () {
 

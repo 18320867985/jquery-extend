@@ -1,6 +1,7 @@
 
 
-/* placeholder 兼容ie8  ie9
+/* 
+ * hqs  placeholder 兼容ie8  ie9
  *
  * 
  * 在css里面添加.ie8-pwd 的class

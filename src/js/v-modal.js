@@ -1,4 +1,6 @@
-﻿
+﻿/*
+ * v-modal 
+ */
 +function () {
 
     function addHtmlPadding() {
