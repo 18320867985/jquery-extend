@@ -686,7 +686,7 @@
                     if (el1.nodeType === 1 && el1.tagName === "LINK") {
                         _index_link++;
                         // include.htmlUrls 集合检测
-                        var include_HtmlUrl1 = src + el1.getAttribute("href") + "_" + _index_link;
+                        var include_HtmlUrl1 = el1.getAttribute("href");
                         if (include.ckHtmlUrl(include_HtmlUrl1)) {
 
                             // 删除节点
@@ -730,7 +730,7 @@
                             script.src = el2.getAttribute("src") || "";
 
                             // include.htmlUrls 集合检测
-                            var include_HtmlUrl2 = src +  script.src + "_" + _index_script;
+                            var include_HtmlUrl2 =script.src;
                             if (include.ckHtmlUrl(include_HtmlUrl2)) {
                                 continue;
                             }
@@ -846,6 +846,7 @@
 		});
 	}
 
+    // html标签加载html文件
     function includeHtml() {
 
 		var _htmls = document.getElementsByTagName("include");
