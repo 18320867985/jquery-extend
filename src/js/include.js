@@ -1,6 +1,6 @@
 
 /*
- hqs include.js
+ hqs include
  */
 
 (function() {
