@@ -24,7 +24,8 @@
     // base url;
     include.fineObjs = {};
     include.baseUrl = "";
-    include.urls = [];
+    include.urls = [];     // js 加载集合
+    include.htmlUrls = []; // html 文件的 css js j集合
     include.caches=[];
 
     include.ckUrl = function (url) {
@@ -37,6 +38,19 @@
         }
 
         return true;
+
+    };
+
+    include.ckHtmlUrl = function (url) {
+
+        for (var i = 0; i < include.htmlUrls.length; i++) {
+            var _url = include.htmlUrls[i];
+            if (url === _url) {
+                return true;
+            }
+        }
+
+        return false;
 
     };
 
@@ -585,17 +599,18 @@
     include.extend({
 
         // 编译异步加载html文件
-        compilerHtml: function (obj, src, prop,isReplace) {
+        compilerHtml: function (obj, src, prop,isReplace,fn) {
             prop = prop || {};
+
             include.get(src, prop, function (data) {
 
                 var newElement = include.htmlStringToDOM(data);
+               
 
                 /*---------------------- 激活的样式--------------------------------*/
                 var index = obj.getAttribute("data-index") || "";
                 var isNav = obj.hasAttribute("data-nav");
                 if (isNav) {
-
 
                     if (!isNaN(index)) {
                         index = window.parseInt(index);
@@ -634,9 +649,24 @@
                 /*----------------------添加 style 标签 兼容 ie9+--------------------------------*/
                 var els_style = newElement.childNodes;
                 var doc_style = document.createDocumentFragment();
+                var _index_style = 0;
                 for (var i0 = els_style.length - 1; i0 >= 0; i0--) {
+                    _index_style++;
                     var el = els_style[i0];
                     if (el.nodeType === 1 && el.nodeName === "STYLE") {
+
+                        // include.htmlUrls 集合检测
+                        var include_style = src+ "_style" + "_" + _index_style;
+                        if (include.ckHtmlUrl(include_style)) {
+                            // 删除节点
+                            if (el.parentNode) {
+                                var _style_p = el.parentNode;
+                                _style_p.removeChild(el);
+                            }
+                            continue;
+                        }
+                        include.htmlUrls.push(include_style);
+
                         if (window.addEventListener) { doc_style.insertBefore(el, doc_style.childNodes[0]); }
                         else {
                             doc_style.insertBefore(el, doc_style.firstChild);
@@ -649,11 +679,25 @@
                 /* ----------------------添加 link 标签 兼容 ie9 + --------------------------------*/
                 var els_link = newElement.childNodes;
                 var doc_link = document.createDocumentFragment();
+                var _index_link = 0;
                 for (var i1 = els_link.length - 1; i1 >= 0; i1--) {
                     var el1 = els_link[i1];
 
                     if (el1.nodeType === 1 && el1.tagName === "LINK") {
+                        _index_link++;
+                        // include.htmlUrls 集合检测
+                        var include_HtmlUrl1 = src + el1.getAttribute("href") + "_" + _index_link;
+                        if (include.ckHtmlUrl(include_HtmlUrl1)) {
 
+                            // 删除节点
+                            if (el1.parentNode) {
+                                var _link_p = el1.parentNode;
+                                _link_p.removeChild(el1);
+                            }
+                            continue;
+                        }
+                        include.htmlUrls.push(include_HtmlUrl1);
+                    
                         if (window.addEventListener) { doc_link.insertBefore(el1, doc_link.childNodes[0]); }
 
                         else {
@@ -663,16 +707,20 @@
                 }
                 document.getElementsByTagName("head")[0].appendChild(doc_link);
 
+
                 /*----------------------添加 script 标签 兼容 ie8+--------------------------------*/
                 var els_scriprt = newElement.childNodes;
                 var doc_script = document.createDocumentFragment();
 
                 // 添加 新建 script
+                var _index_script = 0;
                 for (var i2 = 0; i2 < els_scriprt.length; i2++) {
                     var el2 = els_scriprt[i2];
                     var doc = document.body || document.getElementsByTagName('body')[0];
+
                     if (el2.nodeType === 1 && el2.tagName === "SCRIPT") {
 
+                        _index_script++;
                         var script = document.createElement("script");
                         script.type = "text/javascript";
 
@@ -680,17 +728,26 @@
                         if (el2.src) {
 
                             script.src = el2.getAttribute("src") || "";
+
+                            // include.htmlUrls 集合检测
+                            var include_HtmlUrl2 = src +  script.src + "_" + _index_script;
+                            if (include.ckHtmlUrl(include_HtmlUrl2)) {
+                                continue;
+                            }
+                            include.htmlUrls.push(include_HtmlUrl2);
+                         
+
                             if (window.addEventListener) {
                                 doc.insertBefore(script, doc_script.childNodes[0]);
                             } else {
-                                //doc.appendChild(script);
+                                // doc.appendChild(script);
                                 doc.insertBefore(script, doc_script.firstChild);
                             }
 
-                            //js加载完成执行方法 ie9+
+                            // js加载完成执行方法 ie9+
                             if (window.addEventListener) {
-                                script.onload = function (e) {
-                                    include.runInclude();
+                                script.onload = function () {
+                                  include.runInclude();
 
                                 };
                             } else {
@@ -705,12 +762,20 @@
                                     }
                                 }
                             }
+
                         } else {
 
                             // 没有src属性值 应用script 为本内容
                             var jscontent = el2.innerHTML || "";
                             if (jscontent) {
 
+                                // include.htmlUrls 集合检测
+                                var include_jscontent = src + "include_jscontent" + "_" + _index_script;
+                                if (include.ckHtmlUrl(include_jscontent)) {
+                                    continue;
+                                }
+                                include.htmlUrls.push(include_jscontent);
+                         
                                 // ie9+
                                 if (window.addEventListener) {
                                     doc.insertBefore(script, doc_script.childNodes[0]);
@@ -751,15 +816,19 @@
                 } else {
                    
                     obj.appendChild(newElement);
+
+                    // callback function
+                    if (typeof fn === "function") {
+                        fn();
+                    }
                 }
                 
-
             });
         },
 
         // 动态加载html文件
-        getHtml:function(obj, src, prop){
-            include.compilerHtml(obj,src, prop);
+        getHtml:function(obj, src, fn){
+            include.compilerHtml(obj, src,{},false,fn);
         }
     });
    

@@ -62,7 +62,7 @@
 
 	<body>
 		<div class="container">
-			<h1>include-异步加载html css js  兼容ie8+</h1>
+			<h1>html标签异步加载html css js  兼容ie8+</h1>
 			<div>
 				<a class="btn-link" href="./js/include.js">查看 v-include.js</a>
 			</div>
@@ -183,9 +183,10 @@
                     <hr />
                     <h2>js动态加载html的content,js,css</h2>
                     <pre>
- include.getHtml(obj,src);
+ include.getHtml(obj,src,callback);
 obj=原生dom对象
 src=html文件地址
+callback=回调函数
 </pre>
                     <button class="btn btn-primary" type="button" id="btn-gethtml">js动态加载html</button>
                     <div id="gethtml" style="  padding: 20px; border: solid red; margin:20px 0;">
@@ -211,7 +212,6 @@ src=html文件地址
                     console.log(a(12, 13));
 				});
           
-
 				$(function() {
            
 					$("#btn").on("click", function(e) {
@@ -236,7 +236,12 @@ src=html文件地址
              // js动态html
             $("#btn-gethtml").on("click", function () {
 
-                include.getHtml($("#gethtml").get(0),"./include/gethtml.html");
+                include.getHtml($("#gethtml").get(0), "./include/gethtml.html", function () {
+
+                    console.log("getHtml run  callback function")
+
+                });
+              // console.log(include.htmlUrls);
             });
 
 
