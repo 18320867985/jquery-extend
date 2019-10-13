@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="Keywords" content="" />
+		<meta name="Description" content="" />
+		<title>轮播图-slide</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/all.css" />
+		<link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+		<style>
+			.container {
+            margin-top: 50px;
+            margin-bottom: 15px;
+        }
+
+
+        pre {
+            margin: 10px 0;
+        }
+
+        /*
+            轮播图大框设置高度和宽度
+        */
+        .v-slide-pwr {
+             width:1200px;
+             margin:0 auto;
+             height: 400px;
+        }
+
+    </style>
+	</head>
+
+    <body>
+        <div class="container ">
+            <h1>轮播图-slide</h1>
+            <div>
+                <a class="btn-link" href="./js/v-slide.js">查看 v-fade.js</a>
+                <a class="btn-link" href="./component-scss/v-slide.scss">查看 v-fade.scss</a>
+            </div>
+
+        </div>
+
+        <h3 class="container">默认左右轮播</h3>
+        <!--v-slide-->
+        <!--默认左右轮播-->
+        <div class="v-slide-pwr">
+
+            <div class="v-slide  " data-time="3000" >
+
+                <div class="v-slide-wrap">
+
+                    <ul class="clearfix">
+                        <li class="active">
+                            <a href="#"> <img src="./img/0.jpg" alt="" /></a>
+
+                        </li>
+                        <li class="">
+                            <a href="#"> <img src="./img/1.jpg" alt="" /></a>
+                        </li>
+
+                    </ul>
+
+                    <a href="javascript:;" class="v-btn v-btn-l  ">
+                        <span class="iconfont iconarrow-l"></span>
+                    </a>
+                    <a href="javascript:;" class="v-btn v-btn-r">
+                        <span class="iconfont iconarrow-r"></span>
+                    </a>
+                    <!--自定义按钮-->
+                    <!--<div class="_cst-v-btns">
+                    <a href="javascript:;" class="v-cst-btn-l">
+                        <span class="iconfont iconarow-l"></span>
+                    </a>
+                    <span class="_span1">1</span>
+                    <span class="_span2">/</span>
+                    <span class="_span3">1</span>
+                    <a href="javascript:;" class="v-cst-btn-r">
+                        <span class="iconfont iconarow-r"></span>
+                    </a>
+                </div>-->
+                    <div class="radius-list ">
+                        <span class="active" title="点击切换"></span>
+                        <span class="" title="点击切换"></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+            <pre>
+
+           CSS: 
+
+        /*
+            轮播图大框设置高度和宽度
+        */
+        .v-slide-pwr {
+             width:1200px;
+             margin:0 auto;
+             height: 400px;
+        }
+        </pre>
+
+            <pre>
+          html:
+           &lt;!--v-slide-->
+             &lt;div class="v-slide " data-time="3000">
+             
+                     &lt;div  class="v-slide-wrap">
+                         &lt;ul class="clearfix">
+                             &lt;li  class="active" >
+                                 &lt;a href="#">
+                                     &lt;img src="./img/0.jpg" alt="" />
+                                 &lt;/a>
+                             &lt;/li>
+                             &lt;li>
+                                 &lt;a href="#">
+                                    &lt;img src="./img/1.jpg" alt="" />
+                                 &lt;/a>
+                             &lt;/li>
+                         &lt;/ul>
+                        &lt;!-- 圆点-->
+                        &lt;div class="_radius-list">
+                            &lt;span class="active" title="点击切换"> &lt;/span>
+                            &lt;span title="点击切换"> &lt;/span>
+                        &lt;/div>
+
+                     
+                        &lt;!-- 左右按钮 -->
+                        &lt;a href="javascript:;" class="v-btn v-btn-l  ">
+                            &lt;span class="iconfont iconarrow-l"> &lt;/span>
+                        &lt;/a>
+                        &lt;a href="javascript:;" class="v-btn v-btn-r">
+                            &lt;span class="iconfont iconarrow-r"></span>
+                        &lt;/a>
+                        
+                &lt;/div>
+            &lt;/div>
+         </pre>
+            <pre>
+            js:
+            // 触发v-slide轮播图
+            $(".v-slide").VSlide();
+
+        </pre>
+
+        </div>
+
+        <h3 class="container">上下轮播</h3>
+        <!--v-slide-->
+        <!--上下轮播-->
+        <div class="v-slide-pwr">
+
+            <div class="v-slide " data-time="3000" data-topbottom>
+
+                <div class="v-slide-wrap">
+
+                    <ul class="clearfix">
+                        <li class="active">
+                            <a href="#"> <img src="./img/0.jpg" alt="" /></a>
+
+                        </li>
+                        <li class="">
+                            <a href="#"> <img src="./img/1.jpg" alt="" /></a>
+                        </li>
+
+                    </ul>
+
+                    <a href="javascript:;" class="v-btn v-btn-l  ">
+                        <span class="iconfont iconarrow-l"></span>
+                    </a>
+                    <a href="javascript:;" class="v-btn v-btn-r">
+                        <span class="iconfont iconarrow-r"></span>
+                    </a>
+                    <!--自定义按钮-->
+                    <!--<div class="_cst-v-btns">
+                    <a href="javascript:;" class="v-cst-btn-l">
+                        <span class="iconfont iconarow-l"></span>
+                    </a>
+                    <span class="_span1">1</span>
+                    <span class="_span2">/</span>
+                    <span class="_span3">1</span>
+                    <a href="javascript:;" class="v-cst-btn-r">
+                        <span class="iconfont iconarow-r"></span>
+                    </a>
+                </div>-->
+                    <div class="radius-list ">
+                        <span class="active" title="点击切换"></span>
+                        <span class="" title="点击切换"></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+            <pre>
+                添加属性：
+                  &lt;div class="v-slide " data-time="3000" data-topbottom>
+              </pre>
+
+            <pre>
+
+            // 触发onbannershow事件
+            $(document).on("v-slideshow", function (e, el, index, size) {
+                var p = $(el).parents(".v-slide");
+               // console.log("el", el, "index:", index, size);
+                $("._span1",p).html(index + 1);
+                $("._span3",p).html(size);
+
+            });
+        </pre>
+
+            <pre>
+                 &lt;!--自定义按钮-->
+                  &lt;div class="_cst-v-btns">
+                        &lt;a href="javascript:;" class="v-cst-btn-l">
+                            &lt;span class="iconfont iconarow-l">&lt;/span>
+                         &lt;/a>
+
+                         &lt;span class="_span1">1&lt;/span>
+                            &lt;span class="_span2">/&lt;/span>
+                         &lt;span class="_span3">1&lt;/span>
+
+                          &lt;a href="javascript:;" class="v-cst-btn-r">
+                             &lt;span class="iconfont iconarow-r">&lt;/span>
+                         &lt;/a>
+                &lt;/div>
+            </pre>
+
+
+
+        </div>
+
+     
+
+
+        <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/v-message.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/v-slide.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+        <script type="text/javascript">
+            $(function () {
+
+                // 触发v-fade轮播图
+                $(".v-slide").VSlide();
+
+                // 触发v-fade轮播图每一项事件
+                $(".v-fade").on("v-fade-show", function (e, itemEl, index) {
+                    // itemEl 播图每一元素对象
+                    // index  每一元素对象的索引值
+                    console.log("itemEl:", itemEl, "index", index);
+                });
+            });
+        </script>
+    </body>
+
+</html>

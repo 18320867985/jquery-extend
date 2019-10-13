@@ -1,5 +1,5 @@
 
-/**jq extend
+/**
 
 < !--自定义按钮 class= v-cst-btn-l v-cst-btn-r -->
 
@@ -20,7 +20,7 @@
 
     $.fn.extend({
 
-        vslide: function () {
+        VSlide: function () {
 
             for (var i = 0; i < this.length; i++) {
                 checkObj(this[i]);
