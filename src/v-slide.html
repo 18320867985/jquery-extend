@@ -35,11 +35,12 @@
 	</head>
 
     <body>
+
         <div class="container ">
             <h1>轮播图-slide</h1>
             <div>
-                <a class="btn-link" href="./js/v-slide.js">查看 v-fade.js</a>
-                <a class="btn-link" href="./component-scss/v-slide.scss">查看 v-fade.scss</a>
+                <a class="btn-link" href="./js/v-slide.js">查看 v-slide.js</a>
+                <a class="btn-link" href="./component-scss/v-slide.scss">查看 v-slide.scss</a>
             </div>
 
         </div>
@@ -49,7 +50,7 @@
         <!--默认左右轮播-->
         <div class="v-slide-pwr">
 
-            <div class="v-slide  " data-time="3000" >
+            <div class="v-slide  " data-time="3000">
 
                 <div class="v-slide-wrap">
 
@@ -139,7 +140,7 @@
                             &lt;span class="iconfont iconarrow-l"> &lt;/span>
                         &lt;/a>
                         &lt;a href="javascript:;" class="v-btn v-btn-r">
-                            &lt;span class="iconfont iconarrow-r"></span>
+                            &lt;span class="iconfont iconarrow-r">&lt;/span>
                         &lt;/a>
                         
                 &lt;/div>
@@ -239,11 +240,106 @@
                 &lt;/div>
             </pre>
 
-
-
         </div>
 
-     
+
+        <h3 class="container">自定义上下-切换按钮</h3>
+        <div class="v-slide-pwr">
+
+            <div class="v-slide" id="topbottom-btn" data-time="3000">
+
+                <div class="v-slide-wrap">
+
+                    <ul class="clearfix">
+                        <li class="active">
+                            <a href="#"> <img src="./img/0.jpg" alt="" /></a>
+
+                        </li>
+                        <li class="">
+                            <a href="#"> <img src="./img/1.jpg" alt="" /></a>
+                        </li>
+                        <li class="">
+                            <a href="#"> <img src="./img/3.jpg" alt="" /></a>
+                        </li>
+
+                    </ul>
+
+                    <!--<a href="javascript:;" class="v-btn v-btn-l  ">
+                        <span class="iconfont iconarrow-l"></span>
+                    </a>
+                    <a href="javascript:;" class="v-btn v-btn-r">
+                        <span class="iconfont iconarrow-r"></span>
+                    </a>-->
+
+                    <!--自定义按钮-->
+                    <div class="_cst-v-btns">
+                        <a href="javascript:;" class="v-cst-btn-l">
+                            <span class="iconfont iconarrow-l"></span>
+                        </a>
+                        <span class="_span1">1</span>
+                        <span class="_span2">/</span>
+                        <span class="_span3">1</span>
+                        <a href="javascript:;" class="v-cst-btn-r">
+                            <span class="iconfont iconarrow-r"></span>
+                        </a>
+                    </div>
+
+                    <div class="radius-list ">
+                        <span class="active" title="点击切换"></span>
+                        <span class="" title="点击切换"></span>
+                        <span class="" title="点击切换"></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="container">
+           
+            <pre>
+          html:
+           &lt;!--v-slide-->
+             &lt;div class="v-slide " data-time="3000">
+             
+                     &lt;div  class="v-slide-wrap">
+                         &lt;ul class="clearfix">
+                             &lt;li  class="active" >
+                                 &lt;a href="#">
+                                     &lt;img src="./img/0.jpg" alt="" />
+                                 &lt;/a>
+                             &lt;/li>
+                             &lt;li>
+                                 &lt;a href="#">
+                                    &lt;img src="./img/1.jpg" alt="" />
+                                 &lt;/a>
+                             &lt;/li>
+                         &lt;/ul>
+                        &lt;!-- 圆点-->
+                        &lt;div class="_radius-list">
+                            &lt;span class="active" title="点击切换"> &lt;/span>
+                            &lt;span title="点击切换"> &lt;/span>
+                        &lt;/div>
+
+                         &lt;div class="_cst-v-btns">
+                             &lt;a href="javascript:;" class="v-cst-btn-l">
+                                &lt;span class="iconfont iconarrow-l"> &lt;/span>
+                             &lt;/a>
+                             &lt;span class="_span1">1 &lt;/span>
+                             &lt;span class="_span2">/ &lt;/span>
+                             &lt;span class="_span3">1 &lt;/span>
+                            &lt;a href="javascript:;" class="v-cst-btn-r">
+                                &lt;span class="iconfont iconarrow-r"> &lt;/span>
+                            &lt;/a>
+                      &lt;/div>
+                        
+                &lt;/div>
+            &lt;/div>
+         </pre>
+           
+
+        </div>
 
 
         <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
@@ -257,12 +353,18 @@
                 // 触发v-fade轮播图
                 $(".v-slide").VSlide();
 
-                // 触发v-fade轮播图每一项事件
-                $(".v-fade").on("v-fade-show", function (e, itemEl, index) {
-                    // itemEl 播图每一元素对象
-                    // index  每一元素对象的索引值
-                    console.log("itemEl:", itemEl, "index", index);
+                 // 触发onbannershow事件
+                $(document).on("v-slideshow", function (e, el, index, size) {
+                    var p = $(el).parents("#topbottom-btn");
+                    // console.log("el", el, "index:", index, size);
+                    $("._span1",p).html(index + 1);
+                    $("._span3",p).html(size);
+
                 });
+
+                
+                 $("#topbottom-btn").find("._span3").html($(".v-slide .v-slide-wrap li").length);
+    
             });
         </script>
     </body>

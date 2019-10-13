@@ -1960,3 +1960,36 @@ input:focus,
   color: #f8f8f8;
   font-size: 20px;
   height: 30px; }
+
+.v-slide ._cst-v-btns {
+  position: absolute;
+  z-index: 2;
+  bottom: 30px;
+  right: 50px;
+  padding: 2px 5px;
+  background: #2d80f6;
+  background: rgba(45, 128, 246, 0.7);
+  color: #fff;
+  border-radius: 14px;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease; }
+  .v-slide ._cst-v-btns > span {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 28px; }
+  .v-slide ._cst-v-btns a {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 3px; }
+  .v-slide ._cst-v-btns .iconfont {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1;
+    vertical-align: middle; }
+    .v-slide ._cst-v-btns .iconfont:hover {
+      color: #cccccc; }
+
+.v-slide:hover ._cst-v-btns {
+  background: #2d80f6;
+  -webkit-box-shadow: 0 0 10px 20px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 10px 20px rgba(0, 0, 0, 0.1); }

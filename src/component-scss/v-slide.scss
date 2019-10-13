@@ -148,3 +148,49 @@
     font-size: 20px;
     height: 30px;
 }
+
+.v-slide {
+
+
+   ._cst-v-btns {
+        position: absolute;
+        z-index: 2;
+        bottom: 30px;
+        right: 50px;
+        padding:2px 5px;
+        background: $text-primary;
+        background: rgba( $text-primary,.7);
+        color: #fff;
+        border-radius: 14px;
+        transition: all .5s ease;
+
+
+        > span {
+            vertical-align: middle;
+            display: inline-block;
+            line-height: 28px;
+        }
+
+        a {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 3px;
+        }
+
+        .iconfont {
+            color: #fff;
+            font-size: 16px;
+            line-height: 1;
+            vertical-align: middle;
+
+            &:hover {
+                color: darken(#fff,20%);
+            }
+        }
+    }
+
+  &:hover ._cst-v-btns {
+        background: $text-primary;
+        box-shadow: 0 0 10px 20px rgba(0,0,0,.1);
+    }
+}
