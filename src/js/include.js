@@ -25,7 +25,7 @@
     include.fineObjs = {};
     include.baseUrl = "";
     include.urls = [];     // js 加载集合
-    include.htmlUrls = []; // html 文件的 css js j集合
+    include.htmlUrls = []; // html 文件的 css js 集合
     include.caches=[];
 
     include.ckUrl = function (url) {
