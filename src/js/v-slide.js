@@ -1,20 +1,6 @@
 
 /**
-
-< !--自定义按钮 class= v-cst-btn-l v-cst-btn-r -->
-
-    <div class="_cst-v-btns">
-        <a href="javascript:;" class="v-cst-btn-l">
-            <span class="iconfont iconarow-l"></span>
-        </a>
-        <span class="_span1">1</span>
-        <span class="_span2">/</span>
-        <span class="_span3">2</span>
-        <a href="javascript:;" class="v-cst-btn-r">
-            <span class="iconfont iconarow-r"></span>
-        </a>
-    </div>
-
+ * hqs v-slide
 **/
 +function () {
 
