@@ -1,18 +1,18 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-    <meta name="Keywords" content="" />
-    <meta name="Description" content="" />
-    <title>滚动到底部触发-v-scrolltobottom</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/all.css" />
-    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
-    <style>
-        .container {
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="Keywords" content="" />
+		<meta name="Description" content="" />
+		<title>滚动到底部触发-v-scrolltobottom</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/all.css" />
+		<link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+		<style>
+			.container {
             margin-top: 50px;
             margin-bottom: 50px;
         }
@@ -62,28 +62,38 @@
             color: #999;
         }
     </style>
-</head>
+	</head>
 
-<body>
-    <div class="container">
-        <h1>window滚动到底部触发</h1>
-        <div>
-            <a class="btn-link" href="./js/v-scrolltobottom.js">查看 v-scrolltobottom.js</a>
-            <!-- <a class="btn-link" href="./component-scss/v-tab.scss">查看 v-tab.scss</a> -->
-        </div>
-        <ul>
+	<body>
+		<div class="container">
+			<h1>window滚动到底部触发</h1>
+			<div>
+				<a class="btn-link" href="./js/v-scrolltobottom.js">查看 v-scrolltobottom.js</a>
+				<!-- <a class="btn-link" href="./component-scss/v-tab.scss">查看 v-tab.scss</a> -->
+			</div>
+			<ul>
 
-            <li>
-                <pre> 
-                    html:
-                    &lt;!--加载大框-->
-                    &lt;div class="w-pwr">
-                         &lt;div class="_cnt"> &lt;/div>
-                        &lt;div class="_loading">&lt;/div>
-                    &lt;/div>
-    </pre>
-                <pre>
-                    js:
+				<li>
+					<pre>
+						html:
+						&lt;!--加载大框-->
+						&lt;div class="w-pwr">
+							 &lt;div class="_cnt"> &lt;/div>
+							&lt;div class="_loading">&lt;/div>
+						&lt;/div>
+					</pre>
+					<pre>
+						js
+						// window滚动触发事件
+						$(window).on("onReachBottom", function (e, el) {
+										   
+							 console.log("detail:", el);
+							//getData(pageObj);
+										   
+						});
+					</pre>
+					<pre>
+                    js-code:
                     $(function () {
                                var pageObj = {
                                    indexP: 1,
@@ -93,7 +103,7 @@
                    
                                // 初始化数据
                                getData(pageObj);
-                   
+								// window滚动触发事件
                                $(window).on("onReachBottom", function (e, el) {
                    
                                    // console.log("detail:", el);
@@ -129,73 +139,73 @@
                            });
                 </pre>
 
-            </li>
+				</li>
 
-        </ul>
+			</ul>
 
-        <!--加载大框-->
-        <div class="w-pwr">
-            <div class="_cnt"></div>
-            <div class="_loading"></div>
-        </div>
+			<!--加载大框-->
+			<div class="w-pwr">
+				<div class="_cnt"></div>
+				<div class="_loading">正在加载...</div>
+			</div>
 
-    </div>
+		</div>
 
 
-    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/v-scrolltobottom.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/v-scrolltobottom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
-    <script type="text/javascript">
-        $(function () {
+		<script type="text/javascript">
+			$(function() {
 
-            $(function () {
-                var pageObj = {
-                    indexP: 1,
-                    maxP: 10
-                }
+				$(function() {
+					var pageObj = {
+						indexP: 1,
+						maxP: 10
+					}
 
-                // 初始化数据
-                getData(pageObj);
+					// 初始化数据
+					getData(pageObj);
 
-                $(window).on("onReachBottom", function (e, el) {
+					// window滚动触发事件
+					$(window).on("onWindowReachBottom", function(e, el) {
 
-                    // console.log("detail:", el);
-                    getData(pageObj);
+						// console.log("detail:", el);
+						getData(pageObj);
 
-                });
+					});
 
-                function getData(pageObj) {
+					function getData(pageObj) {
 
-                    $.get("./js/paging.json", {}, function (data) {
-                        //console.log(data)
-                        if (pageObj.indexP > pageObj.maxP) {
-                            $(".w-pwr ._loading").html("没有更多数据了");
-                            return;
-                        }
+						$.get("./js/paging.json", {}, function(data) {
+							//console.log(data)
+							if (pageObj.indexP > pageObj.maxP) {
+								$(".w-pwr ._loading").html("没有更多数据了");
+								return;
+							}
 
-                        var docf = document.createDocumentFragment();
-                        if (data.length > 0) {
-                            for (var i = 0; i < data.length; i++) {
-                                var p = document.createElement("p");
-                                p.innerHTML = data[i].content + "--" + pageObj.indexP + "--";
-                                docf.appendChild(p);
-                            }
+							var docf = document.createDocumentFragment();
+							if (data.length > 0) {
+								for (var i = 0; i < data.length; i++) {
+									var p = document.createElement("p");
+									p.innerHTML = data[i].content + "--" + pageObj.indexP + "--";
+									docf.appendChild(p);
+								}
 
-                            $(".w-pwr ._cnt").append(docf);
-                            pageObj.indexP++;
+								$(".w-pwr ._cnt").append(docf);
+								pageObj.indexP++;
 
-                        }
+							}
 
-                    });
-                }
+						});
+					}
 
-            });
+				});
 
-        });
-
-    </script>
-</body>
+			});
+		</script>
+	</body>
 
 </html>
