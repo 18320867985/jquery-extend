@@ -15,25 +15,65 @@ hqs  v-scrolltobottom 滚动到底部触发事件
 			return;
 		}
 		if(winTop>=docH-winH){
-            $(this).trigger("onWindowReachBottom", [this]);  
+            $(this).trigger("onReachBottom", [this]);  
 		}
 	
 	});
 	
 	
-
     // 元素scroll扩展函数
     $.fn.extend({
-        VReachBottom: function () {
-
+        VReachBottom: function (fn) {
+			
             var els = $(this);
-            els.each(function () {
-                var el = this;
-				var elH = el.clientHeight;
-				var srlH = el.scrollHeight;
-				var srlTop = el.scrollTop;
+			
+			// window
+			if(els.get(0)===window){
 				
-               
+				$(window).scroll(function (e) {
+					var docH = $(document).height();
+					var winH = $(window).height();
+					var winTop = $(window).scrollTop();
+				     //  console.log(winTop, docH - winH);
+				
+				    if (winTop < docH - winH){
+						return;
+					}
+					if(winTop>=docH-winH){
+				        if(typeof fn ==="function"){
+				        	fn(e,window);
+				        }
+					}
+				
+				});
+			}
+			
+			// document
+            els.each(function () {
+				
+				$(this).scroll(function(e){
+					var  el=e.target;
+					var elH = el.clientHeight;
+					var srlH = el.scrollHeight;
+					var srlTop = el.scrollTop;
+					
+					// 滚动的高度小于元素大框高度
+					if (srlH <elH){
+						return;
+					}
+					
+					// 滚动的真实高度
+					var _top=srlH-elH;
+					
+					if(srlTop>=_top){
+					    
+						if(typeof fn ==="function"){
+							fn(e,this);
+						}
+					}
+				});
+			
+			     
             });
 
         }
