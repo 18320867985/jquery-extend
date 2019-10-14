@@ -34,15 +34,17 @@ hqs  v-scrolltobottom 滚动到底部触发事件
 					var docH = $(document).height();
 					var winH = $(window).height();
 					var winTop = $(window).scrollTop();
-				     //  console.log(winTop, docH - winH);
-				
-				    if (winTop < docH - winH){
+                   
+                    //滚动的高度小于元素大框高度
+                    if (docH < winH) {
 						return;
-					}
-					if(winTop>=docH-winH){
-				        if(typeof fn ==="function"){
-				        	fn(e,window);
-				        }
+                    }
+
+                    var _top = docH - winH;
+                    if (winTop >= _top) {
+                        if (typeof fn === "function") {
+                            fn(e, window);
+                        }
 					}
 				
 				});
@@ -65,15 +67,13 @@ hqs  v-scrolltobottom 滚动到底部触发事件
 					// 滚动的真实高度
 					var _top=srlH-elH;
 					
-					if(srlTop>=_top){
-					    
+                    if (srlTop >= _top) {
+                        
 						if(typeof fn ==="function"){
 							fn(e,this);
 						}
 					}
-				});
-			
-			     
+				});	     
             });
 
         }
