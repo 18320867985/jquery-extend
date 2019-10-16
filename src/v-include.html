@@ -60,14 +60,14 @@
     </style>
 	</head>
 
-	<body>
-		<div class="container">
-			<h1>html标签异步加载html css js  兼容ie8+</h1>
+    <body>
+        <div class="container">
+            <h1>html标签异步加载html css js  兼容ie8+</h1>
             <h3>(不依赖jquery)</h3>
-			<div>
-				<a class="btn-link" href="./js/include.js">查看 v-include.js</a>
-			</div>
-			<ul>
+            <div>
+                <a class="btn-link" href="./js/include.js">查看 v-include.js</a>
+            </div>
+            <ul>
                 <li>
                     <pre>
   &lt;include src="./include/in.html?sid=1234" data-nav data-index="0" obj='{"id":1234,"age":12}'>&lt;/include>
@@ -205,43 +205,44 @@ callback=回调函数
 
                 </li>
 
-			</ul>
+            </ul>
 
-		</div>
+        </div>
 
 
-		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/all.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/include.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
 
-		<script type="text/javascript">
-		 
-				require(["./include/amd1.js"], function (a) {
-                    console.log(a(12, 13));
-				});
-          
-				$(function() {
-           
-					$("#btn").on("click", function(e) {
-                     
-						require(["./include/amd1.js", "./include/amd2.js", "./include/amd3.js",
-							"./include/amd6.js", "include/jquery-1.11.0.js"
-						], function(a, b, c, d, jq) {
+        <script src="js/include.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
-							var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
-							console.log(res);
-							console.log(include.caches)
-							console.log(jq(".jq-define").css("background", "orange"))
-							console.log("done");
+        <script type="text/javascript">
 
-						});
+            require(["./include/amd1.js"], function (a) {
+                console.log(a(12, 13));
+            });
 
-					});
+            $(function () {
+
+                $("#btn").on("click", function (e) {
+
+                    require(["./include/amd1.js", "./include/amd2.js", "./include/amd3.js",
+                        "./include/amd6.js", "include/jquery-1.11.0.js"
+                    ], function (a, b, c, d, jq) {
+
+                        var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
+                        console.log(res);
+                        console.log(include.caches)
+                        console.log(jq(".jq-define").css("background", "orange"))
+                        console.log("done");
+
+                    });
 
                 });
 
-             // js动态html
+            });
+
+            // js动态html
             $("#btn-gethtml").on("click", function () {
 
                 include.getHtml($("#gethtml").get(0), "./include/gethtml.html", function () {
@@ -249,7 +250,7 @@ callback=回调函数
                     console.log("getHtml success callback function")
 
                 });
-              // console.log(include.htmlUrls);
+                // console.log(include.htmlUrls);
             });
             $("#btn-gethtml2").on("click", function () {
 
@@ -258,12 +259,12 @@ callback=回调函数
                     console.log("getHtml success callback function")
 
                 });
-              // console.log(include.htmlUrls);
+                // console.log(include.htmlUrls);
             });
 
 
-		
-		</script>
-	</body>
+
+        </script>
+    </body>
 
 </html>

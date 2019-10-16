@@ -66,11 +66,6 @@
                arg1 = arguments[0];
         }
 
-        if (arguments.length === 2 && arguments[0] instanceof Array && typeof arguments[1] === "function") {
-
-            arg1 = arguments[1];
-        }
-
         // 兼容jquery
         if (arguments.length === 3 && typeof arguments[0] === "string" && arguments[1] instanceof Array && typeof arguments[2] === "function") {
 
