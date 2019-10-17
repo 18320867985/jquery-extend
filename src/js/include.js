@@ -3,13 +3,23 @@
  hqs include
  */
 
-(function() {
++function() {
 
 	/*创建include对象*/
     var _include = window.include;
     var _define = window.define;
     var _require = window.require;
-    var include = window.include = function (selector, content) { };
+    var include = window.include = function (selector, content) {
+
+        if (typeof selector === "function") {
+            if (window.addEventListener) {
+                window.addEventListener("load", selector);
+            } else {
+                window.attachEvent("load", selector);
+            }
+ 
+        }
+    };
 
 	include.extend = function(obj) {
 		if (typeof obj === "object") {
@@ -96,7 +106,7 @@
     };
 
     // define.amd
-    window.define.extend({ amd: true });
+    window.define.amd = false;
 
     // 异步并行加载js  全部加载完成再执行函数
     window.require=include.req=include.require = function () {
@@ -151,6 +161,7 @@
                     }     
                 };
                 doc.appendChild(script);
+
             } else {
 
                // 兼容 ie6-ie8
@@ -601,7 +612,6 @@
 
                 var newElement = include.htmlStringToDOM(data);
                
-
                 /*---------------------- 激活的样式--------------------------------*/
                 var index = obj.getAttribute("data-index") || "";
                 var isNav = obj.hasAttribute("data-nav");
@@ -709,10 +719,12 @@
 
                 // 添加 新建 script
                 var _index_script = 0;
+                var docDfgTypeInSrc = document.createDocumentFragment();
+                var docDfgTypeInSrcIe8 = [];
+
                 for (var i2 = 0; i2 < els_scriprt.length; i2++) {
                     var el2 = els_scriprt[i2];
-                    var doc = document.body || document.getElementsByTagName('body')[0];
-
+                
                     if (el2.nodeType === 1 && el2.tagName === "SCRIPT") {
 
                         _index_script++;
@@ -731,26 +743,26 @@
                             }
                             include.htmlUrls.push(include_HtmlUrl2);
                          
-
                             if (window.addEventListener) {
-                                doc.insertBefore(script, doc_script.childNodes[0]);
+                                docDfgTypeInSrc.insertBefore(script, doc_script.childNodes[0]);
                             } else {
                                 // doc.appendChild(script);
-                                doc.insertBefore(script, doc_script.firstChild);
+                                docDfgTypeInSrc.insertBefore(script, doc_script.firstChild);
                             }
 
                             // js加载完成执行方法 ie9+
                             if (window.addEventListener) {
                                 script.onload = function () {
-                                  include.runInclude();
-
+                                    // 执行define 定义的函数
+                                    include.runInclude();
                                 };
                             } else {
 
                                 // ie6-ie8 
                                 if (script.readyState) {
-                                    if (script.readyState === "loading" || script.readyState === "loaded" || script.readyState === "complete") {
+                                    if ( script.readyState === "loaded" || script.readyState === "complete") {
                                         script.onreadystatechange = function () {
+                                            // 执行define 定义的函数
                                             include.runInclude();
                                             script.onreadystatechange = null;
                                         };
@@ -773,16 +785,17 @@
                          
                                 // ie9+
                                 if (window.addEventListener) {
-                                    doc.insertBefore(script, doc_script.childNodes[0]);
+                                  
+                                    docDfgTypeInSrc.insertBefore(script, doc_script.childNodes[0]);
                                     script.innerHTML = jscontent;
                                 } else {
                                     // ie8
-                                    doc.insertBefore(script, doc_script.firstChild);
+                                    docDfgTypeInSrc.insertBefore(script, doc_script.firstChild);
                                     script.jscode = jscontent;
-                                    window.eval(jscontent);
-                                }
+                                    docDfgTypeInSrcIe8.push(jscontent);
 
-                                include.runInclude();
+                                }
+                               
                             }
                         }
                     }
@@ -802,14 +815,12 @@
                     }
                 }
 
-                document.getElementsByTagName("body")[0].appendChild(doc_script);
-
-                // 添加到document
+                // <inlude>标签 添加到document
                 if (isReplace) {
                     var parent = obj.parentNode;
                     parent.replaceChild(newElement, obj);
                 } else {
-                   
+                   //  require 添加到document
                     obj.appendChild(newElement);
 
                     // callback function
@@ -817,7 +828,22 @@
                         fn();
                     }
                 }
-                
+
+                // 没有src属性值 不是script元素加载后完成 再添加到页面
+                // ie9+
+                if (window.addEventListener) {
+                    document.getElementsByTagName("body")[0].appendChild(docDfgTypeInSrc);
+                 
+                  
+                } else {
+                // ie8
+                for (var ie = 0; ie < docDfgTypeInSrcIe8.length; ie++) {
+                    window.eval(docDfgTypeInSrcIe8[ie]);
+                    }
+                  
+                   
+                }
+ 
             });
         },
 
@@ -827,9 +853,9 @@
         }
     });
    
-})();
+}();
 
-(function() {
++function() {
 
 	if (window.addEventListener) {
 		window.addEventListener("load", function() {
@@ -866,5 +892,5 @@
 		}
 	}
 
-})();
+}();
 
