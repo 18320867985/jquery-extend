@@ -1,0 +1,107 @@
+
+/**
+ * hqs  v-vaffix
+
+**/
+
++function () {
+    'use strict';
+
+        var VAffix = function (options) {
+
+            this.el = options.el;
+            this.top = options.top;
+            this.bottom = options.bottom;
+            this.positionTop = options.positionTop;
+            this.offsetTop = options.offsetTop;
+            this.offsetBottom = options.offsetBottom;
+           // this.addStyle();
+            this.runing();
+        };
+
+        VAffix.DEFAULTS = {
+            offsetTop: 0,
+            offsetBottom: 0
+        };
+
+        VAffix.prototype.runing = function () {
+
+            var o = this;
+            $(window).on("scroll", function () {
+                var $this = o.el;
+                var win_srl_top = $(window).scrollTop();
+                var _top = o.top - o.offsetTop;
+
+                if (win_srl_top >_top) {
+                    $this.addClass("v-affix");
+
+                    //o.offsetBottom  value gt 0 execution
+                    if (o.offsetBottom) {
+                        $this.css("bottom", o.offsetBottom + "px");
+                    } else {
+                        $this.css("top", o.offsetTop + "px");
+                    }
+                   
+                } else {
+                    $this.removeClass("v-affix").css({
+                        "top": "auto",
+                        "bottom": "auto"
+                    });
+                }
+
+            });
+       
+    };
+
+
+    VAffix.prototype.addStyle = function () {
+
+        var style = document.createElement("style");
+        if (window.addEventListener) {
+            style.innerText = ".v-affix {position: fixed;z-index: 2;}";
+            $("head").append(style);
+        }
+      
+    };
+
+        function Plugin(option) {
+           
+          return  this.each(function () {
+              
+                var $this = $(this);
+                var data = $this.data('v-affix');
+                var options = typeof option === 'object' && option;
+
+                if (!data) {
+
+                    var o = {};
+                    o.el = $this;
+                    o.positionTop =parseFloat($this.css("top"))||0;
+                    o.top = parseFloat($this.offset().top);
+                    o.offsetTop = parseFloat($this.attr("data-offset-top")) || 0;
+                    o.offsetBootom = parseFloat($this.attr("data-offset-bottom")) || 0;
+                    var p = $.extend({}, VAffix.DEFAULTS, o, options);
+                    $this.data('v-affix', data = new VAffix(p));
+
+                }
+                if (typeof option === 'string') {
+
+                    data[option]();
+                }
+            
+            });
+        }
+            var _vaffix=$.fn.vaffix;
+            $.fn.vaffix =Plugin;
+
+            // html model each
+            $("[data-spy='v-affix']").each(function () {
+           
+                var $this = $(this);
+                Plugin.call($this);
+         
+            });
+ 
+      
+}();
+

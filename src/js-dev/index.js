@@ -1,3 +1,4 @@
+
 const index = {
 
     init: function () {
@@ -30,5 +31,4 @@ const index = {
 
 export {
     index
-
 };
