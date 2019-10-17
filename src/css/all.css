@@ -1993,3 +1993,7 @@ input:focus,
   background: #2d80f6;
   -webkit-box-shadow: 0 0 10px 20px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 10px 20px rgba(0, 0, 0, 0.1); }
+
+.v-affix {
+  position: fixed;
+  z-index: 2; }

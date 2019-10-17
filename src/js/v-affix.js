@@ -1,17 +1,11 @@
 
 /**
- * jq extend
+ * hqs  v-vaffix
 
 **/
 
 +function () {
-
-    // html 属性模式
-    /*
-         <div data-spy="affix" data-offset-top="60" data-offset-bottom="200">
-          ...
-        </div>
-    */
+    'use strict';
 
         var VAffix = function (options) {
 
@@ -21,7 +15,7 @@
             this.positionTop = options.positionTop;
             this.offsetTop = options.offsetTop;
             this.offsetBottom = options.offsetBottom;
-
+           // this.addStyle();
             this.runing();
         };
 
@@ -33,8 +27,7 @@
         VAffix.prototype.runing = function () {
 
             var o = this;
-            $(window).on("scroll", function (
-            ) {
+            $(window).on("scroll", function () {
                 var $this = o.el;
                 var win_srl_top = $(window).scrollTop();
                 var _top = o.top - o.offsetTop;
@@ -42,7 +35,7 @@
                 if (win_srl_top >_top) {
                     $this.addClass("v-affix");
 
-                    //o.offsetBottom 值大于0 执行
+                    //o.offsetBottom  value gt 0 execution
                     if (o.offsetBottom) {
                         $this.css("bottom", o.offsetBottom + "px");
                     } else {
@@ -58,7 +51,18 @@
 
             });
        
-        };
+    };
+
+
+    VAffix.prototype.addStyle = function () {
+
+        var style = document.createElement("style");
+        if (window.addEventListener) {
+            style.innerText = ".v-affix {position: fixed;z-index: 2;}";
+            $("head").append(style);
+        }
+      
+    };
 
         function Plugin(option) {
            
@@ -73,9 +77,10 @@
                     var o = {};
                     o.el = $this;
                     o.positionTop =parseFloat($this.css("top"))||0;
-                    o.top =parseFloat($this.offset().top);
+                    o.top = parseFloat($this.offset().top);
+                    o.offsetTop = parseFloat($this.attr("data-offset-top")) || 0;
+                    o.offsetBootom = parseFloat($this.attr("data-offset-bottom")) || 0;
                     var p = $.extend({}, VAffix.DEFAULTS, o, options);
-                    console.log(p);
                     $this.data('v-affix', data = new VAffix(p));
 
                 }
@@ -89,7 +94,7 @@
             var _vaffix=$.fn.vaffix;
             $.fn.vaffix =Plugin;
 
-            // html 元素遍历
+            // html model each
             $("[data-spy='v-affix']").each(function () {
            
                 var $this = $(this);
