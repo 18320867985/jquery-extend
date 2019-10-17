@@ -110,7 +110,7 @@
 
     // 异步并行加载js  全部加载完成再执行函数
     window.require=include.req=include.require = function () {
-
+        window.define.amd = true;
         if (arguments.length >= 2 && arguments[0] instanceof Array && typeof arguments[1] === "function") {
             var arg1 = arguments[0];
             var fn2 = arguments[1];
@@ -158,6 +158,7 @@
                     if (itrObj.done) {   
                         include.runIncludeAndCache();
                         fn2.apply(null, _getCaches(arrs));
+                        window.define.amd = false;
                     }     
                 };
                 doc.appendChild(script);
@@ -176,6 +177,7 @@
                                     include.runIncludeAndCache();
                                     var lst = _getCaches(arrs);
                                     fn2.apply(null, lst);
+                                    window.define.amd = false;
                                 } 
                                 script.onreadystatechange = null;
                             };
@@ -605,9 +607,9 @@
     include.extend({
 
         // 编译异步加载html文件
-        compilerHtml: function (obj, src, prop,isReplace,fn) {
+        compilerHtml: function (obj, src, prop, isReplace, fn) {
+           
             prop = prop || {};
-
             include.get(src, prop, function (data) {
 
                 var newElement = include.htmlStringToDOM(data);
@@ -848,7 +850,8 @@
         },
 
         // 动态加载html文件
-        getHtml:function(obj, src, fn){
+        getHtml: function (obj, src, fn) {
+           
             include.compilerHtml(obj, src,{},false,fn);
         }
     });
