@@ -4,190 +4,7 @@
 **/
 +function () {
 
-    $.fn.extend({
-
-        VSlide: function () {
-
-            for (var i = 0; i < this.length; i++) {
-                checkObj(this[i]);
-            }
-
-            function checkObj(obj) {
-
-                var bannerUl = $(obj).find(".v-slide-wrap ul");
-                bannerUl[0].innerHTML += bannerUl[0].innerHTML;
-
-                // 一张图不能轮播
-                if ($(".v-slide-wrap ul li", $(obj)).length <= 2) {
-                    return;
-                }
-                obj.length = $(".v-slide-wrap ul li", $(obj)).length;
-                obj.index = obj.length / 2;
-                obj.clearAutoId = 0;
-                obj.time = parseInt($(obj).attr("data-time"));
-                obj.isTopbottom = obj.hasAttribute("data-topbottom"); // 是否上下scroll
-              
-                //setImgBackground(obj);
-                fadeImg($(obj), obj.index, true);
-                auto(obj.time);
-                obj.isclick = true;
-
-                function auto(time) {
-
-                    obj.clearAutoId = setInterval(function () {
-                        obj.index = (obj.index + 1) % (obj.length);
-                        fadeImg(obj, obj.index, false);
-                    }, time);
-
-                }
-
-                $(".v-slide-wrap", $(obj)).hover(function () {
-                    $(".v-btn", $(obj)).stop().fadeIn();
-                    clearInterval(obj.clearAutoId);
-                }, function () {
-                    $(".v-btn", $(obj)).stop().fadeOut();
-                    auto(obj.time);
-                });
-
-                $(".v-btn-l,.v-cst-btn-l", $(obj)).on("click", function () {
-                    if (obj.isclick) {
-                        obj.isclick = false;
-                        var seltid = setTimeout(function () {
-                            obj.isclick = true;
-                            clearTimeout(seltid);
-                        }, 700);
-
-                        if (obj.index <= 0) {
-                            obj.index = obj.length - 1;
-                        } else {
-                            obj.index = obj.index - 1;
-                        }
-                        fadeImg(obj, obj.index, false);
-                    }
-
-                });
-
-                $(".v-btn-r,.v-cst-btn-r", $(obj)).on("click", function () {
-                   
-                    if (obj.isclick) {
-                        obj.isclick = false;
-                        var seltid = setTimeout(function () {
-                            obj.isclick = true;
-                            clearTimeout(seltid);
-                        }, 700);
-
-                        //obj.index = (obj.index + 1) % (obj.length);
-                        if (obj.index >= obj.length - 1) {
-                            obj.index = obj.length - 1;
-                        } else {
-                            obj.index = obj.index + 1;
-                        }
-                       
-                      
-                        fadeImg(obj, obj.index, false);
-                    }
-
-                });
-                var seltid = 0;
-                $(".radius-list span", $(obj)).on("click", function () {
-
-                    if (obj.isclick) {
-                        obj.isclick = false;
-                        seltid = setTimeout(function () {
-                            obj.isclick = true;
-                            clearTimeout(seltid);
-                        }, 700);
-                        var _index = 0;
-                        var radius_index = Number($(this).index());
-                        if (obj.index >= (obj.length / 2)) {
-                            _index = (radius_index + (obj.length / 2));
-                        } else {
-                            _index = (radius_index);
-                        }
-                        fadeImg(obj, _index, false);
-                    }
-
-                });
-
-
-
-                function fadeImg(el, index, bl) {
-                    var v = $(el).closest($(obj));
-                    var wrap = v.find(".v-slide-wrap");
-                    var ul = $(".v-slide-wrap ul ", v);
-                    var lis = $(".v-slide-wrap ul li", v);
-
-                    // set li height
-                    lis.height(wrap.height());
-
-                    //	ul[0].style.transform="translateX(-"+wrap.outerWidth()*index+"px)"
-                    //	ul[0].style.transition="1s"
-                    var sildeTime = 600;
-
-                    if (bl) {
-                        sildeTime = 0;
-                    }
-
-      
-                    // is scroll topbottom 
-                    if (obj.isTopbottom) {
-                        var _top = wrap.height() * index;
-                        ul.stop().animate({
-                            top: "-" + _top
-                        }, sildeTime).queue(function () {
-
-                            if (index === obj.length - 1) {
-                                obj.index = index = (obj.length / 2 - 1);
-                                var _top = wrap.height() * index;
-                                ul.stop().css("top", -_top);
-                            }
-
-                            if (index === 0) {
-                                obj.index = index = obj.length / 2;
-                                var _top2 = wrap.height() * index;
-                                ul.stop().css("top", -_top2);
-                            }
-
-                        });
-
-                    } else {
-                        var _left = wrap.outerWidth() * index;
-                        ul.stop().animate({
-                            left: "-" + _left
-                        }, sildeTime).queue(function () {
-
-                            if (index === obj.length - 1) {
-                                obj.index = index = (obj.length / 2 - 1);
-                                var _left = wrap.outerWidth() * index;
-                                ul.stop().css("left", -_left);
-                            }
-
-                            if (index === 0) {
-                                obj.index = index = obj.length / 2;
-                                var _left2 = wrap.outerWidth() * index;
-                                ul.stop().css("left", -_left2);
-                            }
-
-                        });
-                    }
-                    //obj.isclick = true;
-                    lis.eq(index).addClass("active");
-                    setRadius(index % (obj.length / 2));
-
-                    // 触发自定义事件
-                    lis.eq(index).trigger("v-slideshow", [lis.eq(index).get(0), index % (obj.length / 2), (obj.length / 2)]);
-
-                }
-
-                function setRadius(index) {
-                    $(".radius-list span", obj).removeClass("active");
-                    $(".radius-list span", obj).eq(index).addClass("active");
-                }
-            }
-
-        }
-
-    });
+    'use strict';
 
     // define class
     var VSlide = function (el,options) {
@@ -211,11 +28,10 @@
             $this.fadeImg(obj, obj.index, false);
         }, $this.option.time);
 
-        console.log(obj.clearAutoId);
     };
 
     VSlide.prototype.fadeImg = function (el, index, bl) {
-        console.log(this);
+     
         var obj = this.el;
         var v = $(obj);
         var wrap = v.find(".v-slide-wrap");
@@ -387,7 +203,9 @@
             if (!data) {
                 var o = {};
                 o.time = parseInt($this.attr("data-time")) || VSlide.DEFAULTS.time;
-                o.isTopbottom = $this.get(0).hasAttribute("data-topbottom") ? true : false; // 是否上下scroll
+
+                 // 是否上下scroll
+                o.isTopbottom = $this.get(0).hasAttribute("data-topbottom") ? true : false;
                 var p = $.extend({},o,options);
                 $this.data('v-slide', data = new VSlide(this,p));
 
@@ -401,7 +219,18 @@
 
     var _vslide = $.fn.VSlide;
     $.fn.vslide = Plugin;
-    
+
+
+    $(function () {
+
+        $(".v-slide").each(function (e) {
+            var $this = $(this);
+            Plugin.call($this);
+
+        });
+
+    });
+
 
 }();
 
