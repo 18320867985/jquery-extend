@@ -16,9 +16,10 @@
       this.activeTarget = null;
       this.scrollHeight = 0;
 
-      this.$scrollElement.on('scroll', $.proxy(this.process, this));
+      this.$scrollElement.on('scroll', $.proxy(this.runing, this));
       this.refresh();
-      this.process();
+      this.runing();
+	
   }
 
 
@@ -27,7 +28,7 @@
     };
 
     VScrollSpy.prototype.getScrollHeight = function () {
-        return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+        return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight);
     };
 
     VScrollSpy.prototype.refresh = function () {
@@ -63,7 +64,7 @@
             });
     };
 
-    VScrollSpy.prototype.process = function () {
+    VScrollSpy.prototype.runing = function () {
         var scrollTop = this.$scrollElement.scrollTop() + this.options.offset;
         var scrollHeight = this.getScrollHeight();
         var maxScroll = this.options.offset + scrollHeight - this.$scrollElement.height();
@@ -106,9 +107,9 @@
             .parents('li')
             .addClass('active');
 
-        if (active.parent('.dropdown-menu').length) {
+        if (active.parents('.v-dropdown-menu').length) {
             active = active
-                .closest('li.dropdown')
+                .closest('li.v-dropdown')
                 .addClass('active');
         }
 
@@ -121,16 +122,15 @@
             .removeClass('active');
     };
 
-
-
+   
   function Plugin(option) {
       return this.each(function () {
           var $this = $(this);
-          var data = $this.data('v-VScrollSpy');
+          var data = $this.data('v-scrollspy');
           var options = typeof option === 'object' && option;
 
           if (!data) {
-              $this.data('v-VScrollSpy', data = new VScrollSpy(this, options));
+              $this.data('v-scrollspy', data = new VScrollSpy(this, options));
           }
           if(typeof option === 'string')
           { data[option](); }
@@ -142,7 +142,7 @@
     $.fn.vscrollspy = Plugin;
 
     $(window).on('load', function () {
-        $('[data-spy="v-scroll"]').each(function () {
+        $('[data-spy="v-scrollspy"]').each(function () {
             var $spy = $(this);
             Plugin.call($spy, $spy.data());
         });

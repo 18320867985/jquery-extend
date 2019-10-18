@@ -7,12 +7,7 @@
 	'use strict';
 
 	var VAffix = function(options) {
-
-		this.el = options.el;
-		this.top = options.top;
-		this.bottom = options.bottom;
-		this.positionTop = options.positionTop;
-		this.offsetTop = options.offsetTop;
+        this.obj = options;
 		this.runing();
 	};
 
@@ -22,7 +17,7 @@
 
 	VAffix.prototype.runing = function() {
 
-		var o = this;
+		var o = this.obj;
 		$(window).on("scroll", function() {
 			var $this = o.el;
 			var win_srl_top = $(window).scrollTop();
