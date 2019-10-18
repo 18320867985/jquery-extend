@@ -149,7 +149,10 @@
             <pre>
             js:
             // 触发v-slide轮播图
-            $(".v-slide").vslide();
+            $(".v-slide").vslide({
+                    time:3000,        //   轮播图间隔时间
+                    isTopottom:fasle  //  是否上下滚动
+                });
 
         </pre>
 
@@ -340,7 +343,10 @@
             $(function () {
 
                 // 触发v-fade轮播图
-               // $(".v-slide").vslide();
+                $(".v-slide").vslide({
+                    time: 5000,
+                    isTopbottom:true
+                });
 
                  // 触发onbannershow事件
                 $(document).on("v-slideshow", function (e, el, index, size) {

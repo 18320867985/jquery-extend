@@ -34,6 +34,7 @@
      
         var obj = this.el;
         var v = $(obj);
+     
         var wrap = v.find(".v-slide-wrap");
         var ul = $(".v-slide-wrap ul ", v);
         var lis = $(".v-slide-wrap ul li", v);
@@ -46,8 +47,9 @@
             sildeTime = 0;
         }
 
-     
+   
         if (this.option.isTopbottom) {
+            $(obj).attr("data-topbottom", true);
             var _top = wrap.height() * index;
             ul.stop().animate({
                 top: "-" + _top
@@ -102,6 +104,7 @@
     };
 
     VSlide.prototype.runing = function () {
+       
         var $this = this;
         var obj = this.el;
         var bannerUl = $(obj).find(".v-slide-wrap ul");
@@ -204,9 +207,10 @@
                 var o = {};
                 o.time = parseInt($this.attr("data-time")) || VSlide.DEFAULTS.time;
 
-                 // 是否上下scroll
+                // 是否上下scroll
                 o.isTopbottom = $this.get(0).hasAttribute("data-topbottom") ? true : false;
-                var p = $.extend({},o,options);
+                var p = $.extend({}, o, options);
+               
                 $this.data('v-slide', data = new VSlide(this,p));
 
             }
