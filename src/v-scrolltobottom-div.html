@@ -74,30 +74,30 @@
 		<div class="container">
 			<h1>window滚动到底部触发</h1>
 			<div>
-				<a class="btn-link" href="./js/v-scrolltobottom.js">查看 v-scrolltobottom.js</a>
+                <a class="btn-link" href="./js/v-vreachbottom.js">查看 v-vreachbottom.js</a>
 				<!-- <a class="btn-link" href="./component-scss/v-tab.scss">查看 v-tab.scss</a> -->
 			</div>
 			<ul>
 
 				<li>
-					<pre>
+                    <pre>
 						html:
 						&lt;!--加载大框-->
 						&lt;div class="w-pwr">
 							 &lt;div class="_cnt"> &lt;/div>
-							&lt;div class="_loading">&lt;/div>
+							&lt;div class="_loading">正在加载...&lt;/div>
 						&lt;/div>
 					</pre>
 					
-					<pre>
+                    <pre>
 						js
-						$(".w-pwr").VReachBottom(function(e,el){
+						$(".w-pwr").vreachbottom(function(e,el){
 							//console.log("el",el);
 							getData(pageObj);
 						});
 					</pre>
 					
-					<pre>
+                    <pre>
                     js-code:
                     $(function() {
                     
@@ -111,7 +111,7 @@
                     		// 初始化数据
                     		getData(pageObj);
                     		
-                    		$(".w-pwr").VReachBottom(function(e,el){
+                    		$(".w-pwr").vreachbottom(function(e,el){
                     			//console.log("el",el);
                     			getData(pageObj);
                     		});
@@ -161,7 +161,7 @@
 
 		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/v-scrolltobottom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/v-reachbottom.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
 		<script type="text/javascript">
@@ -177,7 +177,7 @@
 					// 初始化数据
 					getData(pageObj);
 					
-					$(".w-pwr").VReachBottom(function(e,el){
+					$(".w-pwr").vreachbottom(function(e,el){
 						//console.log("el",el);
 						getData(pageObj);
 					});

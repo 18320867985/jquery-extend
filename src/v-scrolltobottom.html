@@ -12,7 +12,8 @@
 		<link rel="stylesheet" type="text/css" href="css/all.css" />
 		<link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
 		<style>
-			.container {
+
+	    .container {
             margin-top: 50px;
             margin-bottom: 50px;
         }
@@ -68,37 +69,37 @@
 		<div class="container">
 			<h1>window滚动到底部触发</h1>
 			<div>
-				<a class="btn-link" href="./js/v-scrolltobottom.js">查看 v-scrolltobottom.js</a>
+                <a class="btn-link" href="./js/v-reachbottom.js">查看 v-reachbottom.js</a>
 				<!-- <a class="btn-link" href="./component-scss/v-tab.scss">查看 v-tab.scss</a> -->
 			</div>
 			<ul>
 
 				<li>
-					<pre>
+                    <pre>
 						html:
 						&lt;!--加载大框-->
 						&lt;div class="w-pwr">
 							 &lt;div class="_cnt"> &lt;/div>
-							&lt;div class="_loading">&lt;/div>
+							&lt;div class="_loading">正在加载...&lt;/div>
 						&lt;/div>
 					</pre>
-					<pre>
+                    <pre>
 						js
 						// 1.事件模式 window滚动触发事件
-						$(window).on("onReachBottom", function (e, el) {
+						$(window).on("onreachbottom", function (e, el) {
 										   
 							 console.log("detail:", el);
 							//getData(pageObj);
 										   
 						});
 						// 2.插件模式
-						$(window).VReachBottom (function(e, el) {
+						$(window).vreachbottom(function(e, el) {
 							 console.log("el:", el);
 							getData(pageObj);
 						
 						});
 					</pre>
-					<pre>
+                    <pre>
                     js-code:
                     $(function () {
                                var pageObj = {
@@ -110,7 +111,7 @@
                                // 初始化数据
                                getData(pageObj);
 								// window滚动触发事件
-                               $(window).on("onReachBottom", function (e, el) {
+                               $(window).on("onreachbottom", function (e, el) {
                                    // console.log("detail:", el);
                                    getData(pageObj);
                    
@@ -158,7 +159,7 @@
 
 		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/v-scrolltobottom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/v-reachbottom.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
 		<script type="text/javascript">
@@ -174,19 +175,19 @@
 					getData(pageObj);
 
 					// 1.事件模式 window滚动触发事件
-					$(window).on("onReachBottom", function(e, el) {
+					//$(window).on("onreachbottom", function(e, el) {
 						
-						// console.log("detail:", el);
-						getData(pageObj);
+					//	// console.log("detail:", el);
+					//	getData(pageObj);
 
-					});
+					//});
 					
 					// 2.插件模式
-					// $(window).VReachBottom (function(e, el) {
-					// 	 console.log("el:", el);
-					// 	getData(pageObj);
-					// 
-					// });
+					 $(window).vreachbottom(function(e, el) {
+					 	 //console.log("el:", el);
+					 	getData(pageObj);
+					 
+					 });
 
 					function getData(pageObj) {
 

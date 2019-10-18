@@ -4,8 +4,9 @@
 **/
 
 + function() {
-	'use strict';
+    'use strict';
 
+    // define class
 	var VAffix = function(options) {
         this.obj = options;
 		this.runing();
@@ -72,7 +73,8 @@
 
 		});
 	}
-	var _vaffix = $.fn.vaffix;
+
+    var _vaffix = $.fn.vaffix;
 	$.fn.vaffix = Plugin;
 
 	// html model each

@@ -4,8 +4,9 @@
 **/
 
 +function ($) {
-  'use strict';
+    'use strict';
 
+  // define class
   function VScrollSpy(element, options) {
       this.$body = $(document.body);
       this.$scrollElement = $(element).is(document.body) ? $(window) : $(element);
