@@ -1,6 +1,6 @@
 
 /*
-hqs  v-scrolltobottom 滚动到底部触发事件
+hqs  v-reachottom 滚动到底部触发事件
 */
 +function(){
     'use strict';
