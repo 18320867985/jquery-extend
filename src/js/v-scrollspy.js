@@ -17,7 +17,7 @@
       this.activeTarget = null;
       this.scrollHeight = 0;
 
-      this.$scrollElement.on('scroll', $.proxy(this.runing, this));
+      this.$scrollElement.on('scroll.v-scrollspy', $.proxy(this.runing, this));
       this.refresh();
       this.runing();
 	
@@ -142,7 +142,7 @@
 
     $.fn.vscrollspy = Plugin;
 
-    $(window).on('load', function () {
+    $(window).on('load.v-scrollspy', function () {
         $('[data-spy="v-scrollspy"]').each(function () {
             var $spy = $(this);
             Plugin.call($spy, $spy.data());

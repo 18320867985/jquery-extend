@@ -19,7 +19,7 @@
 	VAffix.prototype.runing = function() {
 
 		var o = this.obj;
-		$(window).on("scroll", function() {
+        $(window).on("scroll.v-vaffix", function() {
 			var $this = o.el;
 			var win_srl_top = $(window).scrollTop();
 			var _top = o.top - o.offsetTop;

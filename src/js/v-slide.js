@@ -34,7 +34,6 @@
      
         var obj = this.el;
         var v = $(obj);
-     
         var wrap = v.find(".v-slide-wrap");
         var ul = $(".v-slide-wrap ul ", v);
         var lis = $(".v-slide-wrap ul li", v);
@@ -46,8 +45,7 @@
         if (bl) {
             sildeTime = 0;
         }
-
-   
+      
         if (this.option.isTopbottom) {
             $(obj).attr("data-topbottom", true);
             var _top = wrap.height() * index;
@@ -60,7 +58,6 @@
                     var _top = wrap.height() * index;
                     ul.stop().css("top", -_top);
                 }
-
                 if (index === 0) {
                     obj.index = index = obj.length / 2;
                     var _top2 = wrap.height() * index;
@@ -70,6 +67,7 @@
             });
 
         } else {
+            $(obj).removeAttr("data-topbottom");
             var _left = wrap.outerWidth() * index;
             ul.stop().animate({
                 left: "-" + _left
@@ -80,7 +78,6 @@
                     var _left = wrap.outerWidth() * index;
                     ul.stop().css("left", -_left);
                 }
-
                 if (index === 0) {
                     obj.index = index = obj.length / 2;
                     var _left2 = wrap.outerWidth() * index;
@@ -129,7 +126,7 @@
             clearInterval(obj.clearAutoId);
         }, function () {
             $(".v-btn", $(obj)).stop().fadeOut();
-                $this.autoPlay(obj);
+             $this.autoPlay(obj);
         });
 
         $(".v-btn-l,.v-cst-btn-l", $(obj)).on("click", function () {
@@ -157,15 +154,13 @@
                 var seltid = setTimeout(function () {
                     obj.isclick = true;
                     clearTimeout(seltid);
-                }, 700);
+                }, 600);
 
-                //obj.index = (obj.index + 1) % (obj.length);
                 if (obj.index >= obj.length - 1) {
                     obj.index = obj.length - 1;
                 } else {
                     obj.index = obj.index + 1;
                 }
-
 
                 $this.fadeImg(obj, obj.index, false);
             }
@@ -179,7 +174,7 @@
                 seltid = setTimeout(function () {
                     obj.isclick = true;
                     clearTimeout(seltid);
-                }, 700);
+                }, 600);
                 var _index = 0;
                 var radius_index = Number($(this).index());
                 if (obj.index >= (obj.length / 2)) {
@@ -206,13 +201,11 @@
             if (!data) {
                 var o = {};
                 o.time = parseInt($this.attr("data-time")) || VSlide.DEFAULTS.time;
-
                 //  «∑Ò…œœ¬scroll
                 o.isTopbottom = $this.get(0).hasAttribute("data-topbottom") ? true : false;
                 var p = $.extend({}, o, options);
-               
+              
                 $this.data('v-slide', data = new VSlide(this,p));
-
             }
             if (typeof option === 'string') {
                 data[option]();
@@ -227,7 +220,7 @@
 
     $(function () {
 
-        $(".v-slide").each(function (e) {
+        $(".v-slide.v-slide-runing").each(function (e) {
             var $this = $(this);
             Plugin.call($this);
 

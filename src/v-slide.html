@@ -50,7 +50,7 @@
         <!--默认左右轮播-->
         <div class="v-slide-pwr">
 
-            <div class="v-slide  " data-time="3000">
+            <div class="v-slide  v-slide-runing" data-time="3000" >
 
                 <div class="v-slide-wrap">
 
@@ -112,8 +112,9 @@
 
             <pre>
           html:
-           &lt;!--v-slide-->
-             &lt;div class="v-slide " data-time="3000">
+           &lt;!--v-slide 中v-slide-runing 的class表示组件运行-->
+        
+             &lt;div class="v-slide  v-slide-runing" data-time="3000">
              
                      &lt;div  class="v-slide-wrap">
                          &lt;ul class="clearfix">
@@ -238,7 +239,7 @@
         <h3 class="container">自定义上下-切换按钮</h3>
         <div class="v-slide-pwr">
 
-            <div class="v-slide" id="topbottom-btn" data-time="3000">
+            <div class="v-slide v-slide-runing" id="topbottom-btn" data-time="3000">
 
                 <div class="v-slide-wrap">
 
@@ -332,7 +333,6 @@
            
 
         </div>
-
 
         <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/v-message.js" type="text/javascript" charset="utf-8"></script>
