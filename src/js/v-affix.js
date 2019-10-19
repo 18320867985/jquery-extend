@@ -8,7 +8,7 @@
 
     // define class
 	var VAffix = function(options) {
-        this.obj = options;
+        this.options = options;
 		this.runing();
 	};
 
@@ -18,7 +18,7 @@
 
 	VAffix.prototype.runing = function() {
 
-		var o = this.obj;
+		var o = this.options;
         $(window).on("scroll.v-vaffix", function() {
 			var $this = o.el;
 			var win_srl_top = $(window).scrollTop();

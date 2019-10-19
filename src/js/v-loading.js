@@ -7,17 +7,26 @@
     'use strict';
 
     // define class
-	var VLoading = function(options) {
-        this.obj = options;
+	var VLoading = function(el,options) {
+		this.$el=$(el);
+        this.options = options;
 		this.runing();
 	};
 
 	VLoading.DEFAULTS = {
-		offsetTop: 0
+		
 	};
 
 	VLoading.prototype.runing = function() {
 
+	};
+	
+	VLoading.prototype.show = function() {
+	
+	};
+	
+	VLoading.prototype.hide = function() {
+	
 	};
 
 	function Plugin(option) {
@@ -33,7 +42,7 @@
 				var o = {};
 				
 				var p = $.extend({}, VLoading.DEFAULTS, o, options);
-				$this.data('v-loading', data = new VLoading(p));
+				$this.data('v-loading', data = new VLoading(el,p));
 
 			}
 			if (typeof option === 'string') {

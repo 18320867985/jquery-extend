@@ -8,7 +8,7 @@
 
     // define class
     var VSlide = function (el,options) {
-        this.option = options;
+        this.options = options;
         this.el = el;
         this.runing();
     };
@@ -26,7 +26,7 @@
         obj.clearAutoId = setInterval(function () {
             obj.index = (obj.index + 1) % (obj.length);
             $this.fadeImg(obj, obj.index, false);
-        }, $this.option.time);
+        }, $this.options.time);
 
     };
 
@@ -46,7 +46,7 @@
             sildeTime = 0;
         }
       
-        if (this.option.isTopbottom) {
+        if (this.options.isTopbottom) {
             $(obj).attr("data-topbottom", true);
             var _top = wrap.height() * index;
             ul.stop().animate({
