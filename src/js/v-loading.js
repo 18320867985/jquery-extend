@@ -8,7 +8,7 @@
 
     // define class
 	var VLoading = function(el,options) {
-		this.$el=$(el);
+		this.el=el;
         this.options = options;
 		this.runing();
 	};
@@ -21,7 +21,13 @@
 
 	};
 	
-	VLoading.prototype.show = function() {
+    VLoading.prototype.show = function () {
+     
+        var loadingBox = document.createElement("div");
+        var span = document.createElement("span");
+        span.innerHTML = "ÕýÔÚ¼ÓÔØ...";
+        loadingBox.appendChild(span);
+        $(this.el).append(loadingBox);
 	
 	};
 	
@@ -40,9 +46,8 @@
 			if (!data) {
 
 				var o = {};
-				
 				var p = $.extend({}, VLoading.DEFAULTS, o, options);
-				$this.data('v-loading', data = new VLoading(el,p));
+				$this.data('v-loading', data = new VLoading(this,p));
 
 			}
 			if (typeof option === 'string') {
