@@ -51,7 +51,7 @@
             <div class="input-group" style="width:600px;">
                 <input type="text" class="form-control txt" value="美女" placeholder="输入查询的内容">
                 <div class="input-group-btn">
-                    <button class="btn btn-primary" type="button">查询</button>
+                    <button class="btn btn-primary" type="button"  id="btn">查询</button>
                 </div>
                
             </div>
@@ -141,7 +141,7 @@
 
             function callback(obj) {
 
-                obj.data = $(".txt").val();
+                obj.data.txt = $(".txt").val();
                 obj.pageItem = 20; //  每页条数
 
                 //obj.data        // 页面数据
@@ -191,6 +191,7 @@
 
 
     </section>
+
 
     <!--mustache模板-->
     <script type="text/html" id="must">
@@ -243,7 +244,7 @@
 
             function callback(obj) {
 
-                obj.data = $(".txt").val();
+                obj.data.txt = $(".txt").val();
                 obj.pageItem = 20; //  每页条数
 
                 //obj.data        // 页面数据
@@ -280,6 +281,7 @@
 
             //点击其他元素触发事件
             $("#btn").on("click", function () {
+               
                 var pageIndex = 1;                              // 页码
                 $(this).trigger("pagingCallback", pageIndex);    // 触发 callback 函数
 
