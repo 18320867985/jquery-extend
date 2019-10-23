@@ -1998,4 +1998,162 @@ input:focus,
   position: fixed;
   z-index: 2; }
 
-/*全局*/
+.html-v-loading {
+  overflow: hidden;
+  padding-right: 17px; }
+
+.v-loading-pwr {
+  position: relative; }
+
+.v-loading-cnt {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  -webkit-perspective: 1200px;
+          perspective: 1200px;
+  text-align: center;
+  font-size: 0; }
+  .v-loading-cnt.v-fixed {
+    position: fixed; }
+  .v-loading-cnt:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle; }
+  .v-loading-cnt .v-loading-txt {
+    margin-left: 10px;
+    color: #409eff;
+    font-size: 14px;
+    vertical-align: middle;
+    letter-spacing: 2px; }
+
+.v-loading-dark .v-loading-txt {
+  color: #eae2e2; }
+
+.v-loading-cnt-bg {
+  display: none; }
+
+:root .v-loading-cnt-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.9); }
+  :root .v-loading-cnt-bg.v-loading-dark {
+    background: #000;
+    background: rgba(0, 0, 0, 0.5); }
+
+.v-loading-cnt-bgie8 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: rgba(255, 255, 255, 0.9);
+  filter: alpha(opacity=10); }
+  .v-loading-cnt-bgie8.v-loading-dark {
+    background: #000;
+    filter: alpha(opacity=50); }
+
+:root .v-loading-cnt-bgie8 {
+  display: none; }
+
+.v-loading-ball {
+  background-color: #fff;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  margin: 2px;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  border: 2px solid #409eff;
+  border-bottom-color: transparent;
+  height: 25px;
+  width: 25px;
+  background: transparent !important;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-animation: ball-rotate 0.75s 0s linear infinite;
+  animation: ball-rotate 0.75s 0s linear infinite; }
+
+.v-loading-dark .v-loading-ball {
+  border: 2px solid #eae2e2;
+  border-bottom-color: transparent; }
+
+@-webkit-keyframes ball-rotate {
+  0% {
+    -webkit-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1); }
+  50% {
+    -webkit-transform: rotate(180deg) scale(0.6);
+    transform: rotate(180deg) scale(0.6); }
+  100% {
+    -webkit-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1); } }
+
+@keyframes ball-rotate {
+  0% {
+    -webkit-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1); }
+  50% {
+    -webkit-transform: rotate(180deg) scale(0.6);
+    transform: rotate(180deg) scale(0.6); }
+  100% {
+    -webkit-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1); } }
+
+@-webkit-keyframes window-spin {
+  25% {
+    -webkit-transform: perspective(100px) rotateX(180deg) rotateY(0);
+    transform: perspective(100px) rotateX(180deg) rotateY(0); }
+  50% {
+    -webkit-transform: perspective(100px) rotateX(180deg) rotateY(180deg);
+    transform: perspective(100px) rotateX(180deg) rotateY(180deg); }
+  75% {
+    -webkit-transform: perspective(100px) rotateX(0) rotateY(180deg);
+    transform: perspective(100px) rotateX(0) rotateY(180deg); }
+  100% {
+    -webkit-transform: perspective(100px) rotateX(0) rotateY(0);
+    transform: perspective(100px) rotateX(0) rotateY(0); } }
+
+@keyframes window-spin {
+  25% {
+    -webkit-transform: perspective(100px) rotateX(180deg) rotateY(0);
+    transform: perspective(100px) rotateX(180deg) rotateY(0); }
+  50% {
+    -webkit-transform: perspective(100px) rotateX(180deg) rotateY(180deg);
+    transform: perspective(100px) rotateX(180deg) rotateY(180deg); }
+  75% {
+    -webkit-transform: perspective(100px) rotateX(0) rotateY(180deg);
+    transform: perspective(100px) rotateX(0) rotateY(180deg); }
+  100% {
+    -webkit-transform: perspective(100px) rotateX(0) rotateY(0);
+    transform: perspective(100px) rotateX(0) rotateY(0); } }
+
+.v-loading-window {
+  display: inline-block;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  background: #409eff;
+  vertical-align: middle;
+  -webkit-animation: window-spin 3s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite;
+  animation: window-spin 3s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite; }
+
+.v-loading-dark .v-loading-window {
+  background: #eae2e2; }
+
+.no-cssanimations .v-loading-window,
+.no-cssanimations .v-loading-ball {
+  display: none; }

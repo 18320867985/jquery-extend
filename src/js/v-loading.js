@@ -79,14 +79,14 @@
         if (this.isBody()) {
             loadingBox.setAttribute("class", "v-loading-cnt v-fixed ");
             if (this.dark === "dark") {
-                loadingBox.setAttribute("class", "v-loading-cnt  v-fixed   v-loading-dark");
+                loadingBox.setAttribute("class", "v-loading-cnt v-fixed v-loading-dark");
             }
             $("html").addClass("v-loading-pwr").append(loadingBox).addClass("html-v-loading");
         } else {
             
             loadingBox.setAttribute("class", "v-loading-cnt ");
             if (this.dark === "dark") {
-                loadingBox.setAttribute("class", "v-loading-cnt  v-loading-dark");
+                loadingBox.setAttribute("class", "v-loading-cnt v-loading-dark");
             }
             $(this.el).addClass("v-loading-pwr").append(loadingBox);
         }
@@ -96,9 +96,13 @@
 
     VLoading.prototype.hide = function () {
 
-
-        $(this.el).find(".v-loading-cnt").remove();
+        if (this.isBody()) {
+            $("html,body").find(".v-loading-cnt").remove();
+        } else {
+            $(this.el).find(".v-loading-cnt").remove();
+        }
         $("html").removeClass("html-v-loading");
+      
 
     };
 	
@@ -108,20 +112,14 @@
 		return this.each(function() {
 
 			var $this = $(this);
-			var data = $this.data('v-loading');
+			//var data = $this.data('v-loading');
 			var options = typeof option === 'object' && option;
 
-			if (!data) {
-
-				var o = {};
-				var p = $.extend({}, VLoading.DEFAULTS, o, options);
-                $this.data('v-loading', data = new VLoading(this, p, type, dark));
-
-			}
-			if (typeof option === 'string') {
-				data[option]();
-			}
-
+				var p = $.extend({}, VLoading.DEFAULTS,options);
+                var data = new VLoading(this, p, type, dark);
+                if (typeof option === 'string') {
+                    data[option]();
+                }
 		});
 	}
 

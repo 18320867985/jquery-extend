@@ -42,21 +42,17 @@
 
                 <pre>
                     js:
-
-                    // v-tab-btn 点击触发自定义事件
-                    $(".v-tab").on("v-tab", function (e, btnEl, cntEl) {
-
-                        // btnEl  v-tab-btn 对象
-                        // cntEl  v-tab-cnt-item 对象
-
-                        console.log("v-tab-btn 对象:", btnEl);
-                        console.log("v-tab-cnt-item 对象:",cntEl);
-                    });
+                        $(window).vloading("show","ball","dark");
+                        1.show=显示 hide=隐藏
+                        2. 1.默认为文字  2.ball 圆框icon 3.window 矩形icon
 
                 </pre>
 
+                <a class="btn btn-default v-loadin-btn">默认v-loading</a>
+                <a class="btn btn-primary v-loadin-btn-ball">v-loading type=ball</a>
+                <a class="btn btn-danger v-loadin-btn-window">v-loading  type=window</a>
 
-    </li>
+            </li>
 
     </ul>
 
@@ -70,10 +66,35 @@
 
     <script type="text/javascript">
         $(function () {
+            $(".v-loadin-btn").click(function () {
+                $(window).vloading("show");
+                setTimeout(function () {
 
-            $("body").vloading("show");
+                    $(window).vloading("hide");
+                }, 3000);
+            });
+
+            $(".v-loadin-btn-ball").click(function () {
+                $(window).vloading("show", "ball");
+                setTimeout(function () {
+
+                    $(window).vloading("hide");
+                }, 3000);
+            });
+
+
+
+            $(".v-loadin-btn-window").click(function () {
+                $(window).vloading("show", "window");
+                setTimeout(function () {
+
+                    $(window).vloading("hide");
+                }, 3000);
+            });
 
         });
+
+
 
     </script>
 </body>
