@@ -1,10 +1,5 @@
 /**
  * hqs  v-vloading
- * 
- * type 
- * 1.ball 
- * 2.window
-
 **/
 
 + function() {
