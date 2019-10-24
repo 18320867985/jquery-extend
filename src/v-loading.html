@@ -29,7 +29,7 @@
              height:400px;
              margin: 20px 0;
               padding:20px;
-              font-size:20px;
+              font-size:16px;
                overflow:hidden;
              border: 1px solid #ddd;
         }
@@ -39,7 +39,7 @@
 
 <body>
     <div class="container">
-        <h1>正在加载-loading</h1>
+        <h1>加载icon-loading</h1>
         <div>
             <a class="btn-link" href="./js/v-loading.js">查看 v-loading.js</a>
             <a class="btn-link" href="./component-scss/v-loading.scss">查看 v-loading.scss</a>
@@ -47,13 +47,24 @@
         <ul>
 
             <li>
-
+                <h3>窗体加载</h3>
+         
+                <pre>
+                    提示：
+                    兼容ie9 引用 modernizr-2.6.2.min.js
+                    &lt;script src="js/modernizr-2.6.2.min.js" type="text/javascript" charset="utf-8"> &lt;/script>
+                </pre>
                 <pre>
                     js:
-                        $(window).vloading("show","ball","dark");
-                        1.show=显示 hide=隐藏
-                        2. 1.默认为文字  2.ball 圆框icon 3.window 矩形icon
+                        $(window).vloading("show", {type:"dark",icon:"ball",text:"loading..."});
+                           参数1 字符串类型string  show=显示 hide=隐藏
+                           参数2 对象类型 object{}
+                            {
+                            type:"dark",     // mask背景加深
+                            icon:"ball",    // 加载icon 默认没有icon 图标icon有: ball,window;
+                            text:"loading..." //设置加载为文字
 
+                            }
                 </pre>
 
                 <a class="btn btn-default v-loadin-btn">默认v-loading</a>
@@ -67,6 +78,7 @@
             </li>
 
             <li>
+                <h3>元素框加载</h3>
                 <div class="box">
                     <p>
                         为迎接新中国七十华诞，国庆前夕，江苏13市联合开展了“祖国，你好”快闪活动。
@@ -101,11 +113,11 @@
                 <a class="btn btn-success v-loadin-box3">元素加载-window</a>
             </li>
 
-    </ul>
+        </ul>
 
     </div>
 
-
+    <script src="js/modernizr-2.6.2.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/v-loading.js" type="text/javascript" charset="utf-8"></script>
@@ -114,36 +126,36 @@
     <script type="text/javascript">
         $(function () {
             $(".v-loadin-btn").click(function () {
-                $("body").vloading("show", {text:"loading..." });
+                $("body").vloading("show", { text: "loading..." });
                 setTimeout(function () {
 
-                   $("body").vloading("hide");
+                    $("body").vloading("hide");
                 }, 3000);
             });
 
             $(".v-loadin-btn-ball").click(function () {
-                $(window).vloading("show", {icon:"ball"});
+                $(window).vloading("show", { icon: "ball" });
                 setTimeout(function () {
 
                     $(window).vloading("hide");
                 }, 3000);
             });
 
-          
+
 
             $(".v-loadin-btn-window").click(function () {
-                $(window).vloading("show", {icon:"window"});
+                $(window).vloading("show", { icon: "window" });
                 setTimeout(function () {
 
                     $(window).vloading("hide");
                 }, 3000);
             });
 
-              /***********************************/
+            /***********************************/
 
-          
+
             $(".v-loadin-btn2").click(function () {
-                $(window).vloading("show", {type:"dark"});
+                $(window).vloading("show", { type: "dark" });
                 setTimeout(function () {
 
                     $(window).vloading("hide");
@@ -151,7 +163,7 @@
             });
 
             $(".v-loadin-btn-ball2").click(function () {
-                $(window).vloading("show", {type:"dark",icon:"ball",text:"loading..."});
+                $(window).vloading("show", { type: "dark", icon: "ball", text: "loading..." });
                 setTimeout(function () {
 
                     $(window).vloading("hide");
@@ -161,31 +173,31 @@
 
 
             $(".v-loadin-btn-window2").click(function () {
-                $(window).vloading("show", {type:"dark",icon:"window"});
+                $(window).vloading("show", { type: "dark", icon: "window" });
                 setTimeout(function () {
 
                     $(window).vloading("hide");
                 }, 3000);
-              });
+            });
 
             $(".v-loadin-box").click(function () {
-                
-                $(".box").vloading("show", {icon:"ball"});
+
+                $(".box").vloading("show", { icon: "ball" });
                 setTimeout(function () {
                     $(".box").vloading("hide");
                 }, 3000);
             });
 
             $(".v-loadin-box2").click(function () {
-                
-                $(".box").vloading("show", {type:"dark",icon:"ball"});
+
+                $(".box").vloading("show", { type: "dark", icon: "ball" });
                 setTimeout(function () {
                     $(".box").vloading("hide");
                 }, 3000);
             });
             $(".v-loadin-box3").click(function () {
-                
-                $(".box").vloading("show", {type:"dark",icon:"window"});
+
+                $(".box").vloading("show", { type: "dark", icon: "window" });
                 setTimeout(function () {
                     $(".box").vloading("hide");
                 }, 3000);
