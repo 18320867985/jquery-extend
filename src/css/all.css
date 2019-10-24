@@ -2155,6 +2155,42 @@ input:focus,
 .v-loading-dark .v-loading-window {
   background: #eae2e2; }
 
+.v-loading-cnt-fail {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  color: #666; }
+
+.v-loading-cnt-fail-ttl {
+  display: inline-block;
+  margin-right: 5px; }
+  .v-loading-cnt-fail-ttl.v-loading-fail-tb {
+    display: block;
+    margin-bottom: 5px; }
+
+.v-loading-cnt-fail-reload {
+  display: inline-block;
+  color: #409eff;
+  cursor: pointer;
+  font-size: 14px; }
+
+.v-loading-dark .v-loading-cnt-fail {
+  color: #eae2e2; }
+
+.v-loading-dark .v-loading-cnt-fail-reload {
+  padding: 1px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.075);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.075);
+  color: #eae2e2;
+  border: 1px solid #eae2e2;
+  -webkit-transition: all .25s;
+  transition: all .25s; }
+  .v-loading-dark .v-loading-cnt-fail-reload:hover {
+    background: #eae2e2;
+    color: #333; }
+
 .no-cssanimations .v-loading-window,
 .no-cssanimations .v-loading-ball {
   display: none; }

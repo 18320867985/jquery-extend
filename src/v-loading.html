@@ -113,6 +113,24 @@
                 <a class="btn btn-success v-loadin-box3">元素加载-window</a>
             </li>
 
+            <li>
+                <h3>加载失败</h3>
+                <a class="btn btn-primary v-loadin-fail">元素加载-失败</a>
+                <a class="btn btn-danger v-loadin-fail2">元素加载-ball-失败</a>
+                <pre>
+                    js:
+                        $(window).vloading("fail", { errttl: "数据加载失败了", reload: "重新加载",direction:"tb" }, function (e) {
+                         
+                            console.log("重新加载")
+
+                        });
+
+                        errttl=>加载标题
+                        reload=>重新加载按钮
+                        direction=>默认一行显示  “tb”表示两行显示 
+                </pre>
+            </li>
+
         </ul>
 
     </div>
@@ -125,6 +143,8 @@
 
     <script type="text/javascript">
         $(function () {
+
+            // 1
             $(".v-loadin-btn").click(function () {
                 $("body").vloading("show", { text: "loading..." });
                 setTimeout(function () {
@@ -151,8 +171,7 @@
                 }, 3000);
             });
 
-            /***********************************/
-
+            //  2
 
             $(".v-loadin-btn2").click(function () {
                 $(window).vloading("show", { type: "dark" });
@@ -180,6 +199,8 @@
                 }, 3000);
             });
 
+            // 3
+
             $(".v-loadin-box").click(function () {
 
                 $(".box").vloading("show", { icon: "ball" });
@@ -202,6 +223,38 @@
                     $(".box").vloading("hide");
                 }, 3000);
             });
+
+            // 4
+
+              $(".v-loadin-fail").click(function () {
+                  failfn1();
+               
+              });
+
+            function failfn1() {
+                 $(".box").vloading("show", { icon: "ball" });
+                  setTimeout(function () {
+                      $(".box").vloading("fail", {}, function (e) {
+                           failfn1();
+                      });
+                }, 3000);
+            }
+
+            $(".v-loadin-fail2").click(function () {
+                failfn2();
+            });
+
+            function failfn2() {
+                
+                $(".box").vloading("show", { type: "dark", icon: "ball" });
+                setTimeout(function () {
+                    $(".box").vloading("fail", {direction:"tb"}, function (e) {
+                        failfn2();
+                      });
+                }, 3000);
+
+            }
+
 
         });
 
