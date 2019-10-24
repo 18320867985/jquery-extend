@@ -2011,7 +2011,7 @@ input:focus,
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 10;
   -webkit-perspective: 1200px;
           perspective: 1200px;
   text-align: center;
@@ -2028,7 +2028,8 @@ input:focus,
     color: #409eff;
     font-size: 14px;
     vertical-align: middle;
-    letter-spacing: 2px; }
+    letter-spacing: 1px;
+    font-weight: 100; }
 
 .v-loading-dark .v-loading-txt {
   color: #eae2e2; }
@@ -2047,7 +2048,7 @@ input:focus,
   background-color: rgba(255, 255, 255, 0.9); }
   :root .v-loading-cnt-bg.v-loading-dark {
     background: #000;
-    background: rgba(0, 0, 0, 0.5); }
+    background: rgba(0, 0, 0, 0.6); }
 
 .v-loading-cnt-bgie8 {
   position: absolute;
@@ -2060,7 +2061,7 @@ input:focus,
   filter: alpha(opacity=10); }
   .v-loading-cnt-bgie8.v-loading-dark {
     background: #000;
-    filter: alpha(opacity=50); }
+    filter: alpha(opacity=60); }
 
 :root .v-loading-cnt-bgie8 {
   display: none; }

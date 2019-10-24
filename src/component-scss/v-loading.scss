@@ -16,7 +16,7 @@ $v-loading: #409eff ;
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: 2;
+    z-index: 10;
     perspective: 1200px;
     text-align: center;
     font-size: 0;
@@ -39,7 +39,8 @@ $v-loading: #409eff ;
         color: $v-loading;
         font-size: 14px;
         vertical-align: middle;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
+        font-weight:100;
     }
 }
 
@@ -62,7 +63,7 @@ $v-loading: #409eff ;
 
     &.v-loading-dark {
         background: #000;
-        background: rgba(0,0,0,.5);
+        background: rgba(0,0,0,.6);
     }
 }
 
@@ -78,7 +79,7 @@ $v-loading: #409eff ;
 
     &.v-loading-dark {
         background: #000;
-        filter: alpha(opacity=50);
+        filter: alpha(opacity=60);
     }
 }
 

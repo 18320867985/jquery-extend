@@ -11,11 +11,11 @@
     'use strict';
 
     // define class
-	var VLoading = function(el,options,type,dark) {
+	var VLoading = function(el,options,props) {
         this.el = el;
-        this.type = $.trim(type);
         this.options = options;
-        this.dark = dark;
+        this.props = props instanceof Object ? props : {};   // { icon :"ball",type:"dark",text:"loading"}
+
 
 	};
 
@@ -35,35 +35,35 @@
        
 	};
 	
-    VLoading.prototype.show = function () {
+    VLoading.prototype.show = function (props) {
         this.deleleElement();
+        this.props = props instanceof Object ? props : {};   // { icon :"ball",type:"dark",text:"loading"}
 
         var loadingBox = document.createElement("div");
-       
-
         var bg = document.createElement("div");
         bg.setAttribute("class", "v-loading-cnt-bg");
-        if (this.dark === "dark") {
+        if (this.props.type === "dark") {
             bg.setAttribute("class", "v-loading-cnt-bg v-loading-dark");
         }
         loadingBox.appendChild(bg);
 
+        // mask
         var bgie8 = document.createElement("div");
         bgie8.setAttribute("class", "v-loading-cnt-bgie8");
-        if (this.dark === "dark") {
+        if (this.props.type === "dark") {
             bgie8.setAttribute("class", "v-loading-cnt-bgie8 v-loading-dark");
         }
         loadingBox.appendChild(bgie8);
 
-        // icon-1-ie9
+        // icon
         if (window.addEventListener) {
-            if (this.type === "ball") {
+            if (this.props.icon === "ball") {
                 var rotate = document.createElement("div");
                 rotate.setAttribute("class", "v-loading-ball");
                 loadingBox.appendChild(rotate);
             }
 
-            else if (this.type === "window") {
+            else if (this.props.icon === "window") {
                 var square = document.createElement("div");
                 square.setAttribute("class", "v-loading-window");
                 loadingBox.appendChild(square);
@@ -71,21 +71,24 @@
 
         }
 
+        // text
         var span = document.createElement("span");
         span.setAttribute("class", "v-loading-txt");
-        span.innerHTML = "正在加载...";
+        span.innerHTML = this.props.text ? this.props.text:"正在加载...";
         loadingBox.appendChild(span);
 
+
+        // type
         if (this.isBody()) {
             loadingBox.setAttribute("class", "v-loading-cnt v-fixed ");
-            if (this.dark === "dark") {
+            if (this.props.type === "dark") {
                 loadingBox.setAttribute("class", "v-loading-cnt v-fixed v-loading-dark");
             }
             $("html").addClass("v-loading-pwr").append(loadingBox).addClass("html-v-loading");
         } else {
             
             loadingBox.setAttribute("class", "v-loading-cnt ");
-            if (this.dark === "dark") {
+            if (this.props.type === "dark") {
                 loadingBox.setAttribute("class", "v-loading-cnt v-loading-dark");
             }
             $(this.el).addClass("v-loading-pwr").append(loadingBox);
@@ -95,9 +98,9 @@
     };
 
     VLoading.prototype.hide = function () {
-
+     
         if (this.isBody()) {
-            $("html,body").find(".v-loading-cnt").remove();
+            $("html >.v-loading-cnt,body .v-loading-cnt").remove();
         } else {
             $(this.el).find(".v-loading-cnt").remove();
         }
@@ -107,19 +110,24 @@
     };
 	
 
-	function Plugin(option,type,dark) {
+	function Plugin(option,props) {
 
 		return this.each(function() {
 
 			var $this = $(this);
-			//var data = $this.data('v-loading');
-			var options = typeof option === 'object' && option;
+            var data = $this.data('v-loading');
 
-				var p = $.extend({}, VLoading.DEFAULTS,options);
-                var data = new VLoading(this, p, type, dark);
-                if (typeof option === 'string') {
-                    data[option]();
-                }
+            var options = typeof option === 'object' && option;
+            if (!data) {
+
+                var p = $.extend({}, VLoading.DEFAULTS, options);
+                $this.data('v-loading', data = new VLoading(this, p, props));
+
+            }
+            if (typeof option === 'string') {
+                data[option](props);
+            }
+            
 		});
 	}
 
