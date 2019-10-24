@@ -146,7 +146,7 @@
 
             // 1
             $(".v-loadin-btn").click(function () {
-                $("body").vloading("show", { text: "loading..." });
+                $(window).vloading("show", { text: "loading..." });
                 setTimeout(function () {
 
                     $("body").vloading("hide");

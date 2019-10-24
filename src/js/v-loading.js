@@ -24,7 +24,7 @@
     };
 
     VLoading.prototype.isBody = function () {
-        if (this.el === window || this.el === document || this.el.nodeName === "HTML" || this.el.nodeName === "BODY") {
+        if (this.el === window || this.el === document || this.el.nodeName === "HTML" ) {
             return true;
         }
         return false;
@@ -34,7 +34,7 @@
         if (this.isBody()) {
             $("html >.v-loading-cnt").remove();
         } else {
-            $(this.el).find(".v-loading-cnt").remove();
+            $(this.el).find(">.v-loading-cnt").remove();
         }
        
 
@@ -44,7 +44,7 @@
         if (this.isBody()) {
             $("html >.v-loading-cnt>.v-loading-cnt-fail").remove();
         } else {
-            $(this.el).find(".v-loading-cnt>.v-loading-cnt-fail").remove();
+            $(this.el).find(">.v-loading-cnt>.v-loading-cnt-fail").remove();
         }
 
 
@@ -134,7 +134,15 @@
     VLoading.prototype.fail = function (props, fn) {
 
             //  删除fail的事件
-        $(document).off("click", ".v-loading-cnt-fail-reload");
+         //  $(document).off("click", ".v-loading-cnt-fail-reload");
+        if (this.isBody()) {
+            //  删除fail的事件
+            $(document).off("click", "html >.v-loading-cnt .v-loading-cnt-fail-reload");
+
+        } else {
+            $(document).off("click", $(this.el).find(".v-loading-cnt-fail-reload"));
+           
+        }
         this.deleleElementByFail();
 
          props = props instanceof Object ? props : {};
@@ -156,21 +164,35 @@
         failEl.appendChild(failEl_reload);
 
         if (this.isBody()) {
+            //  删除fail的事件
+            $(document).off("click", "html >.v-loading-cnt .v-loading-cnt-fail-reload");
+
             $("html >.v-loading-cnt>.v-loading-icon").remove();
             $("html >.v-loading-cnt>.v-loading-txt").remove();
             $("html >.v-loading-cnt").append(failEl);
+
+            $(document).on("click", "html >.v-loading-cnt .v-loading-cnt-fail-reload", function (e) {
+
+                if (typeof fn === "function") {
+                    fn(e);
+                }
+            });
+
         } else {
+            $(document).off("click", $(this.el).find(".v-loading-cnt-fail-reload"));
             $(this.el).find(".v-loading-icon").remove();
             $(this.el).find(".v-loading-txt").remove();
             $(this.el).find(".v-loading-cnt").append(failEl);
+
+            $(document).on("click", $(this.el).find(".v-loading-cnt-fail-reload"), function (e) {
+
+                if (typeof fn === "function") {
+                    fn(e);
+                }
+            });
         }
         
-        $(document).on("click", ".v-loading-cnt-fail-reload", function (e) {
-
-            if (typeof fn === "function") {
-                fn(e);
-            }
-        });
+        
     };
 
     function Plugin(option, props,callback) {
