@@ -1,13 +1,15 @@
 
 
-$v-loading: #409eff ;
+$v-loading: #409eff;
+$v-loading-df: #eae2e2 ;
+
 .html-v-loading {
     overflow: hidden;
     padding-right: 17px;
 }
-.v-loading-pwr {
 
-     position:relative; 
+.v-loading-pwr {
+    position: relative;
 }
 
 .v-loading-cnt {
@@ -40,7 +42,7 @@ $v-loading: #409eff ;
         font-size: 14px;
         vertical-align: middle;
         letter-spacing: 1px;
-        font-weight:100;
+        font-weight: 100;
     }
 }
 
@@ -51,6 +53,7 @@ $v-loading: #409eff ;
 .v-loading-cnt-bg {
     display: none;
 }
+
 :root .v-loading-cnt-bg {
     position: absolute;
     left: 0;
@@ -108,7 +111,7 @@ $v-loading: #409eff ;
 }
 
 .v-loading-dark .v-loading-ball {
-    border: 2px solid #eae2e2;
+    border: 2px solid $v-loading-df;
     border-bottom-color: transparent;
 }
 
@@ -192,8 +195,59 @@ $v-loading: #409eff ;
 }
 
 .v-loading-dark .v-loading-window {
-    background: #eae2e2;
+    background: $v-loading-df;
 }
+
+.v-loading-cnt-fail{
+    display:inline-block;
+    vertical-align:middle;
+    font-size:14px;
+    color:#666;
+   
+}
+
+
+.v-loading-cnt-fail-ttl {
+    display: inline-block;
+     margin-right:5px;
+
+    &.v-loading-fail-tb {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
+.v-loading-cnt-fail-reload {
+    display: inline-block;
+   
+    color: $v-loading;
+    cursor: pointer;
+    font-size: 14px;
+
+   
+}
+
+.v-loading-dark {
+    .v-loading-cnt-fail {
+        color: $v-loading-df;
+    }
+
+    .v-loading-cnt-fail-reload {
+        padding: 1px 8px;
+        border-radius: 5px;
+        font-size: 12px;
+        box-shadow: 0 0 5px rgba(0,0,0,.075);
+        color: $v-loading-df;
+        border: 1px solid $v-loading-df;
+        transition: all .25s;
+
+        &:hover {
+            background: $v-loading-df;
+            color: #333;
+           
+        }
+    }
+}
+
 .no-cssanimations {
     .v-loading-window,
     .v-loading-ball {
