@@ -31,7 +31,22 @@
     };
 
     VLoading.prototype.deleleElement = function () {
-        $(this.el).find(".v-loading-cnt").remove();
+        if (this.isBody()) {
+            $("html >.v-loading-cnt").remove();
+        } else {
+            $(this.el).find(".v-loading-cnt").remove();
+        }
+       
+
+    };
+
+    VLoading.prototype.deleleElementByFail = function () {
+        if (this.isBody()) {
+            $("html >.v-loading-cnt>.v-loading-cnt-fail").remove();
+        } else {
+            $(this.el).find(".v-loading-cnt>.v-loading-cnt-fail").remove();
+        }
+
 
     };
 
@@ -116,9 +131,12 @@
 
     };
 
-    VLoading.prototype.fail = function (props,fn) {
+    VLoading.prototype.fail = function (props, fn) {
+
             //  删除fail的事件
         $(document).off("click", ".v-loading-cnt-fail-reload");
+        this.deleleElementByFail();
+
          props = props instanceof Object ? props : {};
         var failEl = document.createElement("div");
         failEl.setAttribute("class", "v-loading-cnt-fail");
