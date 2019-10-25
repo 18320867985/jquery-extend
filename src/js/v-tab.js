@@ -1,29 +1,4 @@
 
-
-
-+function () {
-
-    $(document).on("click", "[data-toggle=v-tab]", function (e) {
-        e.preventDefault();
-
-        // btns
-        var $p = $(this).closest(".v-tab");
-        $(".v-tab-btn", $p).removeClass("active");
-        $(this).addClass("active");
-        var target = $(this).attr("data-target") || "";
-
-        //  content
-        $(".v-tab-cnt-item", $p).removeClass("active");
-        $(target, $p).addClass("active");
-
-        // 自定义事件
-        $(this).trigger("v-tab", [this, $(target, $p).get(0)]);
-
-    });
-
-}();
-
-
 /*
  * hqs  v-tab
  *
@@ -40,25 +15,22 @@
       
     };
 
-    VTab.DEFAULTS = {
-     
-    };
-
+   
     VTab.prototype.show = function () {
 
         var $this = $(this.el);
-            // btns
+        // btns
         var $p = $this.closest(".v-tab");
-            $(".v-tab-btn", $p).removeClass("active");
+        $(".v-tab-btn", $p).removeClass("active");
         $this.addClass("active");
         var target = $this.attr("data-target") || $this.attr("href")||"";
 
-            //  content
-            $(".v-tab-cnt-item", $p).removeClass("active");
-            $(target, $p).addClass("active");
+        //  content
+        $(".v-tab-cnt-item", $p).removeClass("active");
+        $(target, $p).addClass("active");
 
-            // 自定义事件
-            $this.trigger("v-tab", [this.el, $(target, $p).get(0)]);
+        // 自定义事件
+        $this.trigger("v-tab", [this.el, $(target, $p).get(0)]);
 
   
     };
@@ -72,7 +44,7 @@
             var options = typeof option === 'object' && option;
 
             if (!data) {
-                var p = $.extend({}, VTab.DEFAULTS,options);
+                var p = $.extend({},options);
                 $this.data('v-tab', data = new VTab(this,p));
             }
             if (typeof option === 'string') {
@@ -88,13 +60,10 @@
 
     var clickHandler = function (event) {
         event.preventDefault();
-        Plugin.call($(this));
+        Plugin.call($(this),"show");
     };
     // html model each
-    $(document).on("click.v-tab", "[data-toggle=v-tab]", function () { 
-
-
-    });
+    $(document).on("click.v-tab", "[data-toggle=v-tab]", clickHandler);
 
 
 }();

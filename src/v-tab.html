@@ -65,7 +65,7 @@
         <ul>
 
             <li>
-
+                <h3>html 模式</h3>
                 <div class="v-tab">
 
                     <!--tab 按钮列表-->
@@ -122,6 +122,21 @@
                     </div>
 
                 </div>
+                <h3>js模式</h3>
+                <button class="btn btn-primary" type="button" id="tab_1">
+                     选择塑料助剂
+                </button>
+                <button class="btn btn-success" type="button" id="tab_2">
+                    选择再生塑料
+                </button>
+                <button class="btn btn-danger" type="button" id="tab_3">
+                    选择塑料管材
+                </button>
+                <pre>
+                    $("#tab_1").click(function () {
+                        $("[data-target=#d]").vtab("show");
+                    })
+                </pre>
 
                 <pre>
                 html：
@@ -176,7 +191,7 @@
 
 
              </pre>
-              
+
                 <pre>
                     js:
 
@@ -193,7 +208,7 @@
                 </pre>
 
 
-    </li>
+            </li>
 
     </ul>
 
@@ -218,6 +233,18 @@
                 console.log("v-tab-cnt-item 对象:",cntEl);
             });
 
+            $("#tab_1").click(function () {
+                $("[data-target=#c]").vtab("show");
+            });
+
+            $("#tab_2").click(function () {
+                $("[data-target=#d]").vtab("show");
+            });
+            
+            $("#tab_3").click(function () {
+                $("[data-target=#e]").vtab("show");
+            });
+      
 
         });
 
