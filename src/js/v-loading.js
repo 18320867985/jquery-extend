@@ -37,7 +37,6 @@
             $(this.el).find(">.v-loading-cnt").remove();
         }
        
-
     };
 
     VLoading.prototype.deleleElementByFail = function () {
@@ -46,7 +45,6 @@
         } else {
             $(this.el).find(">.v-loading-cnt>.v-loading-cnt-fail").remove();
         }
-
 
     };
 
@@ -110,9 +108,6 @@
             $(this.el).addClass("v-loading-pwr").append(loadingBox);
         }
 
-   
-
-
     };
 
     VLoading.prototype.hide = function () {
@@ -126,23 +121,11 @@
         } else {
             $(this.el).find(".v-loading-cnt").remove();
         }
-       
-
 
     };
 
     VLoading.prototype.fail = function (props, fn) {
 
-            //  删除fail的事件
-         //  $(document).off("click", ".v-loading-cnt-fail-reload");
-        if (this.isBody()) {
-            //  删除fail的事件
-            $(document).off("click", "html >.v-loading-cnt .v-loading-cnt-fail-reload");
-
-        } else {
-            $(document).off("click", $(this.el).find(".v-loading-cnt-fail-reload"));
-           
-        }
         this.deleleElementByFail();
 
          props = props instanceof Object ? props : {};
@@ -152,46 +135,50 @@
         var failEl_ttl = document.createElement("div");
         failEl_ttl.setAttribute("class", "v-loading-cnt-fail-ttl");
         failEl_ttl.innerHTML = props.errttl ? props.errttl : "~数据加载失败了~";
-        if ($.trim(props.direction) === "tb") {
-            failEl_ttl.setAttribute("class", "v-loading-cnt-fail-ttl v-loading-fail-tb ");
+
+        if (window.addEventListener) {
+            if ($.trim(props.direction) === "tb") {
+                failEl_ttl.setAttribute("class", "v-loading-cnt-fail-ttl v-loading-fail-tb ");
+            }
+        } else {
+            failEl_ttl.setAttribute("class", "v-loading-cnt-fail-ttl v-loading-fail-tb v-loading-cnt-fail-ttl-ie8");
+            
         }
+       
+
         failEl.appendChild(failEl_ttl);
 
         var failEl_reload = document.createElement("div");
-        failEl_reload.setAttribute("class", "v-loading-cnt-fail-reload");
+      
+        if (window.addEventListener) {
+            failEl_reload.setAttribute("class", "v-loading-cnt-fail-reload");
+        } else {
+            failEl_reload.setAttribute("class", "v-loading-cnt-fail-reload v-loading-cnt-fail-reload-ie8");
+        }
         
         failEl_reload.innerHTML = props.reload ? props.reload : "重新加载";
+        if (typeof fn === "function") {
+            failEl_reload.onclick = fn;
+        }
+       
         failEl.appendChild(failEl_reload);
 
         if (this.isBody()) {
-            //  删除fail的事件
-            $(document).off("click", "html >.v-loading-cnt .v-loading-cnt-fail-reload");
-
+          
             $("html >.v-loading-cnt>.v-loading-icon").remove();
             $("html >.v-loading-cnt>.v-loading-txt").remove();
             $("html >.v-loading-cnt").append(failEl);
 
-            $(document).on("click", "html >.v-loading-cnt .v-loading-cnt-fail-reload", function (e) {
-
-                if (typeof fn === "function") {
-                    fn(e);
-                }
-            });
-
         } else {
-            $(document).off("click", $(this.el).find(".v-loading-cnt-fail-reload"));
+          
             $(this.el).find(".v-loading-icon").remove();
             $(this.el).find(".v-loading-txt").remove();
             $(this.el).find(".v-loading-cnt").append(failEl);
 
-            $(document).on("click", $(this.el).find(".v-loading-cnt-fail-reload"), function (e) {
-
-                if (typeof fn === "function") {
-                    fn(e);
-                }
-            });
+         
         }
-        
+
+      
         
     };
 

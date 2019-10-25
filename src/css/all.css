@@ -2057,8 +2057,9 @@ input:focus,
   top: 0;
   bottom: 0;
   z-index: -1;
+  background-color: #000;
   background-color: rgba(255, 255, 255, 0.9);
-  filter: alpha(opacity=10); }
+  filter: alpha(opacity=60); }
   .v-loading-cnt-bgie8.v-loading-dark {
     background: #000;
     filter: alpha(opacity=60); }
@@ -2167,12 +2168,19 @@ input:focus,
   .v-loading-cnt-fail-ttl.v-loading-fail-tb {
     display: block;
     margin-bottom: 5px; }
+  .v-loading-cnt-fail-ttl.v-loading-cnt-fail-ttl-ie8 {
+    color: #eae2e2; }
 
 .v-loading-cnt-fail-reload {
   display: inline-block;
   color: #409eff;
   cursor: pointer;
   font-size: 14px; }
+  .v-loading-cnt-fail-reload.v-loading-cnt-fail-reload-ie8 {
+    color: #eae2e2;
+    border: 1px solid #eae2e2;
+    padding: 1px 5px;
+    border-radius: 5px; }
 
 .v-loading-dark .v-loading-cnt-fail {
   color: #eae2e2; }

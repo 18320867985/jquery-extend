@@ -25,14 +25,15 @@
             margin: 10px 0;
         }
 
-        .box {
-             height:400px;
+        .box ,  .box2{
+             height:200px;
              margin: 20px 0;
               padding:20px;
-              font-size:16px;
-               overflow:hidden;
+              font-size:14px;
+              overflow:hidden;
              border: 1px solid #ddd;
         }
+
        
     </style>
 </head>
@@ -48,7 +49,7 @@
 
             <li>
                 <h3>窗体加载</h3>
-         
+
                 <pre>
                     提示：
                     兼容ie9 引用 modernizr-2.6.2.min.js
@@ -130,6 +131,41 @@
                         direction=>默认一行显示  “tb”表示两行显示 
                 </pre>
             </li>
+            <li>
+                <h3>元素框加载</h3>
+                <div class="box2">
+                    <p>
+                        为迎接新中国七十华诞，国庆前夕，江苏13市联合开展了“祖国，你好”快闪活动。
+
+                        淮安的城市快闪在古老的大运河畔拉开帷幕，从千年古镇河下，到里运河文化长廊，美景和歌声中处处流淌着运河的灵韵。中学生组成的交响乐团现场演奏，女声合唱团献唱《茉莉花》婉转悠扬。
+
+                        淮安是开国总理周恩来的故乡。周恩来纪念馆广场上，淮安荣誉市民、周总理扮演者刘劲，著名诗人赵恺与全国道德模范、最美家庭等各界代表共同高唱《歌唱祖国》!
+
+                        “祖国，你好”系列快闪活动由中共江苏省委宣传部主办，13个设区市市委宣传部承办，现代快报总体策划统筹。快闪视频近期陆续在江苏公共新闻频道播出，中国江苏网、交汇点、荔枝新闻、现代快报+ZAKER南京以及各市新媒体平台同步上线。
+                    </p>
+                    <p>
+                        为迎接新中国七十华诞，国庆前夕，江苏13市联合开展了“祖国，你好”快闪活动。
+
+                        淮安的城市快闪在古老的大运河畔拉开帷幕，从千年古镇河下，到里运河文化长廊，美景和歌声中处处流淌着运河的灵韵。中学生组成的交响乐团现场演奏，女声合唱团献唱《茉莉花》婉转悠扬。
+
+                        淮安是开国总理周恩来的故乡。周恩来纪念馆广场上，淮安荣誉市民、周总理扮演者刘劲，著名诗人赵恺与全国道德模范、最美家庭等各界代表共同高唱《歌唱祖国》!
+
+                        “祖国，你好”系列快闪活动由中共江苏省委宣传部主办，13个设区市市委宣传部承办，现代快报总体策划统筹。快闪视频近期陆续在江苏公共新闻频道播出，中国江苏网、交汇点、荔枝新闻、现代快报+ZAKER南京以及各市新媒体平台同步上线。
+                    </p>
+                    <p>
+                        为迎接新中国七十华诞，国庆前夕，江苏13市联合开展了“祖国，你好”快闪活动。
+
+                        淮安的城市快闪在古老的大运河畔拉开帷幕，从千年古镇河下，到里运河文化长廊，美景和歌声中处处流淌着运河的灵韵。中学生组成的交响乐团现场演奏，女声合唱团献唱《茉莉花》婉转悠扬。
+
+                        淮安是开国总理周恩来的故乡。周恩来纪念馆广场上，淮安荣誉市民、周总理扮演者刘劲，著名诗人赵恺与全国道德模范、最美家庭等各界代表共同高唱《歌唱祖国》!
+
+                        “祖国，你好”系列快闪活动由中共江苏省委宣传部主办，13个设区市市委宣传部承办，现代快报总体策划统筹。快闪视频近期陆续在江苏公共新闻频道播出，中国江苏网、交汇点、荔枝新闻、现代快报+ZAKER南京以及各市新媒体平台同步上线。
+                    </p>
+                </div>
+                <a class="btn btn-primary v-loadin-fail-t">元素加载-失败</a>
+                <a class="btn btn-danger v-loadin-fail2-t">元素加载-ball-失败</a>
+            </li>
+
 
         </ul>
 
@@ -149,7 +185,7 @@
                 $(window).vloading("show", { text: "loading..." });
                 setTimeout(function () {
 
-                    $("body").vloading("hide");
+                    $(window).vloading("hide");
                 }, 3000);
             });
 
@@ -235,7 +271,8 @@
                  $(".box").vloading("show", { icon: "ball" });
                   setTimeout(function () {
                       $(".box").vloading("fail", {}, function (e) {
-                           failfn1();
+                          failfn1();
+                          console.log("yy")
                       });
                 }, 3000);
             }
@@ -250,6 +287,40 @@
                 setTimeout(function () {
                     $(".box").vloading("fail", {direction:"tb"}, function (e) {
                         failfn2();
+                         console.log("yy2")
+                      });
+                }, 3000);
+
+            }
+
+             // 5
+
+              $(".v-loadin-fail-t").click(function () {
+                  failfn11();
+               
+              });
+
+            function failfn11() {
+                 $(".box2").vloading("show", { icon: "ball" });
+                  setTimeout(function () {
+                      $(".box2").vloading("fail", {}, function (e) {
+                          failfn11();
+                          console.log("tt1")
+                      });
+                }, 3000);
+            }
+
+            $(".v-loadin-fail2-t").click(function () {
+                failfn22();
+            });
+
+            function failfn22() {
+                
+                $(".box2").vloading("show", { type: "dark", icon: "ball" });
+                setTimeout(function () {
+                    $(".box2").vloading("fail", {direction:"tb"}, function (e) {
+                        failfn2();
+                         console.log("tt2")
                       });
                 }, 3000);
 

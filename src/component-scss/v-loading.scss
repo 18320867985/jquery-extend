@@ -43,6 +43,7 @@ $v-loading-df: #eae2e2 ;
         vertical-align: middle;
         letter-spacing: 1px;
         font-weight: 100;
+      
     }
 }
 
@@ -77,8 +78,9 @@ $v-loading-df: #eae2e2 ;
     top: 0;
     bottom: 0;
     z-index: -1;
+    background-color: #000;
     background-color: hsla(0,0%,100%,.9);
-    filter: alpha(opacity=10);
+    filter: alpha(opacity=60);
 
     &.v-loading-dark {
         background: #000;
@@ -209,21 +211,30 @@ $v-loading-df: #eae2e2 ;
 
 .v-loading-cnt-fail-ttl {
     display: inline-block;
-     margin-right:5px;
+    margin-right: 5px;
 
     &.v-loading-fail-tb {
         display: block;
         margin-bottom: 5px;
     }
+
+    &.v-loading-cnt-fail-ttl-ie8{
+        color:$v-loading-df;
+    }
 }
 .v-loading-cnt-fail-reload {
     display: inline-block;
-   
     color: $v-loading;
     cursor: pointer;
     font-size: 14px;
 
-   
+    &.v-loading-cnt-fail-reload-ie8 {
+        color: $v-loading-df;
+        border:1px solid $v-loading-df;
+        padding: 1px 5px;
+        border-radius:5px;
+
+    }
 }
 
 .v-loading-dark {
@@ -243,8 +254,9 @@ $v-loading-df: #eae2e2 ;
         &:hover {
             background: $v-loading-df;
             color: #333;
-           
         }
+
+       
     }
 }
 
