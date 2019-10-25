@@ -11,8 +11,6 @@
         this.el = el;
         this.options = options;
         this.props = props instanceof Object ? props : {};   // { icon :"ball",type:"dark",text:"loading"}
-
-
     };
 
     VLoading.DEFAULTS = {
@@ -20,7 +18,7 @@
     };
 
     VLoading.prototype.isBody = function () {
-        if (this.el === window || this.el === document || this.el.nodeName === "HTML" ) {
+        if (this.el === window || this.el === document || this.el.nodeName === "HTML") {
             return true;
         }
         return false;
@@ -32,7 +30,7 @@
         } else {
             $(this.el).find(">.v-loading-cnt").remove();
         }
-       
+
     };
 
     VLoading.prototype.deleleElementByFail = function () {
@@ -122,9 +120,13 @@
 
     VLoading.prototype.fail = function (props, fn) {
 
+        if (typeof props === "function") {
+            fn = props;
+            props = {};
+        }
         this.deleleElementByFail();
 
-         props = props instanceof Object ? props : {};
+        props = props instanceof Object ? props : {};
         var failEl = document.createElement("div");
         failEl.setAttribute("class", "v-loading-cnt-fail");
 
@@ -138,47 +140,44 @@
             }
         } else {
             failEl_ttl.setAttribute("class", "v-loading-cnt-fail-ttl v-loading-fail-tb v-loading-cnt-fail-ttl-ie8");
-            
+
         }
-       
+
 
         failEl.appendChild(failEl_ttl);
 
         var failEl_reload = document.createElement("div");
-      
+
         if (window.addEventListener) {
             failEl_reload.setAttribute("class", "v-loading-cnt-fail-reload");
         } else {
             failEl_reload.setAttribute("class", "v-loading-cnt-fail-reload v-loading-cnt-fail-reload-ie8");
         }
-        
+
         failEl_reload.innerHTML = props.reload ? props.reload : "重新加载";
         if (typeof fn === "function") {
             failEl_reload.onclick = fn;
         }
-       
+
         failEl.appendChild(failEl_reload);
 
         if (this.isBody()) {
-          
+
             $("html >.v-loading-cnt>.v-loading-icon").remove();
             $("html >.v-loading-cnt>.v-loading-txt").remove();
             $("html >.v-loading-cnt").append(failEl);
 
         } else {
-          
+
             $(this.el).find(".v-loading-icon").remove();
             $(this.el).find(".v-loading-txt").remove();
             $(this.el).find(".v-loading-cnt").append(failEl);
 
-         
         }
 
-      
-        
     };
 
-    function Plugin(option, props,callback) {
+    function Plugin(option, props, callback) {
 
         return this.each(function () {
 
@@ -193,7 +192,7 @@
 
             }
             if (typeof option === 'string') {
-                data[option](props,callback);
+                data[option](props, callback);
             }
 
         });
