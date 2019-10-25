@@ -72,7 +72,7 @@
                 <a class="btn btn-primary v-loadin-btn-ball">v-loading type=ball</a>
                 <a class="btn btn-danger v-loadin-btn-window">v-loading  type=window</a>
                 <hr />
-                <a class="btn btn-default v-loadin-btn2">默认v-loading dark=加深背景 </a>
+                <a class="btn btn-default v-loadin-btn2">v-loading 加载失败-重新加载 </a>
                 <a class="btn btn-primary v-loadin-btn-ball2">v-loading type=ball dark=加深背景</a>
                 <a class="btn btn-danger v-loadin-btn-window2">v-loading  type=window dark=加深背景</a>
 
@@ -184,7 +184,6 @@
             $(".v-loadin-btn").click(function () {
                 $(window).vloading("show", { text: "loading..." });
                 setTimeout(function () {
-
                     $(window).vloading("hide");
                 }, 3000);
             });
@@ -210,12 +209,20 @@
             //  2
 
             $(".v-loadin-btn2").click(function () {
-                $(window).vloading("show", { type: "dark" });
-                setTimeout(function () {
-
-                    $(window).vloading("hide");
-                }, 3000);
+                btnfail();
             });
+
+            function btnfail(){
+                 $(window).vloading("show", { type: "" });
+                    setTimeout(function () {
+
+                        $(window).vloading("fail", {}, function () {
+                             $(window).vloading("show", { type: "" });
+                            setTimeout(function () { $(window).vloading("hide"); }, 3000);
+
+                        });
+                    }, 3000);
+            }
 
             $(".v-loadin-btn-ball2").click(function () {
                 $(window).vloading("show", { type: "dark", icon: "ball", text: "loading..." });
