@@ -30,7 +30,7 @@
 			
     };
 
-    VLazy.prototype.reset = function (url) {
+        VLazy.prototype.reset = function (url) {
 
         var src = this.oldsrc || "";
         if (this.oldsrc) {
@@ -38,7 +38,6 @@
         }
 
     };
-		
 		
 		VLazy.prototype.runing = function () {
 
@@ -53,7 +52,6 @@
                 });
             }
 		};
-
 
         function Plugin(option,url) {
            
@@ -76,20 +74,19 @@
                 }
             
             });
-        }
-            var _vlazy=$.fn.vlazy;
-            $.fn.vlazy =Plugin;
+         }
 
-            // html 元素遍历
-			$(window).on("load",function(){	 
-                $("[data-toggle=v-lazy]").each(function () {
-                    var $this = $(this);
-                    var src = $this.attr("data-lazy") || "";
-                    if (src) { Plugin.call($this, "show"); }
+        var _vlazy=$.fn.vlazy;
+        $.fn.vlazy =Plugin;
 
-				});
+		$(window).on("load.v-lazy",function(){	 
+            $("[data-toggle=v-lazy]").each(function () {
+                var $this = $(this);
+                var src = $this.attr("data-lazy") || "";
+                if (src) { Plugin.call($this, "show"); }
+
 			});
+		});
             
-    
 }();
 
