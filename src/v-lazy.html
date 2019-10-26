@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>图片延迟加载v-lazy</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+            .container > li + li {
+                margin-top: 20px;
+            }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+        .v-lazy-big {
+             margin-top:10px;
+            box-sizing:border-box;
+            width:100%;
+            height:400px;
+            border: 1px solid #ddd;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>图片延迟加载v-lazy</h1>
+        <div>
+            <a class="btn-link" href="./js/v-lazy.js">查看 v-lazy.js</a>
+            <a class="btn-link" href="./component-scss/v-lazy.scss">查看 v-lazy.scss</a>
+        </div>
+        <ul>
+
+            <li>
+                <pre>
+                html：
+                html属性：data-toggle="v-lazy" 页面加载完成触发
+                &lt;img class="v-lazy-big" src="./img/lazy.jpg" alt=""  data-lazy="./img/0.jpg" />
+             </pre>
+                <h3>html 模式</h3>
+                <img class="v-lazy-big" src="./img/lazy.jpg" alt=""
+                     data-toggle="v-lazy"
+                     data-lazy="./img/0.jpg" />
+
+                <h3>js模式</h3>
+                <button class="btn btn-primary" type="button" id="lazy_1">
+                    点击加载大图-要有 data-lazy
+                </button>
+                <button class="btn btn-primary" type="button" id="lazy_2">
+                    点击加载大图-没有 data-lazy
+                </button>
+                <img class="v-lazy-big  v-lazy-big-ck" src="./img/lazy.jpg" alt=""
+                     data-lazy="./img/1.jpg" />
+               
+
+                <pre>
+                    //1.方法 html属性：要有 data-lazy="./img/1.jpg"
+                    $("#lazy_1").click(function () {
+
+                       $(".v-lazy-big-ck").vlazy("show");
+                    });
+
+                    //2. 方法 html属性：没有 data-lazy
+                    $("#lazy_2").click(function () {
+                       $(".v-lazy-big-ck").vlazy("show","./img/2.jpg");
+                    });
+                </pre>
+
+            </li>
+
+    </ul>
+
+    </div>
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-lazy.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+       
+        $(function () {
+
+                    $("#lazy_1").click(function () {
+                       $(".v-lazy-big-ck").vlazy("show");
+                    });
+                     $("#lazy_2").click(function () {
+                         $(".v-lazy-big-ck").vlazy("show", "./img/2.jpg");
+                        
+                    });
+
+        });
+
+    </script>
+</body>
+
+</html>
