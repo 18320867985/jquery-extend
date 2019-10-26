@@ -37,6 +37,23 @@
             border: 1px solid #ddd;
         }
 
+        ._loading {
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+        }
+      .w-pwr  ._cnt img {
+          margin-bottom:20px;
+          width:100%;
+          height:400px;
+
+        }
+
+        .w-pwr hr {
+            border-top: 2px solid #999;
+        }
+
     </style>
 </head>
 
@@ -67,6 +84,9 @@
                 <button class="btn btn-primary" type="button" id="lazy_2">
                     点击加载大图-没有 data-lazy
                 </button>
+                <button class="btn btn-danger" type="button" id="lazy_3">
+                    图片重设 reset 方法
+                </button>
                 <img class="v-lazy-big  v-lazy-big-ck" src="./img/lazy.jpg" alt=""
                      data-lazy="./img/1.jpg" />
 
@@ -82,11 +102,22 @@
                     $("#lazy_2").click(function () {
                        $(".v-lazy-big-ck").vlazy("show","./img/2.jpg");
                     });
+
+                    // 图片重设 reset 方法 
+                    $("#lazy_3").click(function () {
+                       $(".v-lazy-big-ck").vlazy("reset");
+                    });
                 </pre>
 
             </li>
 
         </ul>
+
+        <!--加载大框-->
+        <div class="w-pwr">
+            <div class="_cnt"></div>
+            <div class="_loading">正在加载...</div>
+        </div>
 
     </div>
 
@@ -107,6 +138,55 @@
                 $(".v-lazy-big-ck").vlazy("show", "./img/2.jpg");
 
             });
+             // 图片重设 reset 方法 
+            $("#lazy_3").click(function () {
+                $(".v-lazy-big-ck").vlazy("reset");
+            });
+
+
+            // 滚动加载img
+            var pageObj = {
+                indexP: 1,
+                maxP: 3
+            };
+
+			// 初始化数据
+			getData(pageObj);
+            $(window).vreachbottom(function(e, el) {
+					 	 //console.log("el:", el);
+					 	getData(pageObj);
+					 
+		    });
+
+			function getData(pageObj) {
+
+				$.get("./js/v-lazy.json", {}, function(data) {
+					//console.log(data)
+					if (pageObj.indexP > pageObj.maxP) {
+						$(".w-pwr ._loading").html("没有更多数据了");
+						return;
+					}
+
+					var docf = document.createDocumentFragment();
+					if (data.length > 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            var item = data[i];
+                            var img = document.createElement("img");
+                            img.setAttribute("src","./img/lazy.jpg"); //./img/lazy.jpg
+                            img.setAttribute("class", "v-lazy-img");
+                            img.setAttribute("data-lazy", "v-lazy-img");
+						//	p.innerHTML = data[i].content + "--" + pageObj.indexP + "--"+i;
+							docf.appendChild(img);
+						}
+
+                        $(".w-pwr ._cnt").append(docf);
+                        	$(".w-pwr ._cnt").append("<hr>");
+						pageObj.indexP++;
+
+					}
+
+				});
+			}
 
         });
 

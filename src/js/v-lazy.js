@@ -26,24 +26,34 @@
             src = typeof url === "string" ? url : src;
             if (src) {
                 $this.attr("src", src);
-               
             }
 			
-        };
+    };
+
+    VLazy.prototype.reset = function (url) {
+
+        var src = this.oldsrc || "";
+        if (this.oldsrc) {
+           $(this.el).attr("src", src);
+        }
+
+    };
 		
 		
 		VLazy.prototype.runing = function () {
-			
-			var $this =$(this.el);
-			var src=$this.attr("src")||"";
-            this.oldsrc = src;
-            $this.on("load.v-lazy", function (e) {
-                $this.css("opacity",0).stop().animate({
-                    opacity: 1
-                }, VLazy.DEFAULTS.timing);
-            });
-            
+
+            if (this.el.nodeName === "IMG") {
+                var $this = $(this.el);
+                var src = $this.attr("src") || "";
+                this.oldsrc = src;
+                $this.on("load.v-lazy", function (e) {
+                    $this.css("opacity", 0).stop().animate({
+                        opacity: 1
+                    }, VLazy.DEFAULTS.timing);
+                });
+            }
 		};
+
 
         function Plugin(option,url) {
            
