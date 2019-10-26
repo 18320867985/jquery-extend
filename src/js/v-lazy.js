@@ -16,7 +16,7 @@
         };
 
         VLazy.DEFAULTS = {
-           
+            timing: 500
         };
 
         VLazy.prototype.show = function (url) {
@@ -39,7 +39,8 @@
             this.oldsrc = src;
             $this.on("load.v-lazy", function (e) {
                 $this.css("opacity",0).stop().animate({
-                opacity:1},500);
+                    opacity: 1
+                }, VLazy.DEFAULTS.timing);
             });
             
 		};
