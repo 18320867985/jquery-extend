@@ -52,8 +52,8 @@
             <li>
                 <pre>
                 html：
-                html属性：data-toggle="v-lazy" 页面加载完成触发
-                &lt;img class="v-lazy-big" src="./img/lazy.jpg" alt=""  data-lazy="./img/0.jpg" />
+                html属性：data-toggle="v-lazy" 页面加载完成触发  替换src的地址的属性： data-lazy="./img/0.jpg"
+                &lt;img  src="./img/lazy.jpg" alt=""   data-toggle="v-lazy" data-lazy="./img/0.jpg" />
              </pre>
                 <h3>html 模式</h3>
                 <img class="v-lazy-big" src="./img/lazy.jpg" alt=""
@@ -69,16 +69,16 @@
                 </button>
                 <img class="v-lazy-big  v-lazy-big-ck" src="./img/lazy.jpg" alt=""
                      data-lazy="./img/1.jpg" />
-               
+
 
                 <pre>
-                    //1.方法 html属性：要有 data-lazy="./img/1.jpg"
+                    // 方法 1. html属性：要有 data-lazy="./img/1.jpg"
                     $("#lazy_1").click(function () {
 
                        $(".v-lazy-big-ck").vlazy("show");
-                    });
+                    }); 
 
-                    //2. 方法 html属性：没有 data-lazy
+                    // 方法 2. html属性：没有 data-lazy
                     $("#lazy_2").click(function () {
                        $(".v-lazy-big-ck").vlazy("show","./img/2.jpg");
                     });
@@ -86,26 +86,27 @@
 
             </li>
 
-    </ul>
+        </ul>
 
     </div>
 
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-reachbottom.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/v-lazy.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
-       
+
         $(function () {
 
-                    $("#lazy_1").click(function () {
-                       $(".v-lazy-big-ck").vlazy("show");
-                    });
-                     $("#lazy_2").click(function () {
-                         $(".v-lazy-big-ck").vlazy("show", "./img/2.jpg");
-                        
-                    });
+            $("#lazy_1").click(function () {
+                $(".v-lazy-big-ck").vlazy("show");
+            });
+            $("#lazy_2").click(function () {
+                $(".v-lazy-big-ck").vlazy("show", "./img/2.jpg");
+
+            });
 
         });
 
