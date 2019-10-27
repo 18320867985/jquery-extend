@@ -49,35 +49,35 @@
 
     };
 
-    VLazy.prototype._scrollImg = function () {
+        VLazy.prototype._scrollImg = function () {
 
-                var $list = $(document).find(".v-lazy-img");
-                var window_h = $(window).height();
-                var len = $list.length;
-                if (len === 0) { return;}
-                $list.each(function () {
-                    var $this = $(this);
-                    var img_h = parseInt($this.offset().top) - parseInt(window_h);
-                    var img_h2 = parseInt($this.offset().top) + $this.outerHeight();
-                    var _srltop = $(window).scrollTop();
-                    if (_srltop >= img_h && _srltop < img_h2) {
+            var $list = $(document).find(".v-lazy-img");
+            var window_h = $(window).height();
+            var len = $list.length;
+            if (len === 0) { return;}
+            $list.each(function () {
+                var $this = $(this);
+                var img_h = parseInt($this.offset().top) - parseInt(window_h);
+                var img_h2 = parseInt($this.offset().top) + $this.outerHeight();
+                var _srltop = $(window).scrollTop();
+                if (_srltop >= img_h && _srltop < img_h2) {
 
-                        if (!$this.data("bl")) {
-                            $this.data("bl", true);
-                            var _src = $this.attr("data-lazy") || "";
-                            $this.attr("src", _src);
-                            $this.removeClass("v-lazy-img");
-                            $this.on("load.v-lazy", function () {
-                                $this.css("opacity", 0).stop().animate({
-                                    opacity: 1
-                                }, VLazy.DEFAULTS.timing);
-                            });
-                        }
+                    if (!$this.data("bl")) {
+                        $this.data("bl", true);
+                        var _src = $this.attr("data-lazy") || "";
+                        $this.attr("src", _src);
+                        $this.removeClass("v-lazy-img");
+                        $this.on("load.v-lazy", function () {
+                            $this.css("opacity", 0).stop().animate({
+                                opacity: 1
+                            }, VLazy.DEFAULTS.timing);
+                        });
                     }
+                }
 
-                });
+            });
 
-    };
+        };
 
 		
 		VLazy.prototype.runing = function () {
