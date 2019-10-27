@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
     <style>
         .container {
-            margin-top: 50px;
+            margin-top: 20px;
             margin-bottom: 50px;
         }
 
@@ -29,12 +29,11 @@
             margin: 10px;
         }
 
-        .v-lazy-big {
-             margin-top:10px;
-            box-sizing:border-box;
-            width:100%;
+        .w-pwr {
             height:400px;
-            border: 1px solid #ddd;
+            padding:20px 20px 0;
+            overflow:auto;
+            border: 2px solid #333;
         }
 
         ._loading {
@@ -46,7 +45,7 @@
       .w-pwr  ._cnt img {
           margin-bottom:20px;
           width:100%;
-          height:400px;
+          height:300px;
 
         }
 
@@ -64,67 +63,21 @@
             <a class="btn-link" href="./js/v-lazy.js">查看 v-lazy.js</a>
             <!--<a class="btn-link" href="./component-scss/v-lazy.scss">查看 v-lazy.scss</a>-->
         </div>
-        <ul>
-
-            <li>
-                <pre>
-                html：
-                html属性：data-toggle="v-lazy" 页面加载完成触发  替换src的地址的属性： data-lazy="./img/0.jpg"
-                &lt;img  src="./img/lazy.jpg" alt=""   data-toggle="v-lazy" data-lazy="./img/0.jpg" />
-             </pre>
-                <h3>html 模式</h3>
-                <img class="v-lazy-big" src="./img/lazy.jpg" alt=""
-                     data-toggle="v-lazy"
-                     data-lazy="./img/0.jpg" />
-
-                <h3>js模式</h3>
-                <button class="btn btn-primary" type="button" id="lazy_1">
-                    点击加载大图-要有 data-lazy
-                </button>
-                <button class="btn btn-primary" type="button" id="lazy_2">
-                    点击加载大图-没有 data-lazy
-                </button>
-                <button class="btn btn-danger" type="button" id="lazy_3">
-                    图片重设 reset 方法
-                </button>
-                <img class="v-lazy-big  v-lazy-big-ck" src="./img/lazy.jpg" alt=""
-                     data-lazy="./img/1.jpg" />
-
-
-                <pre>
-                    // 方法 1. html属性：要有 data-lazy="./img/1.jpg"
-                    $("#lazy_1").click(function () {
-
-                       $(".v-lazy-big-ck").vlazy("show");
-                    }); 
-
-                    // 方法 2. html属性：没有 data-lazy
-                    $("#lazy_2").click(function () {
-                       $(".v-lazy-big-ck").vlazy("show","./img/2.jpg");
-                    });
-
-                    // 图片重设 reset 方法 
-                    $("#lazy_3").click(function () {
-                       $(".v-lazy-big-ck").vlazy("reset");
-                    });
-                </pre>
-
-            </li>
-
-        </ul>
-
-        <h3>window或document滚动加载列表图片</h3>
+        
+        <h3>元素-滚动加载列表图片</h3>
         <pre>
              // 滚动加载img
-            $(window).vlazy("scroll"); 或 $(document).vlazy("scroll");
-            1.window 或 document对象 必须有 2.html属性 data-lazy="./img/0.jpg" class="v-lazy-img" 必须有
+            $(".w-pwr").vlazy("scroll");
+            1.html元素 必须有 2.html属性 data-lazy="./img/0.jpg" class="v-lazy-img" 必须有
             &lt;img class="v-lazy-img"  src="./img/lazy.jpg" alt=""   data-lazy="./img/0.jpg" />
 </pre>
 
         <!--加载大框-->
         <div class="w-pwr">
             <div class="_cnt">
-               
+                <img src="./img/1.jpg" class="" data-lazy="./img/1.jpg" style="opacity: 1;">
+                <img src="./img/2.jpg" class="" data-lazy="./img/1.jpg" style="opacity: 1;">
+                <img src="./img/3.jpg" class="" data-lazy="./img/1.jpg" style="opacity: 1;">
             </div>
             <div class="_loading">正在加载...</div>
         </div>
@@ -141,22 +94,9 @@
 
         $(function () {
 
-            $("#lazy_1").click(function () {
-                $(".v-lazy-big-ck").vlazy("show");
-            });
-            $("#lazy_2").click(function () {
-                $(".v-lazy-big-ck").vlazy("show", "./img/2.jpg");
-
-            });
-             // 图片重设 reset 方法 
-            $("#lazy_3").click(function () {
-                $(".v-lazy-big-ck").vlazy("reset");
-            });
-
           
-
             // 滚动加载img
-            $(document).vlazy("scroll");
+            $(".w-pwr").vlazy("scroll");
 
             var pageObj = {
                 indexP: 1,
@@ -164,8 +104,8 @@
             };
 
 			// 初始化数据
-            getData(pageObj);
-            $(window).vreachbottom(function (e, el) {
+			getData(pageObj);
+            $(".w-pwr").vreachbottom(function(e, el) {
 					 	 //console.log("el:", el);
 					 	getData(pageObj);
 					 
@@ -193,7 +133,7 @@
 						}
 
                         $(".w-pwr ._cnt").append(docf);
-                      
+                   
 						pageObj.indexP++;
 
 					}
