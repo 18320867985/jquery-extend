@@ -38,6 +38,7 @@ hqs  v-reachottom 滚动到底部触发事件
         // window
         if (el === window) {
             $(window).scroll(function (e) {
+              
                 var docH = $(document).height();
                 var winH = $(window).height();
                 var winTop = $(window).scrollTop();
@@ -61,10 +62,12 @@ hqs  v-reachottom 滚动到底部触发事件
 
         // document
         $(el).scroll(function (e) {
+            
             var _el = e.target;
             var elH = _el.clientHeight;
             var srlH = _el.scrollHeight;
-            var srlTop = _el.scrollTop;
+            var srlTop = $(this).scrollTop(); // _el.scrollTop; 
+        
 
             // 滚动的高度小于元素大框高度
             if (srlH < elH) {

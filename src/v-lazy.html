@@ -113,6 +113,14 @@
 
         </ul>
 
+        <h3>window滚动加载列表图片</h3>
+        <pre>
+             // 滚动加载img
+            $(window).vlazy("scroll");
+            1.window对象 必须有 2.html属性 data-lazy="./img/0.jpg" class="v-lazy-img" 必须有
+            &lt;img class="v-lazy-img"  src="./img/lazy.jpg" alt=""   data-lazy="./img/0.jpg" />
+</pre>
+
         <!--加载大框-->
         <div class="w-pwr">
             <div class="_cnt"></div>
@@ -143,11 +151,14 @@
                 $(".v-lazy-big-ck").vlazy("reset");
             });
 
+          
 
             // 滚动加载img
+            $(window).vlazy("scroll");
+
             var pageObj = {
                 indexP: 1,
-                maxP: 3
+                maxP: 5
             };
 
 			// 初始化数据
@@ -174,7 +185,7 @@
                             var img = document.createElement("img");
                             img.setAttribute("src","./img/lazy.jpg"); //./img/lazy.jpg
                             img.setAttribute("class", "v-lazy-img");
-                            img.setAttribute("data-lazy", "v-lazy-img");
+                            img.setAttribute("data-lazy", item.src);
 						//	p.innerHTML = data[i].content + "--" + pageObj.indexP + "--"+i;
 							docf.appendChild(img);
 						}

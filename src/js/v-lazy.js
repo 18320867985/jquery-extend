@@ -1,4 +1,4 @@
-
+﻿
 /**
  * hqs  lazy.js
 
@@ -16,7 +16,7 @@
         };
 
         VLazy.DEFAULTS = {
-            timing: 500
+            timing: 400
         };
 
         VLazy.prototype.show = function (url) {
@@ -30,7 +30,7 @@
 			
     };
 
-        VLazy.prototype.reset = function (url) {
+         VLazy.prototype.reset = function (url) {
 
         var src = this.oldsrc || "";
         if (this.oldsrc) {
@@ -38,6 +38,49 @@
         }
 
     };
+
+    VLazy.prototype.scroll = function () {
+
+            if (this.el === window) {
+           
+                $(window).on("scroll.v-lazy", this._scrollImg);
+
+            } 
+
+    };
+
+    VLazy.prototype._scrollImg = function () {
+
+                var $list = $(document).find(".v-lazy-img");
+                var window_h = $(window).height();
+                var len = $list.length;
+                //console.log("----", $list.length);
+                if (len === 0) { return;}
+                $list.each(function (i) {
+                    var $this = $(this);
+                    var img_h = parseInt($this.offset().top) - parseInt(window_h);
+                    var img_h2 = parseInt($this.offset().top) + $this.outerHeight();
+                    var _srltop = $(window).scrollTop();
+                    if (_srltop >= img_h && _srltop < img_h2) {
+
+                        if (!$this.data("bl")) {
+                            $this.data("bl", true);
+                            var _src = $this.attr("data-lazy") || "";
+                            $this.attr("src", _src);
+                            $this.removeClass("v-lazy-img");
+                          //  console.log("_src", _src);
+                            $this.on("load.v-lazy", function (e) {
+                                $this.css("opacity", 0).stop().animate({
+                                    opacity: 1
+                                }, VLazy.DEFAULTS.timing);
+                            });
+                        }
+                    }
+
+                });
+
+    };
+
 		
 		VLazy.prototype.runing = function () {
 
