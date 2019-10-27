@@ -54,9 +54,8 @@
                 var $list = $(document).find(".v-lazy-img");
                 var window_h = $(window).height();
                 var len = $list.length;
-                //console.log("----", $list.length);
                 if (len === 0) { return;}
-                $list.each(function (i) {
+                $list.each(function () {
                     var $this = $(this);
                     var img_h = parseInt($this.offset().top) - parseInt(window_h);
                     var img_h2 = parseInt($this.offset().top) + $this.outerHeight();
@@ -68,8 +67,7 @@
                             var _src = $this.attr("data-lazy") || "";
                             $this.attr("src", _src);
                             $this.removeClass("v-lazy-img");
-                          //  console.log("_src", _src);
-                            $this.on("load.v-lazy", function (e) {
+                            $this.on("load.v-lazy", function () {
                                 $this.css("opacity", 0).stop().animate({
                                     opacity: 1
                                 }, VLazy.DEFAULTS.timing);
