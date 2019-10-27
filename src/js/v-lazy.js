@@ -79,7 +79,6 @@
 
         };
 
-		
 		VLazy.prototype.runing = function () {
 
             if (this.el.nodeName === "IMG") {
