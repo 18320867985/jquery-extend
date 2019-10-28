@@ -167,6 +167,7 @@
             }
 
         });
+
         var seltid = 0;
         $(".radius-list span", $(obj)).on("click", function () {
 

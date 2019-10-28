@@ -91,7 +91,7 @@
 
     <h3 class="container">默认轮播</h3>
     <!--v-fade-->
-    <div class="v-fade " data-time="3000">
+    <div class="v-fade v-fade-runing" data-time="3000">
 
         <!-- setting vfade width -->
         <div class="v-fade-wrap">
@@ -311,7 +311,7 @@
         $(function () {
 
             // 触发v-fade轮播图
-            $(".v-fade").VFade();
+           // $(".v-fade").vfade();
 
             // 触发v-fade轮播图每一项事件
             $(".v-fade").on("v-fade-show", function (e, itemEl, index) {
