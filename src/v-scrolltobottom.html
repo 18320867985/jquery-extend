@@ -119,7 +119,7 @@
                    
                                function getData(pageObj) {
                    
-                                 $.get("./js/paging.json", {}, function (data) {
+                                 $.get("./js/v-paging.json", {}, function (data) {
                                        //console.log(data)
                                        if (pageObj.indexP >pageObj.maxP) {
                                            $(".w-pwr ._loading").html("没有更多数据了");
@@ -191,7 +191,7 @@
 
 					function getData(pageObj) {
 
-						$.get("./js/paging.json", {}, function(data) {
+						$.get("./js/v-paging.json", {}, function(data) {
 							//console.log(data)
 							if (pageObj.indexP > pageObj.maxP) {
 								$(".w-pwr ._loading").html("没有更多数据了");
