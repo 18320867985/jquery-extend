@@ -66,7 +66,8 @@
       
         var obj = this.el;
         obj.index = 0;
-        obj.length = $(".v-fade-wrap ._cont li", $(obj)).length;
+        var $lis= $(".v-fade-wrap ._cont li", $(obj));
+        obj.length = $lis.length;
         obj.clearAutoId = 0;
         obj.time = Number($(obj).attr("data-time"));
         this.setImgBackground(obj);
@@ -120,15 +121,15 @@
        
         els.each(function () {
          
-                    if ($(this).hasClass("init")) {
-                        var color = $(this).attr("data-bg") || "#fff";
-                        var vfade = $(this).closest(".v-fade");
-                        vfade.css("background", color);
-                        $(this).siblings().css("opacity", 0);
-                        return false;
-                    }
+            if ($(this).hasClass("init")) {
+                var color = $(this).attr("data-bg") || "#fff";
+                var vfade = $(this).closest(".v-fade");
+                vfade.css("background", color);
+                $(this).siblings().css("opacity", 0);
+                return false;
+            }
 
-                });
+        });
     };
 
     function Plugin(option) {
