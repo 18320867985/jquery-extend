@@ -1,4 +1,4 @@
-
+ï»¿
 /**
  * hqs v-slide
 **/
@@ -20,6 +20,7 @@
     };
 
     VSlide.prototype.autoPlay = function () {
+
         var obj = this.el;
         var $this = this;
       
@@ -90,7 +91,7 @@
         lis.eq(index).addClass("active");
         this.setRadius(index % (obj.length / 2));
 
-        // ´¥·¢×Ô¶¨ÒåÊÂ¼ş
+        // è§¦å‘è‡ªå®šä¹‰äº‹ä»¶
         lis.eq(index).trigger("v-slideshow", [lis.eq(index).get(0), index % (obj.length / 2), (obj.length / 2)]);
 
     };
@@ -107,7 +108,7 @@
         var bannerUl = $(obj).find(".v-slide-wrap ul");
         bannerUl[0].innerHTML += bannerUl[0].innerHTML;
 
-        // Ò»ÕÅÍ¼²»ÄÜÂÖ²¥
+        // ä¸€å¼ å›¾ä¸èƒ½è½®æ’­
         if ($(".v-slide-wrap ul li", $(obj)).length <= 2) {
             return;
         }
@@ -201,7 +202,7 @@
             if (!data) {
                 var o = {};
                 o.time = parseInt($this.attr("data-time")) || VSlide.DEFAULTS.time;
-                // ÊÇ·ñÉÏÏÂscroll
+                // æ˜¯å¦ä¸Šä¸‹scroll
                 o.isTopbottom = $this.get(0).hasAttribute("data-topbottom") ? true : false;
                 var p = $.extend({}, o, options);
               
@@ -214,9 +215,8 @@
         });
     }
 
-    var _vslide = $.fn.VSlide;
+    var _vslide = $.fn.vslide;
     $.fn.vslide = Plugin;
-
 
     $(function () {
 
