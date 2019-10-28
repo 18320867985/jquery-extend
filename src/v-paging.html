@@ -58,8 +58,8 @@
 
             <br />
             <div>
-                <a class="btn-link" href="./js/paging.js">查看 paging.js</a>
-                <a class="btn-link" href="./component-scss/paging.scss">查看 paging.scss</a>
+                <a class="btn-link" href="./js/v-paging.js">查看 v-paging.js</a>
+                <a class="btn-link" href="./component-scss/v-paging.scss">查看 v-paging.scss</a>
             </div>
             <!--公告列表-->
             <div class="noticelist container-12">
@@ -105,7 +105,7 @@
         <!-- 分页-->
         <div class="container">
 
-            <div class="paging" style="text-align:center;"></div>
+            <div class="vpaging" style="text-align:center;"></div>
 
             <pre>
                   
@@ -114,7 +114,7 @@
            $(function () {
 
             // 分页
-            paging.init({
+            vpaging.init({
                 data: { txt: $(".txt").val() }, // 查询数据
                 index: 1, //	当前页
                 //pageItem: 5, //  每页条数
@@ -143,11 +143,11 @@
 
                 obj.data.txt = $(".txt").val();
                 obj.pageItem = 20; //  每页条数
-
+                //obj.isPageClick = true; // 为页码的点击
                 //obj.data        // 页面数据
                 console.log(obj.data)
 
-                $.get("./js/paging.json?id=" + obj.index, obj.data, function (data) {
+                $.get("./js/v-paging.json?id=" + obj.index, obj.data, function (data) {
 
                     // 成功之后赋值
                     obj.allItem = 100; //  总条数
@@ -209,7 +209,7 @@
 
     <!--js -->
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/paging.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-paging.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/mustache.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
@@ -217,14 +217,14 @@
         $(function () {
 
             // 分页
-            paging.init({
+            vpaging.init({
                 data: { txt: $(".txt").val() }, // 查询数据
                 index: 1, //	当前页
                 //pageItem: 5, //  每页条数
                 //allItem: 100, //  总条数
                 showCount: 5, //  显示的页码数目
                 pageItem: 5,   // 每页条数
-                selector: ".paging", //分页父元素
+                selector: ".vpaging", //分页父元素
                 isAnimation: true, //是否显示动画
                 isShowSkip: true, // 是否显示跳转页
                 isShowCount: true,  // 是否显示总页数
@@ -246,11 +246,11 @@
 
                 obj.data.txt = $(".txt").val();
                 obj.pageItem = 20; //  每页条数
-
+                //obj.isPageClick = true; // 为页码的点击
                 //obj.data        // 页面数据
                 console.log("自定义数据：",obj.data)
 
-                $.get("./js/paging.json?id=" + obj.index, obj.data, function (data) {
+                $.get("./js/v-paging.json?id=" + obj.index, obj.data, function (data) {
 
                     // 成功之后赋值
                     obj.allItem = 100; //  总条数

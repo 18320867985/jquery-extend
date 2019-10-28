@@ -1,8 +1,8 @@
 /*
- * 分页组件
+ * hqs v-paging
  * */
 
-window.paging = (function () {
+window.vpaging = (function () {
 
     var page = {
         data: {}, // 页面数据传值

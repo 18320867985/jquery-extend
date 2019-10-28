@@ -5,7 +5,7 @@
 $bg-head :lighten($text-primary,4%);
 $text-blue:$bg-head;
 
-.paging {
+.vpaging {
   
      margin: 15px;
      line-height:40px;
@@ -15,7 +15,7 @@ $paing-color:$bg-head;
 $ping-rd:0;
 $count-item-color:#666;
 
-.paging .item,.paging >input{
+.vpaging .item,.vpaging >input{
     display: inline;
     padding: 5px 8px;
     border: 1px solid #ddd;
@@ -24,7 +24,7 @@ $count-item-color:#666;
     vertical-align: middle;
 }
 
-.paging .count-items,.paging .count-num{
+.vpaging .count-items,.vpaging .count-num{
 	
     display: inline;
 	padding: 5px 8px;
@@ -33,12 +33,12 @@ $count-item-color:#666;
 	vertical-align: middle;
     
 }
-.paging a, .paging span {
+.vpaging a, .vpaging span {
     user-select:none;
 }
 
 /*鼠标移动的样式 */
-.paging a:hover {
+.vpaging a:hover {
     cursor: pointer;
     color: #fff !important;
     border: 1px solid lighten($bg-head,5%);
@@ -49,13 +49,13 @@ $count-item-color:#666;
 
 /*激活的样式*/
 
-.paging a.active 
+.vpaging a.active 
 {
     color: $paing-color;
     border: 1px solid lighten($bg-head,5%);
 }
 
-.paging a.active:active {
+.vpaging a.active:active {
     color: darken( $paing-color,10%);
     background: darken($bg-head,10%);
     border: 1px solid darken($bg-head,10%);
@@ -63,27 +63,27 @@ $count-item-color:#666;
 
 /*禁用的样式*/
 
-.paging span.disabled {
+.vpaging span.disabled {
     color: #777;
 }
 
 
 /*数字禁用的样式*/
 
-.paging .disabled.num {
+.vpaging .disabled.num {
     color: #666;
     border: none;
     background:transparent;
 }
 
-.paging .item+.item {
+.vpaging .item+.item {
     margin-left: 10px;
 }
 
 
 /*跳转页*/
 
-.paging .skip-txt {
+.vpaging .skip-txt {
     width: 60px;
     margin-left: 10px;
     padding: 5px 2px;
@@ -94,7 +94,7 @@ $count-item-color:#666;
   
 }
 
-.paging .skip-btn {
+.vpaging .skip-btn {
     margin-left: 3px;
     padding: 5px 10px !important;
     color: #fff;
@@ -110,7 +110,7 @@ $count-item-color:#666;
     }
 }
 
-.paging .skip-btn:hover {
+.vpaging .skip-btn:hover {
     color: #fff;
     border: 1px solid #fff;
     border-radius: $ping-rd;
@@ -119,25 +119,25 @@ $count-item-color:#666;
 
 
 // 总记录
-.paging .count-items{
+.vpaging .count-items{
    margin-left: 10px; 
 }
 
-.paging .count-items strong{
+.vpaging .count-items strong{
   color: $count-item-color;
 }
 
 /*总页数*/
 
-.paging .count-num {
+.vpaging .count-num {
     margin-left: 10px;
 }
 
-.paging .count-num strong {
+.vpaging .count-num strong {
     color: $count-item-color;
 }
 
-.paging  {
+.vpaging  {
 
     .item,input{
       
