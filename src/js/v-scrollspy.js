@@ -143,7 +143,7 @@
     $.fn.vscrollspy = Plugin;
 
     $(window).on('load.v-scrollspy', function () {
-        $('[data-spy="v-scrollspy"]').each(function () {
+        $('[data-spy="v-scroll"]').each(function () {
             var $spy = $(this);
             Plugin.call($spy, $spy.data());
         });
