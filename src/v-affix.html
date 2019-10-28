@@ -155,7 +155,7 @@
     </style>
 	</head>
 	<!--data-spy="v-scrollspy" data-target="#spy" data-offset="50" -->
-	<body style="position:relative;">
+	<body style="position:relative;"data-spy="v-scroll" data-target="#spy">
 
 		<div class="container">
 			<h1>滚动定位和滚动监听</h1>
@@ -378,7 +378,7 @@
 							</ul>
 						</div>
 
-						<div data-spy="v-scrollspy" data-target="#spy2" data-offset="10" id="spy2-cnt">
+						<div data-spy="v-scroll" data-target="#spy2" data-offset="10" id="spy2-cnt">
 
 							<h4 id="fat">@fat</h4>
 							<p>
@@ -474,10 +474,10 @@
 				});
 
                 var offset = 1;
-				$('body').vscrollspy({
-					target: '#spy',
-					offset: offset
-                })
+				//$('body').vscrollspy({
+				//	target: '#spy',
+				//	offset: offset
+    //            })
 
                 // 滚动置顶 计算scrollp偶尔计算偏差1px
                 $("#spy .nav a").click(function (e) {
