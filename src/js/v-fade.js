@@ -15,9 +15,7 @@
     };
 
     VFade.DEFAULTS = {
-        time: 3000,
-        isTopbottom: false
-
+        time: 3000
     };
 
     VFade.prototype.autoPlay = function () {
