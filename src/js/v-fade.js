@@ -64,7 +64,11 @@
       
         var obj = this.el;
         obj.index = 0;
-        var $lis= $(".v-fade-wrap ._cont li", $(obj));
+        var $lis = $(".v-fade-wrap ._cont li", $(obj));
+        // 一张图不能轮播
+        if ($lis.length <= 1) {
+            return;
+        }
         obj.length = $lis.length;
         obj.clearAutoId = 0;
         obj.time = Number($(obj).attr("data-time"));

@@ -1755,7 +1755,9 @@ input:focus,
   padding: 4px;
   border: 2px solid #fff;
   border-radius: 50%;
-  overflow: hidden; }
+  overflow: hidden;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease; }
 
 .v-fade ._radius-list span.active {
   background: #fff; }
@@ -1910,8 +1912,8 @@ input:focus,
   width: 10px;
   background: #999;
   border-radius: 50%;
-  -webkit-transition: .6s;
-  transition: .6s;
+  -webkit-transition: all .6s ease;
+  transition: all .6s ease;
   cursor: pointer; }
 
 .v-slide .radius-list span.active {
