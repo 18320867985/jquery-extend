@@ -1,8 +1,8 @@
 /*
- hqs  paging
+ * 分页组件
  * */
 
-window.paging = (function ($) {
+window.paging = (function () {
 
     var page = {
         data: {}, // 页面数据传值
@@ -36,7 +36,7 @@ window.paging = (function ($) {
         //		render:function(){},		//render页面
         //		callback:function(){},		// 回调函数
 
-    }
+    };
 
     function checkParameter(obj) {
 
@@ -89,7 +89,7 @@ window.paging = (function ($) {
             getAllPage();
             page.callback(page);
             $(document).on("pagingCallback", function (e, index) {
-
+                page.isPageClick = false; // 为页码的点击
                 page.index = index;
                 //console.log(page);
                 page.callback(page);
@@ -102,7 +102,7 @@ window.paging = (function ($) {
             // 设置总页数
             getAllPage();
             // 页码的分组数目
-            getGroupPage()
+            getGroupPage();
 
             // 添加页码到页面元素里
             $(page.selector).html(_create(page.index));
@@ -123,6 +123,7 @@ window.paging = (function ($) {
             $(this).trigger("paging_click", [id]);
 
             page.index = id;
+            page.isPageClick = true; // 为页码的点击
             page.callback(page);
 
             // 显示动画
@@ -154,6 +155,7 @@ window.paging = (function ($) {
             $(this).trigger("paging_click", [id]);
 
             page.index = id;
+            page.isPageClick = true; // 为页码的点击
             page.callback(page);
             // 显示动画
             if (page.isAnimation) {
@@ -230,7 +232,7 @@ window.paging = (function ($) {
         currentPage = parseInt(currentPage);
         // 没有数据
         if (currentPage <= 0) {
-            return "<span class='no-data'>没有相关数据</span>";
+            return "<span class='no-data'>~没有找到相关数据~</span>";
         }
         currentPage = currentPage > page.allPage ? page.allPage : currentPage;
 
@@ -398,4 +400,4 @@ window.paging = (function ($) {
         getObj: page
     };
 
-})(window.jQuery || window.Zepto);
+})();
