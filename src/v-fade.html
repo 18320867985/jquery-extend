@@ -91,7 +91,7 @@
 
     <h3 class="container">默认轮播</h3>
     <!--v-fade-->
-    <div class="v-fade v-fade-runing" data-time="3000">
+    <div class="v-fade" data-time="3000" id="v-fade-1">
 
         <!-- setting vfade width -->
         <div class="v-fade-wrap">
@@ -135,6 +135,8 @@
 
     </div>
 
+    
+
     <div class="container">
         <pre>
 
@@ -156,7 +158,7 @@
         <pre>
           html:
            &lt;!--v-fade-->
-             &lt;div class="v-fade " data-time="3000">
+             &lt;div class="v-fade " data-time="3000" data-toggle="v-fade" id="v-fade-1">
                      &lt;!-- 设置主体的宽度 -->
                      &lt;div class="v-fade-wrap">
                          &lt;ul class=" _cont">
@@ -191,22 +193,17 @@
         <pre>
             js:
             // 触发v-fade轮播图
-            $(".v-fade").VFade();
+            $("#v-fade-1").vfade();
 
         </pre>
 
-        <pre>
-            js:
-            // 触发v-fade轮播图
-            $(".v-fade").VFade();
 
-        </pre>
 
     </div>
 
     <h3 class="container"> 每一项 自定义动画</h3>
     <!--v-fade-->
-    <div class="v-fade " data-time="3000">
+    <div class="v-fade" data-time="3000" id="v-fade-2">
 
         <!-- setting vfade width -->
         <div class="v-fade-wrap">
@@ -215,14 +212,14 @@
                 <li class="init" data-bg="#2d50d1">
                     <a href="#">
                         <img src="./img/v-fade/1.png" alt="" />
-                        <img class="_fade-img" src="./img/v-fade/1-slide.png"alt="自定义动画图片" />
+                        <img class="_fade-img" src="./img/v-fade/1-slide.png" alt="自定义动画图片" />
                     </a>
 
                 </li>
                 <li data-bg="#4439c3">
                     <a href="#">
                         <img src="./img/v-fade/2.png" alt="" />
-                        <img class="_fade-img" src="./img/v-fade//2-slide.png"alt="自定义动画图片" />
+                        <img class="_fade-img" src="./img/v-fade//2-slide.png" alt="自定义动画图片" />
                     </a>
 
                 </li>
@@ -253,9 +250,9 @@
     </div>
 
     <div class="container">
-        
+
         <pre>
-          htmml:
+          html:
            &lt;a href="#">
                 &lt;img class="_fade-img" src="./img/v-fade//2-slide.png" alt="自定义动画图片" />
            &lt;/a>
@@ -311,7 +308,10 @@
         $(function () {
 
             // 触发v-fade轮播图
-           // $(".v-fade").vfade();
+            $("#v-fade-1").vfade();
+
+            // 触发v-fade轮播图
+            $("#v-fade-2").vfade();
 
             // 触发v-fade轮播图每一项事件
             $(".v-fade").on("v-fade-show", function (e, itemEl, index) {
