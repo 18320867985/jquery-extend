@@ -50,7 +50,7 @@
         <!--默认左右轮播-->
         <div class="v-slide-pwr">
 
-            <div class="v-slide  v-slide-runing" data-time="3000" >
+            <div class="v-slide" data-time="3000"  data-toggle="v-slide" id="v-slide-1">
 
                 <div class="v-slide-wrap">
 
@@ -112,9 +112,9 @@
 
             <pre>
           html:
-           &lt;!--v-slide 中v-slide-runing 的class表示组件运行-->
+           &lt;!--v-slide  data-toggle="v-slide" 的属性触发条件 -->
         
-             &lt;div class="v-slide  v-slide-runing" data-time="3000">
+             &lt;div class="v-slide " data-time="3000">
              
                      &lt;div  class="v-slide-wrap">
                          &lt;ul class="clearfix">
@@ -164,7 +164,7 @@
         <!--上下轮播-->
         <div class="v-slide-pwr">
 
-            <div class="v-slide " data-time="3000" data-topbottom>
+            <div class="v-slide " data-time="3000" data-topbottom  id="v-slide-2">
 
                 <div class="v-slide-wrap">
 
@@ -239,7 +239,7 @@
         <h3 class="container">自定义上下-切换按钮</h3>
         <div class="v-slide-pwr">
 
-            <div class="v-slide v-slide-runing" id="topbottom-btn" data-time="3000">
+            <div class="v-slide " id="topbottom-btn" data-time="3000">
 
                 <div class="v-slide-wrap">
 
@@ -343,8 +343,12 @@
             $(function () {
 
                 // 触发v-fade轮播图
-                $(".v-slide").vslide({
+                $("#v-slide-2").vslide({
                     time: 5000,
+                    isTopbottom:true
+                });
+                $("#topbottom-btn").vslide({
+                    time: 3000,
                     isTopbottom:true
                 });
 
@@ -358,7 +362,7 @@
                 });
 
                 
-                 $("#topbottom-btn").find("._span3").html($(".v-slide .v-slide-wrap li").length);
+                 $("#topbottom-btn").find("._span3").html($("#topbottom-btn .v-slide-wrap>ul li").length/2);
     
             });
         </script>

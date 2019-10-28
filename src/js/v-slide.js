@@ -221,7 +221,7 @@
 
     $(function () {
 
-        $(".v-slide.v-slide-runing").each(function (e) {
+        $("[data-toggle=v-slide]").each(function (e) {
             var $this = $(this);
             Plugin.call($this);
 
