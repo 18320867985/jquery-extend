@@ -190,7 +190,7 @@
                 <button class=" btn  btn-danger  v-modal-btn-js" data-target=".v-modal-3">js触发vmodal()  （参数1="hide"=关闭 ="show"=显示）, （参数2=targetEl=目标元素）</button>
 
                 <!--modal-->
-                <div class="v-modal v-modal-3"  data-backdrop="false">
+                <div class="v-modal v-modal-3" >
 
                     <!--  supper ie8  v-ie8-mask -->
                     <div class="v-ie8-mask"></div>
@@ -265,6 +265,18 @@
                 </div>
 
                 <pre>
+
+                    // 点击按钮触发
+                    $(".v-modal-btn-js").click(function () {
+                            // { backdrop:false //点击mask不隐藏  }   
+                            //（参数1="hide"=关闭 ="show"=显示）,（参数2=targetEl=目标元素）
+                        var targetEl= this;
+                        $(".v-modal-3").vmodal({ backdrop:false}).vmodal('show', targetEl);
+
+                        //setTimeout(function () {
+                        //    $(".v-modal-3").vmodal('hide');
+                        //}, 5000);
+                    });
                   
                     // 自定义事件 v-modal显示
                     $(".v-modal").on("v-modal-show", function (event,vmodalEl, tragetEl) {
@@ -305,9 +317,10 @@
          
 
             $(".v-modal-btn-js").click(function () {
-              // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
+
+                 //（参数1="hide"=关闭 ="show"=显示）,（参数2=targetEl=目标元素）
                 var targetEl= this;
-                $(".v-modal-3").vmodal('show', targetEl);
+                $(".v-modal-3").vmodal({ backdrop:false}).vmodal('show', targetEl);
 
                 //setTimeout(function () {
                 //    $(".v-modal-3").vmodal('hide');
