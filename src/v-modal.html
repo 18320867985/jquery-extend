@@ -47,7 +47,7 @@
         <ul>
             <li>
                 <h2>模态框-默认</h2>
-                <button class=" btn  btn-primary confirm " data-toggle="v-modal" data-target=".v-modal-1"> modal（模态框)-默认</button>
+                <button class=" btn  btn-primary confirm " data-toggle="v-modal" data-target=".v-modal-1" id="v-model-1"> modal（模态框)-默认</button>
               
                 <h4>
                   html触发：  data-toggle="v-modal"  data-target=".v-modal-1"
@@ -299,20 +299,21 @@
     <script type="text/javascript">
         $(function () {
 
-            $(".v-modal-btn-js").click(function () {
-              // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
-                var targetEl= this;
-                $(".v-modal-3").VModal('show',targetEl);
-            });
+            $("#v-model-1").vmodal({backdrop:true});
+            //$(".v-modal-btn-js").click(function () {
+            //  // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
+            //    var targetEl= this;
+            //    $(".v-modal-3").vmodal('show',targetEl);
+            //});
 
             // 自定义事件
-            $(".v-modal-3").on("v-modal", function (e, bl, targetEl, btnEl) {
-                // 0. e 事件对象
-                // 1. bl=false='hide'=关闭  bl=true='show'=显示
-                // 2. targetEl = 目标v-modal元素
-                // 3. btnEl =触发按钮的元素
-                console.log("bl：",bl,"targetEl:",targetEl,"btnEl:",btnEl)
-            });
+            //$(".v-modal-3").on("v-modal", function (e, bl, targetEl, btnEl) {
+            //    // 0. e 事件对象
+            //    // 1. bl=false='hide'=关闭  bl=true='show'=显示
+            //    // 2. targetEl = 目标v-modal元素
+            //    // 3. btnEl =触发按钮的元素
+            //    console.log("bl：",bl,"targetEl:",targetEl,"btnEl:",btnEl)
+            //});
 
 
         });
