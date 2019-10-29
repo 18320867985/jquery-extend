@@ -1,5 +1,5 @@
 ﻿/*
- * v-modal 
+ * hqs  v-modal 
  */
 
 
