@@ -98,7 +98,7 @@
                 <button class=" btn  btn-success  " data-toggle="v-modal" data-target=".v-modal-2">点击mask不能关闭 data-backdrop="false"</button>
 
                 <!--modal-->
-                <div class="v-modal v-modal-2" data-backdrop="false">
+                <div class="v-modal v-modal-2" data-backdrop="false" >
 
                     <!--  supper ie8  v-ie8-mask -->
                     <div class="v-ie8-mask"></div>
@@ -187,10 +187,10 @@
 
             <li>
                 <h2>js触发modal</h2>
-                <button class=" btn  btn-danger  v-modal-btn-js">js触发mdal VModal()  参数【bl="hide"=关闭 bl="show"=显示, targetEl=目标元素】</button>
+                <button class=" btn  btn-danger  v-modal-btn-js" data-target=".v-modal-3">js触发vmodal()  （参数1="hide"=关闭 ="show"=显示）, （参数2=targetEl=目标元素）</button>
 
                 <!--modal-->
-                <div class="v-modal v-modal-3" data-backdrop="false">
+                <div class="v-modal v-modal-3"  data-backdrop="false">
 
                     <!--  supper ie8  v-ie8-mask -->
                     <div class="v-ie8-mask"></div>
@@ -266,19 +266,22 @@
 
                 <pre>
                   
-                    $(".v-modal-btn-js").click(function () {
-                    // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
-                        var targetEl = this;
-                        $(".v-modal-2").VModal('show',targetEl);
+                    // 自定义事件 v-modal显示
+                    $(".v-modal").on("v-modal-show", function (event,vmodalEl, tragetEl) {
+
+                        // 0. e 事件对象
+                        // 1. vmodalEl = v-modal元素
+                        // 2. tragetEl =触发按钮的元素
+                        //console.log("vmodalEl:",vmodalEl,"tragetEl:",tragetEl)
                     });
 
-                    // 自定义事件
-                    $(".v-modal-3").on("v-modal", function (e, bl, targetEl, btnEl) {
+                      // 自定义事件 v-modal隐藏
+                     $(".v-modal").on("v-modal-hide", function (event,vmodalEl, tragetEl) {
+
                         // 0. e 事件对象
-                        // 1. bl=false='hide'=关闭  bl=true='show'=显示
-                        // 2. targetEl = 目标v-modal元素
-                        // 3. btnEl =触发按钮的元素
-                        console.log("bl：",bl,"targetEl:",targetEl,"btnEl:",btnEl)
+                        // 1. vmodalEl = v-modal元素
+                        // 2. tragetEl =触发按钮的元素
+                        //console.log("vmodalEl:",vmodalEl,"tragetEl:",tragetEl)
                     });
                 </pre>
             </li>
@@ -299,21 +302,33 @@
     <script type="text/javascript">
         $(function () {
 
-            $("#v-model-1").vmodal({backdrop:true});
-            //$(".v-modal-btn-js").click(function () {
-            //  // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
-            //    var targetEl= this;
-            //    $(".v-modal-3").vmodal('show',targetEl);
-            //});
+         
 
-            // 自定义事件
-            //$(".v-modal-3").on("v-modal", function (e, bl, targetEl, btnEl) {
-            //    // 0. e 事件对象
-            //    // 1. bl=false='hide'=关闭  bl=true='show'=显示
-            //    // 2. targetEl = 目标v-modal元素
-            //    // 3. btnEl =触发按钮的元素
-            //    console.log("bl：",bl,"targetEl:",targetEl,"btnEl:",btnEl)
-            //});
+            $(".v-modal-btn-js").click(function () {
+              // bl='hide'=关闭 bl='show'=显示, targetEl=目标元素
+                var targetEl= this;
+                $(".v-modal-3").vmodal('show', targetEl);
+
+                setTimeout(function () {
+                    $(".v-modal-3").vmodal('hide');
+                }, 5000);
+            });
+
+            // 自定义事件 v-modal显示
+            $(".v-modal").on("v-modal-show", function (event,vmodalEl, tragetEl) {
+                // 0. e 事件对象
+                // 1. vmodalEl = v-modal元素
+                // 2. tragetEl =触发按钮的元素
+               // console.log("vmodalEl:",vmodalEl,"tragetEl:",tragetEl)
+            });
+
+              // 自定义事件 v-modal隐藏
+             $(".v-modal").on("v-modal-hide", function (event,vmodalEl, tragetEl) {
+                // 0. e 事件对象
+                // 1. vmodalEl = v-modal元素
+                // 2. tragetEl =触发按钮的元素
+                //console.log("vmodalEl:",vmodalEl,"tragetEl:",tragetEl)
+            });
 
 
         });

@@ -144,34 +144,25 @@
     var VModal = function (el, options) {
         this.el = el;
         this.options = options;
-        console.log(options);
-        this.runing();
         this.dissmis();
 
     };
 
-    VModal.prototype.runing = function () {
-
-        $(document).on("click.v-modal", this.el, $.proxy(this.elementEvent,this));
-
-    };
-
+   
     VModal.prototype.elementEvent = function () {
-        
-  
+       
         var target = this.options.target;
         var $target = $(target);
         if ($target.length > 0) {
-              this.show();
+            $.proxy(this.show(),this);
         }
     };
 
-    VModal.prototype.show = function () {
-
-        var self = this;
+    VModal.prototype.show = function (targetEl) {
+        this.targetEl = targetEl;
         var $this = $(this.el);
-        var $target = $(this.options.target);
-        $target.removeClass("out").addClass("in");
+        $this.removeClass("out");
+        $this.eq(0).removeClass("out").addClass("in");
         this.addHtmlPadding();
         var isBack = this.options.backdrop;
 
@@ -181,22 +172,21 @@
                     e.stopPropagation();
                 });
 
-                $(document).one("click.v-modal", $this, $.proxy(this.hide,this));
+                $(document).one("click.v-modal", ".v-modal", $.proxy(this.hide,this));
              }
 
-            // 触发自定义的事件
-        $this.trigger("v-modal", [true, $this.get(0), $(self.options.target).get(0)]);
+        // 触发自定义的事件
+        $this.find(".v-modal-cnt").trigger("v-modal-show", [$this.get(0), targetEl]);
 
     };
 
-    VModal.prototype.hide = function () {
-        
-        var $target = $(this.options.target);
+    VModal.prototype.hide = function (targetEl) {
+        var $target = $(this.el);
         $target.removeClass("in").addClass("out");
         $("html").removeClass("html-v-modal");
 
          // 触发自定义的事件
-        $target.trigger("v-modal", [false, this.el, $target.get(0)]);
+        $target.trigger("v-modal-hide", [this.el,targetEl]);
         
     };
 
@@ -210,40 +200,38 @@
     };
 
     VModal.prototype.dissmis = function () {
-
+        var self = this;
         $(document).on("click.v-model", "[data-dismiss=v-modal]", function (e) {
-
-            $(document).off("click.v-model", ".v-modal");
+          
+            $(document).off("click.v-modal",".v-modal");
             e.preventDefault();
-            alert();
-            console.log($(this))
             $(this).parents(".v-modal").removeClass("in").addClass("out");
             $("html").removeClass("html-v-modal");
             // 触发自定义的事件
-            $(this).trigger("v-modal", [false, $(this).parents(".v-modal").get(0), this]);
+            $(this).trigger("v-modal-hide", [$(this).parents(".v-modal").get(0), this]);
 
         });
 
     };
 
 
-    function Plugin(option) {
+    function Plugin(option,targetEl) {
 
         return this.each(function () {
 
             var $this = $(this);
-            var data = $this.data('v-model');
+            var data = $this.data('v-modal');
             var options = typeof option === 'object' && option;
 
             if (!data) {
                 var o = {};
-                o.target = $this.attr("data-target") || $this.attr("href") || "";
-                o.backdrop = Boolean($this.attr("data-backdrop")) || true;
+                o.backdrop = ($this.attr("data-backdrop") || "true") === "true";
                 var p = $.extend({},o, options);
-                $this.data('v-model', data = new VModal(this, p));
+                $this.data('v-modal', data = new VModal(this, p));
             }
+
             if (typeof option === 'string') {
-                data[option]();
+                data[option](targetEl);
             }
 
         });
@@ -252,7 +240,11 @@
     var _vmodal = $.fn.vmodal;
     $.fn.vmodal = Plugin;
 
-
+    $(document).on("click", "[data-toggle=v-modal]", function (e) {
+       var target= $(this).attr("data-target") || $this.attr("href") || "";
+        var targetEl = this;
+        Plugin.call($(target), "show", targetEl);
+    });
    
 
 }();
