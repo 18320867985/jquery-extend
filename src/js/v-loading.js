@@ -13,9 +13,6 @@
         this.props = props instanceof Object ? props : {};   // { icon :"ball",type:"dark",text:"loading"}
     };
 
-    VLoading.DEFAULTS = {
-
-    };
 
     VLoading.prototype.isBody = function () {
         if (this.el === window || this.el === document || this.el.nodeName === "HTML") {
@@ -187,7 +184,7 @@
             var options = typeof option === 'object' && option;
             if (!data) {
 
-                var p = $.extend({}, VLoading.DEFAULTS, options);
+                var p = $.extend({}, options);
                 $this.data('v-loading', data = new VLoading(this, p, props));
 
             }

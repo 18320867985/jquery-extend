@@ -27,10 +27,6 @@ hqs  v-reachottom 滚动到底部触发事件
     }
   
 
-    VReachBottom.DEFAULTS = {
-       
-    };
-
     VReachBottom.prototype.runing = function (fn) {
 
         var el = this.el;

@@ -106,7 +106,7 @@
     var _vmodal = $.fn.vmodal;
     $.fn.vmodal = Plugin;
 
-    $(document).on("click", "[data-toggle=v-modal]", function (e) {
+    $(document).on("click.v-modal", "[data-toggle=v-modal]", function (e) {
        var target= $(this).attr("data-target") || $this.attr("href") || "";
         var targetEl = this;
         Plugin.call($(target), "show", targetEl);
