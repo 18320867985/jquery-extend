@@ -997,7 +997,8 @@ input:focus,
     font-weight: 400;
     color: #606266;
     text-align: left;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    word-break: break-all; }
   .confirm-box .confirm-btn {
     float: right;
     margin-top: 10px;
@@ -2229,9 +2230,10 @@ input:focus,
   color: green; }
 
 /*提交按钮*/
-.vd-btn.vd-ok {
-  color: green; }
-
+/*.vd-btn.vd-ok{
+	
+	color:$success;
+}*/
 /*当前的元素error*/
 .vd-box.vd-error input.vd-item.vd-error,
 .vd-box.vd-error textarea.vd-item.vd-error {
@@ -2245,5 +2247,7 @@ input:focus,
   color: red; }
 
 /*提交按钮*/
-.vd-btn.vd-error {
-  color: red; }
+/*.vd-btn.vd-error{
+	
+	color:$error;
+}*/

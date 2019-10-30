@@ -60,25 +60,297 @@
         <h1>标签页-tab</h1>
         <div>
             <a class="btn-link" href="./js/vd.js">查看 vd.js</a>
-            <a class="btn-link" href="./component-scss/v-tab.scss">查看 v-tab.scss</a>
+            <a class="btn-link" href="./component-scss/v-tab.scss">查看 vd.scss</a>
         </div>
+   
+            <form  name="form1" class="form1">
+                <div class="form-group  vd-box">
+                    <label for="exampleInputEmail1">收件人</label>
+
+                    <input class="form-control vd-item " type="text" name="email" vd-pattern="^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$" vd-pattern-msg="收件人格式不对" value="" placeholder="74646456@qq.com" />
+                    <span class=" vd-pattern"></span>
+
+                </div>
+
+                <div class="form-group clearfix row vd-box">
+                    <label class=" col-sm-12" for="exampleInputEmail1">手机:</label>
+                    <div class=" col-sm-8">
+
+                        <!--vd-remote 1=成功 0=失败 -->
+                        <input class="form-control vd-item" type="text" vd-req vd-req-msg="手机号码不能为空" vd-pattern="^1\d{10}$" vd-pattern-msg="手机格式不对" maxlength="11" vd-remote="js/vd.json" vd-remote-msg="手机号码已存在" name="c" placeholder="输入正确手机号码" />
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="vd-dep-btn  btn btn-default">发送验证码</span>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <span class="vd-req "></span>
+                        <span class="vd-pattern"> </span>
+                        <span class="vd-remote"> </span>
+                    </div>
+                   
+
+
+                </div>
+
+                <div class="form-group  vd-box">
+                    <label for="">验证码:</label>
+
+                    <input class="form-control vd-item" type="text" vd-req vd-req-msg="验证码不能为空" vd-remote="js/vd.json" vd-remote-length="6" vd-remote-msg="验证码不对" name="yzm" maxlength="6" value="" placeholder="输入验证码" />
+
+                    <span class="vd-req "></span>
+
+                    <span class="vd-remote"></span>
+
+                </div>
+
+                <div class="form-group  vd-box">
+                    <label class="a" for="">密码:</label>
+
+                    <input class="form-control vd-item" type="text" name="pwd" vd-req vd-req-msg="密码不能为空" vd-compare-emit="pwd2" vd-pattern="^\S{8,32}$" vd-pattern-msg="密码长度8到32位" value="" placeholder="输入密码" />
+                    <span class="vd-req "></span>
+                    <span class="vd-pattern "></span>
+
+
+                </div>
+
+                <div class="form-group  vd-box">
+                    <label class="a" for="">确认密码:</label>
+
+                    <input class="form-control vd-item" type="text" name="pwd2" vd-req vd-req-msg="密码不能为空" vd-compare="pwd" vd-compare-msg="两次密码不能相同" value="" placeholder="输入密码" />
+
+                    <span class="vd-req "></span>
+                    <span class="vd-compare"> </span>
+
+
+                </div>
+
+                <div class="form-group  vd-box">
+
+                    <label for="">内容:</label>
+                    <textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空" placeholder="输入内容"></textarea>
+
+                    <span class="vd-req "></span>
+                    <span class="vd-remote"></span>
+
+                </div>
+
+
+                <div class="form-group  vd-box">
+
+                    <!--复选组框 name="ckgroup"  vd-ck-gp vd-req-msg="爱好不能为空" vd-req -->
+                    <div class="vd-item" name="ckgroup" vd-ck-gp vd-req-msg="爱好不能为空" vd-req>
+                        <label for="">爱好:</label>
+                        <label>
+                            <input type="checkbox" vd-ck-true="jquery" />
+                            jquery
+                        </label>
+
+                        <label>
+                            <input type="checkbox" vd-ck-true="css3" value="css3" />
+                            css3
+                        </label>
+
+                        <label>
+                            <input type="checkbox" vd-ck-true="html5" value="html5" />
+                            html5
+                        </label>
+
+                        <label>
+                            <input type="checkbox" vd-ck-true="c#" value="c#" />
+                            c#
+                        </label>
+
+                    </div>
+                    <span class="vd-req "></span>
+
+                </div>
+
+                <div class="form-group  vd-box">
+
+                    <label for="">内容:</label>
+                    <textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空" placeholder="输入内容"></textarea>
+
+                    <span class="vd-req "></span>
+                    <span class="vd-remote"></span>
+
+                </div>
+
+
+
+                <div class="form-group  vd-box">
+
+                    <!--单选组框  name="sex"  vd-rd-gp   vd-req vd-req-msg="单选组不能为空"  -->
+                    <div class="vd-item " name="sex" vd-rd-gp vd-req vd-req-msg="单选组不能为空">
+                        <label for="">单选:</label>
+                        <label><input type="radio" name="sex" value="1" /> 男</label>
+                        <label><input type="radio" name="sex" value="2" /> 女</label>
+
+                    </div>
+                    <span class="vd-req"></span>
+
+                </div>
+
+
+                <div class="checkbox  vd-box">
+                    <label>
+                        <input class="vd-item" name="def" type="checkbox" id="inpu_5" vd-req vd-ck vd-ck-true="1" vd-ck-false="0" v vd-req-msg="没有同意协议">同意协议
+                    </label>
+                </div>
+                <button type="button" class="btn btn-primary vd-btn">注册</button>
+            </form>
+
+            <pre>
+             html:
+                 &lt;div class="form-group  vd-box">
+
+                        &lt;label for="">内容:  &lt;/label>
+                        &lt;textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空" placeholder="输入内容">  &lt;/textarea>
+
+                        &lt;span class="vd-req ">  &lt;/span>
+                        &lt;span class="vd-remote">  &lt;/span>
+
+                 &lt;/div>
+
+        </pre>
+
+            <pre>
+        js:
        
+             1.初始化表单验证对象
+		var vd1=vd.create(".form1");  // 表单的 class的名称
+		// 初始化验证对象
+		vd1.init();
+		//vd1.reset();  //重设表单并清空所以内容和检测验
+		// 检查验证没有显示样式=>vd1.check()||检查验证=>vd1.check(el) 验证当前项; 
+		// 验证并显示样式=>vd1.validate(); 
+		
+	2. 验证每项的父级 大框添加class="vd-box" 的class
+			每一个项添加class="vd-item" 和  name 属性作为提交数据对象的属性
+			例如name=age，name=sex 对象属性为{age：12,sex:女 }
+	  
+	3 . 验证类型
+	 
+	 a.非空验证 => 验证属性： vd-req  
+		  验证错误提示信息：vd-req-msg="此字段不能为空"
+	 
+	 b.正则验证 => 验证属性： vd-pattern="^1\d{10}$" 
+	   	验证错误提示信息：vd-pattern-msg="此字段格式不对"
+	 
+	 c.ajax远程验证 => 验证属性： vd-remote="json/remote.json"
+	  	长度达到才验证：vd-remote-length="6"  
+	 	 验证错误提示信息： vd-remote-msg="验证码不对"
+	 
+	 d.比较验证=>  验证属性：  vd-compare="pwd" 
+	 	pwd是比较的name="pwd"的字段名称 
+	   	 验证错误提示信息：vd-compare-msg="两次密码不能相同"
+	 	vd-compare-emit="pwd2"  是比较的字段name="pwd"元素上触发的字段
+	 	
+	 	
+	4 .单选组=>  验证属性： vd-rd-gp  
+	 	name="gp"=> 为提交数据的对象属性值 
+		vd-req=> 为必填 
+		vd-req-msg="单选不能为空"为=> 验证非空提示信息
+	 
+
+	5 .checkbox验证=> 验证属性:vd-ck    
+		 选中的值：vd-ck-true="1"
+	   	没选中的值vd-ck-false="0" 
+	   	 属性设为 vd-req =>为必填
+	   	验证错误提示信息：vd-req-msg="没有同意协议" 
+	
+	 
+	 
+	 6.复选组框=>  验证属性： vd-ck-gp  
+	 	name="gp"=> 为提交数据的对象属性值 
+		vd-req=> 为必填 
+		vd-req-msg="单选不能为空"为=> 验证非空提示信息
+	 
+	 
+	7.提交触发
+	$(".vd-btn").on("click", function() {
+	
+			// 是否验证成功
+			vd1.isSuccess(function(obj) {
+						vd1.reset();
+						//$.alert("",JSON.stringify(obj));
+					},
+					function(obj) {
+					vd1.reset();
+					obj.el.focus();
+					});	
+	});
+	 
+         </pre>
+
+
     </div>
 
 
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/v-tab.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vd.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
         $(function () {
 
-           
+            // 初始化验证对象
+            var vd1 = vd.create(".form1");
+            vd1.init();
+            //vd1.reset();  //重设表单并清空所以内容和检测验证
+
+            // 检查验证没有显示样式=>vd1.check()||检查验证=>vd1.check(el) 验证当前项;
+            // 验证并显示样式=>vd1.validate();
+
+            // 点击提交验证
+            $(".vd-btn").on("click", function () {
+
+                // 是否验证成功
+                vd1.isSuccess(function (obj) {
+                    setTimeout(function () {
+                        vd1.reset();
+
+                        $.alert("",JSON.stringify(obj));
+
+                    }, 3000);
+
+                }, function (obj) {
+
+                    obj.el.focus();
+                    console.log(obj)
+
+                });
+            });
+
+            // 发送验证码
+            $(".vd-dep-btn").click(function () {
+
+                // 根据name属性获取对象
+                if (vd1.getObj("c").bl) {
+
+                    $.alert("已发送验证码");
+                };
+
+            });
+
+            // remote 验证验证之前触发
+            $(document).on("onremotebefore", function (e) {
+                console.log("onremotebefore", e.target)
+            })
+
+            // remote 验证验证完成触发
+            $(document).on("onremoteafter", function (e) {
+                console.log("onremoteafter", e.target)
+            })
+
+
 
         });
 
     </script>
+
+
 </body>
 
 </html>
