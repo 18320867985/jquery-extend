@@ -21,8 +21,10 @@
         if (eventType === "hover") {
             eventType = "mouseenter";
         }
-        // data-click-hide=true 为true 阻止冒泡
-        var isStop = $(this).closest(".v-dropdown").attr("data-click-hide");
+
+        // data-click-hide 阻止冒泡
+        
+        var isStop = $this.closest(".v-dropdown").get(0).hasAttribute("data-click-hide")||false;
         eventType = $.trim(eventType);
 
         // click  hover 类型事件 具有冒泡行为
