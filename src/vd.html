@@ -63,130 +63,145 @@
             <a class="btn-link" href="./component-scss/vd.scss">查看 vd.scss</a>
         </div>
    
-            <form  name="form1" class="form1">
-                <div class="form-group  vd-box">
-                    <label for="exampleInputEmail1">收件人</label>
+        <form name="form1" class="form1">
+            <div class="form-group  vd-box">
+                <label for="exampleInputEmail1">收件人</label>
 
-                    <input class="form-control vd-item " type="text" name="email" vd-pattern="^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$" vd-pattern-msg="收件人格式不对" value="" placeholder="74646456@qq.com" />
-                    <span class=" vd-pattern"></span>
+                <input class="form-control vd-item " type="text" name="email" vd-pattern="^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$" vd-pattern-msg="收件人格式不对" value="" placeholder="74646456@qq.com" />
+                <span class=" vd-pattern"></span>
 
+            </div>
+
+            <div class="form-group clearfix row vd-box">
+                <label class=" col-sm-12" for="exampleInputEmail1">手机:</label>
+                <div class=" col-sm-8">
+
+                    <!--vd-remote 1=成功 0=失败 -->
+                    <input class="form-control vd-item" type="text" vd-req vd-req-msg="手机号码不能为空" vd-pattern="^1\d{10}$" vd-pattern-msg="手机格式不对" maxlength="11" vd-remote="js/vd.json" vd-remote-msg="手机号码已存在" name="c" placeholder="输入正确手机号码" />
+                </div>
+                <div class="col-sm-4">
+                    <span class="vd-dep-btn  btn btn-default">发送验证码</span>
                 </div>
 
-                <div class="form-group clearfix row vd-box">
-                    <label class=" col-sm-12" for="exampleInputEmail1">手机:</label>
-                    <div class=" col-sm-8">
-
-                        <!--vd-remote 1=成功 0=失败 -->
-                        <input class="form-control vd-item" type="text" vd-req vd-req-msg="手机号码不能为空" vd-pattern="^1\d{10}$" vd-pattern-msg="手机格式不对" maxlength="11" vd-remote="js/vd.json" vd-remote-msg="手机号码已存在" name="c" placeholder="输入正确手机号码" />
-                    </div>
-                    <div class="col-sm-4">
-                        <span class="vd-dep-btn  btn btn-default">发送验证码</span>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <span class="vd-req "></span>
-                        <span class="vd-pattern"> </span>
-                        <span class="vd-remote"> </span>
-                    </div>
-                   
-
-
-                </div>
-
-                <div class="form-group  vd-box">
-                    <label for="">验证码:</label>
-
-                    <input class="form-control vd-item" type="text" vd-req vd-req-msg="验证码不能为空" vd-remote="js/vd.json" vd-remote-length="6" vd-remote-msg="验证码不对" name="yzm" maxlength="6" value="" placeholder="输入验证码" />
-
+                <div class="col-sm-12">
                     <span class="vd-req "></span>
-
-                    <span class="vd-remote"></span>
-
-                </div>
-
-                <div class="form-group  vd-box">
-                    <label class="a" for="">密码:</label>
-
-                    <input class="form-control vd-item" type="text" name="pwd" vd-req vd-req-msg="密码不能为空" vd-compare-emit="pwd2" vd-pattern="^\S{8,32}$" vd-pattern-msg="密码长度8到32位" value="" placeholder="输入密码" />
-                    <span class="vd-req "></span>
-                    <span class="vd-pattern "></span>
-
-
-                </div>
-
-                <div class="form-group  vd-box">
-                    <label class="a" for="">确认密码:</label>
-
-                    <input class="form-control vd-item" type="text" name="pwd2" vd-req vd-req-msg="密码不能为空" vd-compare="pwd" vd-compare-msg="两次密码不相同" value="" placeholder="输入密码" />
-
-                    <span class="vd-req "></span>
-                    <span class="vd-compare"> </span>
-
-
-                </div>
-
-                <div class="form-group  vd-box">
-
-                    <label for="">内容:</label>
-                    <textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空" placeholder="输入内容"></textarea>
-
-                    <span class="vd-req "></span>
-                    <span class="vd-remote"></span>
-
+                    <span class="vd-pattern"> </span>
+                    <span class="vd-remote"> </span>
                 </div>
 
 
-                <div class="form-group  vd-box">
 
-                    <!--复选组框 name="ckgroup"  vd-ck-gp vd-req-msg="爱好不能为空" vd-req -->
-                    <div class="vd-item" name="ckgroup" vd-ck-gp vd-req-msg="爱好不能为空" vd-req>
-                        <label for="">爱好:</label>
-                        <label>
-                            <input type="checkbox" vd-ck-true="jquery" />
-                            jquery
-                        </label>
+            </div>
 
-                        <label>
-                            <input type="checkbox" vd-ck-true="css3" value="css3" />
-                            css3
-                        </label>
+            <div class="form-group  vd-box">
+                <label for="">验证码:</label>
 
-                        <label>
-                            <input type="checkbox" vd-ck-true="html5" value="html5" />
-                            html5
-                        </label>
+                <input class="form-control vd-item" type="text" vd-req vd-req-msg="验证码不能为空" vd-remote="js/vd.json" vd-remote-length="6" vd-remote-msg="验证码不对" name="yzm" maxlength="6" value="" placeholder="输入验证码" />
 
-                        <label>
-                            <input type="checkbox" vd-ck-true="c#" value="c#" />
-                            c#
-                        </label>
+                <span class="vd-req "></span>
 
-                    </div>
-                    <span class="vd-req "></span>
+                <span class="vd-remote"></span>
 
-                </div>
+            </div>
 
-                <div class="form-group  vd-box">
+            <div class="form-group  vd-box">
+                <label class="a" for="">密码:</label>
 
-                    <!--单选组框  name="sex"  vd-rd-gp   vd-req vd-req-msg="单选组不能为空"  -->
-                    <div class="vd-item " name="sex" vd-rd-gp vd-req vd-req-msg="单选组不能为空">
-                        <label for="">单选:</label>
-                        <label><input type="radio" name="sex" value="1" /> 男</label>
-                        <label><input type="radio" name="sex" value="0" /> 女</label>
-
-                    </div>
-                    <span class="vd-req"></span>
-
-                </div>
+                <input class="form-control vd-item" type="text" name="pwd" vd-req vd-req-msg="密码不能为空" vd-compare-emit="pwd2" vd-pattern="^\S{8,32}$" vd-pattern-msg="密码长度8到32位" value="" placeholder="输入密码" />
+                <span class="vd-req "></span>
+                <span class="vd-pattern "></span>
 
 
-                <div class="checkbox  vd-box">
+            </div>
+
+            <div class="form-group  vd-box">
+                <label class="a" for="">确认密码:</label>
+
+                <input class="form-control vd-item" type="text" name="pwd2" vd-req vd-req-msg="密码不能为空" vd-compare="pwd" vd-compare-msg="两次密码不相同" value="" placeholder="输入密码" />
+
+                <span class="vd-req "></span>
+                <span class="vd-compare"> </span>
+
+
+            </div>
+
+            <div class="form-group  vd-box">
+
+                <label for="">选择城市:</label>
+                <select class="form-control vd-item"  name="city" vd-req vd-req-msg="选择城市不能为空">
+                    <option value="">==选择城市==</option>
+                    <option value="东莞">东莞</option>
+                    <option value="深圳">深圳</option>
+                    <option value="上海">上海</option>
+                </select>
+        
+
+                <span class="vd-req "></span>
+            
+
+            </div>
+
+            <div class="form-group  vd-box">
+
+                <label for="">内容:</label>
+                <textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空" placeholder="输入内容"></textarea>
+
+                <span class="vd-req "></span>
+         
+            </div>
+
+
+            <div class="form-group  vd-box">
+
+                <!--复选组框 name="ckgroup"  vd-ck-gp vd-req-msg="爱好不能为空" vd-req -->
+                <div class="vd-item" name="ckgroup" vd-ck-gp vd-req-msg="爱好不能为空" vd-req>
+                    <label for="">爱好:</label>
                     <label>
-                        <input class="vd-item" name="def" type="checkbox" id="inpu_5" vd-req vd-ck vd-ck-true="1" vd-ck-false="0" v vd-req-msg="没有同意协议">同意协议
+                        <input type="checkbox" vd-ck-true="jquery" />
+                        jquery
                     </label>
+
+                    <label>
+                        <input type="checkbox" vd-ck-true="css3" value="css3" />
+                        css3
+                    </label>
+
+                    <label>
+                        <input type="checkbox" vd-ck-true="html5" value="html5" />
+                        html5
+                    </label>
+
+                    <label>
+                        <input type="checkbox" vd-ck-true="c#" value="c#" />
+                        c#
+                    </label>
+
                 </div>
-                <button type="button" class="btn btn-primary vd-btn">注册</button>
-            </form>
+                <span class="vd-req "></span>
+
+            </div>
+
+            <div class="form-group  vd-box">
+
+                <!--单选组框  name="sex"  vd-rd-gp   vd-req vd-req-msg="单选组不能为空"  -->
+                <div class="vd-item " name="sex" vd-rd-gp vd-req vd-req-msg="单选组不能为空">
+                    <label for="">单选:</label>
+                    <label><input type="radio" name="sex" value="1" /> 男</label>
+                    <label><input type="radio" name="sex" value="0" /> 女</label>
+
+                </div>
+                <span class="vd-req"></span>
+
+            </div>
+
+
+            <div class="checkbox  vd-box">
+                <label>
+                    <input class="vd-item" name="def" type="checkbox" id="inpu_5" vd-req vd-ck vd-ck-true="1" vd-ck-false="0" v vd-req-msg="没有同意协议">同意协议
+                </label>
+            </div>
+            <button type="button" class="btn btn-primary vd-btn">注册</button>
+        </form>
 
             <pre>
              html:
