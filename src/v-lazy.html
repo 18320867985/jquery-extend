@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
@@ -112,6 +112,16 @@
             </li>
 
         </ul>
+		<h3>window或document滚动加载到指定的元素触发事件 </h3>
+		<pre>
+		         // 滚动加载到指定的元素v-lazy-scrollemit事件
+		         $(window).vlazy("scrollemit"); 或 $(document).vlazy("scrollemit");
+		        
+		          $(".v-lazy-emit").on("v-lazy-scrollemit", function (event, el) {
+		                console.log("el",el);
+		          });
+		        &lt;div class="_cnt v-lazy-emit"> &lt/div>
+		</pre>
 
         <h3>window或document滚动加载列表图片</h3>
         <pre>
@@ -119,7 +129,9 @@
             $(window).vlazy("scroll"); 或 $(document).vlazy("scroll");
             1.window 或 document对象 必须有 2.html属性 data-lazy="./img/0.jpg" class="v-lazy-img" 必须有
             &lt;img class="v-lazy-img"  src="./img/lazy.jpg" alt=""   data-lazy="./img/0.jpg" />
-</pre>
+	</pre>
+	
+	  
 
         <!--加载大框-->
         <div class="w-pwr">
