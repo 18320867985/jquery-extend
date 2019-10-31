@@ -66,10 +66,10 @@
     };
 
     VModal.prototype.dissmis = function () {
-        var self = this;
-        $(document).on("click.v-model", "[data-dismiss=v-modal]", function (e) {
+
+        $(document).off(".v-model.close");
+        $(document).on("click.v-model.close", "[data-dismiss=v-modal]", function (e) {
           
-            $(document).off("click.v-modal",".v-modal");
             e.preventDefault();
             $(this).parents(".v-modal").removeClass("in").addClass("out");
             $("html").removeClass("html-v-modal");
@@ -77,7 +77,7 @@
             $(this).trigger("v-modal-hide", [$(this).parents(".v-modal").get(0), this]);
 
         });
-
+       
     };
 
 
