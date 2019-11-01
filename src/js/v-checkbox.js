@@ -29,7 +29,7 @@
 	
 	$.fn.extend({
 
-        VCheckbox: function (v) {
+        vcheckbox: function (v) {
     
             if (arguments.length>0) {
 				v=!!v;
@@ -71,24 +71,7 @@
 
 	</div>
 	
-	 // 自定义事件
-		$(".v-checkbox-group").on("v-checkbox-group", function(event, el,bl) {
 	
-			$.alert("选择的值为:"+bl);
-		});
-		
-		//set 
-		$(".v-checkbox-group").VueCheckboxGroup([2,4]);
-		
-		// get
-		var v=$(".v-checkbox-group").VueCheckboxGroup();
-		alert(v)
-		
-		//set 
-		//var dst = ["js", "c#"];
-		//$(".v-checkbox-group").VueCheckboxGroup(item=>dst.some(o => o == item));
-		// get
-		//var v=$(".v-checkbox-group").VueCheckboxGroup();
 	*/
    
    
@@ -110,7 +93,7 @@
     });
 
     $.fn.extend({
-        VChekboxGroup: function (args) {
+        vchekboxgroup: function (args) {
             var items = $(this).find(".v-checkbox-item");
 
             if (typeof args === "function") {
@@ -198,29 +181,7 @@
 		<span class="v-radiobox-item iconfont">中</span>
 		<span class="v-radiobox-item iconfont">快</span>
 	</div>
-	
-	 // 自定义事件
-	$(".v-radiobox").on("v-radiobox", function(event, el,bl) {
 
-		$.alert("选择的值为:"+bl);
-	});
-	
-	//set 1
-	$(".v-radiobox").VRadiobox(1);
-	
-	//set2
-	var v="快";
-	$(".v-radiobox").VRadiobox((val)=>{
-		return	val==v;
-			
-	});
-	
-	//get
-	var v=$(".v-radiobox").VRadiobox();
-	alert(v);
-
-	
-	
  * */
 
 
@@ -241,7 +202,7 @@
 
     $.fn.extend({
 
-        VRadioboxGroup: function (args) {
+        vradioboxgroup: function (args) {
             var items = $(this).find(".v-radiobox-item");
             if (typeof args === "string") {
                 items.removeClass("active");

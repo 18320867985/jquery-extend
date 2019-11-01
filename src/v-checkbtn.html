@@ -75,10 +75,10 @@
                       });
                         
                         // 获取值
-                       $(".v-checkbtn").VCheckbtn();
+                       $(".v-checkbtn").vcheckbtn();
 
                         // 设置值
-                       $(".v-checkbtn").VCheckbtn(true);
+                       $(".v-checkbtn").vcheckbtn(true);
                 </pre>
 
             </li>
@@ -121,17 +121,17 @@
 
                  
                 获取选择的值
-                var v=$(".v-checkbtn-group").VCheckbtnGroup();
+                var v=$(".v-checkbtn-group").vcheckbtnGroup();
                 $.alert("获取选择的值",v)
 
                 设置的值
-                $(".v-checkbtn-group").VCheckbtnGroup(["js","c#"]);
+                $(".v-checkbtn-group").vcheckbtnGroup(["js","c#"]);
 
                 全选 参数为true
-                $(".v-checkbtn-group").VCheckbtnGroup(true);
+                $(".v-checkbtn-group").vcheckbtnGroup(true);
 
                 反选  参数为false
-                $(".v-checkbtn-group").VCheckbtnGroup(false);
+                $(".v-checkbtn-group").vcheckbtnGroup(false);
 
          
                 </pre>
@@ -163,11 +163,11 @@
                    &lt;/div&gt;
 
                      set
-	                 1. $(".v-radiobtn-group").VRadiobtnGroup("tengxun");
+	                 1. $(".v-radiobtn-group").vradiobtnGroup("tengxun");
                      2. 或者指定下标index  例如 $(".v-radiobtn-group").VRadiobtnGroup(1);
                 
 	                get
-	                var v = $(".v-radiobtn-group").VRadiobtnGroup();
+	                var v = $(".v-radiobtn-group").vradiobtnGroup();
                     $.alert("", "选择的值：" + v);
 	
 	               单选 vue-radiobtn-group 自定事件
@@ -203,7 +203,7 @@
 
             // get
             $(".v-checkbtn-get").click(function (e) {
-                var v = $(".v-checkbtn").VCheckbtn();
+                var v = $(".v-checkbtn").vcheckbtn();
                 v = !!v;
                 $.alert("获取选择的值", v + "");
 
@@ -211,7 +211,7 @@
             });
             // set
             $(".v-checkbtn-set").click(function (e) {
-                $(".v-checkbtn").VCheckbtn(true);
+                $(".v-checkbtn").vcheckbtn(true);
 
             });
 
@@ -224,18 +224,18 @@
             });
 
             $(".v-checkbtn-group-get").click(function (e) {
-                var v = $(".v-checkbtn-group").VCheckbtnGroup();
+                var v = $(".v-checkbtn-group").vcheckbtngroup();
                 $.alert("获取选择的值", "[" + v + "]");
             });
 
             $(".v-checkbtn-group-set").click(function (e) {
-                $(".v-checkbtn-group").VCheckbtnGroup(["js", "c#"]);
+                $(".v-checkbtn-group").vcheckbtngroup(["js", "c#"]);
 
             });
 
             $(".v-checkbtn-group-fn").click(function (e) {
 
-                $(".v-checkbtn-group").VCheckbtnGroup(function (v) {
+                $(".v-checkbtn-group").vcheckbtngroup(function (v) {
                     var arrs = ["js", "jquery"];
                     for (var i = 0; i < arrs.length; i++) {
 
@@ -251,13 +251,13 @@
 
             // 全选
             $(".v-checkbtn-group-all").click(function () {
-                $(".v-checkbtn-group").VCheckbtnGroup(true);
+                $(".v-checkbtn-group").vcheckbtngroup(true);
 
             });
 
             // 反选
             $(".v-checkbtn-group-no").click(function () {
-                $(".v-checkbtn-group").VCheckbtnGroup(false);
+                $(".v-checkbtn-group").vcheckbtngroup(false);
 
             });
 
@@ -267,15 +267,15 @@
             //  v-checkbtn-group 单选
             // set
             $(".v-radiobtn-group-set").click(function () {
-                $(".v-radiobtn-group").VRadiobtnGroup("tengxun");
+                $(".v-radiobtn-group").vradiobtngroup("tengxun");
                 // 或者指定下标index
-                //$(".v-radiobtn-group").VRadiobtnGroup(1);
+                //$(".v-radiobtn-group").vradiobtnGroup(1);
 
             });
 
             // get
             $(".v-radiobtn-group-get").click(function () {
-                var v = $(".v-radiobtn-group").VRadiobtnGroup();
+                var v = $(".v-radiobtn-group").vradiobtngroup();
                 $.alert("", "选择的值：" + v);
             });
 

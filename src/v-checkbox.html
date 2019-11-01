@@ -70,10 +70,10 @@
                      });
                         
                         // 获取值
-                       $(".v-checkbox").VCheckbox();
+                       $(".v-checkbox").vcheckbox();
 
                         // 设置值
-                       $(".v-checkbox").VCheckbox(true);
+                       $(".v-checkbox").vcheckbox(true);
                 </pre>
 
             </li>
@@ -135,17 +135,17 @@
 
                  
                 获取选择的值
-                var v= $(".v-checkbox-group").VChekboxGroup();
+                var v= $(".v-checkbox-group").vchekboxgroup();
                 $.alert("获取选择的值",v)
 
                 设置的值
-                $(".v-checkbtn-group").VCheckboxGroup(["js","c#"]);
+                $(".v-checkbtn-group").vcheckboxgroup(["js","c#"]);
 
                 全选 参数为true
-                $(".v-checkbtn-group").VCheckboxGroup(true);
+                $(".v-checkbtn-group").vcheckboxgroup(true);
 
                 反选  参数为false
-                $(".v-checkbtn-group").VCheckboxGroup(false);
+                $(".v-checkbtn-group").vcheckboxgroup(false);
 
          
                 </pre>
@@ -207,10 +207,10 @@
                  });
 
                   设置的值
-	             $(".v-radiobox-group").VRadioboxGroup("中");
+	             $(".v-radiobox-group").vradioboxgroup("中");
                     
 	             获取选择的值
-	             var v = $(".v-radiobtn-group").VRadioboxGroup();
+	             var v = $(".v-radiobtn-group").vradioboxgroup();
                  $.alert("", "选择的值：" + v);
 	
 	              
@@ -277,7 +277,7 @@
 
             // get
             $(".v-checkbtn-get").click(function (e) {
-                var v = $(".v-checkbox").VCheckbox();
+                var v = $(".v-checkbox").vcheckbox();
                 v = !!v;
                 $.alert("获取选择的值", v + "");
 
@@ -286,7 +286,7 @@
             // set
             $(".v-checkbtn-set").click(function (e) {
 
-                $(".v-checkbox").VCheckbox(true);
+                $(".v-checkbox").vcheckbox(true);
 
             });
 
@@ -299,18 +299,18 @@
             });
 
             $(".v-checkbtn-group-get").click(function (e) {
-                var v = $(".v-checkbox-group").VChekboxGroup();
+                var v = $(".v-checkbox-group").vchekboxgroup();
                 $.alert("获取选择的值", "[" + v + "]");
             });
 
             $(".v-checkbtn-group-set").click(function (e) {
-                $(".v-checkbox-group").VChekboxGroup(["js", "c#"]);
+                $(".v-checkbox-group").vchekboxgroup(["js", "c#"]);
 
             });
 
             $(".v-checkbtn-group-fn").click(function (e) {
                 var arrs = ["js", "jquery"];
-                $(".v-checkbox-group").VChekboxGroup(function (v) {
+                $(".v-checkbox-group").vchekboxgroup(function (v) {
 
                     for (var i = 0; i < arrs.length; i++) {
 
@@ -326,13 +326,13 @@
 
             // 全选
             $(".v-checkbtn-group-all").click(function () {
-                $(".v-checkbox-group").VChekboxGroup(true);
+                $(".v-checkbox-group").vchekboxgroup(true);
 
             });
 
             // 反选
             $(".v-checkbtn-group-no").click(function () {
-                $(".v-checkbox-group").VChekboxGroup(false);
+                $(".v-checkbox-group").vchekboxgroup(false);
 
             });
 
@@ -347,7 +347,7 @@
 
             // set
             $(".v-radiobtn-group-set").click(function () {
-                $(".v-radiobox-group").VRadioboxGroup("中");
+                $(".v-radiobox-group").vradioboxgroup("中");
                 // 或者指定下标index
                 //$(".v-radiobtn-group").VRadiobtnGroup(1);
 
@@ -355,7 +355,7 @@
 
             // get
             $(".v-radiobtn-group-get").click(function () {
-                var v = $(".v-radiobox-group").VRadioboxGroup();
+                var v = $(".v-radiobox-group").vradioboxgroup();
                 $.alert("", "选择的值：" + v);
             });
 
