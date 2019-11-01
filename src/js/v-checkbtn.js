@@ -18,7 +18,7 @@
 
 $.fn.extend({
 
-		VCheckbtn: function(v) {
+		vcheckbtn: function(v) {
 			if(typeof v!=="undefined") {
                 v = !!v;
                 
@@ -73,7 +73,7 @@ $.fn.extend({
 	
 	$.fn.extend({
 
-		VCheckbtnGroup: function(args) {
+		vcheckbtngroup: function(args) {
             var items = $(this).find(".v-checkbtn-item");
             var arrs = [];
 			if(typeof args==="function"){
@@ -199,7 +199,7 @@ $.fn.extend({
 
     $.fn.extend({
 
-        VRadiobtnGroup: function (index) {
+        vradiobtngroup: function (index) {
           
             if (arguments.length >= 1) {
                 if (!isNaN(index)) {
