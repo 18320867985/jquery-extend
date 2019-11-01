@@ -4,7 +4,7 @@
 
 
 .v-dropdown {
- 
+
     &.v-dropdown-left {
         position: relative;
 
@@ -19,6 +19,13 @@
 
         .v-dropdown-menu {
             right: 0;
+        }
+    }
+
+    &.v-dropdown-100 {
+     
+        .v-dropdown-menu {
+            width:100%;
         }
     }
 }

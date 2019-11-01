@@ -1554,6 +1554,9 @@ input:focus,
   .v-dropdown.v-dropdown-right .v-dropdown-menu {
     right: 0; }
 
+.v-dropdown.v-dropdown-100 .v-dropdown-menu {
+  width: 100%; }
+
 .v-dropdown-btn {
   cursor: pointer; }
 
