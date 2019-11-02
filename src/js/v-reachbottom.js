@@ -37,8 +37,8 @@ hqs  v-reachottom 滚动到底部触发事件
              
 
                 var docH = $(document).height();
-                var winH = $(window).height() + offsetBottom;
-                var winTop = $(window).scrollTop() ;
+                var winH = $(window).height();
+                var winTop = $(window).scrollTop();
                // console.log(winTop);
                 //滚动的高度小于元素大框高度
                 if (docH < winH) {
