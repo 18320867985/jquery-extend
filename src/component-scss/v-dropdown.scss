@@ -21,6 +21,13 @@
             right: 0;
         }
     }
+	
+	 &.v-dropdown-100 {
+	      
+	        .v-dropdown-menu {
+	            width:100%;
+	        }
+	    }
 }
 .v-dropdown-btn{
     //  supper ios 

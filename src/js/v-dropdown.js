@@ -23,8 +23,8 @@
         }
 
         // data-click-hide 阻止冒泡
-        
-        var isStop = $this.closest(".v-dropdown").get(0).hasAttribute("data-click-hide")||false;
+
+        var isStop = $this.closest(".v-dropdown").get(0).hasAttribute("data-click-hide") || false;
         eventType = $.trim(eventType);
 
         // click  hover 类型事件 具有冒泡行为
@@ -98,7 +98,7 @@
                 } else {
                     $(this).parents(".v-dropdown").removeClass("in").addClass("out");
                 }
-
+                if ($(this).hasClass("_not-item")) { return; }
                 // 选择列表项 触发自定义的事件
                 $(this).trigger("v-dropdown-select", [this]);
             }
