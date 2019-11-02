@@ -38,6 +38,7 @@ hqs  v-reachottom 滚动到底部触发事件
 
                 var docH = $(document).height();
                 var winH = $(window).height();
+             
                 var winTop = $(window).scrollTop();
                // console.log(winTop);
                 //滚动的高度小于元素大框高度
@@ -45,10 +46,11 @@ hqs  v-reachottom 滚动到底部触发事件
                     return;
                 }
 
-                var _top = docH - winH;
-                if (winTop >= _top) {
+                var _top = docH - (winH + offsetBottom);
+                if (winTop >= _top ) {
                     if (typeof fn === "function") {
                         fn(e, window);
+                        //console.log("----")
                     }
                 }
 
@@ -72,7 +74,7 @@ hqs  v-reachottom 滚动到底部触发事件
             }
 
             // 滚动的真实高度
-            var _top = srlH - elH;
+            var _top = srlH - (elH + offsetBottom);
 
             if (srlTop >= _top) {
 
