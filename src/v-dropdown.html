@@ -127,11 +127,13 @@
                   &lt;div class="v-dropdown  " data-event="hover" data-toggle="v-dropdown" style="width:280px;"  style="display:inline-block"> &lt;/div>
 
                 </pre>
+
                 <h2>下拉框-文本框</h2>
+
                 <div class="v-dropdown slt-1" data-event="focus" data-toggle="v-dropdown" style="width:280px;">
                     <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
 
-                    <ul class="v-dropdown-menu ">
+                    <ul class="v-dropdown-menu  ">
                         <li><a href="javascript:;">高光泽性1</a></li>
                         <li><a href="javascript:;">超高刚性2</a></li>
                         <li><a href="javascript:;">特佳弯曲强</a></li>
@@ -139,10 +141,25 @@
                     </ul>
 
                 </div>
+                <pre>
+				&lt;div class="v-dropdown " data-event="focus" data-toggle="v-dropdown" style="width:280px;"> &lt;/div>
+			
+                </pre>
+
+                <h2>下拉框-文本框-没有相关的数据列表</h2>
+                <div class="v-dropdown slt-1" data-event="focus" data-toggle="v-dropdown" style="width:280px;">
+                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
+
+                    <ul class="v-dropdown-menu ">
+                        <li><a class="_not-item" href="javascript:;">~没有相关的数据~</a></li>
+                    </ul>
+
+                </div>
 
                 <pre>
-
-                  &lt;div class="v-dropdown " data-event="focus" data-toggle="v-dropdown" style="width:280px;"> &lt;/div>
+				&lt;div class="v-dropdown " data-event="focus" data-toggle="v-dropdown" style="width:280px;"> &lt;/div>
+				没有相关数据 class="_not-item"
+				&lt;li > &lt;a class="_not-item" href="javascript:;">~没有相关的数据~&lt;/a>&lt;/li>
                 </pre>
 
                 <h2>下拉框-文本框 v-dropdown-right</h2>
@@ -275,8 +292,9 @@
             </li>
 
             <li>
-                <h2>v-dropdown-menu 选择框-不隐藏  data-click-hide="false"</h2>
-                <div class="v-dropdown v-dropdown-right slt-1" data-event="focus" data-toggle="v-dropdown" data-click-hide="false" style="width:280px;">
+                <h2>v-dropdown-menu 点击选择框是否不隐藏 默认为fasle隐藏  data-click-hide="false"</h2>
+                <h3>下面设置为data-click-hide="true"</h3>
+                <div class="v-dropdown v-dropdown-right slt-1" data-event="focus" data-toggle="v-dropdown" data-click-hide="true" style="width:280px;">
                     <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
 
                     <ul class="v-dropdown-menu  v-dropdown-100 " style="max-height:300px; overflow:auto;">
@@ -302,7 +320,7 @@
 
                 <pre>
                    html：
-                   &lt;div class="v-dropdown v-dropdown-right slt-1 " data-event="focus" data-toggle="v-dropdown" data-click-hide style="width:280px;"> 
+                   &lt;div class="v-dropdown v-dropdown-right slt-1 " data-event="focus" data-toggle="v-dropdown" data-click-hide="true" style="width:280px;"> 
                      &lt;ul class="v-dropdown-menu  v-dropdown-menu-100" style="max-height:300px; overflow:auto;">
                              &lt;li>
                                 &lt;a href="javascript:;">
@@ -379,7 +397,7 @@
                  // js 触发
                 $("#js-v-dropdown-2").vdropdown({
                     event: "hover",   // 触发事件 默认click
-                    clickHide:true   // 选择框是否隐藏 默认false隐藏
+                    clickHide:true   // 点击选择框是否不隐藏 默认false为隐藏
                 });
             </pre>
             </li>
@@ -416,17 +434,15 @@
             });
 
             // js 触发1
-
             $("#js-v-dropdown-1").vdropdown({
                 event: "focus"
               
             })
 
              // js 触发2
-
             $("#js-v-dropdown-2").vdropdown({
                event: "hover",   // 触发事件 默认click
-               clickHide:true   // 选择框是否隐藏 默认false隐藏
+               clickHide:true   // 点击选择框是否不隐藏 默认false为隐藏
 
             })
 
