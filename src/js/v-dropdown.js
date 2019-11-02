@@ -93,6 +93,7 @@
                     $(this).parents(".v-dropdown").removeClass("in").addClass("out");
                 }
 
+                if ($(this).hasClass("_not-item")) { return; }
                 // 选择列表项 触发自定义的事件
                 $(this).trigger("v-dropdown-select", [this]);
             
@@ -138,7 +139,7 @@
             if (!data) {
                 var o = {};
                 o.event = $this.attr("data-event") || "click";
-                o.clickHide = $this.get(0).hasAttribute("data-click-hide") || false;
+                o.clickHide = ($this.attr("data-click-hide") ||"")=== "true";
                 var p = $.extend({},o, options);
                 $this.data('v-dropdwon', data = new VDropdown(this, p));
             }
