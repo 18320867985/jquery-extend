@@ -10,7 +10,7 @@ window._vd =window.vd;
 (function() {
     "use strict";
 	
-  var obj = function (formName) {
+    var Validate= function (formName) {
 
         this.formName = typeof formName === "undefined" ? ".form" : formName;
 
@@ -47,8 +47,8 @@ window._vd =window.vd;
 					if(window.addEventListener){
 						$(el).trigger("input");
 						
-					}else{
-						 $(el).trigger("keyup");
+                    } else {
+                        $(el).trigger("keyup");
 					}
                    
                     break;
@@ -883,7 +883,7 @@ window._vd =window.vd;
 
     window.vd = {
 			create: function(formName) {
-				return new obj(formName);
+            return new Validate(formName);
 			}
 		};
 			
