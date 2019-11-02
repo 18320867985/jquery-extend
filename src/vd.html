@@ -272,10 +272,13 @@
 	$(".vd-btn").on("click", function() {
 	
 			// 是否验证成功
-			vd1.isSuccess(function(obj) {
+			vd1.isSuccess(
+                        // success
+                        function(obj) {
 						vd1.reset();
 						//$.alert("",JSON.stringify(obj));
 					},
+                    // error
 					function(obj) {
 					vd1.reset();
 					obj.el.focus();
@@ -308,7 +311,9 @@
             $(".vd-btn").on("click", function () {
 
                 // 是否验证成功
-                vd1.isSuccess(function (obj) {
+                vd1.isSuccess(
+                    // success
+                    function (obj) {
                     setTimeout(function () {
                         vd1.reset();
 
@@ -316,7 +321,9 @@
 
                     }, 3000);
 
-                }, function (obj) {
+                    },
+                    // error
+                    function (obj) {
 
                     obj.el.focus();
                     console.log(obj)
