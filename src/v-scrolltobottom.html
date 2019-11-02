@@ -61,6 +61,7 @@
             text-align: center;
             font-size: 14px;
             color: #999;
+             padding:10px;
              background:#ddd;
         }
     </style>
@@ -93,57 +94,80 @@
 							//getData(pageObj);
 										   
 						});
-						// 2.插件模式
-						$(window).vreachbottom(function(e, el) {
-							 console.log("el:", el);
-							getData(pageObj);
+
+						// 2.插件模式 
+                                                    $(window).vreachbottom(callback,offsetBottom);
+                                                    callback=回调函数  offsetBottom=底部偏离间距默认为0
+                           
+						    $(window).vreachbottom(function(e, el) {
+							     console.log("el:", el);
+							    getData(pageObj);
 						
-						});
+						    },$(".footer").outerHeight());
+
 					</pre>
                     <pre>
                     js-code:
-                    $(function () {
-                               var pageObj = {
-                                   indexP: 1,
-                                   maxP:10
-                               }
-                             
                    
-                               // 初始化数据
-                               getData(pageObj);
-								// window滚动触发事件
-                               $(window).on("onreachbottom", function (e, el) {
-                                   // console.log("detail:", el);
-                                   getData(pageObj);
-                   
-                               });
-                   
-                               function getData(pageObj) {
-                   
-                                 $.get("./js/v-paging.json", {}, function (data) {
-                                       //console.log(data)
-                                       if (pageObj.indexP >pageObj.maxP) {
-                                           $(".w-pwr ._loading").html("没有更多数据了");
-                                           return;
-                                       }
-                                    
-                                       var docf = document.createDocumentFragment();
-                                       if (data.length > 0) {
-                                           for (var i = 0; i < data.length; i++) {
-                                               var p = document.createElement("p");
-                                               p.innerHTML = data[i].content + "--" +   pageObj.indexP + "--";
-                                               docf.appendChild(p);
-                                           }
-                   
-                                           $(".w-pwr ._cnt").append(docf);
-                                           pageObj.indexP++;
-                   
-                                       }
-                   
-                                 });
-                               }
-                   
-                           });
+                        $(function () {
+                  
+                            var pageObj = {
+                                indexP: 1,
+                                maxP: 10,
+                                isLoadSuccess:true  //ajax 加载成功后再执行
+                            }
+
+                            // 初始化数据
+                            getData(pageObj);
+
+                            // 1.事件模式 window滚动触发事件
+                            //$(window).on("onreachbottom", function(e, el) {
+
+                            //	// console.log("detail:", el);
+                            //	getData(pageObj);
+
+                            //});
+
+                            // 2.插件模式
+                            $(window).vreachbottom(function (e, el) {
+                                //console.log("el:", el);
+                                if (pageObj.isLoadSuccess) {
+                                    getData(pageObj);
+                                }
+                       
+
+                            },$(".footer").outerHeight());
+
+                
+
+                        });
+
+                      function getData(pageObj) {
+                                pageObj.isLoadSuccess = false;
+                                $.get("./js/v-paging.json", {}, function (data) {
+                                      console.log("----")
+                                    if (pageObj.indexP > pageObj.maxP) {
+                                        $(".w-pwr ._loading").html("没有更多数据了");
+                                        return;
+                                    }
+
+                                     pageObj.isLoadSuccess = true;
+                          
+                                    var docf = document.createDocumentFragment();
+                                    if (data.length > 0) {
+                                        for (var i = 0; i < data.length; i++) {
+                                            var p = document.createElement("p");
+                                            p.innerHTML = data[i].content + "--" + pageObj.indexP + "--" + i;
+                                            docf.appendChild(p);
+                                        }
+
+                                        $(".w-pwr ._cnt").append(docf);
+                                        pageObj.indexP++;
+
+                                    }
+
+                                });
+                            }
                 </pre>
 
                 </li>
@@ -164,17 +188,14 @@
        
         <style>
             .footer {
-                border:1px solid red;
+              
                  background:#333;
                  color:#fff;
                  text-align:center;
-                 height:200px;
-                  padding:0;
+                 line-height:200px;
+                 padding:0;
             }
-           .footer  p {
-                margin-top:100px;
-               background:red;
-            }
+          
         </style>
         <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
         <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
@@ -182,12 +203,13 @@
         <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
         <script type="text/javascript">
-            $(function () {
-
+      
                 $(function () {
+                  
                     var pageObj = {
                         indexP: 1,
-                        maxP: 10
+                        maxP: 10,
+                        isLoadSuccess:true   //ajax 加载成功后再执行
                     }
 
                     // 初始化数据
@@ -204,19 +226,28 @@
                     // 2.插件模式
                     $(window).vreachbottom(function (e, el) {
                         //console.log("el:", el);
-                        getData(pageObj);
+                        if (pageObj.isLoadSuccess) {
+                            getData(pageObj);
+                        }
+                       
 
-                    },"100px");
+                    },$(".footer").outerHeight());
 
-                    function getData(pageObj) {
+                
 
+                });
+
+              function getData(pageObj) {
+                        pageObj.isLoadSuccess = false;
                         $.get("./js/v-paging.json", {}, function (data) {
-                            //console.log(data)
+                              console.log("----")
                             if (pageObj.indexP > pageObj.maxP) {
                                 $(".w-pwr ._loading").html("没有更多数据了");
                                 return;
                             }
 
+                             pageObj.isLoadSuccess = true;
+                          
                             var docf = document.createDocumentFragment();
                             if (data.length > 0) {
                                 for (var i = 0; i < data.length; i++) {
@@ -232,10 +263,6 @@
 
                         });
                     }
-
-                });
-
-            });
         </script>
     </body>
 
