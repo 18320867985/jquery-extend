@@ -16,6 +16,13 @@
 
     VDropdown.prototype.runing = function () {
 
+
+        if (this.isMobile()) {
+
+            // 兼容ios safari click事件
+            $("body").css("cursor", "pointer");
+        }
+
         var $this = $(this.el);
         var eventType = this.options.event; 
         if (eventType === "hover") {
