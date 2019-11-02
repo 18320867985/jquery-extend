@@ -70,14 +70,24 @@
                 $(".v-dropdown").removeClass("in out");
                 $(this).closest(".v-dropdown").addClass("in");
 
-                $(document).one("click", function (e) {
-                    $(".v-dropdown").removeClass("in out");
-                    $this.addClass("out");
-                });
+                if (eventType !== "focus") {
+                    $(document).one("click", function (e) {
+                        $(".v-dropdown").removeClass("in out");
+                        $this.addClass("out");
+                    });
+                }
+
 
                 // 点击按钮 触发自定义的事件
                 $(this).trigger("v-dropdown-btn", [this]);
             });
+
+            if (eventType !== "focus") {
+                $this.on("blur", ".v-dropdown-btn", function (e) {
+                    $(".v-dropdown").removeClass("in out");
+                    $(this).closest(".v-dropdown").addClass("in");
+                });
+            }
     
         }
 
