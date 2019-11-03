@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>事件-input </title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+            .container > li + li {
+                margin-top: 20px;
+            }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+        .v-modal-2 .v-modal-cnt,
+        .v-modal-3 .v-modal-cnt {
+            width: 600px;
+            padding: 30px;
+        }
+        h2 {
+             margin-bottom:30px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>事件-input 兼容ie8+</h1>
+        <div>
+            <a class="btn-link" href="./js/v-tab.js">查看 v-input.js</a>
+          
+        </div>
+        <ul>
+
+            <li>
+               
+                <h3>js模式</h3>
+                <input class="form-control" type="text" id="input" />
+                <div> 输入值： <span class="val"></span></div>
+              
+                <pre>
+                    $("#input").vinput(function (el,val) {
+                        console.log("el",el);
+                        console.log("val",val)
+                    });
+                </pre>
+
+               
+            </li>
+
+    </ul>
+
+    </div>
+
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-input.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+        
+           $("#input").vinput(function (el,val) {
+                   
+               console.log("val", val);
+               $(".val").html(val);
+           });
+
+        });
+
+    </script>
+</body>
+
+</html>
