@@ -45,16 +45,19 @@
     <div class="container">
         <h1>事件-input 兼容ie8+</h1>
         <div>
-            <a class="btn-link" href="./js/v-tab.js">查看 v-input.js</a>
-          
+            <a class="btn-link" href="./js/v-input.js">查看 v-input.js</a>
+
         </div>
         <ul>
 
             <li>
                
                 <h3>js模式</h3>
-                <input class="form-control" type="text" id="input" />
-                <div> 输入值： <span class="val"></span></div>
+                <div class="autocomplete">
+                    <input class="form-control" type="text" id="input" autocomplete="off" />
+                    <div> 输入值： <span class="val"></span></div>
+                </div>
+                
               
                 <pre>
                     $("#input").vinput(function (el,val) {
@@ -80,9 +83,15 @@
         
            $("#input").vinput(function (el,val) {
                    
-               console.log("val", val);
+              // console.log("val", val);
                $(".val").html(val);
            });
+
+            $("#input").on("keyup", function (e) {
+
+                alert(e.keyCode)
+            })
+
 
         });
 

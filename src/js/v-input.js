@@ -28,7 +28,7 @@
             $this.on("input", function (event) {
                 if (typeof fn === "function") {
                     fn($this.get(0), $this.val());
-                    console.log("input");
+                   
                 }
               
             });

@@ -3,20 +3,23 @@
 @import "../css-dev/scss/var-pc.scss";
 
 
+  $selected:$text-primary;
+  $hover:#f2f2f2;
+
 .v-dropdown {
 
+    position: relative;
+
     &.v-dropdown-left {
-        position: relative;
+      
 
         .v-dropdown-menu {
             left: 0;
         }
     }
 
-
     &.v-dropdown-right {
-        position: relative;
-
+      
         .v-dropdown-menu {
             right: 0;
         }
@@ -25,10 +28,12 @@
     &.v-dropdown-100 {
      
         .v-dropdown-menu {
-            width:100%;
+            left: 0;
+            width: 100%;
         }
     }
 }
+
 .v-dropdown-btn{
     //  supper ios 
     cursor:pointer;
@@ -47,8 +52,17 @@
 
     > li {
 
+        &.selected, &.selected:hover {
+            background: $selected;
+            color: #fff;
+
+            a {
+                color: #fff;
+            }
+        }
+
         &:hover {
-            background: #f2f2f2;
+            background: $hover;
         }
         /*&+li{
              border-top: 1px solid #f2f2f2;
@@ -89,7 +103,8 @@
 
 
 .v-dropdown-menu.v-dropdown-100 {
-    width:100%;
+    left: 0;
+    width: 100%;
 }
 
 
