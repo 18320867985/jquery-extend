@@ -18,6 +18,7 @@
    
     VAutocomplete.prototype.runing = function (fn) {
 
+        var self = this;
         var $this = $(this.el);
         var $input = $this.find(".v-autocomplete-input");
         var $menu = $this.find(".v-dropdown-menu");
@@ -25,27 +26,67 @@
         $input.on("keyup", function (e) {
 
             if (e.keyCode === 40) {
-                var $selected = $menu.find("li.selected");
-                var $lis= $menu.find("li");
-                var len = $lis.length;
-                var index = $selected.index();
-                console.log(len)
-                index = index >= len-1 ? -1 : index;
-                index = index + 1;
-                var $sctiveEl = $lis.eq(index);
-                $sctiveEl.addClass("selected").siblings().removeClass("selected");
-                var v = $sctiveEl.find("a").attr("data-val");
-                $input.val(v).focus();
+               
+                self._keydown($input,$menu);
+            }
 
-                console.log(index)
+            if (e.keyCode === 38) {
 
-
+                self._keyup($input, $menu);
             }
 
         });
 
+        $menu.on("click", ">li", function () {
+            $(this).addClass("selected").siblings().removeClass("selected");
+            var v = $(this).find(">a").attr("data-val");
+            $input.val(v);
+
+        });
+
+        // input change 
+        $input.vinput(function (val) {
+
+            if (typeof fn === "function") {
+                fn.call($input.get(0), val);
+            }
+            $(this).trigger("v-autocomplete-change", [$input.get(0), val]);
+            
+        });
 
     };
+
+    VAutocomplete.prototype._keyup = function ($input, $menu) {
+
+        var $selected = $menu.find("li.selected");
+        var $lis = $menu.find("li");
+        var len = $lis.length;
+        var index = $selected.index();
+        index = index <0 ? len : index;
+        var $sctiveEl = $lis.eq(--index);
+        $sctiveEl.addClass("selected").siblings().removeClass("selected");
+        var v = $sctiveEl.find(">a").attr("data-val");
+        $input.val(v).focus();
+
+        $sctiveEl.trigger("v-autocomplete-select-item", [$sctiveEl.get(0),v]);
+
+    };
+
+    VAutocomplete.prototype._keydown = function ($input, $menu) {
+
+        var $selected = $menu.find("li.selected");
+        var $lis = $menu.find("li");
+        var len = $lis.length;
+        var index = $selected.index();
+        index = index >= len - 1 ? -1 : index;
+        var $sctiveEl = $lis.eq(++index);
+        $sctiveEl.addClass("selected").siblings().removeClass("selected");
+        var v = $sctiveEl.find(">a").attr("data-val");
+        $input.val(v).focus();
+        $sctiveEl.trigger("v-autocomplete-select-item.v-autocomplete", [$sctiveEl.get(0), v]);
+
+    };
+
 
     
 

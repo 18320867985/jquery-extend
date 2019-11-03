@@ -27,7 +27,7 @@
         if (window.addEventListener) {
             $this.on("input", function (event) {
                 if (typeof fn === "function") {
-                    fn($this.get(0), $this.val());
+                    fn.call($this.get(0), $this.val());
                    
                 }
               
@@ -36,7 +36,7 @@
             // ie8
             $this.on("keyup", function (event) {
                 if (typeof fn === "function") {
-                    fn($this.get(0), $this.val());
+                    fn.call($this.get(0), $this.val());
                 }
                
             });

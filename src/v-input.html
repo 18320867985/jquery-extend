@@ -81,18 +81,13 @@
     <script type="text/javascript">
         $(function () {
         
-           $("#input").vinput(function (el,val) {
-                   
-              // console.log("val", val);
+           $("#input").vinput(function (val) {
+
+               console.log("this", this);
                $(".val").html(val);
            });
 
-            $("#input").on("keyup", function (e) {
-
-                alert(e.keyCode)
-            })
-
-
+           
         });
 
     </script>

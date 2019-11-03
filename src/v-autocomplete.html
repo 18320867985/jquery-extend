@@ -66,7 +66,7 @@
                                     高光泽性1
                                 </a>
                             </li>
-                            <li class="selected">
+                            <li >
                                 <a href="javascript:;" data-val="超高刚性2">
                                     超高刚性2
                                 </a>
@@ -110,11 +110,14 @@
     <script type="text/javascript">
         $(function () {
 
-            $(".v-autocomplete").vautocomplete(function (el, val) {
+            $(".v-autocomplete").vautocomplete(function (val) { console.log("val", val); });
 
-                
-            });
 
+            //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val) {
+
+            //    console.log("el", el);
+
+            //})
             
 
 
