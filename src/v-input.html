@@ -60,8 +60,8 @@
                 
               
                 <pre>
-                    $("#input").vinput(function (el,val) {
-                        console.log("el",el);
+                    $("#input").vinput(function (val) {
+                         // console.log("this", this);
                         console.log("val",val)
                     });
                 </pre>
@@ -83,7 +83,7 @@
         
            $("#input").vinput(function (val) {
 
-               console.log("this", this);
+              // console.log("this", this);
                $(".val").html(val);
            });
 

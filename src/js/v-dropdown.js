@@ -116,6 +116,11 @@
 
     };
 
+    VDropdown.prototype.hide = function () {
+
+        $(this.el).closest(".v-dropdown").removeClass("in").addClass("out");
+    };
+
     // 是否为移动端
     VDropdown.prototype.isMobile = function () {
 
