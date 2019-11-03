@@ -48,37 +48,43 @@
             <a class="btn-link" href="./js/v-input.js">查看 v-input.js</a>
             <a class="btn-link" href="./js/v-dropdown.js">查看 v-dropdown.js</a>
             <a class="btn-link" href="./js/v-autocomplete.js">查看 v-autocomplete.js</a>
+            <a class="btn-link" href="./component-scss/v-dropdown.scss">查看 v-dropdown.scss</a>
 
         </div>
         <ul>
 
             <li>
 
-                <h3>js模式</h3>
+                <h3>自动补全-默认</h3>
                 <div class="v-autocomplete">
                     <div class="v-dropdown" data-event="focus" data-toggle="v-dropdown">
 
-                        <input class="form-control v-dropdown-btn v-autocomplete-input" type="text" id="input" autocomplete="off" />
+                        <input class="form-control v-dropdown-btn v-autocomplete-input" type="text" id="input" autocomplete="off" placeholder="==请选择城市==" />
 
                         <ul class="v-dropdown-menu v-dropdown-100 ">
-                            <li >
-                                <a href="javascript:;" data-val="高光泽性1">
-                                    高光泽性1
-                                </a>
-                            </li>
-                            <li >
-                                <a href="javascript:;" data-val="超高刚性2">
-                                    超高刚性2
+                            <li>
+                                <a href="javascript:;" data-val="北京">
+                                    北京
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" data-val="特佳弯曲强">
-                                    特佳弯曲强
+                                <a href="javascript:;" data-val="上海">
+                                    上海
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" data-val="硬度4">
-                                    硬度4
+                                <a href="javascript:;" data-val="杭州">
+                                    杭州
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="深圳">
+                                    深圳
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="东莞">
+                                    东莞
                                 </a>
                             </li>
                         </ul>
@@ -87,6 +93,9 @@
                 </div>
                 <pre>
                     html:
+                     父元素class： v-autocomplete
+                     子元素文本框class： v-autocomplete-input
+                     子元素a 属性加上 data-val="值"
 
                      &lt;div class="v-autocomplete">
 
@@ -96,19 +105,28 @@
 
                              &lt;ul class="v-dropdown-menu ">
                                      &lt;li>
-                                        &lt;a href="javascript:;">
-                                        高光泽性1 &lt;/a>
-                                    &lt;/li>
-                                    &lt;li>
-                                        &lt;a href="javascript:;">超高刚性2
+                                        &lt;a  href="javascript:;" data-val="北京">
+                                            北京
                                         &lt;/a>
                                     &lt;/li>
                                     &lt;li>
-                                        &lt;a href="javascript:;">
-                                        特佳弯曲强 &lt;/a> 
+                                        &lt;a  href="javascript:;" data-val="上海">
+                                            上海
+                                        &lt;/a>
                                     &lt;/li>
                                     &lt;li>
-                                        &lt;a href="javascript:;">硬度4
+                                        &lt;a  href="javascript:;" data-val="杭州">
+                                            杭州
+                                        &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                         &lt;a  href="javascript:;" data-val="深圳">
+                                            深圳
+                                        &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                         &lt;a  href="javascript:;" data-val="东莞">
+                                            东莞
                                         &lt;/a>
                                     &lt;/li>
                              &lt;/ul>
@@ -168,25 +186,32 @@
             $(".v-autocomplete").vautocomplete(
                 //  回调函数
                 function (val,dropdownMenu) {
-                    console.log("文本框值：", val);
-                    console.log("dropdownMenu：", dropdownMenu);
+                    console.log("回调函数文本框值：", val);
+                  //  console.log("dropdownMenu：", dropdownMenu);
             });
 
             // 自定义事件 vautocomplete值变化触发
             //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
 
             //    console.log("el", el);
-           //     console.log("文本框值", val);
+           //     console.log("change文本框值", val);
             //console.log("dropdownMenu：", dropdownMenu);
 
             //});
 
+             // 自定义事件 vautocomplete 键盘按下enter键触发
+            $(".v-autocomplete").on("v-autocomplete-enter", function (event, el, val) {
+
+                //console.log("el", el);
+                console.log("提交的文本框值：", val);
+
+            });
             
             // 自定义事件 vautocomplete 下拉项值选中触发
             $(".v-autocomplete").on("v-autocomplete-select-item", function (event, el, val) {
 
-                console.log("el", el);
-                console.log("val", val);
+                //console.log("el", el);
+                console.log("拉项值选中触：", val);
 
             });
 

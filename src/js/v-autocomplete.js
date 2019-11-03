@@ -4,7 +4,6 @@
  *
  * */
 
-
 + function () {
     'use strict';
 
@@ -15,7 +14,6 @@
 
     };
 
-   
     VAutocomplete.prototype.runing = function (fn) {
 
         var self = this;
@@ -23,7 +21,7 @@
         var $input = $this.find(".v-autocomplete-input");
         var $menu = $this.find(".v-dropdown-menu");
 
-        $input.on("keyup", function (e) {
+        $input.on("keyup.v-autocomplete", function (e) {
 
             if (e.keyCode === 40) {
                
@@ -35,9 +33,13 @@
                 self._keyup($input, $menu);
             }
 
+            if (e.keyCode === 13) {
+                self._keyenter($input, $menu);
+            }
+
         });
 
-        $menu.on("click", ">li", function () {
+        $menu.on("click.v-autocomplete", ">li", function () {
             $(this).addClass("selected").siblings().removeClass("selected");
             var v = $(this).find(">a").attr("data-val");
             $input.val(v);
@@ -67,7 +69,6 @@
         $sctiveEl.addClass("selected").siblings().removeClass("selected");
         var v = $sctiveEl.find(">a").attr("data-val");
         $input.val(v).focus();
-
         $sctiveEl.trigger("v-autocomplete-select-item", [$sctiveEl.get(0),v]);
 
     };
@@ -87,7 +88,18 @@
 
     };
 
+    VAutocomplete.prototype._keyenter = function ($input, $menu) {
 
+        var $selected = $menu.find("li.selected");
+        var len = $selected.length;
+        if (len > 0) {
+            var v = $selected.find(">a").attr("data-val");
+            $input.val(v).blur();
+            $menu.parents(".v-dropdown").vdropdown("hide");
+            $input.trigger("v-autocomplete-enter", [$input.get(0), v]);
+        }
+
+    };
     
 
     function Plugin(fn) {
