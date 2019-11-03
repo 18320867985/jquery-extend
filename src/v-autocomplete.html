@@ -85,12 +85,67 @@
 
                     </div>
                 </div>
+                <pre>
+                    html:
+
+                     &lt;div class="v-autocomplete">
+
+                         &lt;div class="v-dropdown " data-event="focus" data-toggle="v-dropdown">       
+
+                             &lt;input class="form-control v-dropdown-btn v-autocomplete-input" type="text" autocomplete="off" />
+
+                             &lt;ul class="v-dropdown-menu ">
+                                     &lt;li>
+                                        &lt;a href="javascript:;">
+                                        高光泽性1 &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;a href="javascript:;">超高刚性2
+                                        &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;a href="javascript:;">
+                                        特佳弯曲强 &lt;/a> 
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;a href="javascript:;">硬度4
+                                        &lt;/a>
+                                    &lt;/li>
+                             &lt;/ul>
+
+                        &lt;/div>
+                    &lt;/div>
+                </pre>
 
                 <pre>
-                    $("#input").vinput(function (el,val) {
-                        console.log("el",el);
-                        console.log("val",val)
-                    });
+                js code
+                  
+                $(".v-autocomplete").vautocomplete(
+                //  回调函数
+                function (val,dropdownMenu) {
+                    console.log("文本框值：", val);
+                    console.log("dropdownMenu：", dropdownMenu);
+                });
+
+                // 自定义事件 vautocomplete值变化触发
+                //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+
+                //    console.log("el", el);
+               //     console.log("文本框值", val);
+                //console.log("dropdownMenu：", dropdownMenu);
+
+                //});
+
+            
+                // 自定义事件 vautocomplete 下拉项值选中触发
+                $(".v-autocomplete").on("v-autocomplete-select-item", function (event, el, val) {
+
+                    console.log("el", el);
+                    console.log("val", val);
+
+                });
+
+
                 </pre>
 
 
@@ -110,15 +165,30 @@
     <script type="text/javascript">
         $(function () {
 
-            $(".v-autocomplete").vautocomplete(function (val) { console.log("val", val); });
+            $(".v-autocomplete").vautocomplete(
+                //  回调函数
+                function (val,dropdownMenu) {
+                    console.log("文本框值：", val);
+                    console.log("dropdownMenu：", dropdownMenu);
+            });
 
-
-            //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val) {
+            // 自定义事件 vautocomplete值变化触发
+            //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
 
             //    console.log("el", el);
+           //     console.log("文本框值", val);
+            //console.log("dropdownMenu：", dropdownMenu);
 
-            //})
+            //});
+
             
+            // 自定义事件 vautocomplete 下拉项值选中触发
+            $(".v-autocomplete").on("v-autocomplete-select-item", function (event, el, val) {
+
+                console.log("el", el);
+                console.log("val", val);
+
+            });
 
 
         });

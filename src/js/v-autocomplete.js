@@ -48,9 +48,9 @@
         $input.vinput(function (val) {
 
             if (typeof fn === "function") {
-                fn.call($input.get(0), val);
+                fn.call($input.get(0), val, $menu.get(0));
             }
-            $(this).trigger("v-autocomplete-change", [$input.get(0), val]);
+            $(this).trigger("v-autocomplete-change", [$input.get(0), val, $menu.get(0)]);
             
         });
 
@@ -83,7 +83,7 @@
         $sctiveEl.addClass("selected").siblings().removeClass("selected");
         var v = $sctiveEl.find(">a").attr("data-val");
         $input.val(v).focus();
-        $sctiveEl.trigger("v-autocomplete-select-item.v-autocomplete", [$sctiveEl.get(0), v]);
+        $sctiveEl.trigger("v-autocomplete-select-item", [$sctiveEl.get(0), v]);
 
     };
 
