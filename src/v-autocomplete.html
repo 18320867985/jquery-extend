@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>自动补全-autocomplete </title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+            .container > li + li {
+                margin-top: 20px;
+            }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+        .v-modal-2 .v-modal-cnt,
+        .v-modal-3 .v-modal-cnt {
+            width: 600px;
+            padding: 30px;
+        }
+        h2 {
+             margin-bottom:30px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>自动补全-autocomplete 依赖v-input.js和v-dropdown.js</h1>
+        <div>
+            <a class="btn-link" href="./js/v-input.js">查看 v-input.js</a>
+            <a class="btn-link" href="./js/v-dropdown.js">查看 v-dropdown.js</a>
+            <a class="btn-link" href="./js/v-autocomplete.js">查看 v-autocomplete.js</a>
+
+        </div>
+        <ul>
+
+            <li>
+
+                <h3>js模式</h3>
+                <div class="v-autocomplete">
+                    <div class="v-dropdown" data-event="focus" data-toggle="v-dropdown">
+
+                        <input class="form-control v-dropdown-btn v-autocomplete-input" type="text" id="input" autocomplete="off" />
+
+                        <ul class="v-dropdown-menu v-dropdown-100 ">
+                            <li >
+                                <a href="javascript:;" data-val="高光泽性1">
+                                    高光泽性1
+                                </a>
+                            </li>
+                            <li >
+                                <a href="javascript:;" data-val="超高刚性2">
+                                    超高刚性2
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="特佳弯曲强">
+                                    特佳弯曲强
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="硬度4">
+                                    硬度4
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <pre>
+                    html:
+
+                     &lt;div class="v-autocomplete">
+
+                         &lt;div class="v-dropdown " data-event="focus" data-toggle="v-dropdown">       
+
+                             &lt;input class="form-control v-dropdown-btn v-autocomplete-input" type="text" autocomplete="off" />
+
+                             &lt;ul class="v-dropdown-menu ">
+                                     &lt;li>
+                                        &lt;a href="javascript:;">
+                                        高光泽性1 &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;a href="javascript:;">超高刚性2
+                                        &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;a href="javascript:;">
+                                        特佳弯曲强 &lt;/a> 
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;a href="javascript:;">硬度4
+                                        &lt;/a>
+                                    &lt;/li>
+                             &lt;/ul>
+
+                        &lt;/div>
+                    &lt;/div>
+                </pre>
+
+                <pre>
+                js code
+                  
+                $(".v-autocomplete").vautocomplete(
+                //  回调函数
+                function (val,dropdownMenu) {
+                    console.log("文本框值：", val);
+                    console.log("dropdownMenu：", dropdownMenu);
+                });
+
+                // 自定义事件 vautocomplete值变化触发
+                //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+
+                //    console.log("el", el);
+               //     console.log("文本框值", val);
+                //console.log("dropdownMenu：", dropdownMenu);
+
+                //});
+
+            
+                // 自定义事件 vautocomplete 下拉项值选中触发
+                $(".v-autocomplete").on("v-autocomplete-select-item", function (event, el, val) {
+
+                    console.log("el", el);
+                    console.log("val", val);
+
+                });
+
+
+                </pre>
+
+
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-dropdown.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-input.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-autocomplete.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $(".v-autocomplete").vautocomplete(
+                //  回调函数
+                function (val,dropdownMenu) {
+                    console.log("文本框值：", val);
+                    console.log("dropdownMenu：", dropdownMenu);
+            });
+
+            // 自定义事件 vautocomplete值变化触发
+            //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+
+            //    console.log("el", el);
+           //     console.log("文本框值", val);
+            //console.log("dropdownMenu：", dropdownMenu);
+
+            //});
+
+            
+            // 自定义事件 vautocomplete 下拉项值选中触发
+            $(".v-autocomplete").on("v-autocomplete-select-item", function (event, el, val) {
+
+                console.log("el", el);
+                console.log("val", val);
+
+            });
+
+
+        });
+
+    </script>
+</body>
+
+</html>
