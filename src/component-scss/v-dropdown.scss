@@ -37,6 +37,10 @@
 .v-dropdown-btn{
     //  supper ios 
     cursor:pointer;
+    &[readonly]{
+        background:#fff ;
+        opacity:1;
+    }
 }
 
 .v-dropdown-menu {
