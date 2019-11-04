@@ -121,6 +121,11 @@
         $(this.el).closest(".v-dropdown").removeClass("in").addClass("out");
     };
 
+    VDropdown.prototype.show = function () {
+        $(".v-dropdown").removeClass("out in");
+        $(this.el).closest(".v-dropdown").addClass("in");
+    };
+
     // 是否为移动端
     VDropdown.prototype.isMobile = function () {
 

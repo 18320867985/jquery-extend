@@ -1556,6 +1556,9 @@ input:focus,
 
 .v-dropdown-btn {
   cursor: pointer; }
+  .v-dropdown-btn[readonly] {
+    background: #fff;
+    opacity: 1; }
 
 .v-dropdown-menu {
   position: absolute;
