@@ -1,7 +1,6 @@
 
-
 // url
-let urlpath = {
+var urlpath = {
     //采用正则表达式获取地址栏参数：（ 强烈推荐，既实用又方便！）
     getQueryString: function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -33,10 +32,10 @@ let urlpath = {
         return strPage;
     }
 
-    };
+};
 
 // cookie
-let cookie = {
+var cookie = {
 
     setCookie: function (cookieName, cookieValue, expiresDate) {
         cookieName = cookieName || "";
@@ -94,7 +93,7 @@ let cookie = {
 };
 
 // localStorage
-let localStorage = {
+var localStorage = {
 
     // localStorage存值永久有效
     setItem: function (item, value) {
@@ -141,7 +140,7 @@ let localStorage = {
 };
 
 // sessionStorage
-let sessionStorage = {
+var sessionStorage = {
 
     // sessionStorage 
     setItem: function (item, value) {
@@ -214,7 +213,7 @@ function toDate(value, fmt) {
     return fmt;
 }
 
-let list = {
+var list = {
 
 
     max: function (data, fn) {
@@ -264,34 +263,34 @@ let list = {
         if (arguments.length === 2 && typeof fn === "function") {
 
             var maxVal = 0;
-            for (var i = 0; i < data.length; i++) {
-                var _temp = 0;
-                var item = data[i];
+            for (var i2 = 0; i2 < data.length; i2++) {
+                var _temp2 = 0;
+                var item = data[i2];
                 var v = fn(item);
                 if (typeof v !== "number") {
 
                     //  is not a number
-                    var _num = parseFloat(v);
-                    if (isNaN(_num)) {
+                    var _num2 = parseFloat(v);
+                    if (isNaN(_num2)) {
                         continue;
                     }
-                    _temp = _num;
+                    _temp2 = _num2;
 
                 } else {
 
                     //  is a number
-                    _temp = v;
+                    _temp2 = v;
                 }
 
                 if (isOne) {
-                    maxVal = _temp;
+                    maxVal = _temp2;
                     _array_max = item;
                     isOne = false;
 
                 } else {
                     // set value number
-                    if (_temp > maxVal) {
-                        maxVal = _temp;
+                    if (_temp2 > maxVal) {
+                        maxVal = _temp2;
                         _array_max = item;
                     }
 
@@ -348,34 +347,34 @@ let list = {
 
         if (arguments.length === 2 && typeof fn === "function") {
             var minVal = 0;
-            for (var i = 0; i < data.length; i++) {
-                var _temp = 0;
+            for (var i2 = 0; i2 < data.length; i2++) {
+                var _temp2 = 0;
                 var item = data[i];
                 var v = fn(item);
                 if (typeof v !== "number") {
 
                     //  is not a number
-                    var _num = parseFloat(v);
-                    if (isNaN(_num)) {
+                    var _num2 = parseFloat(v);
+                    if (isNaN(_num2)) {
                         continue;
                     }
-                    _temp = _num;
+                    _temp2 = _num2;
 
                 } else {
 
                     //  is a number
-                    _temp = v;
+                    _temp2 = v;
                 }
 
                 if (isOne) {
-                    minVal = _temp;
+                    minVal = _temp2;
                     _array_min = item;
                     isOne = false;
 
                 } else {
                     // set value number
-                    if (_temp < minVal) {
-                        minVal = _temp;
+                    if (_temp2 < minVal) {
+                        minVal = _temp2;
                         _array_min = item;
                     }
 
@@ -410,7 +409,7 @@ let list = {
 
         }
 
-        return _arrs
+        return _arrs;
     },
 
     // data map
@@ -596,7 +595,10 @@ let list = {
         }
     },
 
-    //  not repeat
+
+    /*
+     *  not repeat  去重复 数组每项是>值类型
+     */
     notRepeat: function (data) {
         data = data || [];
         if (data.constructor !== Array) {
@@ -632,6 +634,80 @@ let list = {
         return temp;
 
     },
+
+    /*  
+     *  not repeat 去重复 数组每项是>对象类型
+     */
+    notRepeatByObject: function (data, fn) {
+
+        data = data || [];
+        if (data.constructor !== Array) {
+            throw new Error("参数必须是个数组");
+        }
+
+        if (data.length <= 0) {
+            return [];
+        }
+        var temp = [];
+        temp.push(data[0]);
+        for (var i = 1; i < data.length; i++) {
+
+            var test = data[i];
+            if (!test instanceof Object) { continue; }
+            var isOk = true;
+            for (var y = 0; y < temp.length; y++) {
+
+                var test2 = temp[y];
+                if (fn(test, test2)) {
+
+                    isOk = false;
+                    break;
+                }
+
+            }
+
+            if (isOk) {
+                temp.push(test);
+            }
+
+        }
+
+        return temp;
+
+    },
+
+    groupby: function (data, fn) {
+
+        data = data || [];
+        if (data.constructor !== Array) {
+            throw new Error("参数必须是个数组");
+        }
+
+        var list = this.notRepeatByObject(data, fn);
+        var res = [];
+        for (var i = 0; i < list.length; i++) {
+            var temp = [];
+            var test = list[i];
+            if (!test instanceof Object) { continue; }
+
+            for (var y = 0; y < data.length; y++) {
+
+                var test2 = data[y];
+                if (fn(test, test2)) {
+                    temp.push(test);
+
+                }
+
+            }
+
+            if (temp.length > 0) { res.push(temp); }
+
+        }
+
+        return res;
+
+    },
+
     // index
     index: function (data, fn) {
         data = data || [];
@@ -652,9 +728,10 @@ let list = {
         }
         return -1;
 
-    },
+    }
 
 };
+
 
 export default {
   
