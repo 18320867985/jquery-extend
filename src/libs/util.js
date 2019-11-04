@@ -636,7 +636,7 @@ var list = {
     },
 
     /*  
-     *  not repeat 去重复 数组每项是>对象类型
+     *  not repeat 去重复 数组每项是>对象类型 fucntion(a,b){ return a.name===b.name}
      */
     notRepeatByObject: function (data, fn) {
 
@@ -676,6 +676,9 @@ var list = {
 
     },
 
+/*
+ *   分组 fucntion(a,b){ return a.name===b.name}
+ */
     groupby: function (data, fn) {
 
         data = data || [];
