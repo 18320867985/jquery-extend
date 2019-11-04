@@ -677,7 +677,12 @@ var list = {
     },
 
 /*
- *   分组 fucntion(a,b){ return a.name===b.name}
+ *   分组  fucntion(a,b){ 
+ *   return a.name===b.name  // 一个name属性分组 
+ *   
+ *    return a.name===b.name &&a.sex===b.sex // 多个属性name,sex分组
+ *   
+ *   }
  */
     groupby: function (data, fn) {
 
