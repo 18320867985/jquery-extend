@@ -740,13 +740,28 @@ var list = {
 
 };
 
+// support ie8+
 
-export default {
-  
-    urlpath,
-    cookie,
-    localStorage,
-    sessionStorage,
-    list
+window.utis = {
+
+    urlpath: urlpath,
+    cookie: cookie,
+    localStorage: localStorage,
+    sessionStorage: sessionStorage,
+    list: list,
+    toDate: toDate
 
 };
+
+
+// es6 model
+
+//export default {
+  
+//    urlpath,
+//    cookie,
+//    localStorage,
+//    sessionStorage,
+//    list
+
+//};
