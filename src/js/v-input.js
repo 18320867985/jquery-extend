@@ -25,18 +25,18 @@
 
         var $this = $(this.el);
         if (window.addEventListener) {
-            $this.on("input", function (event) {
+            $this.on("input.v-input", function (event) {
                 if (typeof fn === "function") {
-                    fn.call($this.get(0), $this.val());
+                    fn.call($this.get(0), event, $this.val());
                    
                 }
               
             });
         } else {
             // ie8
-            $this.on("keyup", function (event) {
+            $this.on("keyup.v-input", function (event) {
                 if (typeof fn === "function") {
-                    fn.call($this.get(0), $this.val());
+                    fn.call($this.get(0), event, $this.val());
                 }
                
             });

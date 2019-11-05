@@ -91,6 +91,7 @@
 
                     </div>
                 </div>
+
                 <pre>
                     html:
                      父元素class： v-autocomplete
@@ -135,6 +136,23 @@
                     &lt;/div>
                 </pre>
 
+                <h3>自动补全-ajax</h3>
+                <div class="v-autocomplete">
+                    <div class="v-dropdown" data-event="focus" data-toggle="v-dropdown">
+
+                        <input class="form-control v-dropdown-btn v-autocomplete-input" type="text" id="input-ajax" autocomplete="off" placeholder="==请选择喜欢的编程语言==" />
+
+                        <ul class="v-dropdown-menu v-dropdown-100 ">
+                            <!--<li>
+                                <a href="javascript:;" data-val="北京">
+                                    北京
+                                </a>
+                            </li>-->
+                           
+                        </ul>
+
+                    </div>
+                </div>
                 <pre>
                 js code
                   
@@ -178,6 +196,7 @@
     <script src="js/v-dropdown.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/v-input.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/v-autocomplete.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
@@ -185,28 +204,28 @@
 
             $(".v-autocomplete").vautocomplete(
                 //  回调函数
-                function (val,dropdownMenu) {
+                function (val, dropdownMenu) {
                     console.log("回调函数文本框值：", val);
-                  //  console.log("dropdownMenu：", dropdownMenu);
-            });
+                    //  console.log("dropdownMenu：", dropdownMenu);
+                });
 
             // 自定义事件 vautocomplete值变化触发
             //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
 
-            //    console.log("el", el);
-           //     console.log("change文本框值", val);
-            //console.log("dropdownMenu：", dropdownMenu);
+            //    //console.log("el", el);
+            //     console.log("change文本框值", val);
+            //    //console.log("dropdownMenu：", dropdownMenu);
 
             //});
 
-             // 自定义事件 vautocomplete 键盘按下enter键触发
+            // 自定义事件 vautocomplete 键盘按下enter键触发
             $(".v-autocomplete").on("v-autocomplete-enter", function (event, el, val) {
 
                 //console.log("el", el);
                 console.log("提交的文本框值：", val);
 
             });
-            
+
             // 自定义事件 vautocomplete 下拉项值选中触发
             $(".v-autocomplete").on("v-autocomplete-select-item", function (event, el, val) {
 
@@ -214,6 +233,45 @@
                 console.log("下拉项选中值：", val);
 
             });
+
+            // ajax
+           $("#input-ajax").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+
+                //console.log("el", el);
+                // console.log("change文本框值", val);
+                //console.log("dropdownMenu：", dropdownMenu);
+
+               getData(val,dropdownMenu);
+
+           });
+            // init
+            getData("", $("#input-ajax ").parents(".v-dropdown").find(".v-dropdown-menu"));
+            function getData(val, dropdownMenu) {
+              
+                 $.get("./js/v-autocomplete.json", function (res) {
+                       console.log(val)
+                   res = utils.list.where(res, function (item) {
+                       return new RegExp(val,"img").test(item);
+                   });
+                    
+                   var docfg = document.createDocumentFragment();
+                   for (var i = 0; i < res.length; i++) {
+                       var item = res[i];
+                        var li = document.createElement("li");
+                       var a = document.createElement("a");
+                       a.setAttribute("data-val", item);
+                       a.innerHTML = item;
+                       li.appendChild(a);
+                       docfg.appendChild(li);
+
+                   }
+
+
+                   $(dropdownMenu).html(docfg);
+
+               },"json");
+
+            }
 
 
         });

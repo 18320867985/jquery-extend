@@ -21,10 +21,10 @@
         var $input = $this.find(".v-autocomplete-input");
         var $menu = $this.find(".v-dropdown-menu");
 
-        $input.on("keydown.v-autocomplete", function (e) {
-
+        $input.on("keyup.v-autocomplete", function (e) {
+          
             if (e.keyCode === 40) {
-               
+                console.log("---")
                 self._keydown($input,$menu);
             }
 
@@ -47,8 +47,11 @@
         });
 
         // input change 
-        $input.vinput(function (val) {
+        $input.vinput(function (event, val) {
 
+            if (window.attachEvent) {
+                if (event.keyCode === 38 || event.keyCode === 40) { return; }
+            }
             if (typeof fn === "function") {
                 fn.call($input.get(0), val, $menu.get(0));
             }
