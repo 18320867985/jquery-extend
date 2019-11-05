@@ -202,12 +202,7 @@
     <script type="text/javascript">
         $(function () {
 
-            $(".v-autocomplete").vautocomplete(
-                //  回调函数
-                function (val, dropdownMenu) {
-                    console.log("回调函数文本框值：", val);
-                    //  console.log("dropdownMenu：", dropdownMenu);
-                });
+            $(".v-autocomplete").vautocomplete();
 
             // 自定义事件 vautocomplete值变化触发
             //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
@@ -250,7 +245,7 @@
             function getData(val, dropdownMenu) {
               
                  $.get("./js/v-autocomplete.json", function (res) {
-                       console.log(val)
+                    
                    res = utils.list.where(res, function (item) {
                        return new RegExp(val,"img").test(item);
                    });
