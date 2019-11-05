@@ -257,12 +257,40 @@
            $("#input-ajax").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
 
                 //console.log("el", el);
-                 console.log("change文本框值", val);
+                // console.log("change文本框值", val);
                 //console.log("dropdownMenu：", dropdownMenu);
 
+               getData(val,dropdownMenu);
+
            });
+            // init
+            getData("", $("#input-ajax ").parents(".v-dropdown").find(".v-dropdown-menu"));
+            function getData(val,dropdownMenu) {
+
+                 $.get("./js/v-autocomplete.json", function (res) {
+
+                   res = utils.list.where(res, function (item) {
+                       return new RegExp(val,"img").test(item);
+                   });
+                    
+                   var docfg = document.createDocumentFragment();
+                   for (var i = 0; i < res.length; i++) {
+                       var item = res[i];
+                        var li = document.createElement("li");
+                       var a = document.createElement("a");
+                       a.setAttribute("data-val", item);
+                       a.innerHTML = item;
+                       li.appendChild(a);
+                       docfg.appendChild(li);
+
+                   }
 
 
+                   $(dropdownMenu).html(docfg);
+
+               },"json");
+
+            }
 
 
         });
