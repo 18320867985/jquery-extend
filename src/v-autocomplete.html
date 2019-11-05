@@ -265,10 +265,10 @@
            });
             // init
             getData("", $("#input-ajax ").parents(".v-dropdown").find(".v-dropdown-menu"));
-            function getData(val,dropdownMenu) {
-
+            function getData(val, dropdownMenu) {
+              
                  $.get("./js/v-autocomplete.json", function (res) {
-
+                       console.log(val)
                    res = utils.list.where(res, function (item) {
                        return new RegExp(val,"img").test(item);
                    });
