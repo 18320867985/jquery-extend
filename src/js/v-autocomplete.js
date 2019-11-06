@@ -21,7 +21,7 @@
         var $input = $this.find(".v-autocomplete-input");
         var $menu = $this.find(".v-dropdown-menu");
 
-        $input.on("keyup.v-autocomplete", function (e) {
+        $input.on("keydown.v-autocomplete", function (e) {
             
             if (e.keyCode === 40) {
               
@@ -52,7 +52,7 @@
 
             // ie8
             if (window.attachEvent) {
-                if (event.keyCode === 38 || event.keyCode === 40) { return; }
+                if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 13) { return; }
             }
            
             $(this).trigger("v-autocomplete-change", [$input.get(0), val, $menu.get(0)]);
@@ -96,10 +96,11 @@
         var $selected = $menu.find("li.selected");
         var len = $selected.length;
         if (len > 0) {
+            
             var v = $selected.find(">a").attr("data-val");
             $input.val(v).blur();
             $menu.parents(".v-dropdown").vdropdown("hide");
-            $input.trigger("v-autocomplete-enter", [$input.get(0), v]);
+           
         }
 
     };

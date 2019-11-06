@@ -34,7 +34,7 @@
             });
         } else {
             // ie8
-            $this.on("keydown.v-input", function (event) {
+            $this.on("keyup.v-input", function (event) {
                 if (typeof fn === "function") {
                     fn.call($this.get(0), event, $this.val());
                 }

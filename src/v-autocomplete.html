@@ -156,19 +156,14 @@
                 <pre>
                 js code
                   
-                $(".v-autocomplete").vautocomplete(
-                //  回调函数
-                function (val,dropdownMenu) {
-                   // console.log("文本框值：", val);
-                   // console.log("dropdownMenu：", dropdownMenu);
-                });
+                $(".v-autocomplete").vautocomplete();
 
-                // 自定义事件 vautocomplete值变化触发
+                // 自定义事件 vautocomplete文本框的值变化触发
                 //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
 
-                //    console.log("el", el);
-               //     console.log("文本框值", val);
-                //console.log("dropdownMenu：", dropdownMenu);
+                     //    console.log("el", el);
+                     //     console.log("文本框值", val);
+                    //console.log("dropdownMenu：", dropdownMenu);
 
                 //});
 
@@ -205,21 +200,14 @@
             $(".v-autocomplete").vautocomplete();
 
             // 自定义事件 vautocomplete值变化触发
-            //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
-
-            //    //console.log("el", el);
-            //     console.log("change文本框值", val);
-            //    //console.log("dropdownMenu：", dropdownMenu);
-
-            //});
-
-            // 自定义事件 vautocomplete 键盘按下enter键触发
-            $(".v-autocomplete").on("v-autocomplete-enter", function (event, el, val) {
+            $(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
 
                 //console.log("el", el);
-                console.log("提交的文本框值：", val);
+                console.log("change文本框值", val);
+                //console.log("dropdownMenu：", dropdownMenu);
 
             });
+
 
             // 自定义事件 vautocomplete 下拉项值选中触发
             $(".v-autocomplete").on("v-autocomplete-select-item", function (event, el, val) {
@@ -240,8 +228,17 @@
 
            });
 
-            // init
+            // enter键触发提交
+            $("#input-ajax ").on("keydown", function (e) {
+                if (e.keyCode === 13) {
+                    console.log("enter key submit value:",this.value)
+
+                }
+            });
+
+            // init list data
             getData("", $("#input-ajax ").parents(".v-dropdown").find(".v-dropdown-menu"));
+
             function getData(val, dropdownMenu) {
               
                  $.get("./js/v-autocomplete.json", function (res) {
