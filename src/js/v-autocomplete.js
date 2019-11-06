@@ -41,6 +41,11 @@
         });
 
         $menu.on("click.v-autocomplete", ">li", function () {
+
+            // not data
+            if ($menu.find("._not-item").length > 0) { return; }
+
+             // has data
             $(this).addClass("selected").siblings().removeClass("selected");
             var v = $(this).find(">a").attr("data-val");
             $input.val(v);
@@ -63,6 +68,10 @@
 
     VAutocomplete.prototype._keyup = function ($input, $menu) {
 
+        // not data
+        if ($menu.find("._not-item").length > 0) { return;}
+
+        // has data
         var $selected = $menu.find("li.selected");
         var $lis = $menu.find("li");
         var len = $lis.length;
@@ -78,6 +87,10 @@
 
     VAutocomplete.prototype._keydown = function ($input, $menu) {
 
+        // not data
+        if ($menu.find("._not-item").length > 0) { return; }
+
+        // has data
         var $selected = $menu.find("li.selected");
         var $lis = $menu.find("li");
         var len = $lis.length;
