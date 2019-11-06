@@ -43,9 +43,9 @@
 
 <body>
     <div class="container">
-        <h1>自动补全-autocomplete 依赖v-input.js和v-dropdown.js</h1>
+        <h1>自动补全-autocomplete 依赖v-dropdown.js</h1>
         <div>
-            <a class="btn-link" href="./js/v-input.js">查看 v-input.js</a>
+
             <a class="btn-link" href="./js/v-dropdown.js">查看 v-dropdown.js</a>
             <a class="btn-link" href="./js/v-autocomplete.js">查看 v-autocomplete.js</a>
             <a class="btn-link" href="./component-scss/v-dropdown.scss">查看 v-dropdown.scss</a>
@@ -156,25 +156,78 @@
                 <pre>
                 js code
                   
-                $(".v-autocomplete").vautocomplete();
+                 $(".v-autocomplete").vautocomplete();
 
-                // 自定义事件 vautocomplete文本框的值变化触发
-                //$(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+                // 自定义事件 vautocomplete值变化触发
+                $(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
 
-                     //    console.log("el", el);
-                     //     console.log("文本框值", val);
+                    //console.log("el", el);
+                    console.log("change文本框值", val);
                     //console.log("dropdownMenu：", dropdownMenu);
 
-                //});
+                });
 
-            
+
                 // 自定义事件 vautocomplete 下拉项值选中触发
                 $(".v-autocomplete").on("v-autocomplete-select-item", function (event, el, val) {
 
-                   // console.log("el", el);
-                   // console.log("val", val);
+                    //console.log("el", el);
+                    console.log("下拉项选中值：", val);
 
                 });
+
+                // ajax
+               $("#input-ajax").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+
+                    //console.log("el", el);
+                    // console.log("change文本框值", val);
+                    //console.log("dropdownMenu：", dropdownMenu);
+
+                   getData(val,dropdownMenu);
+
+               });
+
+                // enter键触发提交
+                $("#input-ajax ").on("keydown", function (e) {
+                    if (e.keyCode === 13) {
+                   
+                        console.log("enter key submit value:", this.value)
+
+                        // 文本框焦点移开， 关闭v-dropdown
+                        $(this).blur().parents(".v-dropdown").vdropdown("hide");
+
+                    }
+                });
+                 // init list data
+                getData("", $("#input-ajax ").parents(".v-dropdown").find(".v-dropdown-menu"));
+
+                function getData(val, dropdownMenu) {
+              
+                     $.get("./js/v-autocomplete.json", function (res) {
+                    
+                       res = utils.list.where(res, function (item) {
+                           return new RegExp(val,"img").test(item);
+                       });
+                    
+                       var docfg = document.createDocumentFragment();
+                       for (var i = 0; i < res.length; i++) {
+                           var item = res[i];
+                            var li = document.createElement("li");
+                           var a = document.createElement("a");
+                           a.setAttribute("data-val", item);
+                           a.innerHTML = item;
+                           li.appendChild(a);
+                           docfg.appendChild(li);
+
+                       }
+
+
+                       $(dropdownMenu).html(docfg);
+
+                   },"json");
+
+                }
+
 
 
                 </pre>
@@ -189,7 +242,6 @@
 
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/v-dropdown.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/v-input.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/v-autocomplete.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
@@ -231,7 +283,11 @@
             // enter键触发提交
             $("#input-ajax ").on("keydown", function (e) {
                 if (e.keyCode === 13) {
-                    console.log("enter key submit value:",this.value)
+                   
+                    console.log("enter key submit value:", this.value)
+
+                    // 文本框焦点移开， 关闭v-dropdown
+                    $(this).blur().parents(".v-dropdown").vdropdown("hide");
 
                 }
             });

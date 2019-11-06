@@ -48,7 +48,7 @@
         });
 
         // input change 
-        $input.vinput(function (event, val) {
+        this.input($input,function (event, val) {
 
             // ie8
             if (window.attachEvent) {
@@ -104,7 +104,29 @@
         }
 
     };
-    
+
+    VAutocomplete.prototype.input = function (el,fn) {
+
+        var $this = $(el);
+        if (window.addEventListener) {
+            $this.on("input.v-input", function (event) {
+                if (typeof fn === "function") {
+                    fn.call($this.get(0), event, $this.val());
+
+                }
+
+            });
+        } else {
+            // ie8
+            $this.on("keyup.v-input", function (event) {
+                if (typeof fn === "function") {
+                    fn.call($this.get(0), event, $this.val());
+                }
+
+            });
+        }
+
+    };
 
     function Plugin(fn) {
 
