@@ -1,6 +1,6 @@
 
 /*
- * hqs  v-input
+ * hqs  v-autocomplete
  *
  * */
 
