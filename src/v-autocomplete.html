@@ -146,45 +146,53 @@
 
                 </pre>
 
-                <h3>自动补全-scroll-view </h3>
+                <h3>自动补全-v-dropdown-menu-overflow </h3>
 
-                <div class="v-autocomplete" data-srcollview>
+                <div class="v-autocomplete"  >
                     <div class="v-dropdown" data-event="focus" data-toggle="v-dropdown">
 
-                        <input class="form-control v-dropdown-btn v-autocomplete-input" type="text" id="input" autocomplete="off" placeholder="==请选择城市==" />
+                        <input class="form-control v-dropdown-btn v-autocomplete-input" type="text"  autocomplete="off" placeholder="==选择厂商==" />
 
-                        <ul class="v-dropdown-menu v-dropdown-100 ">
-                            <li>
-                                <a href="javascript:;" data-val="北京">
-                                    北京
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-val="上海">
-                                    上海
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-val="杭州">
-                                    杭州
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-val="深圳">
-                                    深圳
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-val="东莞">
-                                    东莞
-                                </a>
-                            </li>
+                        <ul class="v-dropdown-menu v-dropdown-100 ie8-border" style="max-height:300px; overflow:auto; ">
+
+                            <li class=""><a href="javascript:;" data-val="LG惠州">LG惠州</a></li>
+                            <li class=""><a href="javascript:;" data-val="比利时BASF">比利时BASF</a></li> 
+                            <li class=""><a href="javascript:;" data-val="德国ROMIRA">德国ROMIRA</a></li> 
+                            <li class=""><a href="javascript:;" data-val="德国巴斯夫">德国巴斯夫</a></li>
+                            <li class=""><a href="javascript:;" data-val="德国科思创（拜耳）">德国科思创（拜耳）</a></li> 
+                            <li class=""><a href="javascript:;" data-val="德国朗盛">德国朗盛</a></li> 
+                            <li class=""><a href="javascript:;" data-val="德国赢创德固赛">德国赢创德固赛</a></li> 
+                            <li class=""><a href="javascript:;" data-val="俄罗斯下卡姆斯克">俄罗斯下卡姆斯克</a></li> 
+                            <li class=""><a href="javascript:;" data-val="广州LG">广州LG</a></li> 
+                            <li class=""><a href="javascript:;" data-val="韩国LG">韩国LG</a></li> 
+                            <li class=""><a href="javascript:;" data-val="韩国YOU I">韩国YOU I</a></li> 
+                            <li class=""><a href="javascript:;" data-val="韩国巴斯夫">韩国巴斯夫</a></li>
+                            <li class=""><a href="javascript:;" data-val="韩国工程塑料">韩国工程塑料</a></li>
+                            <li><a href="javascript:;" data-val="韩国锦湖">韩国锦湖</a></li> 
+                            <li><a href="javascript:;" data-val="韩国英力士苯领">韩国英力士苯领</a></li>
+                            <li><a href="javascript:;" data-val="韩三星第一毛织（乐天）">韩三星第一毛织（乐天）</a></li>
+                            <li><a href="javascript:;" data-val="荷兰盛禧奥（斯泰隆）">荷兰盛禧奥（斯泰隆）</a></li> 
                         </ul>
-
+                          
                     </div>
                 </div>
                 <pre>
-                    &lt;div class="v-autocomplete" data-scrollview>&lt;/div>
+                    &lt;div class="v-autocomplete"  >
+                        &lt;ul class="v-dropdown-menu v-dropdown-100 ie8-border" style="max-height:300px; overflow:auto; ">  
+
+                                    &lt;li>
+                                        &lt;a  href="javascript:;" data-val="德国巴斯夫">
+                                            德国巴斯夫
+                                        &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;a  href="javascript:;" data-val="荷兰盛禧奥">
+                                            荷兰盛禧奥
+                                        &lt;/a>
+                                    &lt;/li>
+                               
+                        &lt;/ul>
+                   &lt;/div>
                 </pre>
 
                 <h3>自动补全-ajax</h3>
