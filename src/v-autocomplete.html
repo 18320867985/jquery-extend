@@ -1,0 +1,401 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>自动补全-autocomplete </title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .container > li + li {
+            margin-top: 20px;
+        }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+        .v-modal-2 .v-modal-cnt,
+        .v-modal-3 .v-modal-cnt {
+            width: 600px;
+            padding: 30px;
+        }
+        h2 {
+             margin-bottom:30px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>自动补全-autocomplete 依赖v-dropdown.js</h1>
+        <div>
+
+            <a class="btn-link" href="./js/v-dropdown.js">查看 v-dropdown.js</a>
+            <a class="btn-link" href="./js/v-autocomplete.js">查看 v-autocomplete.js</a>
+            <a class="btn-link" href="./component-scss/v-dropdown.scss">查看 v-dropdown.scss</a>
+
+        </div>
+        <ul>
+
+            <li>
+
+                <h3>自动补全-默认</h3>
+                <div class="v-autocomplete">
+                    <div class="v-dropdown" data-event="focus" data-toggle="v-dropdown">
+
+                        <input class="form-control v-dropdown-btn v-autocomplete-input" type="text" id="input" autocomplete="off" placeholder="==请选择城市==" />
+
+                        <ul class="v-dropdown-menu v-dropdown-100 ">
+                            <li>
+                                <a href="javascript:;" data-val="北京">
+                                    北京
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="上海">
+                                    上海
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="杭州">
+                                    杭州
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="深圳">
+                                    深圳
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="东莞">
+                                    东莞
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <pre>
+                    html:
+                     父元素class： v-autocomplete
+                     子元素文本框class： v-autocomplete-input
+                     子元素a 属性加上 data-val="值"
+
+                     &lt;div class="v-autocomplete">
+
+                         &lt;div class="v-dropdown " data-event="focus" data-toggle="v-dropdown">       
+
+                             &lt;input class="form-control v-dropdown-btn v-autocomplete-input" type="text" autocomplete="off" />
+
+                             &lt;ul class="v-dropdown-menu ">
+                                     &lt;li>
+                                        &lt;a  href="javascript:;" data-val="北京">
+                                            北京
+                                        &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;a  href="javascript:;" data-val="上海">
+                                            上海
+                                        &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;a  href="javascript:;" data-val="杭州">
+                                            杭州
+                                        &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                         &lt;a  href="javascript:;" data-val="深圳">
+                                            深圳
+                                        &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                         &lt;a  href="javascript:;" data-val="东莞">
+                                            东莞
+                                        &lt;/a>
+                                    &lt;/li>
+                             &lt;/ul>
+
+                        &lt;/div>
+                    &lt;/div>
+                </pre>
+
+                <pre>
+                    没有相关数据html：
+                        &lt;li>
+                            &lt;a  class="_not-item" href="javascript:;" >
+                                北京
+                            &lt;/a>
+                        &lt;/li>
+
+                </pre>
+
+                <h3>自动补全-v-dropdown-menu-overflow </h3>
+
+                <div class="v-autocomplete"  >
+                    <div class="v-dropdown" data-event="focus" data-toggle="v-dropdown">
+
+                        <input class="form-control v-dropdown-btn v-autocomplete-input" type="text"  autocomplete="off" placeholder="==选择厂商==" />
+
+                        <ul class="v-dropdown-menu v-dropdown-100 ie8-border" style="max-height:300px; overflow:auto; ">
+
+                            <li class=""><a href="javascript:;" data-val="LG惠州">LG惠州</a></li>
+                            <li class=""><a href="javascript:;" data-val="比利时BASF">比利时BASF</a></li> 
+                            <li class=""><a href="javascript:;" data-val="德国ROMIRA">德国ROMIRA</a></li> 
+                            <li class=""><a href="javascript:;" data-val="德国巴斯夫">德国巴斯夫</a></li>
+                            <li class=""><a href="javascript:;" data-val="德国科思创（拜耳）">德国科思创（拜耳）</a></li> 
+                            <li class=""><a href="javascript:;" data-val="德国朗盛">德国朗盛</a></li> 
+                            <li class=""><a href="javascript:;" data-val="德国赢创德固赛">德国赢创德固赛</a></li> 
+                            <li class=""><a href="javascript:;" data-val="俄罗斯下卡姆斯克">俄罗斯下卡姆斯克</a></li> 
+                            <li class=""><a href="javascript:;" data-val="广州LG">广州LG</a></li> 
+                            <li class=""><a href="javascript:;" data-val="韩国LG">韩国LG</a></li> 
+                            <li class=""><a href="javascript:;" data-val="韩国YOU I">韩国YOU I</a></li> 
+                            <li class=""><a href="javascript:;" data-val="韩国巴斯夫">韩国巴斯夫</a></li>
+                            <li class=""><a href="javascript:;" data-val="韩国工程塑料">韩国工程塑料</a></li>
+                            <li><a href="javascript:;" data-val="韩国锦湖">韩国锦湖</a></li> 
+                            <li><a href="javascript:;" data-val="韩国英力士苯领">韩国英力士苯领</a></li>
+                            <li><a href="javascript:;" data-val="韩三星第一毛织（乐天）">韩三星第一毛织（乐天）</a></li>
+                            <li><a href="javascript:;" data-val="荷兰盛禧奥（斯泰隆）">荷兰盛禧奥（斯泰隆）</a></li> 
+                        </ul>
+                          
+                    </div>
+                </div>
+                <pre>
+                    &lt;div class="v-autocomplete"  >
+                        &lt;ul class="v-dropdown-menu v-dropdown-100 ie8-border" style="max-height:300px; overflow:auto; ">  
+
+                                    &lt;li>
+                                        &lt;a  href="javascript:;" data-val="德国巴斯夫">
+                                            德国巴斯夫
+                                        &lt;/a>
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;a  href="javascript:;" data-val="荷兰盛禧奥">
+                                            荷兰盛禧奥
+                                        &lt;/a>
+                                    &lt;/li>
+                               
+                        &lt;/ul>
+                   &lt;/div>
+                </pre>
+
+                <h3>自动补全-ajax</h3>
+                <div class="v-autocomplete">
+                    <div class="v-dropdown" data-event="focus" data-toggle="v-dropdown">
+
+                        <input class="form-control v-dropdown-btn v-autocomplete-input" type="text" id="input-ajax" autocomplete="off" placeholder="==请选择喜欢的编程语言==" />
+
+                        <ul class="v-dropdown-menu v-dropdown-100 ">
+                            <!--<li>
+                    <a href="javascript:;" data-val="北京">
+                        北京
+                    </a>
+                </li>-->
+
+                        </ul>
+
+                    </div>
+                </div>
+                <pre>
+                js code
+                  
+                 $(".v-autocomplete").vautocomplete();
+
+                // 自定义事件 vautocomplete值变化触发
+                $(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+
+                    //console.log("el", el);
+                    console.log("change文本框值", val);
+                    //console.log("dropdownMenu：", dropdownMenu);
+
+                });
+
+
+                // 自定义事件 vautocomplete 下拉项值选中触发
+                $(".v-autocomplete").on("v-autocomplete-select-item", function (event, el, val) {
+
+                    //console.log("el", el);
+                    console.log("下拉项选中值：", val);
+
+                });
+                </pre>
+                <pre>
+                ajax加载数据jscode:
+                // ajax
+               $("#input-ajax").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+
+                    //console.log("el", el);
+                    // console.log("change文本框值", val);
+                    //console.log("dropdownMenu：", dropdownMenu);
+
+                   getData(val,dropdownMenu);
+
+               });
+
+                // enter键触发提交
+                $("#input-ajax ").on("keydown", function (e) {
+                    if (e.keyCode === 13) {
+                   
+                        console.log("enter key submit value:", this.value)
+
+                        // 文本框焦点移开， 关闭v-dropdown
+                        $(this).blur().parents(".v-dropdown").vdropdown("hide");
+
+                    }
+                });
+                 // init list data
+                getData("", $("#input-ajax ").parents(".v-dropdown").find(".v-dropdown-menu"));
+
+                function getData(val, dropdownMenu) {
+              
+                     $.get("./js/v-autocomplete.json", function (res) {
+                    
+                       res = utils.list.where(res, function (item) {
+                           return new RegExp(val,"img").test(item);
+                       });
+                    
+                       var docfg = document.createDocumentFragment();
+                       for (var i = 0; i < res.length; i++) {
+                           var item = res[i];
+                            var li = document.createElement("li");
+                           var a = document.createElement("a");
+                           a.setAttribute("data-val", item);
+                           a.innerHTML = item;
+                           li.appendChild(a);
+                           docfg.appendChild(li);
+
+                       }
+
+
+                       $(dropdownMenu).html(docfg);
+
+                   },"json");
+
+                }
+
+            </pre>
+
+
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-dropdown.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-autocomplete.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/utils.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $(".v-autocomplete").vautocomplete();
+
+            // 自定义事件 vautocomplete值变化触发
+            $(".v-autocomplete").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+
+                //console.log("el", el);
+                console.log("change文本框值", val);
+                //console.log("dropdownMenu：", dropdownMenu);
+
+            });
+
+
+            // 自定义事件 vautocomplete 下拉项值选中触发
+            $(".v-autocomplete").on("v-autocomplete-select-item", function (event, el, val) {
+
+                //console.log("el", el);
+                console.log("下拉项选中值：", val);
+
+            });
+
+            // ajax
+           $("#input-ajax").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+
+                //console.log("el", el);
+                // console.log("change文本框值", val);
+                //console.log("dropdownMenu：", dropdownMenu);
+
+               getData($.trim(val),dropdownMenu);
+
+           });
+
+            // enter键触发提交
+            $("#input-ajax ").on("keydown", function (e) {
+                if (e.keyCode === 13) {
+                   
+                    console.log("enter key submit value:", this.value)
+
+                    // 文本框焦点移开， 关闭v-dropdown
+                    $(this).blur().parents(".v-dropdown").vdropdown("hide");
+
+                }
+            });
+
+            // init list data
+            getData("", $("#input-ajax ").parents(".v-dropdown").find(".v-dropdown-menu"));
+
+            function getData(val, dropdownMenu) {
+              
+                 $.get("./js/v-autocomplete.json", function (res) {
+                    
+                   res = utils.list.where(res, function (item) {
+                       return new RegExp(val,"img").test(item);
+                   });
+
+                     var docfg = document.createDocumentFragment();
+                     if (res.length === 0) {
+                         var li = document.createElement("li");
+                         var a = document.createElement("a");
+                         a.setAttribute("class", "_not-item");
+                             a.innerHTML ="~没有找到相关数据~";
+                         li.appendChild(a);
+                         docfg.appendChild(li);
+                       
+                     } else {
+
+                       
+                         for (var i = 0; i < res.length; i++) {
+                             var item = res[i];
+                             var li = document.createElement("li");
+                             var a = document.createElement("a");
+                             a.setAttribute("data-val", item);
+                             a.innerHTML = item;
+                             li.appendChild(a);
+                             docfg.appendChild(li);
+
+                         }
+
+                     }
+                   $(dropdownMenu).html(docfg);
+
+               },"json");
+
+            }
+
+
+        });
+
+    </script>
+</body>
+
+</html>

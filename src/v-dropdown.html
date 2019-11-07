@@ -348,7 +348,7 @@
             <li>
                 <h2>js模式触发</h2>
                 <div class="v-dropdown v-dropdown-right slt-1" id="js-v-dropdown-1" style="width:280px;">
-                    <input class="v-dropdown-btn form-control" type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
+                    <input class="v-dropdown-btn form-control" data-readonly="true" type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
 
                     <ul class="v-dropdown-menu  v-dropdown-100 " style="max-height:300px; overflow:auto;">
                         <li><a href="javascript:;">高光泽性1</a></li>
@@ -377,6 +377,11 @@
                     event: "focus"  // 触发事件 默认click
                 })
 
+                // 隐藏v-dropdown
+                $("#js-v-dropdown-1").vdropdown("hide");
+
+                // 显示v-dropdown
+                $("#js-v-dropdown-1").vdropdown("show");
             </pre>
                 <h2>下拉框-按钮-hover</h2>
                 <div class="v-dropdown  slt-1" id="js-v-dropdown-2" style="display:inline-block">
@@ -400,6 +405,36 @@
                     clickHide:true   // 点击选择框是否不隐藏 默认false为隐藏
                 });
             </pre>
+
+                <h2>只读模式-属性：readonly</h2>
+                <div class="v-dropdown v-dropdown-right slt-1" data-toggle="v-dropdown" style="width:280px;">
+                    <input class="v-dropdown-btn form-control" readonly type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
+
+                    <ul class="v-dropdown-menu  v-dropdown-100 " style="max-height:300px; overflow:auto;">
+                        <li><a href="javascript:;">高光泽性1</a></li>
+                        <li><a href="javascript:;">超高刚性2</a></li>
+                        <li><a href="javascript:;">特佳弯曲强2</a></li>
+                        <li><a href="javascript:;">硬度4</a></li>
+                        <li><a href="javascript:;">高光泽性5</a></li>
+                        <li><a href="javascript:;">超高刚性6</a></li>
+                        <li><a href="javascript:;">特佳弯曲强7</a></li>
+                        <li><a href="javascript:;">硬度8</a></li>
+                        <li><a href="javascript:;">高光泽性9</a></li>
+                        <li><a href="javascript:;">超高刚性10</a></li>
+                        <li><a href="javascript:;">特佳弯曲强11</a></li>
+                        <li><a href="javascript:;">硬度12</a></li>
+                        <li><a href="javascript:;">高光泽性13</a></li>
+                        <li><a href="javascript:;">超高刚性14</a></li>
+                        <li><a href="javascript:;">特佳弯曲强15</a></li>
+                        <li><a href="javascript:;">硬度16</a></li>
+                    </ul>
+
+
+                </div>
+                <pre>
+                    只读模式-属性：readonlyreadonly
+                    &lt;input class="v-dropdown-btn form-control" readonly type="text" name="name" value="" placeholder="下来选择列表" autocomplete="off" />
+</pre>
             </li>
 
         </ul>

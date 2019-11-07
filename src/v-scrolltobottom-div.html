@@ -100,50 +100,54 @@
                     <pre>
                     js-code:
                     $(function() {
-                    
-                    	$(function() {
-                    		
-                    		var pageObj = {
-                    			indexP: 1,
-                    			maxP: 10
-                    		}
-                    
-                    		// 初始化数据
-                    		getData(pageObj);
-                    		
-                    		$(".w-pwr").vreachbottom(function(e,el){
-                    			//console.log("el",el);
-                    			getData(pageObj);
-                    		});
-                    		
-                    		function getData(pageObj) {
-                    
-                    			$.get("./js/v-paging.json", {}, function(data) {
-                    				//console.log(data)
-                    				if (pageObj.indexP > pageObj.maxP) {
-                    					$(".w-pwr ._loading").html("没有更多数据了");
-                    					return;
-                    				}
-                    
-                    				var docf = document.createDocumentFragment();
-                    				if (data.length > 0) {
-                    					for (var i = 0; i < data.length; i++) {
-                    						var p = document.createElement("p");
-                    						p.innerHTML = data[i].content + "--" + pageObj.indexP + "--";
-                    						docf.appendChild(p);
-                    					}
-                    
-                    					$(".w-pwr ._cnt").append(docf);
-                    					pageObj.indexP++;
-                    
-                    				}
-                    
-                    			});
-                    		}
-                    
-                    	});
-                    
+
+				        $(function() {
+					
+					        var pageObj = {
+						        indexP: 1,
+                                maxP: 10,
+                               isLoadSuccess:true   //ajax 加载成功后再执行
+					        }
+
+					        // 初始化数据
+					        getData(pageObj);
+					
+					        $(".w-pwr").vreachbottom(function(e,el){
+						        //console.log("el",el);
+                                if (pageObj.isLoadSuccess) {getData(pageObj); }
+						
+					        });
+					
+			
+
+				        });
+
                     });
+
+                   function getData(pageObj) {
+                                pageObj.isLoadSuccess = false;
+						        $.get("./js/v-paging.json", {}, function(data) {
+							        //console.log(data)
+							        if (pageObj.indexP > pageObj.maxP) {
+								        $(".w-pwr ._loading").html("没有更多数据了");
+								        return;
+							        }
+                                      pageObj.isLoadSuccess = true;
+							        var docf = document.createDocumentFragment();
+							        if (data.length > 0) {
+								        for (var i = 0; i < data.length; i++) {
+									        var p = document.createElement("p");
+									        p.innerHTML = data[i].content + "--" + pageObj.indexP + "--"+i;
+									        docf.appendChild(p);
+								        }
+
+								        $(".w-pwr ._cnt").append(docf);
+								        pageObj.indexP++;
+
+							        }
+
+						        });
+					        }
                 </pre>
 
 				</li>
@@ -151,14 +155,15 @@
 			</ul>
 
 			<!--加载大框-->
-			<div class="w-pwr">
-				<div class="_cnt"></div>
-				<div class="_loading">正在加载...</div>
-			</div>
+            <div class="w-pwr">
+                <div class="_cnt"></div>
+                <div class="_loading">正在加载...</div>
+              
+            </div>
 
 		</div>
 
-
+      
 		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/v-reachbottom.js" type="text/javascript" charset="utf-8"></script>
@@ -171,7 +176,8 @@
 					
 					var pageObj = {
 						indexP: 1,
-						maxP: 10
+                        maxP: 10,
+                       isLoadSuccess:true   //ajax 加载成功后再执行
 					}
 
 					// 初始化数据
@@ -179,18 +185,25 @@
 					
 					$(".w-pwr").vreachbottom(function(e,el){
 						//console.log("el",el);
-						getData(pageObj);
+                        if (pageObj.isLoadSuccess) {getData(pageObj); }
+						
 					});
 					
-					function getData(pageObj) {
+			
 
+				});
+
+            });
+
+           function getData(pageObj) {
+                        pageObj.isLoadSuccess = false;
 						$.get("./js/v-paging.json", {}, function(data) {
 							//console.log(data)
 							if (pageObj.indexP > pageObj.maxP) {
 								$(".w-pwr ._loading").html("没有更多数据了");
 								return;
 							}
-
+                              pageObj.isLoadSuccess = true;
 							var docf = document.createDocumentFragment();
 							if (data.length > 0) {
 								for (var i = 0; i < data.length; i++) {
@@ -206,10 +219,6 @@
 
 						});
 					}
-
-				});
-
-			});
 		</script>
 	</body>
 

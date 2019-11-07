@@ -16,6 +16,13 @@
 
     VDropdown.prototype.runing = function () {
 
+
+        if (this.isMobile()) {
+
+            // 兼容ios safari click事件
+            $("body").css("cursor", "pointer");
+        }
+
         var $this = $(this.el);
         var eventType = this.options.event; 
         if (eventType === "hover") {
@@ -70,24 +77,15 @@
                 $(".v-dropdown").removeClass("in out");
                 $(this).closest(".v-dropdown").addClass("in");
 
-                if (eventType !== "focus") {
                     $(document).one("click", function (e) {
                         $(".v-dropdown").removeClass("in out");
                         $this.addClass("out");
                     });
-                }
-
-
+       
                 // 点击按钮 触发自定义的事件
                 $(this).trigger("v-dropdown-btn", [this]);
             });
 
-            if (eventType !== "focus") {
-                $this.on("blur", ".v-dropdown-btn", function (e) {
-                    $(".v-dropdown").removeClass("in out");
-                    $(this).closest(".v-dropdown").addClass("in");
-                });
-            }
     
         }
 
@@ -116,6 +114,16 @@
             }
         });
 
+    };
+
+    VDropdown.prototype.hide = function () {
+
+        $(this.el).closest(".v-dropdown").removeClass("in").addClass("out");
+    };
+
+    VDropdown.prototype.show = function () {
+        $(".v-dropdown").removeClass("out in");
+        $(this.el).closest(".v-dropdown").addClass("in");
     };
 
     // 是否为移动端

@@ -10,7 +10,7 @@ window._vd =window.vd;
 (function() {
     "use strict";
 	
-  var obj = function (formName) {
+    var Validate= function (formName) {
 
         this.formName = typeof formName === "undefined" ? ".form" : formName;
 
@@ -47,8 +47,8 @@ window._vd =window.vd;
 					if(window.addEventListener){
 						$(el).trigger("input");
 						
-					}else{
-						 $(el).trigger("keyup");
+                    } else {
+                        $(el).trigger("keyup");
 					}
                    
                     break;
@@ -208,14 +208,14 @@ window._vd =window.vd;
                 var el = _obj.el; // document.forms[_obj.pName][_obj.elName];
                 var $this = this;
 				if(window.addEventListener){
-					 $(el).on("input", _obj, function (event) {
-					    $this.checkElement(event.data, event.target, true, true);
-					    $this.addVdBtnStyle();
+                    $(el).on("input", _obj, function (event) {
+                        $this.checkElement(event.data, event.target, true, true);
+                        $this.addVdBtnStyle();
 					});
 				}else{
-					 $(el).on("keyup", _obj, function (event) {
-					    $this.checkElement(event.data, event.target, true, true);
-					    $this.addVdBtnStyle();
+                    $(el).on("keyup", _obj, function (event) {
+                        $this.checkElement(event.data, event.target, true, true);
+                        $this.addVdBtnStyle();
 					});
 				}
                
@@ -883,7 +883,7 @@ window._vd =window.vd;
 
     window.vd = {
 			create: function(formName) {
-				return new obj(formName);
+            return new Validate(formName);
 			}
 		};
 			
