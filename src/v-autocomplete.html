@@ -34,10 +34,10 @@
             width: 600px;
             padding: 30px;
         }
-        h2 {
-             margin-bottom:30px;
-        }
 
+        h2 {
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 
@@ -135,6 +135,48 @@
                         &lt;/div>
                     &lt;/div>
                 </pre>
+
+                <h3>自动补全-scroll-view </h3>
+
+                <div class="v-autocomplete" data-srcollview>
+                    <div class="v-dropdown" data-event="focus" data-toggle="v-dropdown">
+
+                        <input class="form-control v-dropdown-btn v-autocomplete-input" type="text" id="input" autocomplete="off" placeholder="==请选择城市==" />
+
+                        <ul class="v-dropdown-menu v-dropdown-100 ">
+                            <li>
+                                <a href="javascript:;" data-val="北京">
+                                    北京
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="上海">
+                                    上海
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="杭州">
+                                    杭州
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="深圳">
+                                    深圳
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-val="东莞">
+                                    东莞
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <pre>
+                    &lt;div class="v-autocomplete" data-scrollview>&lt;/div>
+                </pre>
+
 
                 <h3>自动补全-ajax</h3>
                 <div class="v-autocomplete">
@@ -254,13 +296,13 @@
             });
 
             // ajax
-           $("#input-ajax").on("v-autocomplete-change", function (event,el, val,dropdownMenu) {
+            $("#input-ajax").on("v-autocomplete-change", function (event, el, val, dropdownMenu) {
 
                 //console.log("el", el);
-                 console.log("change文本框值", val);
+                console.log("change文本框值", val);
                 //console.log("dropdownMenu：", dropdownMenu);
 
-           });
+            });
 
 
 
