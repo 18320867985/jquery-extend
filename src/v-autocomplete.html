@@ -178,8 +178,13 @@
                     </div>
                 </div>
                 <pre>
-                    &lt;div class="v-autocomplete"  >
-                        &lt;ul class="v-dropdown-menu v-dropdown-100 v-autocomplete-input " style="max-height:300px; overflow:auto; ">  
+                 &lt;div class="v-autocomplete"  >
+
+                       &lt;div class="v-dropdown " data-event="focus" data-toggle="v-dropdown">       
+
+                             &lt;input class="form-control v-dropdown-btn v-autocomplete-input" type="text" autocomplete="off" />
+
+                              &lt;ul class="v-dropdown-menu v-dropdown-100  " style="max-height:300px; overflow:auto; ">  
 
                                     &lt;li>
                                         &lt;a  href="javascript:;" tabindex="-1" data-val="德国巴斯夫">
@@ -193,8 +198,10 @@
                                     &lt;/li>
                                     ...
                                
-                        &lt;/ul>
-                   &lt;/div>
+                              &lt;/ul>
+                       &lt;/div>
+
+                 &lt;/div>
                 </pre>
 
                 <h3>自动补全-ajax</h3>
