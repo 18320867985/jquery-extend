@@ -63,7 +63,7 @@
                 if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 13) { return; }
             }
 
-            $(this).trigger("v-autocomplete-change", [$input.get(0), val, $menu.get(0)]);
+            $(this).trigger("v-autocomplete-change", [$input.get(0), $.trim(val), $menu.get(0)]);
 
         });
 
