@@ -245,44 +245,57 @@
                 </pre>
                 <pre>
                 ajax加载数据jscode:
+                    // enter键触发提交
+                    $("#input-ajax ").on("keydown", function (e) {
+                        if (e.keyCode === 13) {
+
+                            console.log("enter key submit value:", this.value)
+
+                            // 文本框焦点移开， 关闭v-dropdown
+                            $(this).blur().parents(".v-dropdown").vdropdown("hide");
+
+                        }
+                    });
                     // init list data
                     getData("", $("#input-ajax ").parents(".v-dropdown").find(".v-dropdown-menu"));
 
                     function getData(val, dropdownMenu) {
-              
-                         $.get("./js/v-autocomplete.json", function (res) {
-                    
-                           res = utils.list.where(res, function (item) {
-                               return new RegExp(val,"img").test(item);
-                           });
 
-                             var docfg = document.createDocumentFragment();
-                             if (res.length === 0) {
-                                 var li = document.createElement("li");
-                                 var a = document.createElement("a");
-                                 a.setAttribute("class", "_not-item");
-                                     a.innerHTML ="~没有找到相关数据~";
-                                 li.appendChild(a);
-                                 docfg.appendChild(li);
-                       
-                             } else {
+                        $.get("./js/v-autocomplete.json", function (res) {
 
-                       
-                                 for (var i = 0; i < res.length; i++) {
-                                     var item = res[i];
-                                     var li = document.createElement("li");
-                                     var a = document.createElement("a");
-                                     a.setAttribute("data-val", item);
-                                     a.innerHTML = item;
-                                     li.appendChild(a);
-                                     docfg.appendChild(li);
+                            res = utils.list.where(res, function (item) {
+                                return new RegExp(val, "img").test(item);
+                            });
 
-                                 }
+                            var docfg = document.createDocumentFragment();
+                            if (res.length === 0) {
+                                var li = document.createElement("li");
+                                var a = document.createElement("a");
+                                a.setAttribute("class", "_not-item");
+                                a.innerHTML = "~没有找到相关数据~";
+                                a.setAttribute("tabindex", "-1");
+                                li.appendChild(a);
+                                docfg.appendChild(li);
 
-                             }
-                           $(dropdownMenu).html(docfg);
+                            } else {
 
-                       },"json");
+
+                                for (var i = 0; i < res.length; i++) {
+                                    var item = res[i];
+                                    var li = document.createElement("li");
+                                    var a = document.createElement("a");
+                                    a.setAttribute("data-val", item);
+                                    a.setAttribute("tabindex", "-1");
+                                    a.innerHTML = item;
+                                    li.appendChild(a);
+                                    docfg.appendChild(li);
+
+                                }
+
+                            }
+                            $(dropdownMenu).html(docfg);
+
+                        }, "json");
 
                     }
             </pre>
