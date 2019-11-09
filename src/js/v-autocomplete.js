@@ -53,6 +53,8 @@
             var v = $(this).find(">a").attr("data-val");
             $input.val(v);
 
+            $(this).trigger("v-autocomplete-select-item", [$(this).get(0), v]);
+
         });
 
         // input change 
@@ -88,7 +90,7 @@
 
         // scrollview
         $menu.get(0).scrollTop = $sctiveEl.get(0).offsetTop - $menu.height() + $sctiveEl.height();
-  
+
 
     };
 
@@ -111,7 +113,7 @@
 
         // scrollview
         $menu.get(0).scrollTop = $sctiveEl.get(0).offsetTop - $menu.height() + $sctiveEl.height();
-    
+
     };
 
     VAutocomplete.prototype._keyenter = function (e, $input, $menu) {
