@@ -2,7 +2,6 @@
  hqs  v-checkbtn
  * */
 
-
 (function () {
 
     // 单选
