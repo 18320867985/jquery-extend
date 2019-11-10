@@ -2,7 +2,6 @@
  * hqs  v-modal 
  */
 
-
 + function () {
     'use strict';
 
@@ -14,7 +13,6 @@
 
     };
 
-   
     VModal.prototype.elementEvent = function () {
        
         var target = this.options.target;
@@ -80,7 +78,6 @@
        
     };
 
-
     function Plugin(option,targetEl) {
 
         return this.each(function () {
@@ -113,5 +110,4 @@
         Plugin.call($(target), "show", targetEl);
     });
    
-
 }();

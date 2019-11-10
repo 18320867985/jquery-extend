@@ -117,7 +117,6 @@
         });
     };
 
-
     VFade.prototype.setImgBackground = function () {
         var els = $(".v-fade-wrap ._cont li", $(this.el));
        
@@ -167,6 +166,5 @@
         });
 
     });
-
 
 }();

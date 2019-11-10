@@ -1,7 +1,6 @@
 ﻿/*
- * hqs  v-modal 
+ * hqs  v-collapse
  */
-
 
 + function () {
     'use strict';
@@ -10,11 +9,7 @@
     var VCollapse = function (el, options) {
         this.el = el;
         this.options = options;
-      
-      
-
     };
-
 
     VCollapse.prototype.toggle = function (targetEl) {
     
@@ -43,7 +38,6 @@
         $this.trigger("v-collapse-hide", [$this.get(0), targetEl]);
        
     };
-
 
     function Plugin(option, targetEl) {
 
