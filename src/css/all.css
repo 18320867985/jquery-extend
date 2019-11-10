@@ -2263,3 +2263,6 @@ input:focus,
 	
 	color:$error;
 }*/
+/*全局*/
+.v-collapse {
+  display: none; }

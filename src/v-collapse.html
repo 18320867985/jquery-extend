@@ -43,8 +43,9 @@
 
             <li>
                 <h3>html 模式</h3>
-                <button  type="button"  class="btn btn-primary">默认-v-collapse</button>
-                <div class="v-collapse">
+                <button type="button" class="btn btn-primary" data-target="#collapse-1" data-toggle="v-collapse">默认-v-collapse</button>
+                <button type="button" class="btn btn-success" data-target="#collapse-1" data-toggle="v-collapse">默认-v-collapse</button>
+                <div class="v-collapse" id="collapse-1">
                     <p class="well">
                         2019年10月1日，庆祝中华人民共和国成立70周年阅兵仪式上，一个由100面功勋荣誉战旗组成的方队气势如虹，震撼人心。
 
@@ -53,8 +54,11 @@
                         实现强军目标，基础在基层，活力也在基层。“部队所有工作都要靠基层去落实，在第一线冲锋陷阵也全靠基层。”习近平主席深刻指出，要坚持把工作重心放在基层，坚持扭住党的组织抓基层、坚持扭住战备训练抓基层、坚持扭住官兵主体抓基层、坚持扭住厉行法治抓基层，推动基层建设全面进步、全面过硬。
                     </p>
                 </div>
-                
-            
+
+            </li>
+            <li>
+
+
                 <pre>
                     $("#tab_1").click(function () {
                         $("[data-target=#d]").vtab("show");
@@ -64,52 +68,20 @@
                 <pre>
                 html：
 
-                触发条件类型： data-toggle="v-tab"
-                触发目标元素： data-target="#b"
+                触发条件类型： data-toggle="v-collaspe"
+                触发目标元素： data-target="#collapse-1"
 
-                 &lt;!--tab 标题按钮-->
+                &lt;button type="button" class="btn btn-primary" data-target="#collapse-1" data-toggle="v-collapse">默认-v-collapse&lt;/button>
 
-                 &lt;div class="v-tab">
-                     &lt;ul class="v-tab-btns">
-                        &lt;li class="v-tab-btn active" data-toggle="v-tab" data-target="#a">
-                            通用塑料
-                         &lt;/li>
-                         &lt;li class="v-tab-btn" data-toggle="v-tab" data-target="#b">
-                            工程塑料
-                         &lt;/li>
-
-                         &lt;li class="v-tab-btn" data-toggle="v-tab" data-target="#c">
-                            塑料助剂
-                         &lt;/li>
-                         &lt;li class="v-tab-btn" data-toggle="v-tab" data-target="#d">
-                            再生塑料
-                         &lt;/li>
-                         &lt;li class="v-tab-btn" data-toggle="v-tab" data-target="#e">
-                            塑料管材
-                         &lt;/li>
-                     &lt;/ul>
-
-                     &lt;!--tab 内容 -->
-                     &lt;div class="v-tab-cnt ">
-                         &lt;!--tab 内容每一项 -->
-                         &lt;div class="v-tab-cnt-item active" id="a" style="background:red;">
-                            通用塑料
-                        &lt;/div>
-                        &lt;div class="v-tab-cnt-item " id="b" style="background:green;">
-                            工程塑料
-                        &lt;/div>
-                        &lt;div class="v-tab-cnt-item " id="c" style="background:blue;">
-                            塑料助剂
-                        &lt;/div>
-                        &lt;div class="v-tab-cnt-item " id="d" style="background:orange; ">
-                            再生塑料
-                        &lt;/div>
-                        &lt;div class="v-tab-cnt-item " id="e" style="background:#411df8; ">
-                            塑料管材
-                        &lt;/div>
-
-                     &lt;/div>
-
+                 &lt;div class="v-collapse"  id="collapse-1">
+                       &lt;p class="well">
+                            2019年10月1日，庆祝中华人民共和国成立70周年阅兵仪式上，一个由100面功勋荣誉战旗组成的方队气势如虹，震撼人心。
+                            大渡河连、平型关大战突击连、海上先锋艇、神威导弹营……一面面铁血战旗，一支支英雄部队，承载着人民军队的光荣与梦想。
+                            实现强军目标，基础在基层，活力也在基层。“部队所有工作都要靠基层去落实，在第一线冲锋陷阵也全靠基层。
+                            重心放在基层，坚持扭住党的组织抓基层、坚持扭住战备训练抓基层、坚持扭住官兵主体抓基层、坚持扭住厉行法治抓基层，
+                            动基层建设全面进步、全面过硬。
+                      &lt;/p>
+               
                  &lt;/div>
 
 
@@ -118,57 +90,120 @@
                 <pre>
                     js:
 
-                    // v-tab-btn 点击触发自定义事件
-                    $(".v-tab").on("v-tab", function (e, btnEl, cntEl) {
-
-                        // btnEl  v-tab-btn 对象
-                        // cntEl  v-tab-cnt-item 对象
-
-                        console.log("v-tab-btn 对象:", btnEl);
-                        console.log("v-tab-cnt-item 对象:",cntEl);
+                 // 自定义事件 v-collapse显示
+                    $(".v-collapse").on("v-collapse-show", function (event,vcollapseEl, tragetEl) {
+                         // 0. e 事件对象
+                        // 1. vcollapseEl = v-collapse元素
+                        // 2. tragetEl =触发按钮的元素
+                        console.log("vcollapseEl:",vcollapseEl,"tragetEl:",tragetEl)
                     });
 
+                    // 自定义事件 v-collapse隐藏
+                    $(".v-collapse").on("v-collapse-hide", function (event,vcollapseEl, tragetEl) {
+                        // 0. e 事件对象
+                        // 1. vcollapseEl = v-collapse元素
+                        // 2. tragetEl =触发按钮的元素
+                        console.log("vcollapseEl:",vcollapseEl,"tragetEl:",tragetEl)
+                    });
+
+                    
                 </pre>
 
 
             </li>
 
-    </ul>
+            <li>
+                <h3>js模式 v-collapse 显示与隐藏toggle</h3>
+                <button type="button" class="btn btn-primary btn-toggle">
+                    v-collapse-toggle
+                </button>
+                <button type="button" class="btn btn-danger btn-show">v-collapse-show</button>
+                <button type="button" class="btn btn-warning btn-hide">v-collapse-hide</button>
+
+                <div class="v-collapse" id="collapse-2">
+                    <p class="well">
+                        2019年10月1日，庆祝中华人民共和国成立70周年阅兵仪式上，一个由100面功勋荣誉战旗组成的方队气势如虹，震撼人心。
+
+                        大渡河连、平型关大战突击连、海上先锋艇、神威导弹营……一面面铁血战旗，一支支英雄部队，承载着人民军队的光荣与梦想。
+
+                        实现强军目标，基础在基层，活力也在基层。“部队所有工作都要靠基层去落实，在第一线冲锋陷阵也全靠基层。”习近平主席深刻指出，要坚持把工作重心放在基层，坚持扭住党的组织抓基层、坚持扭住战备训练抓基层、坚持扭住官兵主体抓基层、坚持扭住厉行法治抓基层，推动基层建设全面进步、全面过硬。
+                    </p>
+                </div>
+
+            </li>
+            <li>
+
+                <pre>
+
+                    //js 模式 toggle
+                    $(".btn-toggle").on("click", function () {
+                        var tragetEl = this;
+                        $("#collapse-2").vcollapse("toggle",tragetEl);
+                    });
+
+                     // js 模式 show
+                     $(".btn-show").on("click", function () {
+                         var tragetEl = this;
+                        $("#collapse-2").vcollapse("show",tragetEl);
+                    });
+                  
+                    // js 模式 hide
+                    $(".btn-hide").on("click", function () {
+                        var tragetEl = this;
+                        $("#collapse-2").vcollapse("hide",tragetEl);
+                    });
+                
+                </pre>
+            </li>
+
+        </ul>
 
     </div>
 
 
     <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
     <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/v-tab.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-collapse.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
         $(function () {
 
-            // v-tab-btn 点击触发自定义事件
-            $(".v-tab").on("v-tab", function (e, btnEl, cntEl) {
+           
+                   // 自定义事件 v-collapse显示
+                    $(".v-collapse").on("v-collapse-show", function (event,vcollapseEl, tragetEl) {
+                         // 0. e 事件对象
+                        // 1. vcollapseEl = v-collapse元素
+                        // 2. tragetEl =触发按钮的元素
+                        console.log("vcollapseEl:",vcollapseEl,"tragetEl:",tragetEl)
+                    });
 
-                // btnEl  v-tab-btn 对象
-                // cntEl  v-tab-cnt-item 对象
+                    // 自定义事件 v-collapse隐藏
+                    $(".v-collapse").on("v-collapse-hide", function (event,vcollapseEl, tragetEl) {
+                        // 0. e 事件对象
+                        // 1. vcollapseEl = v-collapse元素
+                        // 2. tragetEl =触发按钮的元素
+                        console.log("vcollapseEl:",vcollapseEl,"tragetEl:",tragetEl)
+                    });
 
-                console.log("v-tab-btn 对象:", btnEl);
-                console.log("v-tab-cnt-item 对象:",cntEl);
-            });
+                    //js 模式 toggle
+                    $(".btn-toggle").on("click", function () {
+                        var tragetEl = this;
+                        $("#collapse-2").vcollapse("toggle",tragetEl);
+                    });
 
-            $("#tab_1").click(function () {
-                $("[data-target=#c]").vtab("show");
-            });
-
-            $("#tab_2").click(function () {
-                $("[data-target=#d]").vtab("show");
-            });
-            
-            $("#tab_3").click(function () {
-                $("[data-target=#e]").vtab("show");
-            });
-      
-
+                     // js 模式 show
+                     $(".btn-show").on("click", function () {
+                         var tragetEl = this;
+                        $("#collapse-2").vcollapse("show",tragetEl);
+                    });
+                  
+                    // js 模式 hide
+                    $(".btn-hide").on("click", function () {
+                        var tragetEl = this;
+                        $("#collapse-2").vcollapse("hide",tragetEl);
+                    });
+           
         });
 
     </script>

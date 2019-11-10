@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * hqs  v-modal 
  */
 
@@ -11,49 +11,37 @@
         this.el = el;
         this.options = options;
       
+      
 
     };
 
 
-    VCollapse.prototype.elementEvent = function () {
-
-        var target = this.options.target;
-        var $target = $(target);
-        if ($target.length > 0) {
-            $.proxy(this.show(), this);
+    VCollapse.prototype.toggle = function (targetEl) {
+    
+        var $this = $(this.el);
+        var isIn = $this.hasClass("in");
+        if (isIn){
+            this.hide(targetEl);
+        } else {
+            this.show(targetEl);
         }
     };
 
     VCollapse.prototype.show = function (targetEl) {
-        this.targetEl = targetEl;
+  
         var $this = $(this.el);
-        $this.removeClass("out");
-        $this.eq(0).removeClass("out").addClass("in");
-        this.addHtmlPadding();
-        var isBack = this.options.backdrop;
-
-        if (isBack) {
-
-            $(document).on("click.v-modal", ".v-modal-cnt", function (e) {
-                e.stopPropagation();
-            });
-
-            $(document).one("click.v-modal", ".v-modal", $.proxy(this.hide, this));
-        }
-
-        // ´¥·¢×Ô¶¨ÒåµÄÊÂ¼ş
-        $this.find(".v-modal-cnt").trigger("v-modal-show", [$this.get(0), targetEl]);
-
+        $this.addClass("in").stop().slideDown(400);
+        // è§¦å‘è‡ªå®šä¹‰çš„äº‹ä»¶
+        $this.trigger("v-collapse-show", [$this.get(0), targetEl]);
     };
 
     VCollapse.prototype.hide = function (targetEl) {
-        var $target = $(this.el);
-        $target.removeClass("in").addClass("out");
-        $("html").removeClass("html-v-modal");
-
-        // ´¥·¢×Ô¶¨ÒåµÄÊÂ¼ş
-        $target.trigger("v-modal-hide", [this.el, targetEl]);
-
+     
+        var $this = $(this.el);
+        $this.removeClass("in").stop().slideUp(400);
+        // è§¦å‘è‡ªå®šä¹‰çš„äº‹ä»¶
+        $this.trigger("v-collapse-hide", [$this.get(0), targetEl]);
+       
     };
 
 
@@ -82,11 +70,13 @@
     var _vcollapse = $.fn.vcollapse;
     $.fn.vcollapse = Plugin;
 
-    $(document).on("click.v-modal", "[data-toggle=v-modal]", function (e) {
-        var target = $(this).attr("data-target") || $this.attr("href") || "";
+    $(document).on("click", "[data-toggle=v-collapse]", function (e) {
+      
+        e.preventDefault();
+        var target = $(this).attr("data-target") || $(this).attr("href") || "";
         var targetEl = this;
-        Plugin.call($(target), "show", targetEl);
+        Plugin.call($(target),"toggle", targetEl);
     });
 
 
-}();
+}(); 
