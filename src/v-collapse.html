@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>折叠-v-collapse</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+            .container > li + li {
+                margin-top: 20px;
+            }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        .btn {
+             margin-bottom:10px;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>折叠-v-collapse</h1>
+        <div>
+            <a class="btn-link" href="./js/v-collapse.js">查看 v-collapse.js</a>
+            <a class="btn-link" href="./component-scss/v-collapse.scss">查看 v-collapse.scss</a>
+        </div>
+        <ul>
+
+            <li>
+                <h3>html 模式</h3>
+                <button type="button" class="btn btn-primary" data-target="#collapse-1" data-toggle="v-collapse">默认-v-collapse</button>
+                <button type="button" class="btn btn-success" data-target="#collapse-1" data-toggle="v-collapse">默认-v-collapse</button>
+                <div class="v-collapse" id="collapse-1">
+                    <p class="well">
+                        2019年10月1日，庆祝中华人民共和国成立70周年阅兵仪式上，一个由100面功勋荣誉战旗组成的方队气势如虹，震撼人心。
+
+                        大渡河连、平型关大战突击连、海上先锋艇、神威导弹营……一面面铁血战旗，一支支英雄部队，承载着人民军队的光荣与梦想。
+
+                        实现强军目标，基础在基层，活力也在基层。“部队所有工作都要靠基层去落实，在第一线冲锋陷阵也全靠基层。”习近平主席深刻指出，要坚持把工作重心放在基层，坚持扭住党的组织抓基层、坚持扭住战备训练抓基层、坚持扭住官兵主体抓基层、坚持扭住厉行法治抓基层，推动基层建设全面进步、全面过硬。
+                    </p>
+                </div>
+
+            </li>
+            <li>
+
+
+                <pre>
+                    $("#tab_1").click(function () {
+                        $("[data-target=#d]").vtab("show");
+                    })
+                </pre>
+
+                <pre>
+                html：
+
+                触发条件类型： data-toggle="v-collaspe"
+                触发目标元素： data-target="#collapse-1"
+
+                &lt;button type="button" class="btn btn-primary" data-target="#collapse-1" data-toggle="v-collapse">默认-v-collapse&lt;/button>
+
+                 &lt;div class="v-collapse"  id="collapse-1">
+                       &lt;p class="well">
+                            2019年10月1日，庆祝中华人民共和国成立70周年阅兵仪式上，一个由100面功勋荣誉战旗组成的方队气势如虹，震撼人心。
+                            大渡河连、平型关大战突击连、海上先锋艇、神威导弹营……一面面铁血战旗，一支支英雄部队，承载着人民军队的光荣与梦想。
+                            实现强军目标，基础在基层，活力也在基层。“部队所有工作都要靠基层去落实，在第一线冲锋陷阵也全靠基层。
+                            重心放在基层，坚持扭住党的组织抓基层、坚持扭住战备训练抓基层、坚持扭住官兵主体抓基层、坚持扭住厉行法治抓基层，
+                            动基层建设全面进步、全面过硬。
+                      &lt;/p>
+               
+                 &lt;/div>
+
+
+             </pre>
+
+                <pre>
+                    js:
+
+                 // 自定义事件 v-collapse显示
+                    $(".v-collapse").on("v-collapse-show", function (event,vcollapseEl, tragetEl) {
+                         // 0. e 事件对象
+                        // 1. vcollapseEl = v-collapse元素
+                        // 2. tragetEl =触发按钮的元素
+                        console.log("vcollapseEl:",vcollapseEl,"tragetEl:",tragetEl)
+                    });
+
+                    // 自定义事件 v-collapse隐藏
+                    $(".v-collapse").on("v-collapse-hide", function (event,vcollapseEl, tragetEl) {
+                        // 0. e 事件对象
+                        // 1. vcollapseEl = v-collapse元素
+                        // 2. tragetEl =触发按钮的元素
+                        console.log("vcollapseEl:",vcollapseEl,"tragetEl:",tragetEl)
+                    });
+
+                    
+                </pre>
+
+
+            </li>
+
+            <li>
+                <h3>js模式 v-collapse 显示与隐藏toggle</h3>
+                <button type="button" class="btn btn-primary btn-toggle">
+                    v-collapse-toggle
+                </button>
+                <button type="button" class="btn btn-danger btn-show">v-collapse-show</button>
+                <button type="button" class="btn btn-warning btn-hide">v-collapse-hide</button>
+
+                <div class="v-collapse" id="collapse-2">
+                    <p class="well">
+                        2019年10月1日，庆祝中华人民共和国成立70周年阅兵仪式上，一个由100面功勋荣誉战旗组成的方队气势如虹，震撼人心。
+
+                        大渡河连、平型关大战突击连、海上先锋艇、神威导弹营……一面面铁血战旗，一支支英雄部队，承载着人民军队的光荣与梦想。
+
+                        实现强军目标，基础在基层，活力也在基层。“部队所有工作都要靠基层去落实，在第一线冲锋陷阵也全靠基层。”习近平主席深刻指出，要坚持把工作重心放在基层，坚持扭住党的组织抓基层、坚持扭住战备训练抓基层、坚持扭住官兵主体抓基层、坚持扭住厉行法治抓基层，推动基层建设全面进步、全面过硬。
+                    </p>
+                </div>
+
+            </li>
+            <li>
+
+                <pre>
+
+                    //js 模式 toggle
+                    $(".btn-toggle").on("click", function () {
+                        var tragetEl = this;
+                        $("#collapse-2").vcollapse("toggle",tragetEl);
+                    });
+
+                     // js 模式 show
+                     $(".btn-show").on("click", function () {
+                         var tragetEl = this;
+                        $("#collapse-2").vcollapse("show",tragetEl);
+                    });
+                  
+                    // js 模式 hide
+                    $(".btn-hide").on("click", function () {
+                        var tragetEl = this;
+                        $("#collapse-2").vcollapse("hide",tragetEl);
+                    });
+                
+                </pre>
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-collapse.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+           
+                   // 自定义事件 v-collapse显示
+                    $(".v-collapse").on("v-collapse-show", function (event,vcollapseEl, tragetEl) {
+                         // 0. e 事件对象
+                        // 1. vcollapseEl = v-collapse元素
+                        // 2. tragetEl =触发按钮的元素
+                        console.log("vcollapseEl:",vcollapseEl,"tragetEl:",tragetEl)
+                    });
+
+                    // 自定义事件 v-collapse隐藏
+                    $(".v-collapse").on("v-collapse-hide", function (event,vcollapseEl, tragetEl) {
+                        // 0. e 事件对象
+                        // 1. vcollapseEl = v-collapse元素
+                        // 2. tragetEl =触发按钮的元素
+                        console.log("vcollapseEl:",vcollapseEl,"tragetEl:",tragetEl)
+                    });
+
+                    //js 模式 toggle
+                    $(".btn-toggle").on("click", function () {
+                        var tragetEl = this;
+                        $("#collapse-2").vcollapse("toggle",tragetEl);
+                    });
+
+                     // js 模式 show
+                     $(".btn-show").on("click", function () {
+                         var tragetEl = this;
+                        $("#collapse-2").vcollapse("show",tragetEl);
+                    });
+                  
+                    // js 模式 hide
+                    $(".btn-hide").on("click", function () {
+                        var tragetEl = this;
+                        $("#collapse-2").vcollapse("hide",tragetEl);
+                    });
+           
+        });
+
+    </script>
+</body>
+
+</html>

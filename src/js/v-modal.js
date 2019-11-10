@@ -107,7 +107,8 @@
     $.fn.vmodal = Plugin;
 
     $(document).on("click.v-modal", "[data-toggle=v-modal]", function (e) {
-       var target= $(this).attr("data-target") || $this.attr("href") || "";
+        e.preventDefault();
+        var target = $(this).attr("data-target") || $(this).attr("href") || "";
         var targetEl = this;
         Plugin.call($(target), "show", targetEl);
     });

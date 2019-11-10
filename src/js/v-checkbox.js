@@ -7,8 +7,8 @@
 (function() {
 	
 	// 单选 v-checkbox
-	$(document).on("click", ".v-checkbox  .v-checkbox-item", function() {
-		
+	$(document).on("click", ".v-checkbox  .v-checkbox-item", function(e) {
+        e.preventDefault();
         $(this).toggleClass("active");
         var bl = $(this).hasClass("active");	
 		// 触发自定义的事件
@@ -53,31 +53,11 @@
 	
 })();
 
-
-/* v-checkbox-group 组件
-	<div class="v-checkbox-group">
-		<div class="v-checkbox-group-item">
-			<span class="v-checkbox-item iconfont" data-val="js"></span>
-			<span class="v-checkbox-text">js</span>
-		</div>
-		<div class="v-checkbox-group-item">
-			<span class="v-checkbox-item iconfont" data-val="jquery"></span>
-			<span class="v-checkbox-text">jquery</span>
-		</div>
-		<div class="v-checkbox-group-item">
-			<span class="v-checkbox-item iconfont" data-val="c#"></span>
-			<span class="v-checkbox-text">c#</span>
-		</div>
-
-	</div>
-	
-	
-	*/
-   
    
 (function () {
     // 单选组 v-checkbox-group
-    $(document).on("click", ".v-checkbox-group  .v-checkbox-item", function () {
+    $(document).on("click", ".v-checkbox-group  .v-checkbox-item", function (e) {
+        e.preventDefault();
         $(this).toggleClass("active");
         var p = $(this).parents(".v-checkbox-group");
 		var vals=[];
@@ -173,23 +153,13 @@
    })();
 
 
-/*
- * v-radiobox 组件
- 	
- 	<div class="v-radiobox" >
-		<span class="v-radiobox-item iconfont">慢</span>
-		<span class="v-radiobox-item iconfont">中</span>
-		<span class="v-radiobox-item iconfont">快</span>
-	</div>
-
- * */
 
 
 (function () {
 
     // 单选 v-radiobox
-    $(document).on("click", ".v-radiobox-item", function () {
-     
+    $(document).on("click", ".v-radiobox-item", function (e) {
+        e.preventDefault();
         var p = $(this).parents(".v-radiobox-group");
         $(".v-radiobox-item", p).removeClass("active");
         $(this).addClass("active");
