@@ -70,13 +70,15 @@
     var _vcollapse = $.fn.vcollapse;
     $.fn.vcollapse = Plugin;
 
+    $(".v-collapse.in").each(function () {
+        Plugin.call($(this), "show");
+    });
+
     $(document).on("click", "[data-toggle=v-collapse]", function (e) {
-      
         e.preventDefault();
         var target = $(this).attr("data-target") || $(this).attr("href") || "";
         var targetEl = this;
         Plugin.call($(target),"toggle", targetEl);
     });
-
 
 }(); 
