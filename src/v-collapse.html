@@ -28,7 +28,10 @@
         .btn {
              margin-bottom:10px;
         }
-       
+
+        .v-collapse-content p {
+            font-size:16px;
+        }
     </style>
 </head>
 
@@ -144,6 +147,170 @@
                     });
                 
                 </pre>
+            </li>
+
+            <li>
+                <h3>Accordion 风琴折叠 例子</h3>
+                <!-- accordion 大框 -->
+                <div class="v-collapse-parent" id="accordion">
+
+                    <!--accordion 每一项 -->
+                    <div class="v-collapse-item">
+
+                        <div class="v-collapse-btn">
+                            <a href="#v-collapse-a" data-toggle="v-collapse">v-collapse-a</a>
+                        </div>
+
+                        <!--v-collapse-->
+                        <div class="v-collapse in v-collapse-content" id="v-collapse-a" data-parent="#accordion">
+                            <h4>v-collapse-a</h4>
+                            <p>
+                                虹，震撼人心。
+
+                                大渡河连、平型关大战突击连、海上先锋艇、神威导弹营……一面面铁血战旗，一支支英雄部队，承载着人民军队的光荣与梦想。
+
+                                实现强军目标，基础在基层，活力也在基层。“部队所有工作都要靠基层去落实，在第一线冲锋陷阵也全靠基层。”习近平主席深刻指出，要坚持把工作重心放在基层，坚持扭住党的组织抓基层、坚持扭住战备训练抓基层、坚持扭住官兵主体抓基层、坚持扭住厉行法治抓基层，推动基层建设全面进步、全面过硬。
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <!--accordion 每一项 -->
+                    <div class="v-collapse-item">
+
+                        <div class="v-collapse-btn">
+                            <a href="#v-collapse-b" data-toggle="v-collapse">v-collapse-b</a>
+                        </div>
+
+                        <!--v-collapse-->
+                        <div class="v-collapse v-collapse-content" id="v-collapse-b" data-parent="#accordion">
+                            <h4>v-collapse-b</h4>
+                            <p>
+                                虹，震撼人心。
+
+                                大渡河连、平型关大战突击连、海上先锋艇、神威导弹营……一面面铁血战旗，一支支英雄部队，承载着人民军队的光荣与梦想。
+
+                                实现强军目标，基础在基层，活力也在基层。“部队所有工作都要靠基层去落实，在第一线冲锋陷阵也全靠基层。”习近平主席深刻指出，要坚持把工作重心放在基层，坚持扭住党的组织抓基层、坚持扭住战备训练抓基层、坚持扭住官兵主体抓基层、坚持扭住厉行法治抓基层，推动基层建设全面进步、全面过硬。
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <!--accordion 每一项 -->
+                    <div class="v-collapse-item">
+
+                        <div class="v-collapse-btn">
+                            <a href="#v-collapse-c" data-toggle="v-collapse">v-collapse-c</a>
+                        </div>
+
+                        <!--v-collapse-->
+                        <div class="v-collapse v-collapse-content" id="v-collapse-c" data-parent="#accordion">
+                            <h4>v-collapse-c</h4>
+                            <p>
+                                虹，震撼人心。
+
+                                大渡河连、平型关大战突击连、海上先锋艇、神威导弹营……一面面铁血战旗，一支支英雄部队，承载着人民军队的光荣与梦想。
+
+                                实现强军目标，基础在基层，活力也在基层。“部队所有工作都要靠基层去落实，在第一线冲锋陷阵也全靠基层。”习近平主席深刻指出，要坚持把工作重心放在基层，坚持扭住党的组织抓基层、坚持扭住战备训练抓基层、坚持扭住官兵主体抓基层、坚持扭住厉行法治抓基层，推动基层建设全面进步、全面过硬。
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <!--accordion 每一项 -->
+                    <div class="v-collapse-item">
+
+                        <div class="v-collapse-btn">
+                            <a href="#v-collapse-d" data-toggle="v-collapse">v-collapse-d</a>
+                        </div>
+
+                        <!--v-collapse-->
+                        <div class="v-collapse v-collapse-content" id="v-collapse-d" data-parent="#accordion">
+                            <h4>v-collapse-d</h4>
+                            <p>
+                                虹，震撼人心。
+
+                                大渡河连、平型关大战突击连、海上先锋艇、神威导弹营……一面面铁血战旗，一支支英雄部队，承载着人民军队的光荣与梦想。
+
+                                实现强军目标，基础在基层，活力也在基层。“部队所有工作都要靠基层去落实，在第一线冲锋陷阵也全靠基层。”习近平主席深刻指出，要坚持把工作重心放在基层，坚持扭住党的组织抓基层、坚持扭住战备训练抓基层、坚持扭住官兵主体抓基层、坚持扭住厉行法治抓基层，推动基层建设全面进步、全面过硬。
+                            </p>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <pre>
+
+                &lt;div class="v-collapse v-collapse-content" id="v-collapse-a data-parent="#accordion">
+                的项加上属性：data-parent="#accordion" 父元素的id=accordion
+
+                 &lt;!-- accordion 大框 -->
+                 &lt;div class="v-collapse-parent" id="accordion">
+
+                     &lt;!--accordion 每一项 -->
+                     &lt;div class="v-collapse-item">
+
+                        &lt;div class="v-collapse-btn">
+                            &lt;a href="#v-collapse-a" data-toggle="v-collapse">v-collapse-d  &lt;/a>
+                        &lt;/div>
+
+                         &lt;!--v-collapse-->
+                        &lt;div class="v-collapse in v-collapse-content" id="v-collapse-a" data-parent="#accordion">
+                          &lt;h4>v-collapse-a &lt;/h4>
+                           ...
+                        &lt;/div>
+                     
+                     &lt;/div>
+                    
+                     &lt;!--accordion 每一项 -->
+                     &lt;div class="v-collapse-item">
+
+                        &lt;div class="v-collapse-btn">
+                            &lt;a href="#v-collapse-d" data-toggle="v-collapse">v-collapse-d  &lt;/a>
+                        &lt;/div>
+
+                         &lt;!--v-collapse-->
+                        &lt;div class="v-collapse v-collapse-content" id="v-collapse-d" data-parent="#accordion">
+                          &lt;h4>v-collapse-b &lt;/h4>
+                           ...
+                        &lt;/div>
+                     
+                     &lt;/div>
+
+                      &lt;!--accordion 每一项 -->
+                     &lt;div class="v-collapse-item">
+
+                        &lt;div class="v-collapse-btn">
+                            &lt;a href="#v-collapse-c" data-toggle="v-collapse">v-collapse-d  &lt;/a>
+                        &lt;/div>
+
+                         &lt;!--v-collapse-->
+                        &lt;div class="v-collapse v-collapse-content" id="v-collapse-c" data-parent="#accordion">
+                          &lt;h4>v-collapse-c &lt;/h4>
+                           ...
+                        &lt;/div>
+                     
+                     &lt;/div>
+
+                     &lt;!--accordion 每一项 -->
+                     &lt;div class="v-collapse-item">
+
+                        &lt;div class="v-collapse-btn">
+                            &lt;a href="#v-collapse-d" data-toggle="v-collapse">v-collapse-d  &lt;/a>
+                        &lt;/div>
+
+                         &lt;!--v-collapse-->
+                        &lt;div class="v-collapse v-collapse-content" id="v-collapse-d" data-parent="#accordion">
+                          &lt;h4>v-collapse-d &lt;/h4>
+                           ...
+                        &lt;/div>
+                     
+                     &lt;/div>
+                    
+                &lt;/div>
+               </pre>
             </li>
 
         </ul>

@@ -1,7 +1,6 @@
 ﻿/*
- * hqs  v-modal 
+ * hqs  v-collapse
  */
-
 
 + function () {
     'use strict';
@@ -10,11 +9,7 @@
     var VCollapse = function (el, options) {
         this.el = el;
         this.options = options;
-      
-      
-
     };
-
 
     VCollapse.prototype.toggle = function (targetEl) {
     
@@ -30,7 +25,12 @@
     VCollapse.prototype.show = function (targetEl) {
   
         var $this = $(this.el);
-        $this.addClass("in").stop().slideDown(400);
+        // accordion
+        if (this.options.parent) {
+            $(this.options.parent).find(".v-collapse").removeClass("in").stop().slideUp();
+        }
+        $this.addClass("in").stop().slideDown();
+
         // 触发自定义的事件
         $this.trigger("v-collapse-show", [$this.get(0), targetEl]);
     };
@@ -38,12 +38,15 @@
     VCollapse.prototype.hide = function (targetEl) {
      
         var $this = $(this.el);
-        $this.removeClass("in").stop().slideUp(400);
+        // accordion
+        if (this.options.parent) {
+            $(this.options.parent).find(".v-collapse").removeClass("in").stop().slideUp();
+        }
+        $this.removeClass("in").stop().slideUp();
         // 触发自定义的事件
         $this.trigger("v-collapse-hide", [$this.get(0), targetEl]);
        
     };
-
 
     function Plugin(option, targetEl) {
 
@@ -55,7 +58,7 @@
 
             if (!data) {
                 var o = {};
-             
+                o.parent = $this.attr("data-parent") ||"";
                 var p = $.extend({}, o, options);
                 $this.data('v-collapse', data = new VCollapse(this, p));
             }

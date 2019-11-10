@@ -145,7 +145,6 @@
         return flag;
     };
 
-
     function Plugin(option) {
 
         return this.each(function () {
@@ -171,7 +170,6 @@
     var _vdropdown = $.fn.vdropdown;
     $.fn.vdropdown = Plugin;
 
-
     $(function () {
         $("[data-toggle=v-dropdown].v-dropdown").each(function () {
             var $this = $(this);
@@ -179,6 +177,5 @@
         });
 
     });
-
 
 }();
