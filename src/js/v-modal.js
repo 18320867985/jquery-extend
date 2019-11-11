@@ -2,7 +2,6 @@
  * hqs  v-modal 
  */
 
-
 + function () {
     'use strict';
 
@@ -14,7 +13,6 @@
 
     };
 
-   
     VModal.prototype.elementEvent = function () {
        
         var target = this.options.target;
@@ -80,7 +78,6 @@
        
     };
 
-
     function Plugin(option,targetEl) {
 
         return this.each(function () {
@@ -107,10 +104,10 @@
     $.fn.vmodal = Plugin;
 
     $(document).on("click.v-modal", "[data-toggle=v-modal]", function (e) {
-       var target= $(this).attr("data-target") || $this.attr("href") || "";
+        e.preventDefault();
+        var target = $(this).attr("data-target") || $(this).attr("href") || "";
         var targetEl = this;
         Plugin.call($(target), "show", targetEl);
     });
    
-
 }();
