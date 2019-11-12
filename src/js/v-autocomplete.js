@@ -20,10 +20,7 @@
         var $this = $(this.el);
         var $input = $this.find(".v-autocomplete-input");
         var $menu = $this.find(".v-dropdown-menu");
-        this.scrollview = $this.get(0).hasAttribute("data-scrollview");
-
-
-
+      
         $input.on("keydown.v-autocomplete", function (e) {
 
             if (e.keyCode === 40) {

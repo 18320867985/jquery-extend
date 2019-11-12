@@ -27,7 +27,7 @@
         var $this = $(this.el);
         // accordion
         if (this.options.parent) {
-            $(this.options.parent).find(".v-collapse").removeClass("in").stop().slideUp();
+            $(".v-collapse",$this.parents(this.options.parent)).removeClass("in").stop().slideUp();
         }
         $this.addClass("in").stop().slideDown();
 
@@ -40,7 +40,7 @@
         var $this = $(this.el);
         // accordion
         if (this.options.parent) {
-            $(this.options.parent).find(".v-collapse").removeClass("in").stop().slideUp();
+            $(".v-collapse", $this.parents(this.options.parent)).removeClass("in").stop().slideUp();
         }
         $this.removeClass("in").stop().slideUp();
         // 触发自定义的事件
