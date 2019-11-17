@@ -63,7 +63,7 @@
     <body>
         <div class="container">
             <h1>html标签异步加载html css js  兼容ie8+</h1>
-            <h3>(不依赖jquery)</h3>
+           
             <div>
                 <a class="btn-link" href="./js/include.js">查看 v-include.js</a>
             </div>
@@ -131,12 +131,7 @@
                     </div>
 
 
-                    <h3>in3.html</h3>
-                    <include src="./include/in3.html" data-nav data-index="0"></include>
-
-                    <hr style="border-bottom:2px solid red;" />
-                    <h1>异步加载js 兼容ie8+ </h1>
-                    <h3>(不依赖jquery)</h3>
+                    <h1> require 异步加载js 兼容ie9+ </h1>
 
                     <h3>
                         define 定义函数
@@ -156,32 +151,58 @@
                         require 调用函数
                     </h3>
                     <pre>
-                        window.require=include.req= include.require 三种函数调用
+                        window.require=include.require  两种函数调用          异步
+
+                        window.requireSync=include.requireSync  两种函数调用  同步
+                        
+                        // 异步并行加载js  全部加载完成再执行函数
+						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
+							console.log(amd1);
+							console.log(amd2);
+						});
+
+                    // 同步按顺序加载js  
 						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
 							console.log(amd1);
 							console.log(amd2);
 						});
 					</pre>
                     <pre>
-						$("#btn").on("click", function(e) {
-						
-							require(["http://localhost:8888/include/amd1.js", "./include/amd2.js", "./include/amd3.js",
-								"./include/amd6.js", "http://localhost:8888/include/jquery-1.11.0.js"
-							], function(a, b, c, d, jq) {
-						
-								var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
-								console.log(res);
-								console.log(include.caches)
-								console.log(jq(".jq-define").css("background", "orange"))
-								console.log("done");
-						
-							});
-						
-						
+				    $("#btn").on("click", function(e) {
+						// 异步并行加载js 
+						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js", "./include/amd3.js",
+							"./include/amd6.js", "http://localhost:8888/include/jquery-1.11.0.js"
+						], function(a, b, c, d, jq) {
+							var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
+							console.log(res);
+							console.log(include.caches)
+							console.log(jq(".jq-define").css("background", "orange"))
+							console.log("done");
 						});
+					});
+                        
 					</pre>
+
+                    <pre>
+                     $("#btn2").on("click", function(e) {
+						    // 同步按顺序加载js  
+						requireSync(["http://localhost:8888/include/amd1.js", "./include/amd2.js", "./include/amd3.js",
+							"./include/amd6.js", "http://localhost:8888/include/jquery-1.11.0.js"
+						], function(a, b, c, d, jq) {
+							var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
+							console.log(res);
+							console.log(include.caches)
+							console.log(jq(".jq-define").css("background", "orange"))
+							console.log("done");
+						});
+					});
+                </pre>
+
                     <button class="btn btn-primary" type="button" id="btn">
                         异步并行加载js 全部加载完成再执行函数
+                    </button>
+                    <button class="btn btn-primary" type="button" id="btn2">
+                        同步按顺序加载js
                     </button>
                     <div class="jq-define">
 
@@ -189,10 +210,16 @@
                     <hr />
                     <h2>js动态加载html的content,js,css</h2>
                     <pre>
- include.getHtml(obj,src,callback);
-obj=原生dom对象
-src=html文件地址
-callback=回调函数
+                 include.getHtml(obj,src,callback);
+                obj=原生dom对象
+                src=html文件地址
+                callback=回调函数
+
+                 include.getHtml($("#gethtml2").get(0), "./include/gethtml2.html", function () {
+
+                                    console.log("getHtml success callback function")
+
+                                });
 </pre>
                     <button class="btn btn-primary" type="button" id="btn-gethtml">js动态加载html</button>
                     <div id="gethtml" style="  padding: 20px; border: solid red; margin:20px 0;">
@@ -209,21 +236,21 @@ callback=回调函数
 
         </div>
 
-
+        <script src="js/include.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
         <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
 
-        <script src="js/include.js" type="text/javascript" charset="utf-8"></script>
+
         <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
         <script type="text/javascript">
 
-            require(["./include/amd1.js"], function (a) {
-                console.log(a(12, 13));
-            });
+          
 
             $(function () {
-
+              require(["./include/amd1.js"], function (a) {
+               // console.log(a(12, 13));
+            });
                 $("#btn").on("click", function (e) {
 
                     require(["./include/amd1.js", "./include/amd2.js", "./include/amd3.js",
@@ -235,6 +262,24 @@ callback=回调函数
                         console.log(include.caches)
                         console.log(jq(".jq-define").css("background", "orange"))
                         console.log("done");
+                            
+
+                    });
+
+                });
+
+                $("#btn2").on("click", function (e) {
+
+                    requireSync(["./include/amd1.js", "./include/amd2.js", "./include/amd3.js",
+                        "./include/amd6.js", "include/jquery-1.11.0.js"
+                    ], function (a, b, c, d, jq) {
+
+                        var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
+                        console.log(res);
+                        console.log(include.caches)
+                        console.log(jq(".jq-define").css("background", "orange"))
+                        console.log("done");
+                            
 
                     });
 
