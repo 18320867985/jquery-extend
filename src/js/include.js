@@ -9,6 +9,7 @@
     var _include = window.include;
     var _define = window.define;
     var _require = window.require;
+    var _requireSync = window.requireSync;
     var include = window.include = function (selector, content) {
 
         if (typeof selector === "function") {
@@ -65,7 +66,7 @@
     };
 
     // 定义执行函数
-   window.define=include.def=include.define = function () {
+   window.define=include.define = function () {
        
         var arg1;
       
@@ -106,32 +107,58 @@
     };
 
     // define.amd
-    window.define.amd = false;
+    window.define.amd = true;
 
     // 异步并行加载js  全部加载完成再执行函数
-    window.require=include.req=include.require = function () {
-        window.define.amd = true;
-        if (arguments.length >= 2 && arguments[0] instanceof Array && typeof arguments[1] === "function") {
+    window.require=include.require = function () {
+ 
+        if (arguments.length >= 1 && arguments[0] instanceof Array ) {
             var arg1 = arguments[0];
-            var fn2 = arguments[1];
+            var fn2 = arguments[1] ? typeof arguments[1] === "function" ? arguments[1] : function () { } : function () { };
+
+            // ie 6 7 8;
+            if (!window.addEventListener) {
+                fn2();
+                return;
+            }
 
             // 遍历器
             var activeUrls = _activeUrls(arg1);
             var itr = include.iterator(activeUrls);
-           // console.log("itr", itr);
-            
-            var bl = true;
             for (var i = 0; i < activeUrls.length; i++) {
-                
                 if (include.ckUrl(activeUrls[i])) {
-                    include.urls.push(activeUrls[i]);
                     _addAllIterator(itr, fn2, activeUrls[i], arg1);
-                    bl = false;
                 }
-               
             }
 
-            if (bl) {
+            if (activeUrls.length===0) {
+                fn2.apply(null, _getCaches(arg1));
+            }
+        }
+
+        return this;
+    };
+
+    // 同步加载js 
+    window.requireSync = include.requireSync = function () {
+
+        if (arguments.length >= 1 && arguments[0] instanceof Array) {
+            var arg1 = arguments[0];
+            var fn2 = arguments[1] ? typeof arguments[1] === "function" ? arguments[1] : function () { } : function () { };
+
+            // ie 6 7 8;
+            if (!window.addEventListener) {
+                fn2();
+                return;
+            }
+
+            // 遍历器
+            var activeUrls = _activeUrls(arg1);
+            var itr = include.iteratorSync(activeUrls);
+            var itr2 = itr.next();
+            if (!itr2.done) { _addAllIteratorSync(itr, fn2, itr2.value, arg1);}
+          
+            if (activeUrls.length === 0) {
                 fn2.apply(null, _getCaches(arg1));
             }
         }
@@ -142,8 +169,7 @@
     // 添加AMD 新建 script
     function _addAllIterator(itr, fn2,url,arrs) {
 
-        var doc = document.body || document.getElementsByTagName('body')[0];
-     
+            var doc = document.body || document.getElementsByTagName('body')[0];
             var _url = include.baseUrl + url;
             var script = document.createElement("script");
             script.type = "text/javascript";
@@ -154,40 +180,49 @@
             if (window.addEventListener) {
          
                 script.onload = function () {
-                     var itrObj = itr.next();
-                    if (itrObj.done) {   
+                    include.urls.push(url);
+                    var itrObj = itr.next();
+                        if (itrObj.done) {   
                         include.runIncludeAndCache();
                         fn2.apply(null, _getCaches(arrs));
-                        window.define.amd = false;
                     }     
                 };
                 doc.appendChild(script);
 
-            } else {
-
-               // 兼容 ie6-ie8
-                setTimeout(function () { 
-                   
-                    if (script.readyState) {
-                        if (script.readyState === "loaded" || script.readyState === "complete") {
-                            script.onreadystatechange = function () {
-                               // console.log(script.readyState);
-                                var itrObj = itr.next();
-                                if (itrObj.done) {
-                                    include.runIncludeAndCache();
-                                    var lst = _getCaches(arrs);
-                                    fn2.apply(null, lst);
-                                    window.define.amd = false;
-                                } 
-                                script.onreadystatechange = null;
-                            };
-                        }
-                    }
-                    doc.appendChild(script);
-                }, 100);
-             }
+            } 
             
+    }
+
+    // 添加AMD 新建 script
+    function _addAllIteratorSync(itr, fn2, url, arrs) {
+
+        var doc = document.body || document.getElementsByTagName('body')[0];
+        var _url = include.baseUrl + url;
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = _url;
+        script.setAttribute("data-src", _url);
+
+        //js加载完成执行方法 ie9+
+        if (window.addEventListener) {
+
+            script.onload = function () {
+                include.urls.push(url);
+                var itrObj = itr.next();
+                if (itrObj.done) {
+                    include.runIncludeAndCache();
+                    fn2.apply(null, _getCaches(arrs));
+
+                } else {
+                    _addAllIteratorSync(itr, fn2, itrObj.value, arrs);
+                }
+            };
+            doc.appendChild(script);
+
         }
+
+    }
+
                
     // run include.define and  caches
     include.runIncludeAndCache = function () {
@@ -350,6 +385,18 @@
         };
     };
 
+    // 遍历器生成函数
+    include.iteratorSync = function (array) {
+        var nextIndex = 0;
+        return {
+            next: function () {
+                
+                return nextIndex < array.length ?
+                    { value: array[nextIndex++], done:  false } :
+                    { value: undefined, done: true };
+            }
+        };
+    };
 	// ajax 类型
 	function _ajaxFun(url, type, data, _arguments) {
 		var success;
