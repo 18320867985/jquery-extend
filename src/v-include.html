@@ -172,7 +172,7 @@
 						});
 
                         // 同步按顺序加载js  
-						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
+						requireSync(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
                             // 带有回调参数兼容 ie9+, ios safari  8.0+ , Firefox 4.0+ ,Chrome 29+, Opera 16+, Android Browser 4.4+
 							console.log(amd1);
 							console.log(amd2);
