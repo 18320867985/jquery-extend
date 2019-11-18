@@ -111,10 +111,11 @@
 
     // 异步并行加载js  全部加载完成再执行函数
     window.require=include.require = function () {
- 
+        var isAmd = true;
         if (arguments.length >= 1 && arguments[0] instanceof Array ) {
             var arg1 = arguments[0];
             var fn2 = arguments[1] ? typeof arguments[1] === "function" ? arguments[1] : function () { } : function () { };
+            isAmd = typeof arguments[2] !== "undefined" ? typeof arguments[2] === "boolean" ? arguments[2] : true : true;
 
             // ie 6 7 8;
             if (!window.addEventListener) {
@@ -127,7 +128,8 @@
             var itr = include.iterator(activeUrls);
             for (var i = 0; i < activeUrls.length; i++) {
                 if (include.ckUrl(activeUrls[i])) {
-                    _addAllIterator(itr, fn2, activeUrls[i], arg1);
+
+                    _addAllIterator(itr, fn2, activeUrls[i], arg1, isAmd);
                 }
             }
 
@@ -141,11 +143,12 @@
 
     // 同步加载js 
     window.requireSync = include.requireSync = function () {
-
+        var isAmd = true;
         if (arguments.length >= 1 && arguments[0] instanceof Array) {
             var arg1 = arguments[0];
             var fn2 = arguments[1] ? typeof arguments[1] === "function" ? arguments[1] : function () { } : function () { };
-
+            isAmd = typeof arguments[2] !== "undefined" ? typeof arguments[2] === "boolean" ? arguments[2] : true : true;
+        
             // ie 6 7 8;
             if (!window.addEventListener) {
                 fn2();
@@ -156,7 +159,10 @@
             var activeUrls = _activeUrls(arg1);
             var itr = include.iteratorSync(activeUrls);
             var itr2 = itr.next();
-            if (!itr2.done) { _addAllIteratorSync(itr, fn2, itr2.value, arg1);}
+            if (!itr2.done) {
+                if (!isAmd) { window.define.amd = false; } else { window.define.amd = true; }
+                _addAllIteratorSync(itr, fn2, itr2.value, arg1, isAmd);
+            }
           
             if (activeUrls.length === 0) {
                 fn2.apply(null, _getCaches(arg1));
@@ -167,8 +173,8 @@
     };
 
     // 添加AMD 新建 script
-    function _addAllIterator(itr, fn2,url,arrs) {
-
+    function _addAllIterator(itr, fn2, url, arrs, isAmd) {
+            if (!isAmd) { window.define.amd = false; } else { window.define.amd = true; }
             var doc = document.body || document.getElementsByTagName('body')[0];
             var _url = include.baseUrl + url;
             var script = document.createElement("script");
@@ -182,7 +188,8 @@
                 script.onload = function () {
                     include.urls.push(url);
                     var itrObj = itr.next();
-                        if (itrObj.done) {   
+                    if (itrObj.done) {  
+                        window.define.amd = true;
                         include.runIncludeAndCache();
                         fn2.apply(null, _getCaches(arrs));
                     }     
@@ -194,7 +201,7 @@
     }
 
     // 添加AMD 新建 script
-    function _addAllIteratorSync(itr, fn2, url, arrs) {
+    function _addAllIteratorSync(itr, fn2, url, arrs, isAmd) {
 
         var doc = document.body || document.getElementsByTagName('body')[0];
         var _url = include.baseUrl + url;
@@ -210,11 +217,14 @@
                 include.urls.push(url);
                 var itrObj = itr.next();
                 if (itrObj.done) {
+                    window.define.amd = true;
                     include.runIncludeAndCache();
                     fn2.apply(null, _getCaches(arrs));
 
+
                 } else {
-                    _addAllIteratorSync(itr, fn2, itrObj.value, arrs);
+                    if (!isAmd) { window.define.amd = false; } else { window.define.amd = true; }
+                    _addAllIteratorSync(itr, fn2, itrObj.value, arrs, isAmd);
                 }
             };
             doc.appendChild(script);
