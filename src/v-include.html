@@ -152,17 +152,18 @@
                     </h3>
                     <pre>
                         window.require=include.require  两种函数调用          异步
-
                         window.requireSync=include.requireSync  两种函数调用  同步
                         
                         // 异步并行加载js  全部加载完成再执行函数
 						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
+                            // 带有回调参数兼容 ie9+, ios safari  8.0+ , Firefox 4.0+ ,Chrome 29+, Opera 16+, Android Browser 4.4+
 							console.log(amd1);
 							console.log(amd2);
 						});
 
-                    // 同步按顺序加载js  
+                        // 同步按顺序加载js  
 						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
+                            // 带有回调参数兼容 ie9+, ios safari  8.0+ , Firefox 4.0+ ,Chrome 29+, Opera 16+, Android Browser 4.4+
 							console.log(amd1);
 							console.log(amd2);
 						});
@@ -173,6 +174,7 @@
 						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js", "./include/amd3.js",
 							"./include/amd6.js", "http://localhost:8888/include/jquery-1.11.0.js"
 						], function(a, b, c, d, jq) {
+                            // 带有回调参数兼容 ie9+, ios safari  8.0+ , Firefox 4.0+ ,Chrome 29+, Opera 16+, Android Browser 4.4+
 							var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
 							console.log(res);
 							console.log(include.caches)
@@ -189,6 +191,7 @@
 						requireSync(["http://localhost:8888/include/amd1.js", "./include/amd2.js", "./include/amd3.js",
 							"./include/amd6.js", "http://localhost:8888/include/jquery-1.11.0.js"
 						], function(a, b, c, d, jq) {
+                            // 带有回调参数兼容 ie9+, ios safari  8.0+ , Firefox 4.0+ ,Chrome 29+, Opera 16+, Android Browser 4.4+
 							var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
 							console.log(res);
 							console.log(include.caches)
@@ -248,9 +251,9 @@
           
 
             $(function () {
-              require(["./include/amd1.js"], function (a) {
-               // console.log(a(12, 13));
-            });
+                  require(["./include/amd1.js"], function (a) {
+                   // console.log(a(12, 13));
+                });
                 $("#btn").on("click", function (e) {
 
                     require(["./include/amd1.js", "./include/amd2.js", "./include/amd3.js",
