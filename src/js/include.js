@@ -184,20 +184,17 @@
        
             //js加载完成执行方法 ie9+
             if (window.addEventListener) {
-         
                 script.onload = function () {
                     include.urls.push(url);
                     var itrObj = itr.next();
                     if (itrObj.done) {  
-                        window.define.amd = false;
                         include.runIncludeAndCache();
+                        window.define.amd = false;
                         fn2.apply(null, _getCaches(arrs));
                     }     
                 };
                 doc.appendChild(script);
-
-            } 
-            
+            }        
     }
 
     // 添加AMD 新建 script
@@ -217,8 +214,8 @@
                 include.urls.push(url);
                 var itrObj = itr.next();
                 if (itrObj.done) {
-                    window.define.amd = false;
                     include.runIncludeAndCache();
+                    window.define.amd = false;
                     fn2.apply(null, _getCaches(arrs));
 
 
