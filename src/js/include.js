@@ -107,7 +107,7 @@
     };
 
     // define.amd
-    window.define.amd = true;
+    window.define.amd = false;
 
     // 异步并行加载js  全部加载完成再执行函数
     window.require=include.require = function () {
@@ -189,7 +189,7 @@
                     include.urls.push(url);
                     var itrObj = itr.next();
                     if (itrObj.done) {  
-                        window.define.amd = true;
+                        window.define.amd = false;
                         include.runIncludeAndCache();
                         fn2.apply(null, _getCaches(arrs));
                     }     
@@ -217,7 +217,7 @@
                 include.urls.push(url);
                 var itrObj = itr.next();
                 if (itrObj.done) {
-                    window.define.amd = true;
+                    window.define.amd = false;
                     include.runIncludeAndCache();
                     fn2.apply(null, _getCaches(arrs));
 
