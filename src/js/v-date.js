@@ -394,7 +394,7 @@
     },
 
     getInitialDate: function () {
-      return this.initialDate
+        return this.initialDate;
     },
 
     setInitialDate: function (initialDate) {
@@ -1388,7 +1388,7 @@
   };
 
   var old = $.fn.datetimepicker;
-  $.fn.datetimepicker = function (option) {
+    $.fn.vdate=$.fn.datetimepicker = function (option) {
     var args = Array.apply(null, arguments);
     args.shift();
     var internal_return;
@@ -1413,8 +1413,9 @@
   };
 
   $.fn.datetimepicker.defaults = {
-  };
-  $.fn.datetimepicker.Constructor = Datetimepicker;
+    };
+
+   $.fn.datetimepicker.Constructor = Datetimepicker;
   var dates = $.fn.datetimepicker.dates = {
     en: {
         days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],

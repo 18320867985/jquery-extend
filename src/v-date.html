@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>v-date日历</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="js/v-date/css/v-date.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+            .container > li + li {
+                margin-top: 20px;
+            }
+
+        pre {
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>v-date日历</h1>
+        <div>
+            <a class="btn-link" href="./js/v-tab.js">查看 v-tab.js</a>
+            <a class="btn-link" href="./component-scss/v-tab.scss">查看 v-tab.scss</a>
+        </div>
+        <ul>
+            <li>
+
+                <input type="text" class="v-date" />
+            </li>
+            
+
+    </ul>
+
+    </div>
+
+
+    <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/v-date.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+           $('.v-date').vdate({
+
+			format: "yyyy-mm-dd  ", //'yyyy-mm-dd hh:ii:ss'
+			showMeridian: true,
+			autoclose: true,
+			todayBtn: true,
+			minView: 3, //选择日期
+			//forceParse :true  //转换格式
+
+	});
+
+        });
+
+    </script>
+</body>
+
+</html>
