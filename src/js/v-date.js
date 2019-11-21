@@ -1,6 +1,12 @@
 ﻿
- 
-(function(factory){
+ /*
+  * 
+  Datetimepicker=Vdate 
+  hqs editer
+  
+  */
+
+;(function(factory){
     if (typeof define === 'function' && define.amd)
       define(['jquery'], factory);
     else if (typeof exports === 'object')
