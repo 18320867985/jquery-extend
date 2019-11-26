@@ -92,10 +92,10 @@
     this.title = typeof options.title === 'undefined' ? false : options.title;
 
     this.icons = {
-      leftArrow: this.fontAwesome ? 'fa-arrow-left' : (this.bootcssVer === 3 ? 'glyphicon-arrow-left' : 'icon-arrow-left'),
-      rightArrow: this.fontAwesome ? 'fa-arrow-right' : (this.bootcssVer === 3 ? 'glyphicon-arrow-right' : 'icon-arrow-right')
+      leftArrow: this.fontAwesome ? 'fa-arrow-left' : (this.bootcssVer === 3 ? 'iconarrow-l' : 'iconarrow-l'),
+      rightArrow: this.fontAwesome ? 'fa-arrow-right' : (this.bootcssVer === 3 ? 'iconarrow-r' : 'iconarrow-r')
     }
-    this.icontype = this.fontAwesome ? 'fa' : 'glyphicon';
+    this.icontype = this.fontAwesome ? 'fa' : 'iconfont';
 
     this._attachEvents();
 

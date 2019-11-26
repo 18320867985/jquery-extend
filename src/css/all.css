@@ -2301,6 +2301,9 @@ input:focus,
 .datetimepicker .table-condensed > tfoot > tr > td {
   padding: 5px 0; }
 
+.datetimepicker .iconfont {
+  color: #999; }
+
 .vdate {
   position: absolute;
   top: 100%;
