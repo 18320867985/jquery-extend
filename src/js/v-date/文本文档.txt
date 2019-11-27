@@ -1,0 +1,19 @@
+ 
+ $('.datetimepicker').datetimepicker({
+
+         format: "yyyy-mm-dd hh:ii ",
+        showMeridian: true,
+        autoclose: true,
+        todayBtn: true
+    });
+
+	$('.v-date').datetimepicker({
+
+			format: "yyyy-mm-dd  ", //'yyyy-mm-dd hh:ii:ss'
+			showMeridian: true,
+			autoclose: true,
+			todayBtn: true,
+			minView: 3, //选择日期
+			//forceParse :true  //转换格式
+
+	});
