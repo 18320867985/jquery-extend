@@ -55,15 +55,22 @@
 		
 		 .jq-define { margin-top: 20px;
 		                 height:200px;
-		                 border: 2px solid red;
+		                 border: 1px solid red;
+                          margin-bottom:20px;
 		            }
+
+            .echart {
+                height:300px;
+                margin-top: 20px;
+                border: 1px  solid red;
+            }
     </style>
 	</head>
 
     <body>
         <div class="container">
             <h1>html标签异步加载html css js  兼容ie8+</h1>
-           
+
             <div>
                 <a class="btn-link" href="./js/include.js">查看 v-include.js</a>
             </div>
@@ -153,7 +160,10 @@
                     <pre>
                         window.require=include.require  两种函数调用          异步
                         window.requireSync=include.requireSync  两种函数调用  同步
-                        
+                        require([],fn,bl), requireSync([],fn,bl);
+                        参数[]=加载js的url,fn=回调函数，bl= window.define.amd的值设置默认为true.
+                        例如：requireSync(["a.js","b.js"],function(){},false); 把window.define.amd设置为false.
+
                         // 异步并行加载js  全部加载完成再执行函数
 						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
                             // 带有回调参数兼容 ie9+, ios safari  8.0+ , Firefox 4.0+ ,Chrome 29+, Opera 16+, Android Browser 4.4+
@@ -162,7 +172,7 @@
 						});
 
                         // 同步按顺序加载js  
-						require(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
+						requireSync(["http://localhost:8888/include/amd1.js", "./include/amd2.js"],function(amd1,amd2){
                             // 带有回调参数兼容 ie9+, ios safari  8.0+ , Firefox 4.0+ ,Chrome 29+, Opera 16+, Android Browser 4.4+
 							console.log(amd1);
 							console.log(amd2);
@@ -185,31 +195,34 @@
                         
 					</pre>
 
-                    <pre>
-                     $("#btn2").on("click", function(e) {
-						    // 同步按顺序加载js  
-						requireSync(["http://localhost:8888/include/amd1.js", "./include/amd2.js", "./include/amd3.js",
-							"./include/amd6.js", "http://localhost:8888/include/jquery-1.11.0.js"
-						], function(a, b, c, d, jq) {
-                            // 带有回调参数兼容 ie9+, ios safari  8.0+ , Firefox 4.0+ ,Chrome 29+, Opera 16+, Android Browser 4.4+
-							var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
-							console.log(res);
-							console.log(include.caches)
-							console.log(jq(".jq-define").css("background", "orange"))
-							console.log("done");
-						});
-					});
-                </pre>
+
 
                     <button class="btn btn-primary" type="button" id="btn">
                         异步并行加载js 全部加载完成再执行函数
                     </button>
-                    <button class="btn btn-primary" type="button" id="btn2">
-                        同步按顺序加载js
-                    </button>
+
                     <div class="jq-define">
 
                     </div>
+                    <button class="btn btn-primary" type="button" id="btn2">
+                        同步按顺序加载js
+                    </button>
+
+                    <div class="echart" id="echart">
+
+                    </div>
+                    <pre>
+                     $("#btn2").on("click", function (e) {
+                        requireSync([
+                            "./echart/highcharts.js",
+                            "./echart/exporting.js",
+                            "./echart/export-data.js",
+                        ], function () {
+                                Highcharts.chart('echart'...);
+                        },false);
+
+                        });
+                </pre>
                     <hr />
                     <h2>js动态加载html的content,js,css</h2>
                     <pre>
@@ -243,42 +256,104 @@
         <script src="./js/v-message.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
+        <!--<script src="./echart/highcharts.js"></script>
+        <script src="./echart/exporting.js"></script>
+        <script src="./echart/export-data.js"></script>-->
+
         <script type="text/javascript">
 
             $(function () {
-                  require(["./include/amd1.js"], function (a) {
-                   // console.log(a(12, 13));
+                require(["./include/amd1.js"], function (a) {
+                    // console.log(a(12, 13));
                 });
                 $("#btn").on("click", function (e) {
 
                     require(["./include/amd1.js", "./include/amd2.js", "./include/amd3.js",
                         "./include/amd6.js", "include/jquery-1.11.0.js"
                     ], function (a, b, c, d, jq) {
-
                         var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
                         console.log(res);
                         console.log(include.caches)
                         console.log(jq(".jq-define").css("background", "orange"))
                         console.log("done");
-                            
 
                     });
 
                 });
 
                 $("#btn2").on("click", function (e) {
+                    requireSync([
+                        "./echart/highcharts.js",
+                        "./echart/exporting.js",
+                        "./echart/export-data.js",
+                   ], function () {
+                        Highcharts.chart('echart', {
+                            chart: {
+                                type: 'bar'
+                            },
+                            title: {
+                                text: 'Historic World Population by Region'
+                            },
+                            subtitle: {
+                                text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+                            },
+                            xAxis: {
+                                categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+                                title: {
+                                    text: null
+                                }
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'Population (millions)',
+                                    align: 'high'
+                                },
+                                labels: {
+                                    overflow: 'justify'
+                                }
+                            },
+                            tooltip: {
+                                valueSuffix: ' millions'
+                            },
+                            plotOptions: {
+                                bar: {
+                                    dataLabels: {
+                                        enabled: true
+                                    }
+                                }
+                            },
+                            legend: {
+                                layout: 'vertical',
+                                align: 'right',
+                                verticalAlign: 'top',
+                                x: -40,
+                                y: 80,
+                                floating: true,
+                                borderWidth: 1,
+                                backgroundColor:
+                                    Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+                                shadow: true
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            series: [{
+                                name: 'Year 1800',
+                                data: [107, 31, 635, 203, 2]
+                            }, {
+                                name: 'Year 1900',
+                                data: [133, 156, 947, 408, 6]
+                            }, {
+                                name: 'Year 2000',
+                                data: [814, 841, 3714, 727, 31]
+                            }, {
+                                name: 'Year 2016',
+                                data: [1216, 1001, 4436, 738, 40]
+                            }]
+                        });
 
-                    requireSync(["./include/amd1.js", "./include/amd2.js", "./include/amd3.js",
-                        "./include/amd6.js", "include/jquery-1.11.0.js"
-                    ], function (a, b, c, d, jq) {
-
-                        var res = a(12, 12) + b(2, 2) + c(2, 2, 2)
-                        console.log(res);
-                        console.log(include.caches)
-                        console.log(jq(".jq-define").css("background", "orange"))
-                        console.log("done");
-     
-                    });
+                   },false);
 
                 });
 
