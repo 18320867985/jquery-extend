@@ -5,12 +5,12 @@
 
 */
 
-window._vd =window.vd;
+window._vd = window.vd;
 
-(function() {
+(function () {
     "use strict";
-	
-    var Validate= function (formName) {
+
+    var Validate = function (formName) {
 
         this.formName = typeof formName === "undefined" ? ".form" : formName;
 
@@ -44,13 +44,13 @@ window._vd =window.vd;
             }
             for (var i = 0; i < this.arrs.length; i++) {
                 if ($.trim(this.arrs[i].elName) === $.trim(compareName)) {
-					if(window.addEventListener){
-						$(el).trigger("input");
-						
+                    if (window.addEventListener) {
+                        $(el).trigger("input");
+
                     } else {
                         $(el).trigger("keyup");
-					}
-                   
+                    }
+
                     break;
                 }
 
@@ -175,7 +175,7 @@ window._vd =window.vd;
                 if (typeof _rd_gp_attr !== "undefined") {
 
                     var _rd_gp_length = $(this).find("[type=radio]:checked").length;
-                     p = $(this).parents(".vd-box");
+                    p = $(this).parents(".vd-box");
                     // 没有选择
                     if (_rd_gp_length <= 0 && typeof _rd_gp_req !== "undefined") {
 
@@ -207,18 +207,18 @@ window._vd =window.vd;
                 var _obj = this.arrs[i];
                 var el = _obj.el; // document.forms[_obj.pName][_obj.elName];
                 var $this = this;
-				if(window.addEventListener){
+                if (window.addEventListener) {
                     $(el).on("input", _obj, function (event) {
                         $this.checkElement(event.data, event.target, true, true);
                         $this.addVdBtnStyle();
-					});
-				}else{
+                    });
+                } else {
                     $(el).on("keyup", _obj, function (event) {
                         $this.checkElement(event.data, event.target, true, true);
                         $this.addVdBtnStyle();
-					});
-				}
-               
+                    });
+                }
+
 
                 var remote = el.getAttribute("vd-remote");
                 if (remote === null) {
@@ -287,7 +287,7 @@ window._vd =window.vd;
                         _obj2.bl = false;
                         _obj2.val = v;
                         _obj2.errorMsg = _req_msg;
-                         p = $(el).parents(".vd-box");
+                        p = $(el).parents(".vd-box");
                         $(p).removeClass("vd-pattern vd-remote vd-compare").addClass("vd-error  ");
 
                         $(p).find(".vd-req,.vd-pattern,.vd-remote,.vd-compare").removeClass("vd-error");
@@ -296,7 +296,7 @@ window._vd =window.vd;
                         $(p).removeClass("vd-ok ");
 
                         $(".vd-dep-btn", p).addClass("vd-error").removeClass("vd-ok"); //依赖按钮
-                      
+
                         return;
                     } else {
                         p = $(el).parents(".vd-box");
@@ -347,7 +347,7 @@ window._vd =window.vd;
                     _obj2.errorMsg = "";
                     _obj2.val = v;
                     _obj2.bl = true;
-                     p = $(el).parents(".vd-box");
+                    p = $(el).parents(".vd-box");
                     $(p).removeClass("vd-error ");
 
                     $(p).find(".vd-pattern").removeClass("vd-error").text("");
@@ -441,20 +441,13 @@ window._vd =window.vd;
                         type: "get",
                         timeout: 10000,
                         success: function (data) {
-                            data = data || false;
+                            data = !!data;
                             $(el).trigger("onremoteafter", el);
-                            if (typeof data !== "number") {
-                                var _num = Number(data);
-                                data = isNaN(_num) ? false : _num;
-                            }
-
                             if (!data) {
-
                                 $remote.remoteFunError(_obj2, el, _remote_msg);
                                 $remote.addVdBtnStyle(el);
                                 return;
                             } else {
-
                                 $remote.remoteFunOk(_obj2, el);
                                 $remote.addVdBtnStyle(el);
 
@@ -462,7 +455,6 @@ window._vd =window.vd;
                         },
                         error: function (data) {
                             $remote.remoteFunError(_obj2, el, _remote_msg);
-
                             return;
                         }
 
@@ -483,7 +475,7 @@ window._vd =window.vd;
 
             // 复选框
             if (_ck !== null) {
-          
+
                 if (el.checked) {
                     _obj2.errorMsg = "";
                     _obj2.val = _ck_true !== null ? _ck_true : _ck_value;
@@ -572,7 +564,7 @@ window._vd =window.vd;
 
             // 单选组框
             var _rd_gp = _rd_parent.attr("vd-rd-gp");
-           // var _rd_gp_true = _rd_parent.attr("vd-ck-true");
+            // var _rd_gp_true = _rd_parent.attr("vd-ck-true");
             var _rd_gp_req = _rd_parent.attr("vd-req");
             var _rd_gp_msg = _rd_parent.attr("vd-req-msg");
             if (typeof _rd_gp !== "undefined") {
@@ -582,7 +574,7 @@ window._vd =window.vd;
                 p = $(el).parents(".vd-box");
 
                 // 没有选择
-                if (_rd_gp_length <= 0 &&  _rd_gp_req !== null) {
+                if (_rd_gp_length <= 0 && _rd_gp_req !== null) {
 
                     p.removeClass("vd-ok");
                     p.addClass("vd-error");
@@ -617,7 +609,7 @@ window._vd =window.vd;
         };
 
         this.isSubmit = true;
-		
+
         this.isSuccess = function (successFun, errorFun) {
 
             // 添加错误样式
@@ -625,7 +617,7 @@ window._vd =window.vd;
 
             // 是否全部验证成功
             var baseBl = true;
-           // var arr_rd = {};
+            // var arr_rd = {};
             for (var i = 0; i < this.arrs.length; i++) {
                 var _obj = this.arrs[i];
 
@@ -639,7 +631,7 @@ window._vd =window.vd;
                 }
 
             }
-           // var isFirst = true;
+            // var isFirst = true;
             if (baseBl) {
                 var newObj = this.getNewObjs();
                 if (typeof successFun === "function") {
@@ -827,7 +819,7 @@ window._vd =window.vd;
         };
 
         this.reset = function () {
-           
+
             this.isSubmit = true;
             var p = $(this.formName);
             $(".vd-item", p).each(function (item) {
@@ -839,7 +831,7 @@ window._vd =window.vd;
                 }
             });
 
-          
+
 
             $("[type=checkbox]", p).each(function () {
                 $(this)[0].checked = false;
@@ -849,7 +841,7 @@ window._vd =window.vd;
                 $(this)[0].checked = false;
 
             });
-          
+
             this.check();
             this._valStyle(p);
             var vdBtn = $(".vd-btn", this.formName);
@@ -882,9 +874,9 @@ window._vd =window.vd;
     };
 
     window.vd = {
-			create: function(formName) {
+        create: function (formName) {
             return new Validate(formName);
-			}
-		};
-			
+        }
+    };
+
 })();
