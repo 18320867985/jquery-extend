@@ -27,7 +27,7 @@
 .vd-box.vd-ok textarea.vd-item,
 .vd-box.vd-ok select.vd-item {
     color: $success;
-    border: 1px solid green;
+    border: 1px solid  $success;
 }
 
 .vd-box.vd-ok label {
@@ -54,12 +54,12 @@
 .vd-box.vd-error select.vd-item.vd-error
 {
     color: $error;
-    border: 1px solid red;
+    border: 1px solid  $error;
 }
 
 
 .vd-box.vd-error label {
-	color: red;
+	color:  $error;
 }
 .vd-dep-btn.vd-error{
 	color: $error;
