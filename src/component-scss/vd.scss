@@ -1,14 +1,13 @@
-
- $success:green;
- $error:red;
+$success:green;
+$error:red;
 
 /*错误显示*/
 .vd-box .vd-req,
 .vd-box .vd-pattern,
 .vd-box .vd-remote,
 .vd-box .vd-compare {
-    display: none;
-    color: $error;
+	display: none;
+	color: $error;
 }
 
 /* 错误 */
@@ -26,46 +25,38 @@
 .vd-box.vd-ok input.vd-item,
 .vd-box.vd-ok textarea.vd-item,
 .vd-box.vd-ok select.vd-item {
-    color: $success;
-    border: 1px solid $success;
-
-.vd-box.vd-ok label {
 	color: $success;
-}
+	border: 1px solid $success;
 
-.vd-dep-btn.vd-ok{
-	color: $success;
-}
+	.vd-box.vd-ok label {
+		color: $success;
+	}
 
-/*提交按钮*/
-/*.vd-btn.vd-ok{
+	.vd-dep-btn.vd-ok {
+		color: $success;
+	}
+
+	/*提交按钮*/
+	/*.vd-btn.vd-ok{
 	
 	color:$success;
 }*/
 
 
+	/*当前的元素error*/
+	.vd-box.vd-error .vd-item.vd-error,
+	.vd-box.vd-error input.vd-item.vd-error,
+	.vd-box.vd-error textarea.vd-item.vd-error,
+	.vd-box.vd-error select.vd-item.vd-error {
+		color: $error;
+		border: 1px solid $error;
+	}
 
 
-/*当前的元素error*/
-.vd-box.vd-error .vd-item.vd-error,
-.vd-box.vd-error input.vd-item.vd-error,
-.vd-box.vd-error textarea.vd-item.vd-error,
-.vd-box.vd-error select.vd-item.vd-error
-{
-    color: $error;
-    border: 1px solid  $error;
-}
+	.vd-box.vd-error label {
+		color: $error;
+	}
 
-
-.vd-box.vd-error label {
-	color:  $error;
-}
-.vd-dep-btn.vd-error{
-	color: $error;
-}
-
-/*提交按钮*/
-/*.vd-btn.vd-error{
-	
-	color:$error;
-}*/
+	.vd-dep-btn.vd-error {
+		color: $error;
+	}
