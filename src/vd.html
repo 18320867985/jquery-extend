@@ -267,7 +267,15 @@
           
         远程验证之前的 onremotebefore  $(el).on("onremotebefore",function(event,el){ });
         远程验证之后的 onremoteafter   $(el).on("onremoteafter",function(event,el,data){ });
-	 
+
+        // 发送验证码
+        $(".vd-dep-btn").click(function () {
+            // 根据name属性获取对象
+            if (vd1.getObj("c").bl) {
+                $.alert("", "已发送验证码");
+            };
+        });
+
 	 d.比较验证=>  验证属性：  vd-compare="pwd" 
 	 	pwd是比较的name="pwd"的字段名称 
 	   	 验证错误提示信息：vd-compare-msg="两次密码不能相同"
@@ -369,13 +377,13 @@
             });
 
             // remote 验证验证之前触发
-            $(document).on("onremotebefore", function (e) {
-                console.log("onremotebefore", e.target)
+            $(document).on("onremotebefore", function (e,el) {
+                console.log("onremotebefore element", el)
             })
 
             // remote 验证验证完成触发
-            $(document).on("onremoteafter", function (e) {
-                console.log("onremoteafter", e.target)
+            $(document).on("onremoteafter", function (e,el,v) {
+                console.log("onremoteafter value:", v)
             })
 
 
