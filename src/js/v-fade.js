@@ -11,7 +11,7 @@
     var VFade = function (el, options) {
         this.options = options;
         this.el = el;
-        this.runing();
+        this.running();
     };
 
     VFade.DEFAULTS = {
@@ -60,7 +60,7 @@
        
     };
 
-    VFade.prototype.runing = function () {
+    VFade.prototype.running = function () {
       
         var obj = this.el;
         obj.index = 0;

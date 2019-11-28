@@ -17,9 +17,9 @@
       this.activeTarget = null;
       this.scrollHeight = 0;
 
-      this.$scrollElement.on('scroll.v-scrollspy', $.proxy(this.runing, this));
+      this.$scrollElement.on('scroll.v-scrollspy', $.proxy(this.running, this));
       this.refresh();
-      this.runing();
+      this.running();
 	
   }
 
@@ -65,7 +65,7 @@
             });
     };
 
-    VScrollSpy.prototype.runing = function () {
+    VScrollSpy.prototype.running = function () {
         var scrollTop = this.$scrollElement.scrollTop() + this.options.offset;
         var scrollHeight = this.getScrollHeight();
         var maxScroll = this.options.offset + scrollHeight - this.$scrollElement.height();

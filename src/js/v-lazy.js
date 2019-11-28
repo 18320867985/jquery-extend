@@ -11,7 +11,7 @@
         this.el = el;
         this.oldsrc = "";
         this.options = options;
-        this.runing();
+        this.running();
 
     };
 
@@ -115,7 +115,7 @@
 
     };
 
-    VLazy.prototype.runing = function () {
+    VLazy.prototype.running = function () {
 
         if (this.el.nodeName === "IMG") {
             var $this = $(this.el);

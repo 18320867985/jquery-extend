@@ -11,10 +11,10 @@
     var VDropdown = function (el, options) {
         this.options = options;
         this.el = el;
-        this.runing();
+        this.running();
     };
 
-    VDropdown.prototype.runing = function () {
+    VDropdown.prototype.running = function () {
 
 
         if (this.isMobile()) {

@@ -10,11 +10,11 @@
     // define class
     var VAutocomplete = function (el, fn) {
         this.el = el;
-        this.runing(fn);
+        this.running(fn);
 
     };
 
-    VAutocomplete.prototype.runing = function (fn) {
+    VAutocomplete.prototype.running = function (fn) {
 
         var self = this;
         var $this = $(this.el);

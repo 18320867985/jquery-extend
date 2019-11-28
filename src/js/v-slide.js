@@ -10,7 +10,7 @@
     var VSlide = function (el,options) {
         this.options = options;
         this.el = el;
-        this.runing();
+        this.running();
     };
 
     VSlide.DEFAULTS = {
@@ -101,7 +101,7 @@
         $(".radius-list span", this.el).eq(index).addClass("active");
     };
 
-    VSlide.prototype.runing = function () {
+    VSlide.prototype.running = function () {
        
         var $this = this;
         var obj = this.el;

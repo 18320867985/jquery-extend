@@ -9,14 +9,14 @@
     // define class
 	var VAffix = function(options) {
         this.options = options;
-		this.runing();
+		this.running();
 	};
 
 	VAffix.DEFAULTS = {
 		offsetTop: 0
 	};
 
-	VAffix.prototype.runing = function() {
+	VAffix.prototype.running = function() {
 
 		var o = this.options;
         $(window).on("scroll.v-vaffix", function() {
