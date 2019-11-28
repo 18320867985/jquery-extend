@@ -2258,11 +2258,6 @@ input:focus,
 .vd-dep-btn.vd-error {
   color: red; }
 
-/*提交按钮*/
-/*.vd-btn.vd-error{
-	
-	color:$error;
-}*/
 /*全局*/
 .v-collapse {
   display: none; }

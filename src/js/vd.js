@@ -461,7 +461,7 @@ window._vd = window.vd;
                     });
 
                 } else {
-
+                    _obj2.bl=_obj2.remoteVal||false;
                     if (_obj2.bl) {
                         $remote.remoteFunOk(_obj2, el);
                         $remote.addVdBtnStyle(el);
@@ -706,6 +706,7 @@ window._vd = window.vd;
             _obj2.bl = true;
             _obj2.val = $(el).val();
             _obj2.remote_bl = _obj2.bl;
+            _obj2.remoteVal=true;
 
             var p = $(el).parents(".vd-box");
             $(p).removeClass("vd-error ");
@@ -722,6 +723,7 @@ window._vd = window.vd;
             _obj2.bl = false;
             _obj2.val = $(el).val();
             _obj2.remote_bl = _obj2.bl;
+            _obj2.remoteVal=false;
 
             var p = $(el).parents(".vd-box");
             $(p).addClass("vd-error ");
