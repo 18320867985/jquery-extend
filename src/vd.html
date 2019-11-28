@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <meta name="Keywords" content="" />
     <meta name="Description" content="" />
     <title>表单验证-vd</title>
@@ -17,9 +18,9 @@
             margin-bottom: 50px;
         }
 
-            .container > li + li {
-                margin-top: 20px;
-            }
+        .container>li+li {
+            margin-top: 20px;
+        }
 
         pre {
             margin: 10px 0;
@@ -34,23 +35,25 @@
             width: 600px;
             padding: 30px;
         }
+
         h2 {
-             margin-bottom:30px;
+            margin-bottom: 30px;
         }
 
         .v-tab {
-             margin-top:30px;
+            margin-top: 30px;
         }
+
         .v-tab-cnt {
-             height:200px;
-             border: 1px solid #ddd;
+            height: 200px;
+            border: 1px solid #ddd;
         }
 
         .v-tab-cnt-item {
-             height:100%;
-             padding:20px;
-             color:#fff;
-             font-size:16px;
+            height: 100%;
+            padding: 20px;
+            color: #fff;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -62,12 +65,14 @@
             <a class="btn-link" href="./js/vd.js">查看 vd.js</a>
             <a class="btn-link" href="./component-scss/vd.scss">查看 vd.scss</a>
         </div>
-   
+
         <form name="form1" class="form1">
             <div class="form-group  vd-box">
                 <label for="exampleInputEmail1">收件人</label>
 
-                <input class="form-control vd-item " type="text" name="email" vd-pattern="^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$" vd-pattern-msg="收件人格式不对" value="" placeholder="74646456@qq.com" />
+                <input class="form-control vd-item " type="text" name="email"
+                    vd-pattern="^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$" vd-pattern-msg="收件人格式不对" value=""
+                    placeholder="74646456@qq.com" />
                 <span class=" vd-pattern"></span>
 
             </div>
@@ -77,7 +82,9 @@
                 <div class=" col-sm-8">
 
                     <!--vd-remote 1=成功 0=失败 -->
-                    <input class="form-control vd-item" type="text" vd-req vd-req-msg="手机号码不能为空" vd-pattern="^1\d{10}$" vd-pattern-msg="手机格式不对" maxlength="11" vd-remote="js/vd.json" vd-remote-msg="手机号码已存在" name="c" placeholder="输入正确手机号码" />
+                    <input class="form-control vd-item" type="text" vd-req vd-req-msg="手机号码不能为空" vd-pattern="^1\d{10}$"
+                        vd-pattern-msg="手机格式不对" maxlength="11" vd-remote="js/vd.json" vd-remote-msg="手机号码已存在" name="c"
+                        placeholder="输入正确手机号码" />
                 </div>
                 <div class="col-sm-4">
                     <span class="vd-dep-btn  btn btn-default">发送验证码</span>
@@ -96,7 +103,8 @@
             <div class="form-group  vd-box">
                 <label for="">验证码:</label>
 
-                <input class="form-control vd-item" type="text" vd-req vd-req-msg="验证码不能为空" vd-remote="js/vd.json" vd-remote-length="6" vd-remote-msg="验证码不对" name="yzm" maxlength="6" value="" placeholder="输入验证码" />
+                <input class="form-control vd-item" type="text" vd-req vd-req-msg="验证码不能为空" vd-remote="js/vd.json"
+                    vd-remote-length="6" vd-remote-msg="验证码不对" name="yzm" maxlength="6" value="" placeholder="输入验证码" />
 
                 <span class="vd-req "></span>
 
@@ -107,7 +115,9 @@
             <div class="form-group  vd-box">
                 <label class="a" for="">密码:</label>
 
-                <input class="form-control vd-item" type="text" name="pwd" vd-req vd-req-msg="密码不能为空" vd-compare-emit="pwd2" vd-pattern="^\S{8,32}$" vd-pattern-msg="密码长度8到32位" value="" placeholder="输入密码" />
+                <input class="form-control vd-item" type="text" name="pwd" vd-req vd-req-msg="密码不能为空"
+                    vd-compare-emit="pwd2" vd-pattern="^\S{8,32}$" vd-pattern-msg="密码长度8到32位" value=""
+                    placeholder="输入密码" />
                 <span class="vd-req "></span>
                 <span class="vd-pattern "></span>
 
@@ -117,7 +127,8 @@
             <div class="form-group  vd-box">
                 <label class="a" for="">确认密码:</label>
 
-                <input class="form-control vd-item" type="text" name="pwd2" vd-req vd-req-msg="密码不能为空" vd-compare="pwd" vd-compare-msg="两次密码不相同" value="" placeholder="输入密码" />
+                <input class="form-control vd-item" type="text" name="pwd2" vd-req vd-req-msg="密码不能为空" vd-compare="pwd"
+                    vd-compare-msg="两次密码不相同" value="" placeholder="输入密码" />
 
                 <span class="vd-req "></span>
                 <span class="vd-compare"> </span>
@@ -128,13 +139,13 @@
             <div class="form-group  vd-box">
 
                 <label for="">选择城市:</label>
-                <select class="form-control vd-item"  name="city" vd-req vd-req-msg="选择城市不能为空">
+                <select class="form-control vd-item" name="city" vd-req vd-req-msg="选择城市不能为空">
                     <option value="">==选择城市==</option>
                     <option value="东莞">东莞</option>
                     <option value="深圳">深圳</option>
                     <option value="上海">上海</option>
                 </select>
-      
+
                 <span class="vd-req "></span>
 
             </div>
@@ -142,10 +153,11 @@
             <div class="form-group  vd-box">
 
                 <label for="">内容:</label>
-                <textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空" placeholder="输入内容"></textarea>
+                <textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空"
+                    placeholder="输入内容"></textarea>
 
                 <span class="vd-req "></span>
-         
+
             </div>
 
 
@@ -195,27 +207,30 @@
 
             <div class="checkbox  vd-box">
                 <label>
-                    <input class="vd-item" name="def" type="checkbox" id="inpu_5" vd-req vd-ck vd-ck-true="1" vd-ck-false="0" v vd-req-msg="没有同意协议">同意协议
+                    <input class="vd-item" name="def" type="checkbox" id="inpu_5" vd-req vd-ck vd-ck-true="1"
+                        vd-ck-false="0" v vd-req-msg="没有同意协议">同意协议
                 </label>
             </div>
             <button type="button" class="btn btn-primary vd-btn">注册</button>
         </form>
 
-            <pre>
-             html:
-                 &lt;div class="form-group  vd-box">
+        <pre>
+             html:  
+                &lt;form name="form1" class="form1">
+                    &lt;div class="form-group  vd-box">
 
-                        &lt;label for="">内容:  &lt;/label>
-                        &lt;textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空" placeholder="输入内容">  &lt;/textarea>
+                            &lt;label for="">内容:  &lt;/label>
+                            &lt;textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空" placeholder="输入内容">  &lt;/textarea>
 
-                        &lt;span class="vd-req ">  &lt;/span>
-                        &lt;span class="vd-remote">  &lt;/span>
+                            &lt;span class="vd-req ">  &lt;/span>
+                            &lt;span class="vd-remote">  &lt;/span>
 
-                 &lt;/div>
+                    &lt;/div>
+                &lt;/form>
 
         </pre>
 
-            <pre>
+        <pre>
         js:
        
              1.初始化表单验证对象
@@ -314,21 +329,21 @@
                 vd1.isSuccess(
                     // success
                     function (obj) {
-                    setTimeout(function () {
-                        vd1.reset();
+                        setTimeout(function () {
+                            vd1.reset();
 
-                        $.alert("",JSON.stringify(obj));
+                            $.alert("", JSON.stringify(obj));
 
-                    }, 3000);
+                        }, 3000);
 
                     },
                     // error
                     function (obj) {
 
-                    obj.el.focus();
-                    console.log(obj)
+                        obj.el.focus();
+                        console.log(obj)
 
-                });
+                    });
             });
 
             // 发送验证码
@@ -337,7 +352,7 @@
                 // 根据name属性获取对象
                 if (vd1.getObj("c").bl) {
 
-                    $.alert("","已发送验证码");
+                    $.alert("", "已发送验证码");
                 };
 
             });
@@ -355,7 +370,6 @@
 
 
         });
-
     </script>
 
 
