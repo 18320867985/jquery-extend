@@ -23,11 +23,11 @@ hqs  v-reachottom 滚动到底部触发事件
     // define class
     function VReachBottom(el, fn, offsetBottom) {
         this.el = el;
-        this.runing(fn, offsetBottom);
+        this.running(fn, offsetBottom);
     }
   
 
-    VReachBottom.prototype.runing = function (fn, offsetBottom) {
+    VReachBottom.prototype.running = function (fn, offsetBottom) {
 
         var el = this.el;
    
