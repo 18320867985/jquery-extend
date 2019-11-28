@@ -218,20 +218,20 @@
              html:  &lt;form name="form1" class="form1">
                         &lt;div class="form-group  vd-box">
 
-                                &lt;label for="">内容:  &lt;/label>
-                                &lt;textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空" placeholder="输入内容">  &lt;/textarea>
+                            &lt;label for="">内容:  &lt;/label>
+                            &lt;textarea class="form-control vd-item" name="cont" vd-req vd-req-msg="内容不能为空" placeholder="输入内容">  &lt;/textarea>
 
-                                &lt;!-- 非空提示-->
-                                &lt;span class="vd-req">&lt;/span>
+                            &lt;!-- 非空提示-->
+                            &lt;span class="vd-req">&lt;/span>
 
-                                &lt;!-- 正则验证提示-->
-                                &lt;span class="vd-pattern">&lt;/span>
+                            &lt;!-- 正则验证提示-->
+                            &lt;span class="vd-pattern">&lt;/span>
 
-                                &lt;!-- 比较验证提示-->
-                                &lt;span class="vd-compare">&lt;/span>
+                            &lt;!-- 比较验证提示-->
+                            &lt;span class="vd-compare">&lt;/span>
 
-                                &lt;!-- ajax远程验证提示-->
-                                &lt;span class="vd-remote">&lt;/span>
+                            &lt;!-- ajax远程验证提示-->
+                            &lt;span class="vd-remote">&lt;/span>
                             
                         &lt;/div>
                     &lt;/form>
@@ -241,7 +241,7 @@
         <pre>
         js:
        
-             1.初始化表单验证对象
+    1.初始化表单验证对象
 		var vd1=vd.create(".form1");  // 表单的 class的名称
 		// 初始化验证对象
 		vd1.init();
@@ -263,10 +263,10 @@
 	 
 	 c.ajax远程验证 => 验证属性： vd-remote="json/remote.json"
 	  	长度达到才验证：vd-remote-length="6"  
-          验证错误提示信息： vd-remote-msg="验证码不对"
+        验证错误提示信息： vd-remote-msg="验证码不对"
           
-          远程验证之前的 onremotebefore  $(el).on("onremotebefore",function(event,el){ });
-          远程验证之后的 onremoteafter   $(el).on("onremoteafter",function(event,el,data){ });
+        远程验证之前的 onremotebefore  $(el).on("onremotebefore",function(event,el){ });
+        远程验证之后的 onremoteafter   $(el).on("onremoteafter",function(event,el,data){ });
 	 
 	 d.比较验证=>  验证属性：  vd-compare="pwd" 
 	 	pwd是比较的name="pwd"的字段名称 
@@ -299,16 +299,16 @@
 	
 			// 是否验证成功
 			vd1.isSuccess(
-                        // success
-                        function(obj) {
-						vd1.reset();
-						//$.alert("",JSON.stringify(obj));
-					},
-                    // error
-					function(obj) {
-					vd1.reset();
-					obj.el.focus();
-					});	
+            // success
+            function(obj) {
+            vd1.reset();
+            //$.alert("",JSON.stringify(obj));
+            },
+            // error
+            function(obj) {
+            vd1.reset();
+            obj.el.focus();
+            });	
 	});
 	 
          </pre>
