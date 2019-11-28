@@ -442,7 +442,7 @@ window._vd = window.vd;
                         timeout: 10000,
                         success: function (data) {
                             data = !!data;
-                            $(el).trigger("onremoteafter", el);
+                            $(el).trigger("onremoteafter", el,data);
                             if (!data) {
                                 $remote.remoteFunError(_obj2, el, _remote_msg);
                                 $remote.addVdBtnStyle(el);

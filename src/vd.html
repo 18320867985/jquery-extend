@@ -250,20 +250,23 @@
 		// 验证并显示样式=>vd1.validate(); 
 		
 	2. 验证每项的父级 大框添加class="vd-box" 的class
-			每一个项添加class="vd-item" 和  name 属性作为提交数据对象的属性
-			例如name=age，name=sex 对象属性为{age：12,sex:女 }
+        每一个项添加class="vd-item" 和  name 属性作为提交数据对象的属性
+        例如name=age，name=sex 对象属性为{age：12,sex:女 }
 	  
 	3 . 验证类型
 	 
 	 a.非空验证 => 验证属性： vd-req  
-		  验证错误提示信息：vd-req-msg="此字段不能为空"
+		验证错误提示信息：vd-req-msg="此字段不能为空"
 	 
 	 b.正则验证 => 验证属性： vd-pattern="^1\d{10}$" 
 	   	验证错误提示信息：vd-pattern-msg="此字段格式不对"
 	 
 	 c.ajax远程验证 => 验证属性： vd-remote="json/remote.json"
 	  	长度达到才验证：vd-remote-length="6"  
-	 	 验证错误提示信息： vd-remote-msg="验证码不对"
+          验证错误提示信息： vd-remote-msg="验证码不对"
+          
+          远程验证之前的 onremotebefore  $(el).on("onremotebefore",function(event,el){ });
+          远程验证之后的 onremoteafter   $(el).on("onremoteafter",function(event,el,data){ });
 	 
 	 d.比较验证=>  验证属性：  vd-compare="pwd" 
 	 	pwd是比较的name="pwd"的字段名称 
