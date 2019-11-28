@@ -435,14 +435,14 @@ window._vd = window.vd;
                 var $remote = this;
 
                 if (isRemote) {
-                    $(el).trigger("onremotebefore", el);
+                    $(el).trigger("onremotebefore", [el]);
                     $.ajax({
                         url: _remote + "?rand=" + Math.random() + "&" + el.name + "=" + v,
                         type: "get",
                         timeout: 10000,
                         success: function (data) {
                             data = !!data;
-                            $(el).trigger("onremoteafter", el,data);
+                            $(el).trigger("onremoteafter", [el,data]);
                             if (!data) {
                                 $remote.remoteFunError(_obj2, el, _remote_msg);
                                 $remote.addVdBtnStyle(el);
