@@ -1,3 +1,5 @@
+
+
 /* 	
    作者：hqs
    时间：2017-10-08
@@ -435,14 +437,30 @@ window._vd = window.vd;
                 }
 
                 var $remote = this;
-
+               
                 if (isRemote) {
                     $(el).trigger("onremotebefore", [el]);
+                    var remoteObjectString=$(el).attr("vd-remote-obj");
+                    var remoteMethod=($(el).attr("vd-remote-method")||"get").toLowerCase();
+                    var remoteName=($(el).attr("vd-remote-name")||"").toLowerCase();
+                     
+                    var props={};
+                    props[el.name]=v;
+                    $.extend(props, self.getObjectByString(remoteName));
+                    if(remoteMethod==="post"){
+                        props=JSON.stringify(props);
+                    }
+               //  console.log(   self.getObj("name"))
                     $.ajax({
-                        url: self.baseRemoteUrl+_remote + "?rand=" + Math.random() + "&" + el.name + "=" + v,
-                        type: "get",
+                        url: self.baseRemoteUrl+_remote + "?rand=" + Math.random(),
+                        type: remoteMethod,
+                        data:props,
                         timeout: 10000,
                         success: function (data) {
+                            // 获取校验指定的属性
+                           if(remoteObjectString){
+                              data= self.getObjectPropByString(data,remoteObjectString);
+                           }
                             data = !!data;
                             $(el).trigger("onremoteafter", [el,data]);
                             if (!data) {
@@ -874,6 +892,41 @@ window._vd = window.vd;
             this.enabled($(this.formName).find("select")); //激活
             this.enabled($(this.formName).find("textarea")); //激活
         };
+
+        this.getObjectPropByString=function(obj,str){
+            str=str||"";
+           var arrs= str.split(".");
+           var tempObj=null,propName="";
+
+           for(var i=0,len=arrs.length;i<len;i++){
+                propName=arrs[i];
+                if(typeof obj[propName]==="undefined"){ break;}
+                tempObj=obj[propName];
+           }
+
+           return tempObj;
+
+        }; // 根据对字符串获取对象的属性值
+
+        this.getObjectByString=function(str){
+            str=str||"";
+            var arrs= str.split(",");
+            var o={},propName="";
+
+           for(var i=0,len=arrs.length;i<len;i++){
+                var names= arrs[i].split("=")||[];
+                var objName=names.length>=2?names[1]:names[0];
+                propName=names[0];
+                 var _obj=this.getObj(propName);
+                if(_obj){
+                    o[objName]=_obj.val;
+                }
+              
+           }
+
+           return o;
+
+        }; // 根据对字符串转换成对象
 
 
     };
