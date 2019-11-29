@@ -447,7 +447,7 @@ window._vd = window.vd;
                     var props={};
                     props[el.name]=v;
                     $.extend(props, self.getObjectByString(remoteName));
-                    if(remoteMethod==="post"){
+                    if( $.ajaxSetup().contentType==="application/json" && remoteMethod!=="get"){
                         props=JSON.stringify(props);
                     }
                //  console.log(   self.getObj("name"))
