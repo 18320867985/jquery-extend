@@ -22,6 +22,8 @@ window._vd = window.vd;
 
         };
 
+        this.baseRemoteUrl="",
+
         this.disabled = function (obj) {
 
             $(obj).attr("disabled", "disabled");
@@ -240,7 +242,7 @@ window._vd = window.vd;
         };
 
         this.checkElement = function (_obj2, el, isRemote, isRadio) {
-
+            var self=this;
             // req
             var _req = el.getAttribute("vd-req");
             var _req_msg = el.getAttribute("vd-req-msg");
@@ -437,12 +439,12 @@ window._vd = window.vd;
                 if (isRemote) {
                     $(el).trigger("onremotebefore", [el]);
                     $.ajax({
-                        url: _remote + "?rand=" + Math.random() + "&" + el.name + "=" + v,
+                        url: self.baseRemoteUrl+_remote + "?rand=" + Math.random() + "&" + el.name + "=" + v,
                         type: "get",
                         timeout: 10000,
                         success: function (data) {
                             data = !!data;
-                            $(el).trigger("onremoteafter", [el, data]);
+                            $(el).trigger("onremoteafter", [el,data]);
                             if (!data) {
                                 $remote.remoteFunError(_obj2, el, _remote_msg);
                                 $remote.addVdBtnStyle(el);
@@ -735,6 +737,7 @@ window._vd = window.vd;
             $(".vd-dep-btn", p).removeClass("vd-ok").addClass("vd-error"); //依赖按钮
 
         };
+
 
         this.vdIsOk = function () {
 
