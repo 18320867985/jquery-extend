@@ -443,6 +443,7 @@ window._vd = window.vd;
                     var remoteObjectString=$(el).attr("vd-remote-obj");
                     var remoteMethod=($(el).attr("vd-remote-method")||"get").toLowerCase();
                     var remoteName=($(el).attr("vd-remote-name")||"").toLowerCase();
+                    var remoteRes=($(el).attr("vd-remote-res")||"true");  // 为真或假结果判断 默认为真
                      
                     var props={};
                     props[el.name]=v;
@@ -463,15 +464,35 @@ window._vd = window.vd;
                            }
                             data = !!data;
                             $(el).trigger("onremoteafter", [el,data]);
-                            if (!data) {
-                                $remote.remoteFunError(_obj2, el, _remote_msg);
-                                $remote.addVdBtnStyle(el);
-                                return;
-                            } else {
-                                $remote.remoteFunOk(_obj2, el);
-                                $remote.addVdBtnStyle(el);
 
-                            }
+                            // 真
+                            if(remoteRes==="true"){
+                                if (!data) {
+                                    $remote.remoteFunError(_obj2, el, _remote_msg);
+                                    $remote.addVdBtnStyle(el);
+                                    return;
+                                } else {
+                                    $remote.remoteFunOk(_obj2, el);
+                                    $remote.addVdBtnStyle(el);
+
+                                }
+                             }
+
+                              // 假
+                            if(remoteRes==="false"){
+                                if (data) {
+                                    $remote.remoteFunError(_obj2, el, _remote_msg);
+                                    $remote.addVdBtnStyle(el);
+                                    return;
+                                } else {
+                                    $remote.remoteFunOk(_obj2, el);
+                                    $remote.addVdBtnStyle(el);
+
+                                }
+                             }
+
+
+
                         },
                         error: function (data) {
                             $remote.remoteFunError(_obj2, el, _remote_msg);
