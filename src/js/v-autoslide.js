@@ -1,25 +1,25 @@
 ﻿
 /**
- * hqs v-slide
+ * hqs v-autoSlide
 **/
 +function () {
 
     'use strict';
 
     // define class
-    var VSlide = function (el,options) {
+    var VAutoSlide = function (el,options) {
         this.options = options;
         this.el = el;
         this.running();
     };
 
-    VSlide.DEFAULTS = {
+    VAutoSlide.DEFAULTS = {
         time: 3000,
         isTopbottom:false
         
     };
 
-    VSlide.prototype.autoPlay = function () {
+    VAutoSlide.prototype.autoPlay = function () {
 
         var obj = this.el;
         var $this = this;
@@ -31,13 +31,13 @@
 
     };
 
-    VSlide.prototype.fadeImg = function (el, index, bl) {
+    VAutoSlide.prototype.fadeImg = function (el, index, bl) {
      
         var obj = this.el;
         var v = $(obj);
-        var wrap = v.find(".v-slide-wrap");
-        var ul = $(".v-slide-wrap ul ", v);
-        var lis = $(".v-slide-wrap ul li", v);
+        var wrap = v.find(".v-autoslide-wrap");
+        var ul = $(".v-autoslide-wrap ul ", v);
+        var lis = $(".v-autoslide-wrap ul li", v);
 
         // set li height
         lis.height(wrap.height());
@@ -92,28 +92,28 @@
         this.setRadius(index % (obj.length / 2));
 
         // 触发自定义事件
-        lis.eq(index).trigger("v-slide-show", [lis.eq(index).get(0), index % (obj.length / 2), (obj.length / 2)]);
+        lis.eq(index).trigger("v-autoslide-show", [lis.eq(index).get(0), index % (obj.length / 2), (obj.length / 2)]);
 
     };
 
-    VSlide.prototype.setRadius = function (index) {
+    VAutoSlide.prototype.setRadius = function (index) {
         $(".radius-list span", this.el).removeClass("active");
         $(".radius-list span", this.el).eq(index).addClass("active");
     };
 
-    VSlide.prototype.running = function () {
+    VAutoSlide.prototype.running = function () {
        
         var $this = this;
         var obj = this.el;
-        var bannerUl = $(obj).find(".v-slide-wrap ul");
+        var bannerUl = $(obj).find(".v-autoslide-wrap ul");
         bannerUl[0].innerHTML += bannerUl[0].innerHTML;
 
         // 一张图不能轮播
-        if ($(".v-slide-wrap ul li", $(obj)).length <= 2) {
+        if ($(".v-autoslide-wrap ul li", $(obj)).length <= 2) {
             return;
         }
 
-        obj.length = $(".v-slide-wrap ul li", $(obj)).length;
+        obj.length = $(".v-autoslide-wrap ul li", $(obj)).length;
         obj.index = obj.length / 2;
         obj.clearAutoId = 0;
      
@@ -122,7 +122,7 @@
         this.autoPlay();
         obj.isclick = true;
        
-        $(".v-slide-wrap", $(obj)).hover(function () {
+        $(".v-autoslide-wrap", $(obj)).hover(function () {
             $(".v-btn", $(obj)).stop().fadeIn();
             clearInterval(obj.clearAutoId);
         }, function () {
@@ -197,7 +197,7 @@
         return this.each(function () {
 
             var $this = $(this);
-            var data = $this.data('v-slide');
+            var data = $this.data('v-autoslide');
             var options = typeof option === 'object' && option;
 
             if (!data) {
@@ -207,7 +207,7 @@
                 o.isTopbottom = $this.get(0).hasAttribute("data-topbottom") ? true : false;
                 var p = $.extend({}, o, options);
               
-                $this.data('v-slide', data = new VSlide(this,p));
+                $this.data('v-autoslide', data = new VSlide(this,p));
             }
             if (typeof option === 'string') {
                 data[option]();
@@ -216,12 +216,12 @@
         });
     }
 
-    var _vslide = $.fn.vslide;
-    $.fn.vslide = Plugin;
+    var _vautoslide = $.fn.vautoslide;
+    $.fn.vautoslide = Plugin;
 
     $(function () {
 
-        $("[data-toggle=v-slide]").each(function (e) {
+        $("[data-toggle=v-autoslide]").each(function (e) {
             var $this = $(this);
             Plugin.call($this);
 

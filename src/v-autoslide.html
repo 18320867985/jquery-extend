@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 		<meta name="Keywords" content="" />
 		<meta name="Description" content="" />
-		<title>轮播图-slide</title>
+		<title>轮播图-autoslide</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="css/all.css" />
 		<link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
@@ -25,7 +25,7 @@
         /*
             轮播图大框设置高度和宽度
         */
-        .v-slide-pwr {
+        .v-autoslide-pwr {
              width:1200px;
              margin:0 auto;
              height: 400px;
@@ -37,22 +37,22 @@
     <body>
 
         <div class="container ">
-            <h1>轮播图-slide</h1>
+            <h1>轮播图-autoslide</h1>
             <div>
-                <a class="btn-link" href="./js/v-slide.js">查看 v-slide.js</a>
-                <a class="btn-link" href="./component-scss/v-slide.scss">查看 v-slide.scss</a>
+                <a class="btn-link" href="./js/v-autoslide.js">查看 v-autoslide.js</a>
+                <a class="btn-link" href="./component-scss/v-autoslide.scss">查看 v-autoslide.scss</a>
             </div>
 
         </div>
 
         <h3 class="container">默认左右轮播</h3>
-        <!--v-slide-->
+        <!--v-autoslide-->
         <!--默认左右轮播-->
-        <div class="v-slide-pwr">
+        <div class="v-autoslide-pwr">
 
-            <div class="v-slide" data-time="3000"  data-toggle="v-slide" id="v-slide-1">
+            <div class="v-autoslide" data-time="3000"  data-toggle="v-autoslide" id="v-autoslide-1">
 
-                <div class="v-slide-wrap">
+                <div class="v-autoslide-wrap">
 
                     <ul class="clearfix">
                         <li class="active">
@@ -103,7 +103,7 @@
         /*
             轮播图大框设置高度和宽度
         */
-        .v-slide-pwr {
+        .v-autoslide-pwr {
              width:1200px;
              margin:0 auto;
              height: 400px;
@@ -112,11 +112,11 @@
 
             <pre>
           html:
-           &lt;!--v-slide  data-toggle="v-slide" 的属性触发条件 -->
+           &lt;!--v-autoslide  data-toggle="v-autoslide" 的属性触发条件 -->
         
-             &lt;div class="v-slide " data-time="3000">
+             &lt;div class="v-autoslide " data-time="3000">
              
-                     &lt;div  class="v-slide-wrap">
+                     &lt;div  class="v-autoslide-wrap">
                          &lt;ul class="clearfix">
                              &lt;li  class="active" >
                                  &lt;a href="#">
@@ -149,8 +149,8 @@
          </pre>
             <pre>
             js:
-            // 触发v-slide轮播图
-            $(".v-slide").vslide({
+            // 触发v-autoslide轮播图
+            $(".v-autoslide").vautoslide({
                     time:3000,        //   轮播图间隔时间
                     isTopottom:fasle  //  是否上下滚动
                 });
@@ -160,13 +160,13 @@
         </div>
 
         <h3 class="container">上下轮播</h3>
-        <!--v-slide-->
+        <!--v-autoslide-->
         <!--上下轮播-->
-        <div class="v-slide-pwr">
+        <div class="v-autoslide-pwr">
 
-            <div class="v-slide " data-time="3000" data-topbottom  id="v-slide-2">
+            <div class="v-autoslide " data-time="3000" data-topbottom  id="v-autoslide-2">
 
-                <div class="v-slide-wrap">
+                <div class="v-autoslide-wrap">
 
                     <ul class="clearfix">
                         <li class="active">
@@ -201,14 +201,14 @@
         <div class="container">
             <pre>
                 添加属性：
-                  &lt;div class="v-slide " data-time="3000" data-topbottom>
+                  &lt;div class="v-autoslide " data-time="3000" data-topbottom>
               </pre>
 
             <pre>
 
-            // 触发onBanner show事件
-            $(document).on("v-slide-show", function (e, el, index, size) {
-                var p = $(el).parents(".v-slide");
+            // 触发onbannershow事件
+            $(document).on("v-autoslideshow", function (e, el, index, size) {
+                var p = $(el).parents(".v-autoslide");
                // console.log("el", el, "index:", index, size);
                 $("._span1",p).html(index + 1);
                 $("._span3",p).html(size);
@@ -237,11 +237,11 @@
 
 
         <h3 class="container">自定义上下-切换按钮</h3>
-        <div class="v-slide-pwr">
+        <div class="v-autoslide-pwr">
 
-            <div class="v-slide " id="topbottom-btn" data-time="3000">
+            <div class="v-autoslide " id="topbottom-btn" data-time="3000">
 
-                <div class="v-slide-wrap">
+                <div class="v-autoslide-wrap">
 
                     <ul class="clearfix">
                         <li class="active">
@@ -293,10 +293,10 @@
            
             <pre>
           html:
-           &lt;!--v-slide-->
-             &lt;div class="v-slide " data-time="3000">
+           &lt;!--v-autoslide-->
+             &lt;div class="v-autoslide " data-time="3000">
              
-                     &lt;div  class="v-slide-wrap">
+                     &lt;div  class="v-autoslide-wrap">
                          &lt;ul class="clearfix">
                              &lt;li  class="active" >
                                  &lt;a href="#">
@@ -336,24 +336,24 @@
 
         <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/v-message.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/v-slide.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/v-autoslide.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/all.js" type="text/javascript" charset="utf-8"></script>
 
         <script type="text/javascript">
             $(function () {
 
                 // 触发v-fade轮播图
-                $("#v-slide-2").vslide({
+                $("#v-autoslide-2").vautoslide({
                     time: 5000,
                     isTopbottom:true
                 });
-                $("#topbottom-btn").vslide({
+                $("#topbottom-btn").vautoslide({
                     time: 3000,
                     isTopbottom:true
                 });
 
                  // 触发onbannershow事件
-                $(document).on("v-slide-show", function (e, el, index, size) {
+                $(document).on("v-autoslideshow", function (e, el, index, size) {
                     var p = $(el).parents("#topbottom-btn");
                     // console.log("el", el, "index:", index, size);
                     $("._span1",p).html(index + 1);
@@ -362,7 +362,7 @@
                 });
 
                 
-                 $("#topbottom-btn").find("._span3").html($("#topbottom-btn .v-slide-wrap>ul li").length/2);
+                 $("#topbottom-btn").find("._span3").html($("#topbottom-btn .v-autoslide-wrap>ul li").length/2);
     
             });
         </script>
