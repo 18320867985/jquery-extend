@@ -202,12 +202,12 @@
 
             if (!data) {
                 var o = {};
-                o.time = parseInt($this.attr("data-time")) || VSlide.DEFAULTS.time;
+                o.time = parseInt($this.attr("data-time")) || VAutoSlide.DEFAULTS.time;
                 // 是否上下scroll
                 o.isTopbottom = $this.get(0).hasAttribute("data-topbottom") ? true : false;
                 var p = $.extend({}, o, options);
               
-                $this.data('v-autoslide', data = new VSlide(this,p));
+                $this.data('v-autoslide', data = new VAutoSlide(this,p));
             }
             if (typeof option === 'string') {
                 data[option]();
