@@ -1,209 +1,166 @@
-﻿
-// utils.js
+﻿// utils.js
 
 (function () {
 
-// url
-var urlpath = {
-    //采用正则表达式获取地址栏参数：（ 强烈推荐，既实用又方便！）
-    getQueryString: function (name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if (r !== null) return decodeURIComponent(r[2]);
-        return null;
-    },
+    // url
+    var _urlpath = {
+        //采用正则表达式获取地址栏参数：（ 强烈推荐，既实用又方便！）
+        getQueryString: function (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r !== null) return decodeURIComponent(r[2]);
+            return null;
+        },
 
-    //从WebAPI获取日期json数据 转换成日期时间戳
-    jsonToDate: function (apidate) {
-        var txts = apidate.replace("/Date(", "").replace(")/", "");
-        return parseInt(Common.trim(txts));
+        // 取当前页面名称(不带后缀名)
+        getPageName: function () {
+            var a = location.href;
+            var b = a.split("/");
+            var c = b.slice(b.length - 1, b.length).toString(String).split(".");
+            return c.slice(0, 1);
+        },
 
-    },
-
-    // 取当前页面名称(不带后缀名)
-    getPageName: function () {
-        var a = location.href;
-        var b = a.split("/");
-        var c = b.slice(b.length - 1, b.length).toString(String).split(".");
-        return c.slice(0, 1);
-    },
-
-    //取当前页面名称(带后缀名)
-    getPageNameExention: function () {
-        var strUrl = location.href;
-        var arrUrl = strUrl.split("/");
-        var strPage = arrUrl[arrUrl.length - 1];
-        return strPage;
-    }
-
-};
-
-// cookie
-var  cookie = {
-
-    setCookie: function (cookieName, cookieValue, expiresDate) {
-        cookieName = cookieName || "";
-        if (cookieName === "") {
-            return;
+        //取当前页面名称(带后缀名)
+        getPageNameExention: function () {
+            var strUrl = location.href;
+            var arrUrl = strUrl.split("/");
+            var strPage = arrUrl[arrUrl.length - 1];
+            return strPage;
         }
-        cookieValue = cookieValue || "";
-        var dt = new Date();
-        expiresDate = typeof expiresDate === "number" ? expiresDate : 0;
-        dt.setDate(dt.getDate() + expiresDate);
-        var expires = dt;
-        document.cookie = encodeURIComponent(Common.trim(cookieName)) + "=" + encodeURIComponent(cookieValue) + ";expires=" + expires;
-
-    },
-
-    getCookie: function (cookieName) {
-
-        cookieName = cookieName || "";
-        if (cookieName === "") {
-            return;
-        }
-
-        var cookies = Common.cookie.getAllCookie();
-
-        return cookies[cookieName];
-
-    },
-
-    getAllCookie: function () {
-
-        var strs = document.cookie.split(new RegExp(";\\s*"));
-        var obj = {};
-        for (var i = 0; i < strs.length; i++) {
-
-            var strs2 = strs[i].split("=");
-            try {
-                var _name = decodeURIComponent(strs2[0]);
-                var _val = decodeURIComponent(strs2[1]);
-                obj[_name] = _val;
-            } catch (ex) {
-                console.log(ex);
-            }
-
-        }
-
-        return obj;
-    },
-
-    removeCookie: function (cookieName) {
-
-        Common.cookie.setCookie(cookieName, "", -1);
-
-    }
-
-};
-
-// localStorage
-var localStorage = {
-
-    // localStorage存值永久有效
-    setItem: function (item, value) {
-        item = item || "";
-        if (typeof item !== "string") {
-            return;
-        }
-        if (Common.trim(item) === "") {
-            return;
-        }
-
-        localStorage.setItem(Common.trim(item), JSON.stringify(value));
-    },
-
-    // localStorage取值
-    getItem: function (item) {
-        item = item || "";
-        if (typeof item !== "string") {
-            return;
-        }
-        if (Common.trim(item) === "") {
-            return;
-        }
-        var data = JSON.parse(localStorage.getItem(Common.trim(item)));
-        return data;
-    },
-
-    //localStorage删除指定键对应的值
-    removeItem: function (item) {
-        item = item || "";
-        if (typeof item !== "string") {
-            return;
-        }
-        if (Common.trim(item) === "") {
-            return;
-        }
-        localStorage.removeItem(Common.trim(item));
-
-    },
-    clear: function () {
-        localStorage.clear();
-    }
-
-};
-
-// sessionStorage
-var  sessionStorage = {
-
-    // sessionStorage 
-    setItem: function (item, value) {
-        item = item || "";
-        if (typeof item !== "string") {
-            return;
-        }
-        if (Common.trim(item) === "") {
-            return;
-        }
-
-        sessionStorage.setItem(Common.trim(item), JSON.stringify(value));
-    },
-
-    // sessionStorage 取值
-    getItem: function (item) {
-        item = item || "";
-        if (typeof item !== "string") {
-            return;
-        }
-        if (Common.trim(item) === "") {
-            return;
-        }
-        var data = JSON.parse(sessionStorage.getItem(Common.trim(item)));
-        return data;
-    },
-
-    // sessionStorage 删除指定键对应的值
-    removeItem: function (item) {
-        item = item || "";
-        if (typeof item !== "string") {
-            return;
-        }
-        if (Common.trim(item) === "") {
-            return;
-        }
-        sessionStorage.removeItem(Common.trim(item));
-
-    },
-
-    clear: function () {
-        sessionStorage.clear();
-    }
 
     };
 
-// 浅复制 parentObj 父元素 childObj子元素
-var extend = function (parentObj, childObj) {
+ 
+    /* 
+    @expiresDate 为天数
+    */
+    var _cookie = {
 
-    childObj = childObj || {};
+        setCookie: function (cookieName, cookieValue, expiresDate) {
+            cookieName = cookieName || "";
+            if (cookieName === "") {
+                return;
+            }
+            cookieValue = cookieValue || "";
+            var dt = new Date();
+            expiresDate = typeof expiresDate === "number" ? expiresDate : 0;
+            dt.setDate(dt.getDate() + expiresDate);
+            var expires = expiresDate?dt:"";
+            document.cookie = encodeURIComponent(_trim(cookieName)) + "=" + encodeURIComponent(JSON.stringify(cookieValue)) + ";expires=" + expires;
+            
+        },
 
-    for (var prop in parentObj) {
-        childObj[prop] = parentObj[prop];
-    }
-    return childObj;
-};
+        getCookie: function (cookieName) {
 
-// 深复制 parentObj 父元素 childObj子元素
-var extendDeep = function (parentObj, childObj) {
+            cookieName = cookieName || "";
+            if (cookieName === "") {
+                return;
+            }
+            var cookies =this.getAllCookie();
+            return cookies[cookieName];
+
+        },
+
+        getAllCookie: function () {
+
+            var strs = document.cookie.split(new RegExp(";\\s*"));
+            var obj = {};
+            for (var i = 0; i < strs.length; i++) {
+
+                var strs2 = strs[i].split("=");
+                try {
+                    var _name = decodeURIComponent(strs2[0]);
+                    var _val =JSON.parse(decodeURIComponent(strs2[1]));
+                    obj[_name] = _val;
+                } catch (ex) {
+                    console.log(ex);
+                }
+
+            }
+
+            return obj;
+        },
+
+        removeCookie: function (cookieName) {
+
+           document.cookie.setCookie(cookieName, "", -1);
+
+        }
+
+    };
+
+    //  window.localStorage
+    var _localStorage = {
+
+        //  window.localStorage存值永久有效
+        setItem: function (item, value) {
+            item = item.toString();
+
+            window.localStorage.setItem(_trim(item), JSON.stringify(value));
+        },
+
+        //  window.localStorage取值
+        getItem: function (item) {
+            item = item.toString();
+            var data = JSON.parse(window.localStorage.getItem(_trim(item)));
+            return data;
+        },
+
+        // window.localStorage删除指定键对应的值
+        removeItem: function (item) {
+            item = item.toString();
+            window.localStorage.removeItem(_trim(item));
+
+        },
+        clear: function () {
+            window.localStorage.clear();
+        }
+
+    };
+
+    //  window.sessionStorage
+    var _sessionStorage = {
+
+        //  window.sessionStorage 
+        setItem: function (item, value) {
+            item = item.toString();
+            window.sessionStorage.setItem(_trim(item), JSON.stringify(value));
+        },
+
+        //  window.sessionStorage 取值
+        getItem: function (item) {
+            item = item.toString();
+            var data = JSON.parse(window.sessionStorage.getItem(_trim(item)));
+            return data;
+        },
+
+        //  window.sessionStorage 删除指定键对应的值
+        removeItem: function (item) {
+            item = item || "";
+            item = item.toString();
+            window.sessionStorage.removeItem(_trim(item));
+
+        },
+
+        clear: function () {
+            window.sessionStorage.clear();
+        }
+
+    };
+
+    // 浅复制 parentObj 父元素 childObj子元素
+    var _extend = function (parentObj, childObj) {
+
+        childObj = childObj || {};
+
+        for (var prop in parentObj) {
+            childObj[prop] = parentObj[prop];
+        }
+        return childObj;
+    };
+
+    // 深复制 parentObj 父元素 childObj子元素
+    var _extendDeep = function (parentObj, childObj) {
 
         childObj = childObj || {};
 
@@ -221,42 +178,42 @@ var extendDeep = function (parentObj, childObj) {
         return childObj;
     };
 
-// 是否是函数
-var isFunction = function (obj) {
+    // 是否是函数
+    var _isFunction = function (obj) {
 
-    return typeof obj === "function";
-
- };
-
-// 是否是数组
-var isArray = function (obj) {
-
-    return obj.constructor === Array;
+        return typeof obj === "function";
 
     };
 
-// 是否是空对象
-var isEmptyObject = function (obj) {
+    // 是否是数组
+    var _isArray = function (obj) {
 
-    for (var prop in obj) {
-        return false;
-    }
-
-    return true;
+        return obj.constructor === Array;
 
     };
 
-// 去掉首尾空字符串
-var trim = function (txt) {
-    var str = "";
-    str = txt.toString().replace(/^\s*|\s*$/img, "");
-    return str;
-};
+    // 是否是空对象
+    var _isEmptyObject = function (obj) {
 
- var date = {
+        for (var prop in obj) {
+            return false;
+        }
 
-            // 根据年和月获取天数
-            getDayCount: function(y, m) {
+        return true;
+
+    };
+
+    // 去掉首尾空字符串
+    var _trim = function (txt) {
+        var str = "";
+        str = txt.toString().replace(/^\s*|\s*$/img, "");
+        return str;
+    };
+
+    var _date = {
+
+        // 根据年和月获取天数
+        getDayCount: function (y, m) {
             var d = 1;
             switch (m) {
                 case 1:
@@ -307,108 +264,113 @@ var trim = function (txt) {
 
             return d;
 
-     },
+        },
 
-             //  把日期转换指定的格式
-            toDate: function (value, fmt) {
+        //  把日期转换指定的格式
+        toDate: function (value, fmt) {
 
-                    fmt = typeof fmt !== "string" ? "yyyy-MM-dd HH:mm:ss" : fmt;
-                    var txts = value.toString().replace("/Date(", "").replace(")/", "");
-                    var times = Number(txts);
-                    times = isNaN(times) ? new Date(value).getTime() : times;
-                    var dt = new Date(Number(times.toString()));
-                    var o = {
-                        "M+": dt.getMonth() + 1,
-                        "d+": dt.getDate(),
-                        "H+": dt.getHours(),
-                        "m+": dt.getMinutes(),
-                        "s+": dt.getSeconds(),
-                        "q+": Math.floor((dt.getMonth() + 3) / 3),
-                        "S": dt.getMilliseconds()
-                    };
-                    if (/(y+)/.test(fmt)) {
-                        fmt = fmt.replace(RegExp.$1, (dt.getFullYear() + "").substr(4 - RegExp.$1.length));
-                    }
-                    for (var k in o) {
-                        if (new RegExp("(" + k + ")").test(fmt)) {
-                            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-                        }
-                    }
-                    return fmt;
-             },
-
-            // 倒计算天数的函数 
-            getDateByNum: function (i, fmt) {
-                fmt = fmt || "yyyy-MM-dd";
-                var dt = new Date();
-                var d = dt.getDate();
-
-                var arrs = [];
-                for (; i > 0; i--) {
-
-                    if (d === 1) {
-                        arrs.push(bijia.date.toDate(dt, fmt));
-                        var m = dt.getMonth();
-                        dt.setUTCMonth(--m);
-                        var y = dt.getFullYear();
-                        m = dt.getMonth();
-                        d = this.getDayCount(y, m + 1);
-
-                    } else {
-                        d--;
-                        arrs.push(this.toDate(dt, fmt));
-
-                    }
-                    dt.setUTCDate(d);
+            fmt = typeof fmt !== "string" ? "yyyy-MM-dd HH:mm:ss" : fmt;
+            var txts = value.toString().replace("/Date(", "").replace(")/", "");
+            var times = Number(txts);
+            times = isNaN(times) ? new Date(value).getTime() : times;
+            var dt = new Date(Number(times.toString()));
+            var o = {
+                "M+": dt.getMonth() + 1,
+                "d+": dt.getDate(),
+                "H+": dt.getHours(),
+                "m+": dt.getMinutes(),
+                "s+": dt.getSeconds(),
+                "q+": Math.floor((dt.getMonth() + 3) / 3),
+                "S": dt.getMilliseconds()
+            };
+            if (/(y+)/.test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (dt.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
                 }
-                return arrs;
+            }
+            return fmt;
+        },
 
-            },
+        // 倒计算天数的函数 
+        getDateByNum: function (i, fmt) {
+            fmt = fmt || "yyyy-MM-dd";
+            var dt = new Date();
+            var d = dt.getDate();
 
-            // 计算天数的函数数组列表 《用于当前项目 -比价网》
-            getDateArray: function (o, list) {
+            var arrs = [];
+            for (; i > 0; i--) {
 
-                var temp = [];
-                for (var i = 0; i < list.length; i++) {
-                    var bl = false;
-                    var v;
-                    for (name in o) {
-                        if (list[i] === name) {
-                            v = parseFloat(o[name]);
-                            bl = true;
-                        }
+                if (d === 1) {
+                    arrs.push(bijia.date.toDate(dt, fmt));
+                    var m = dt.getMonth();
+                    dt.setUTCMonth(--m);
+                    var y = dt.getFullYear();
+                    m = dt.getMonth();
+                    d = this.getDayCount(y, m + 1);
+
+                } else {
+                    d--;
+                    arrs.push(this.toDate(dt, fmt));
+
+                }
+                dt.setUTCDate(d);
+            }
+            return arrs;
+
+        },
+
+        // 计算天数的函数数组列表 《用于当前项目 -比价网》
+        getDateArray: function (o, list) {
+
+            var temp = [];
+            for (var i = 0; i < list.length; i++) {
+                var bl = false;
+                var v;
+                for (name in o) {
+                    if (list[i] === name) {
+                        v = parseFloat(o[name]);
+                        bl = true;
                     }
-
-                    if (bl) {
-                        temp.push({ name: list[i], v: v });
-                    } 
                 }
 
-                return temp;
-
-     },
-
-            //把字符串转换成时间  《用于当前项目 -比价网》
-            dataObjToObjcetChart: function (list) {
-
-              list = list || [];
-                var arr = [];
-                for (var i = 0; i < list.length; i++) {
-                    var item = list[i];
-                    if (item) {
-                        var dts = item.name.split("-");
-                        var y = Number(dts[0]), m = Number(dts[1])-1, d = Number(dts[2]);
-                        timestamp = Date.UTC(y, m, d);
-                        arr.push([timestamp, item.v]);
-                    }
+                if (bl) {
+                    temp.push({
+                        name: list[i],
+                        v: v
+                    });
                 }
-                return arr;
             }
 
-      };
+            return temp;
 
-// 数组列表
- var list = {
+        },
+
+        //把字符串转换成时间  《用于当前项目 -比价网》
+        dataObjToObjcetChart: function (list) {
+
+            list = list || [];
+            var arr = [];
+            for (var i = 0; i < list.length; i++) {
+                var item = list[i];
+                if (item) {
+                    var dts = item.name.split("-");
+                    var y = Number(dts[0]),
+                        m = Number(dts[1]) - 1,
+                        d = Number(dts[2]);
+                    timestamp = Date.UTC(y, m, d);
+                    arr.push([timestamp, item.v]);
+                }
+            }
+            return arr;
+        }
+
+    };
+
+    // 数组列表
+    var _list = {
 
         // max
         max: function (data, fn) {
@@ -603,12 +565,12 @@ var trim = function (txt) {
                 }
 
             }
-            
+
             return _arrs;
         },
 
         // where
-        where: function (data,fn) {
+        where: function (data, fn) {
             return this.filter(data, fn);
         },
 
@@ -664,8 +626,8 @@ var trim = function (txt) {
             }
         },
 
-        //  data  slice startIndex=index值  endSize=获取个数 默认数组的长度endSize=data.length
-        slice: function (data, startIndex, endSize) {
+        //  data  slice startIndex=index值  endindex=末端位置 默认数组的长度endSize=data.length
+        slice: function (data, startIndex, endindex) {
             data = data || [];
 
             if (data.constructor !== Array) {
@@ -673,15 +635,17 @@ var trim = function (txt) {
             }
             if (data.length > 0) {
                 startIndex = typeof startIndex === "number" ? startIndex : 0;
-                endSize = typeof endSize === "number" ? endSize : data.length;
-                endSize = (startIndex + endSize) > data.length ? data.length : (startIndex + endSize);
+                endindex = typeof endindex === "number" ? endindex : data.length;
+                endindex = endindex > data.length ? data.length : endindex;
                 var _arrs = [];
                 for (var i = startIndex; i < data.length; i++) {
 
-                    if (i < endSize) {
+                    if (i < endindex) {
                         _arrs.push(data[i]);
-                    } else { break; } 
-                       
+                    } else {
+                        break;
+                    }
+
                 }
 
                 return _arrs;
@@ -691,16 +655,32 @@ var trim = function (txt) {
             }
         },
 
-      
+        forEach: function (data, fn) {
+
+            data = data || [];
+            if (data.constructor !== Array) {
+                throw new Error("参数必须是个数组");
+            }
+            for (var i = 0, len = data.length; i < len; i++) {
+                if (typeof fn === "function") {
+                    fn(data[i]);
+                }
+            }
+
+        },
+
+
         //  sum
-        sum: function (data,fn) {
+        sum: function (data, fn) {
             data = data || [];
 
             if (data.constructor !== Array) {
                 throw new Error("参数必须是个数组");
             }
-            
-            if (typeof fn !== "function") { return 0; }
+
+            if (typeof fn !== "function") {
+                return 0;
+            }
 
             var _sum = 0;
             if (data.length > 0) {
@@ -718,11 +698,11 @@ var trim = function (txt) {
             } else {
                 return 0;
             }
-            
+
         },
 
         //  avg
-        avg: function (data,fn) {
+        avg: function (data, fn) {
             data = data || [];
 
             if (data.constructor !== Array) {
@@ -746,7 +726,7 @@ var trim = function (txt) {
             }
         },
 
-      
+
         /*
          *  not repeat  去重复 数组每项是>值类型
          */ // notRepeat
@@ -804,7 +784,9 @@ var trim = function (txt) {
             for (var i = 1; i < data.length; i++) {
 
                 var test = data[i];
-                if (!test instanceof Object) { continue; }
+                if (!test instanceof Object) {
+                    continue;
+                }
                 var isOk = true;
                 for (var y = 0; y < temp.length; y++) {
 
@@ -843,7 +825,9 @@ var trim = function (txt) {
             for (var i = 0; i < list.length; i++) {
                 var temp = [];
                 var test = list[i];
-                if (!test instanceof Object) { continue; }
+                if (!test instanceof Object) {
+                    continue;
+                }
 
                 for (var y = 0; y < data.length; y++) {
 
@@ -855,7 +839,9 @@ var trim = function (txt) {
 
                 }
 
-                if (temp.length > 0) { res.push(temp); }
+                if (temp.length > 0) {
+                    res.push(temp);
+                }
 
             }
 
@@ -886,23 +872,23 @@ var trim = function (txt) {
         },
 
         // some return boolead
-        some: function (data,fn) {
+        some: function (data, fn) {
             data = data || [];
             if (data.constructor !== Array) {
                 throw new Error("第一个参数必须是个数组，第二是回调函数");
             }
-            var  bl=false;
+            var bl = false;
             if (data.constructor === Array) {
 
                 if (typeof fn !== "function") {
                     return data;
                 }
                 for (var i = 0; i < data.length; i++) {
-                   
+
                     if (fn(data[i])) {
                         bl = true;
                         break;
-                     
+
                     }
 
                 }
@@ -943,36 +929,36 @@ var trim = function (txt) {
 
     };
 
- var deHtml = function (txt) {
-        txt = txt.replace(/&lt;/img, "<").replace(/&gt;/img, ">").replace(/&nbsp/img," ");
+    var _deHtml = function (txt) {
+        txt = txt.replace(/&lt;/img, "<").replace(/&gt;/img, ">").replace(/&nbsp/img, " ");
         return txt;
 
     }; // 把文本转换成html
 
-  var enHtml = function (txt) {
-      txt = txt.replace(/</img, "&lt;").replace(/>/img, "&gt;").replace(/\s+/img, "&nbsp");
+    var _enHtml = function (txt) {
+        txt = txt.replace(/</img, "&lt;").replace(/>/img, "&gt;").replace(/\s+/img, "&nbsp");
         return txt;
 
     }; // 把转html换成文本
 
-  
-// 兼容IE8+
-utils = {
 
-    urlpath: urlpath,
-    cookie: cookie,
-    localStorage: localStorage,
-    sessionStorage: sessionStorage,
-    extend: extend,
-    extendDeep: extendDeep,
-    isFunction: isFunction,
-    isArray: isArray,
-    isEmptyObject: isEmptyObject,
-    trim:trim,
-    list: list,
-    date: date,
-    deHtml: deHtml,
-    enHtml:enHtml
-};
+    // 兼容IE8+
+    window.utils = {
+
+        urlpath: _urlpath,
+        cookie: _cookie,
+        localStorage: _localStorage,
+        sessionStorage:_sessionStorage,
+        extend: _extend,
+        extendDeep: _extendDeep,
+        isFunction: _isFunction,
+        isArray: _isArray,
+        isEmptyObject: _isEmptyObject,
+        trim: _trim,
+        list: _list,
+        date: _date,
+        deHtml: _deHtml,
+        enHtml: _enHtml
+    };
 
 })();
