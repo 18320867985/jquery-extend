@@ -157,8 +157,8 @@
 
             <pre>
 
-            // 触发onbannershow事件
-            $(document).on("v-autoslideshow", function (e, el, index, size) {
+            // 触发onBanner show事件
+            $(document).on("v-autoslide-show", function (e, el, index, size) {
                 var p = $(el).parents(".v-autoslide");
                // console.log("el", el, "index:", index, size);
                 $("._span1",p).html(index + 1);
@@ -167,23 +167,7 @@
             });
         </pre>
 
-            <pre>
-                 &lt;!--自定义按钮-->
-                  &lt;div class="_cst-v-btns">
-                        &lt;a href="javascript:;" class="v-cst-btn-l">
-                            &lt;span class="iconfont iconarow-l">&lt;/span>
-                         &lt;/a>
-
-                         &lt;span class="_span1">1&lt;/span>
-                            &lt;span class="_span2">/&lt;/span>
-                         &lt;span class="_span3">1&lt;/span>
-
-                          &lt;a href="javascript:;" class="v-cst-btn-r">
-                             &lt;span class="iconfont iconarow-r">&lt;/span>
-                         &lt;/a>
-                &lt;/div>
-            </pre>
-
+        
         </div>
         
         </div>
@@ -207,7 +191,7 @@
                 });
 
                  // 触发onbannershow事件
-                $(document).on("v-autoslideshow", function (e, el, index, size) {
+                $(document).on("v-autoslide-show", function (e, el, index, size) {
                     var p = $(el).parents("#topbottom-btn");
                     // console.log("el", el, "index:", index, size);
                     $("._span1",p).html(index + 1);
@@ -216,7 +200,7 @@
                 });
 
                 
-                 $("#topbottom-btn").find("._span3").html($("#topbottom-btn .v-autoslide-wrap>ul li").length/2);
+               
     
             });
         </script>
