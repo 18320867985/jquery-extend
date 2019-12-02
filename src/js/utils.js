@@ -44,9 +44,9 @@
             var dt = new Date();
             expiresDate = typeof expiresDate === "number" ? expiresDate : 0;
             dt.setDate(dt.getDate() + expiresDate);
-            var expires = expiresDate?"expires="+dt.toString():"";
-            document.cookie = encodeURIComponent(_trim(cookieName)) + "=" + encodeURIComponent(JSON.stringify(cookieValue)) + ";path=/;"+expires;
-            
+            var expires = expiresDate ? "expires=" + dt.toString() : "";
+            document.cookie = encodeURIComponent(_trim(cookieName)) + "=" + encodeURIComponent(JSON.stringify(cookieValue)) + ";path=/;" + expires;
+
         },
 
         getCookie: function (cookieName) {
@@ -55,7 +55,7 @@
             if (cookieName === "") {
                 return;
             }
-            var cookies =this.getAllCookie();
+            var cookies = this.getAllCookie();
             return cookies[cookieName];
 
         },
@@ -67,14 +67,14 @@
             for (var i = 0; i < strs.length; i++) {
 
                 var strs2 = strs[i].split("=");
-                
+
                 try {
                     var _name = decodeURIComponent(strs2[0]);
-                    var _val =JSON.parse(decodeURIComponent(strs2[1]));
+                    var _val = JSON.parse(decodeURIComponent(strs2[1]));
                     obj[_name] = _val;
                 } catch (ex) {
                     console.log(ex);
-                 
+
                 }
             }
 
@@ -83,7 +83,7 @@
 
         removeCookie: function (cookieName) {
 
-           this.setCookie(cookieName, "", -1);
+            this.setCookie(cookieName, "", -1);
 
         }
 
@@ -943,12 +943,12 @@
 
 
     // 兼容IE8+
-    window.utils= {
+    window.utils = {
 
         urlPath: _urlPath,
         cookie: _cookie,
         localStorage: _localStorage,
-        sessionStorage:_sessionStorage,
+        sessionStorage: _sessionStorage,
         extend: _extend,
         extendDeep: _extendDeep,
         isFunction: _isFunction,
