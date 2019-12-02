@@ -3,7 +3,7 @@
 (function () {
 
     // url
-    var _urlpath = {
+    var _urlPath = {
         //采用正则表达式获取地址栏参数：（ 强烈推荐，既实用又方便！）
         getQueryString: function (name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -30,7 +30,6 @@
 
     };
 
- 
     /* 
     @expiresDate 为天数
     */
@@ -45,8 +44,8 @@
             var dt = new Date();
             expiresDate = typeof expiresDate === "number" ? expiresDate : 0;
             dt.setDate(dt.getDate() + expiresDate);
-            var expires = expiresDate?dt:"";
-            document.cookie = encodeURIComponent(_trim(cookieName)) + "=" + encodeURIComponent(JSON.stringify(cookieValue)) + ";expires=" + expires;
+            var expires = expiresDate?"expires="+dt.toString():"";
+            document.cookie = encodeURIComponent(_trim(cookieName)) + "=" + encodeURIComponent(JSON.stringify(cookieValue)) + ";path=/;"+expires;
             
         },
 
@@ -68,14 +67,15 @@
             for (var i = 0; i < strs.length; i++) {
 
                 var strs2 = strs[i].split("=");
+                
                 try {
                     var _name = decodeURIComponent(strs2[0]);
                     var _val =JSON.parse(decodeURIComponent(strs2[1]));
                     obj[_name] = _val;
                 } catch (ex) {
                     console.log(ex);
+                 
                 }
-
             }
 
             return obj;
@@ -83,7 +83,7 @@
 
         removeCookie: function (cookieName) {
 
-           document.cookie.setCookie(cookieName, "", -1);
+           this.setCookie(cookieName, "", -1);
 
         }
 
@@ -943,9 +943,9 @@
 
 
     // 兼容IE8+
-    window.utils = {
+    window.utils= {
 
-        urlpath: _urlpath,
+        urlPath: _urlPath,
         cookie: _cookie,
         localStorage: _localStorage,
         sessionStorage:_sessionStorage,
