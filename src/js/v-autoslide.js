@@ -88,8 +88,6 @@
 
     };
 
-
-
     VAutoSlide.prototype.running = function () {
 
         var $this = this;
