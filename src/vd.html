@@ -358,8 +358,6 @@
              &lt;/form>
         </pre>
 
-        
-
         <pre>
         js:
        
@@ -367,7 +365,9 @@
 		var vd1=vd.create(".form1");  // 表单的 class的名称
 		// 初始化验证对象
 		vd1.init();
-		//vd1.reset();  //重设表单并清空所以内容和检测验
+        //vd1.disabledItem();  //禁用每一项
+        //vd1.reset();  //重设表单并清空所以内容和检测验
+        //vd.isSubmit=false;  禁用提交按钮
 		// 检查验证没有显示样式=>vd1.check()||检查验证=>vd1.check(el) 验证当前项; 
 		// 验证并显示样式=>vd1.validate(); 
 		
@@ -439,12 +439,13 @@
 			vd1.isSuccess(
             // success
             function(obj) {
-            vd1.reset();
-            //$.alert("",JSON.stringify(obj));
+                //vd1.disabledItem();  //禁用每一项
+                //vd1.reset();  //重设表单并清空所以内容和检测验
+                //vd.isSubmit=true; 恢复提交按钮
+                //$.alert("",JSON.stringify(obj));
             },
             // error
             function(obj) {
-            vd1.reset();
             obj.el.focus();
             });	
 	});

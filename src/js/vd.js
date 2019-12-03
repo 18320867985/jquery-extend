@@ -14,6 +14,8 @@ window._vd = window.vd;
 
     var Validate = function (formName) {
 
+        this.submitText="正在提交中...";
+
         this.formName = typeof formName === "undefined" ? ".form" : formName;
 
         this.init = function () {
@@ -678,15 +680,11 @@ window._vd = window.vd;
                 if (typeof successFun === "function") {
                     if (this.isSubmit) {
                         this.isSubmit = false;
-                        this.disabled($(this.formName).find("input")); //禁用
-                        this.disabled($(this.formName).find("select")); //禁用
-                        this.disabled($(this.formName).find("textarea")); //禁用
-
                         var vdBtn = $(".vd-btn", this.formName);
                         if (vdBtn.length > 0 && vdBtn[0].hasAttribute("value")) {
-                            vdBtn.val("正在提交中...");
+                            vdBtn.val(this.submitText);
                         } else {
-                            vdBtn.text("正在提交中...");
+                            vdBtn.text(this.submitText);
                         }
                         successFun(newObj);
                     }
@@ -894,6 +892,12 @@ window._vd = window.vd;
             } else {
                 vdBtn.text(this.vdbtnText);
             }
+        };
+
+        this.disabledItem=function(){
+            this.disabled($(this.formName).find("input")); //禁用
+            this.disabled($(this.formName).find("select")); //禁用
+            this.disabled($(this.formName).find("textarea")); //禁用
         };
 
         this._valStyle = function (p) {
