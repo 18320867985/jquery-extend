@@ -1,0 +1,79 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jQuery File Upload Example</title>
+</head>
+<style>
+    .bar {
+        height: 18px;
+        background: green;
+    }
+    .content{
+        width: 100%;text-align: center;margin-top: 70px;
+    }
+    #progress{
+        border-radius:6px;width: 300px;background: red;
+        margin: 10px auto;
+    }
+</style>
+<body>
+
+<div class="content">
+    <input id="fileupload" type="file" name="upfile" ">
+    <div id="progress">
+        <div class="bar" style="width: 0%;"></div>
+    </div>
+    <img id="uploadimg" src="__PUBLIC__/images/bg.jpg" width="400px" height="408px"/>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="js/h5file/vendor/jquery.ui.widget.js"></script>
+<script src="js/h5file/jquery.iframe-transport.js"></script>
+<script src="js/h5file/jquery.fileupload.js"></script>
+<script>
+
+
+$('#fileupload').fileupload({
+            url: "http://weixin.sujin1688.com/sjbj/index.php/home/H5file/uploadfile",
+            type:"POST",
+            dataType:"json",
+            autoUpload : true,
+            //acceptFileTypes: /(\.|\/)(jpe?g|png)$/i,
+　　　　　　
+　　　　　　　　//跨域
+　　　　　　　　forceIframeTransport: true,
+
+            formData: {
+                action:"UploadVMKImagePath",
+                param:JSON.stringify({
+                    projectId:12343,
+                    fileType:"任务日志图片"
+                })
+            },
+
+       
+            done: function (e, data) {
+                console.log(e);
+                console.log(data);//data里面包含了服务端返回的字段
+            },
+            fail:function(e,data){
+                console.log("上传失败："+data.errorThrown);
+            },
+
+             progressall: function (e, data) {
+                        var progress = parseInt(data.loaded / data.total * 100);
+                        $('#progress .bar').css(
+                            'width',
+                            progress + '%'
+                        );
+                    },
+
+        });
+
+
+
+</script>
+</body>
+</html>
