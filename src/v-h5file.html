@@ -160,6 +160,109 @@
                 <a class="submit vd-btn">提交审核</a>
             </div>
 
+            <pre>
+                html: 
+                &lt;div class="v-h5file-box">
+                    &lt;div class="btn-wrap">
+                            &lt;div class="btn">
+                                &lt;span  class="v-h5file-box-btn">上传执照&lt;/span>
+                                &lt;input class="v-h5file-file" type="file" accept="image/png, image/jpeg, image/gif, image/jpg">        
+                            &lt;/div>
+                    &lt;/div>
+                    &lt;!-- 文件上传的进度条 -->
+                    &lt;div class=" v-h5file-all d-hide">
+                         &lt;div class="v-h5file-bar">
+                            &lt;div class="v-h5file-now">&lt;/div>
+                            &lt;div class="v-h5file-num">0%&lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                    <!-- 文件上传的成功显示图片 -->
+                    &lt;img class="v-h5file-img" src="" alt="h5上传图片" >
+                    &lt;input class="v-h5file-src" type="text"  >
+                &lt;/div>
+     
+             </pre>
+             <pre>
+                 js code:
+                 $(function () {
+
+                    $(".v-h5file-img").click(function (e) {
+                        $(this).parents(".v-h5file-box").find(".v-h5file-file").click();
+                    });
+            
+                    $(".v-h5file-box-btn").click(function(){
+                       var p=$(this).parents(".v-h5file-box ");
+                        $(".v-h5file-file",p).click();
+                    });
+            
+                    // 文件上传
+                    $(".v-h5file-file").change(function (e) {
+                        e.preventDefault();
+                        var obj = this;
+            
+                        // 是否支持html5 文件上传
+                        if (typeof obj.files === "undefined") {
+                            alert("不支持html5 文件上传,请升级你的浏览器  \n not support html5 ");
+                            return;
+                        }
+                        var file = obj.files[0];
+            
+                        // 文件大小限定
+                        var size = 300 * 1000000; //1m=1000000
+                        if (file.size > size) {
+                            alert("选择上传的文件大于" + size / 1000000 + "M");
+                            return;
+                        }
+                        var p = $(obj).parents(".v-h5file-box");
+                        var $progressBar = $(".v-h5file-all", p);
+                        $progressBar.show();
+            
+                        window.vh5File.upload({
+                                data: file, //选择的文件
+                                url:"//weixin.sujin1688.com/sjbj/index.php/home/H5file/uploadfile", //上传网址
+                                outTime: 30000,
+                                dataType: "text",
+                                el: obj, //当前element
+                                contentType: false,
+                                success: function (data) {
+            
+                                    var src = "//weixin.sujin1688.com/sjbj" + data;
+                                    $(".v-h5file-img", p).attr("src", src).show();
+                                    $(".v-h5file-src", p).val(data);
+                                    console.log(src);
+                                }, //成功回调
+                                error: function () {
+                                    $(".v-h5file-img", p).hide();
+                                    alert("上传发生错误")
+                                }, //错误回调
+            
+            
+                            }, function (evt) {
+            
+                                var width = $(".v-h5file-bar", p).width();
+                                var percentageDiv = $(".v-h5file-now", p);
+                                var percentageNum = $(".v-h5file-num", p);
+            
+                                if (evt.lengthComputable) {
+                                    $progressBar.max = evt.total;
+                                    $progressBar.value = evt.loaded;
+                                    $(percentageDiv).css("width", Math.round(evt.loaded / evt.total * width) +
+                                        "px");
+                                    $(percentageNum).text(Math.ceil(evt.loaded / evt.total * 100) + "%");
+            
+                                  
+                                }
+                            } // progress事件的回调函数
+            
+                        ); //调用上传接口
+            
+            
+                    });
+                });
+
+             </pre>
+     
+
         </div>
 
 
@@ -168,7 +271,7 @@
 </body>
 
 <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/v-h5File.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/v-h5file.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
     $(function () {
