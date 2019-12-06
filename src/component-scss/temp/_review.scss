@@ -1,0 +1,311 @@
+@import "../../css-dev/scss/var-pc.scss";
+
+$text-main:#777;
+$text-special:#777;
+$bg-active:$text-primary;
+$text-white:#fff;
+.review {
+
+    .v-h5file-box{
+        border: 1px solid #ddd;
+    }
+    .content {
+        padding: 0 22px;
+
+        .infor {
+            display: inline-block;
+            width: 110px;
+            font-size: 14px;
+            color: $text-main;
+            text-align: right;
+            vertical-align: middle;
+
+            .icon {
+                font-size: 16px;
+                color: $text-special;
+            }
+        }
+
+        .tips {
+            font-size: 12px;
+            color: #8d8d97;
+        }
+
+        .identity-wrap {
+            display: inline-block;
+            margin-right: 28px;
+            vertical-align: middle;
+            text-align: center;
+
+            .identity-front-img {
+                width: 272px;
+                height: 170px;
+                margin-bottom: 8px;
+          
+                background-size: 100% 100%;
+            }
+
+            .identity-back-img {
+                width: 272px;
+                height: 170px;
+                margin-bottom: 8px;
+             
+                background-size: 100% 100%;
+            }
+        }
+
+        .license {
+
+            margin: 30px 0;
+
+            .license-wrap {
+                display: inline-block;
+                vertical-align: middle;
+                text-align: center;
+
+                .license-img {
+                    width: 272px;
+                    height: 170px;
+                    margin-bottom: 8px;
+                 
+                    background-size: 100% 100%;
+                }
+            }
+        }
+
+
+        .shopPhoto-wrap {
+
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+
+            .shopPhoto-img {
+                width: 272px;
+                height: 152px;
+                margin-bottom: 8px;
+                
+                background-size: 100% 100%;
+            }
+        }
+
+        .form-item {
+
+
+            margin-bottom: 30px;
+            font-size: 14px;
+
+            label {
+                display: inline-block;
+                width: 110px;
+                text-align: center;
+                font-size: 14px;
+                color: #5b5e6a;
+
+
+
+            }
+
+            input[type=text] {
+                width: 280px;
+                padding: 8px 10px;
+                line-height: 20px;
+                font-size: 14px;
+                border: 1px solid #ddd;
+
+            }
+
+            span{ 
+                margin-left: 10px;
+            }
+
+            &.vd-box.vd-ok .vd-item,
+            &.vd-box.vd-ok input.vd-item,
+            &.vd-box.vd-ok textarea.vd-item,
+            &.vd-box.vd-ok select.vd-item 
+           {
+                color: green;
+                border: 1px solid  green;
+            }
+            
+            &.vd-box.vd-ok  label{
+                color: green;
+            }
+
+
+
+        }
+
+        .next {
+            display: inline-block;
+            width: 120px;
+            padding: 8px;
+             margin-left: 115px;
+            margin-bottom: 30px;
+            text-align: center;
+            background: $text-primary;
+            color:#fff;
+            cursor: pointer;
+
+        }
+
+        .submit {
+            display: inline-block;
+            width: 160px;
+            line-height: 40px;
+           // border: solid 1px $text-main;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-align: center;
+            cursor: pointer;
+            margin: 30px 30px 30px 119px;
+            background-color: $bg-active;
+            color: $text-white;
+
+            &:hover {
+                background-color: darken($bg-active, 10%);
+                color: darken($text-white, 10%);
+            }
+        }
+
+        .back {
+            background-color: $text-white;
+            color: $text-main;
+
+            &:hover {
+                background-color: darken($text-white, 10%);
+                color: darken($text-main, 10%);
+            }
+        }
+    }
+
+    .btn-wrap {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        .btn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -16px;
+            margin-left: -46px;
+            width: 92px;
+            height: 32px;
+           
+            background-color: #ffffff;
+            border-radius: 4px;
+            border: solid 1px #003399;
+       
+            color: $bg-active;
+            font-size: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 200ms;
+
+            span{
+                line-height: 1;
+            }
+
+          
+
+            &:hover {
+                background-color: $bg-active;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.review-success-wrap {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 66, 66, .8);
+    text-align: center;
+
+    &.active {
+        display: block;
+    }
+
+    &:before {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 1px;
+        vertical-align: middle;
+    }
+
+    .success {
+        width: 680px;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 100px 0;
+        background-color: #ffffff;
+        text-align: center;
+
+        .approval {
+            font-size: 32px;
+            color: #333;
+            line-height: 3;
+            margin-bottom: 38px;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .subscribe {
+            font-size: 16px;
+            color: #1e2128;
+            line-height: 3;
+        }
+
+        .skip {
+            font-size: 14px;
+            color: #bfbfbf;
+        }
+
+        a {
+            display: inline-block;
+            width: 128px;
+            line-height: 44px;
+            border-radius: 4px;
+            margin: 20px;
+        }
+
+        .goIndex {
+            background-color: $bg-active;
+            color: $text-white;
+
+            &:hover {
+                background-color: darken($bg-active, 10%);
+                color: darken($text-white, 10%);
+            }
+        }
+
+        .goMember {
+            background-color: #ffffff;
+            color: $text-main;
+            border: solid 1px $text-main;
+
+            &:hover {
+                background-color: darken($text-white, 10%);
+                color: darken($text-main, 10%);
+            }
+        }
+    }
+
+    ._mask {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #111;
+        opacity: .3;
+        filter: alpha(opacity=60);
+    }
+}
