@@ -206,14 +206,14 @@
 
             window.vh5File.upload({
                     data: file, //选择的文件
-                    url:"http://weixin.sujin1688.com/sjbj/index.php/home/H5file/uploadfile", //上传网址
+                    url:"//weixin.sujin1688.com/sjbj/index.php/home/H5file/uploadfile", //上传网址
                     outTime: 30000,
                     dataType: "text",
                     el: obj, //当前element
                     contentType: false,
                     success: function (data) {
 
-                        var src = "http://weixin.sujin1688.com/sjbj" + data;
+                        var src = "//weixin.sujin1688.com/sjbj" + data;
                         $(".v-h5file-img", p).attr("src", src).show();
                         $(".v-h5file-src", p).val(data);
                         console.log(src);
