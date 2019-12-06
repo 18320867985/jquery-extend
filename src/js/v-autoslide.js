@@ -35,30 +35,28 @@
         var obj = this.el;
         var v = $(obj);
         var wrap = v.find(".v-autoslide-wrap");
-        var ul = $(".v-autoslide-wrap ul ", v);
-        var lis = $(".v-autoslide-wrap ul li", v);
-
-        // set li height
-        lis.height(wrap.height());
+        var ul = $(".v-autoslide-wrap>ul ", v);
+        var lis = $(".v-autoslide-wrap>ul>li", v);
 
         if (this.options.isTopbottom) {
             $(obj).attr("data-topbottom", true);
-            obj.length = $(".v-autoslide-wrap ul li", $(obj)).length / 2;
-            var maxHeight = obj.length * $(".v-autoslide-wrap ul li").height()
+            obj.length = $(".v-autoslide-wrap>ul>li", $(obj)).css("display", "block").length / 2;
+            var maxHeight = obj.length * $(".v-autoslide-wrap>ul>li", $(obj)).height();
             obj.top += VAutoSlide.DEFAULTS.slideVal;
             if (obj.top >= maxHeight) {
                 obj.top = 0;
             }
-           // console.log(obj.top)
+            // console.log(obj.top)
             ul.css("top", -obj.top + "px");
             // 触发自定义事件
             ul.trigger("v-autoslide-slide", [ul.get(0), obj.top]);
 
 
         } else {
+            lis.height(wrap.height());
             $(obj).removeAttr("data-topbottom");
-            obj.length = $(".v-autoslide-wrap ul li", $(obj)).length / 2;
-            var maxWidth = obj.length * $(".v-autoslide-wrap ul li").width()
+            obj.length = $(".v-autoslide-wrap>ul>li", $(obj)).length / 2;
+            var maxWidth = obj.length * $(".v-autoslide-wrap>ul>li", $(obj)).width();
             obj.left += VAutoSlide.DEFAULTS.slideVal;
             if (obj.left >= maxWidth) {
                 obj.left = 0;
@@ -71,7 +69,6 @@
         }
 
 
-
     };
 
     VAutoSlide.prototype.running = function () {
@@ -80,7 +77,7 @@
         var obj = this.el;
         obj.left = 0;
         obj.top = 0;
-        var bannerUl = $(obj).find(".v-autoslide-wrap ul");
+        var bannerUl = $(obj).find(".v-autoslide-wrap>ul");
         bannerUl[0].innerHTML += bannerUl[0].innerHTML;
 
         this.fadeImg($(obj), obj.index, true);
