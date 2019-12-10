@@ -1,0 +1,80 @@
+/*h5上传组件*/
+
+.d-hide {
+    display: none;
+}
+
+.v-h5file-box {
+
+    position: relative;
+    margin-bottom: 10px;
+}
+
+
+.v-h5file-file{  display: none !important; }
+
+.v-h5file-all {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background:hsla(0, 0%, 100%, .8) ;
+    border: 1px solid #f2f2f2;
+    
+}
+
+
+.v-h5file-bar{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: 4px;
+    background: #c1bbbb;
+    margin: auto;
+
+}
+
+.v-h5file-now {
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 1;
+    width: 1%;
+    height: 100%;
+    padding: 0;
+    background: $text-primary;
+
+}
+
+.v-h5file-num {
+    position: absolute;
+    top:2px;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color:#111;
+
+}
+
+.v-h5file-img{
+    position: absolute;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    cursor: pointer;
+}
+
+.v-h5file-src{
+    display: none;
+}

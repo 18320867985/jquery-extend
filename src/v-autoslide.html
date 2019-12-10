@@ -50,22 +50,16 @@
         <!--默认左右轮播-->
         <div class="v-autoslide-pwr">
 
-            <div class="v-autoslide" data-time="3000"  data-toggle="v-autoslide" id="v-autoslide-1">
+            <div class="v-autoslide" data-time="3000"  data-toggle="v-autoslide"  id="v-autoslide-1">
 
                 <div class="v-autoslide-wrap">
 
                     <ul class="clearfix">
                         <li class="active">
                             <a href="#"> <img src="./img/0.jpg" alt="" /></a>
-
                         </li>
-                        <li class="">
-                            <a href="#"> <img src="./img/1.jpg" alt="" /></a>
-                        </li>
-
                     </ul>
-
-                    
+                      
                 </div>
 
             </div>
@@ -89,9 +83,9 @@
 
             <pre>
           html:
-           &lt;!--v-autoslide  data-toggle="v-autoslide" 的属性触发条件 -->
+           &lt;--! data-toggle="v-autoslide" 的属性触发条件 -->
         
-             &lt;div class="v-autoslide " data-time="3000">
+             &lt;div class="v-autoslide " >
              
                      &lt;div  class="v-autoslide-wrap">
                          &lt;ul class="clearfix">
@@ -114,9 +108,8 @@
             js:
             // 触发v-autoslide轮播图
             $(".v-autoslide").vautoslide({
-                    time:3000,        //   轮播图间隔时间
-                    isTopottom:fasle  //  是否上下滚动
-                });
+                isTopbottom:fasle  //  是否上下滚动
+            });
 
         </pre>
 
@@ -127,7 +120,7 @@
         <!--上下轮播-->
         <div class="v-autoslide-pwr">
 
-            <div class="v-autoslide " data-time="3000" data-topbottom  id="v-autoslide-2">
+            <div class="v-autoslide" data-topbottom  id="v-autoslide-2">
 
                 <div class="v-autoslide-wrap">
 
@@ -152,19 +145,17 @@
         <div class="container">
             <pre>
                 添加属性：
-                  &lt;div class="v-autoslide " data-time="3000" data-topbottom>
+                  &lt;div class="v-autoslide" data-topbottom>
               </pre>
 
             <pre>
 
-            // 触发onBanner show事件
-            $(document).on("v-autoslide-show", function (e, el, index, size) {
-                var p = $(el).parents(".v-autoslide");
-               // console.log("el", el, "index:", index, size);
-                $("._span1",p).html(index + 1);
-                $("._span3",p).html(size);
-
-            });
+                // 触发v-autoslide-slide事件
+                // $("#v-autoslide-1").on("v-autoslide-slide", function (e, el,v) {
+                //    console.log("el",el);
+                //    console.log("value",v);
+                
+                // });
         </pre>
 
         
@@ -181,23 +172,22 @@
             $(function () {
 
                 // 触发v-fade轮播图
+
+                //  $("#v-autoslide-1").vautoslide({
+                //     time: 5000,  
+                // });
+
                 $("#v-autoslide-2").vautoslide({
-                    time: 5000,
                     isTopbottom:true
                 });
-                $("#topbottom-btn").vautoslide({
-                    time: 3000,
-                    isTopbottom:true
-                });
-
-                 // 触发onbannershow事件
-                $(document).on("v-autoslide-show", function (e, el, index, size) {
-                    var p = $(el).parents("#topbottom-btn");
-                    // console.log("el", el, "index:", index, size);
-                    $("._span1",p).html(index + 1);
-                    $("._span3",p).html(size);
-
-                });
+                
+        
+                // 触发autoslide-slide事件
+                // $("#v-autoslide-1").on("v-autoslide-slide", function (e, el,v) {
+                //    console.log("el",el);
+                //    console.log("value",v);
+                
+                // });
 
                 
                
