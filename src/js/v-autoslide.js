@@ -14,7 +14,7 @@
 
     VAutoSlide.DEFAULTS = {
         time: 100,
-        slideVal: 2,
+        slideVal: 1,
         isTopbottom: false
 
     };
