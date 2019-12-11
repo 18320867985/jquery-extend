@@ -79,11 +79,8 @@
         obj.top = 0;
         var bannerUl = $(obj).find(".v-autoslide-wrap>ul");
         bannerUl[0].innerHTML += bannerUl[0].innerHTML;
-
         this.fadeImg($(obj), obj.index, true);
         this.autoPlay();
-        obj.isclick = true;
-
         $(".v-autoslide-wrap", $(obj)).hover(function () {
             clearInterval(obj.clearAutoId);
         }, function () {
@@ -106,7 +103,6 @@
                 // 是否上下scroll
                 o.isTopbottom = $this.get(0).hasAttribute("data-topbottom") ? true : false;
                 var p = $.extend({}, o, options);
-
                 $this.data('v-autoslide', data = new VAutoSlide(this, p));
             }
             if (typeof option === 'string') {

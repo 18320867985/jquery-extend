@@ -1,5 +1,4 @@
-﻿
-/*
+﻿/*
     v-autoslide 
 */
 
@@ -23,11 +22,11 @@
     font-size: 0;
 }
 
-.v-autoslide .v-autoslide-wrap>ul> li {
+.v-autoslide .v-autoslide-wrap>ul>li {
     display: inline-block;
     float: none;
     font-size: 14px;
-   
+
 }
 
 
@@ -35,24 +34,22 @@
 .v-autoslide[data-topbottom] .v-autoslide-wrap {
     position: relative;
     padding: 0;
-    height:100%;
+    height: 100%;
     overflow: hidden;
-    
+
 }
 
-.v-autoslide[data-topbottom] .v-autoslide-wrap> ul {
+.v-autoslide[data-topbottom] .v-autoslide-wrap>ul {
     position: relative;
     white-space: normal;
     width: 100%;
     height: auto;
     font-size: 14px;
-   
+
 }
 
-.v-autoslide[data-topbottom] .v-autoslide-wrap>ul> li {
+.v-autoslide[data-topbottom] .v-autoslide-wrap>ul>li {
     display: block;
     width: 100%;
     font-size: 14px;
 }
-
-
