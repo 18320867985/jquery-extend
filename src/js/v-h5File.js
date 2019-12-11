@@ -1,7 +1,7 @@
 /*
 hqs v-h5File
 */
-+ function () {
++function () {
 
 	var fileUpload = function (option, progressFun) {
 
