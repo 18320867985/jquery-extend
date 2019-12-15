@@ -28,6 +28,7 @@ hqs v-h5File
 				withCredentials: false
 			},
 			xhr: function () {
+				
 				//获取ajaxSettings中的xhr对象，为它的upload属性绑定progress事件的处理函数
 				var myXhr = $.ajaxSettings.xhr();
 				if (myXhr.upload) {

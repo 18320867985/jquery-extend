@@ -3,7 +3,7 @@
     hqs
 */
 
-+ function (Mobile) {
++function (Mobile) {
 
 	// init xhr
 	var _xhrCORS;
@@ -18,9 +18,10 @@
 	    @param {function}opt.error ajax发送并接收error调用的回调函数
 	    @param {function}opt.getXHR 获取xhr对象
 	    @param {number}opt.timeout // 超时  默认20ms
-	    @param {string}opt.dataType // 回调结果处理模式 默认text
+		@param {string}opt.dataType // 回调结果处理模式 默认text
+		@param {string}opt.setRequestHeader  // setRequestHeader 设置请求头 例如setRequestHeader('Content-Type', "application/json"),
 	 */
-	var _ajaxSetup = {
+	var _ajaxSetup =$.ajaxSettings= {
 		type: "GET",
 		url: '',
 		async: true,
@@ -30,8 +31,12 @@
 		dataType: "text",
 		contentType: "application/x-www-form-urlencoded; charset=utf-8",
 		timeout: 20 * 1000,
-		processData:true,
-		progress: {}
+		progress: {},
+		setRequestHeader:function(){},
+		xhr:function(){
+			return Mobile.createXHR();
+		
+		}
 	};
 
 	// ajax type
@@ -207,10 +212,10 @@
 		},
 		ajax: function (options) {
 
+			var xhr = Mobile.createXHR();
+
 			options = typeof options === "object" ? options : {};
 			var opt = $.extend({}, _ajaxSetup, options);
-
-			var xhr = Mobile.createXHR();
 			try {
 				// IE
 				xhr.timeout = opt.timeout;
@@ -219,8 +224,11 @@
 			}
 
 			xhr.xhrFields = opt.xhrFields || {};
-			xhr.processData=opt.processData;
-
+			var _xhrObj=opt.xhr();
+			if(typeof _xhrObj ==="object"){
+				xhr=_xhrObj;
+			}
+			
 			// 连接参数
 			var postData;
 			var reg = /application\/x-www-form-urlencoded/;
@@ -235,8 +243,10 @@
 				opt.url = opt.url.indexOf("?") === -1 ? opt.url + "?" + "_=" + Math.random() : opt.url + "&_=" + Math.random();
 
 				xhr.open(opt.type, opt.url, opt.async);
-				xhr.setRequestHeader('Content-Type', opt.contentType);
+				xhr.setRequestHeader=opt.setRequestHeader;
+				if(opt.contentType!=false){xhr.setRequestHeader('Content-Type', opt.contentType);}
 				xhr.send(postData);
+
 			} else if (opt.type.toUpperCase() === 'GET') {
 				if (postData.length > 0) {
 					postData = "&" + postData;

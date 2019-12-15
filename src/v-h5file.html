@@ -270,7 +270,6 @@
 
 </body>
 <!-- <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script> -->
-
 <script src="js/mobile/mobile-dom.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/mobile/mobile-ajax.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/v-h5file.js" type="text/javascript" charset="utf-8"></script>
@@ -302,7 +301,6 @@
             }
            
             var file = obj.files[0];
-            console.log(file)
             // 文件大小限定
             var size = 300 * 1000000; //1m=1000000
             if (file.size > size) {
@@ -319,10 +317,10 @@
                     outTime: 30000,
                     dataType: "text",
                     el: obj, //当前element
-                   contentType: false,
+                   contentType:false,
                    processData:false,
                     success: function (data) {
-                        alert(data)
+
                         var src = "//weixin.sujin1688.com/sjbj" + data;
                         $(".v-h5file-img", p).attr("src", src).show();
                         $(".v-h5file-src", p).val(data);
@@ -339,7 +337,7 @@
                     var width = $(".v-h5file-bar", p).width();
                     var percentageDiv = $(".v-h5file-now", p);
                     var percentageNum = $(".v-h5file-num", p);
-
+console.log(evt.loaded)
                     if (evt.lengthComputable) {
                         $progressBar.max = evt.total;
                         $progressBar.value = evt.loaded;
