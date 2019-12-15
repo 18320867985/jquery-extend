@@ -269,19 +269,23 @@
     </section>
 
 </body>
-
-<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="js/mobile/mobile-dom.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/mobile/mobile-ajax.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/v-h5file.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
     $(function () {
 
         $(".v-h5file-img").click(function (e) {
+         
             $(this).parents(".v-h5file-box").find(".v-h5file-file").click();
         });
 
         $(".v-h5file-box-btn").click(function(){
-           var p=$(this).parents(".v-h5file-box ");
+       
+           var p=$(this).parents(".v-h5file-box");
+          
             $(".v-h5file-file",p).click();
         });
 
@@ -295,8 +299,8 @@
                 alert("不支持html5 文件上传,请升级你的浏览器  \n not support html5 ");
                 return;
             }
+           
             var file = obj.files[0];
-
             // 文件大小限定
             var size = 300 * 1000000; //1m=1000000
             if (file.size > size) {
@@ -313,13 +317,14 @@
                     outTime: 30000,
                     dataType: "text",
                     el: obj, //当前element
-                    contentType: false,
+                   contentType:false,
+                   processData:false,
                     success: function (data) {
 
                         var src = "//weixin.sujin1688.com/sjbj" + data;
                         $(".v-h5file-img", p).attr("src", src).show();
                         $(".v-h5file-src", p).val(data);
-                        console.log(src);
+                      //  console.log(src);
                     }, //成功回调
                     error: function () {
                         $(".v-h5file-img", p).hide();
@@ -332,7 +337,7 @@
                     var width = $(".v-h5file-bar", p).width();
                     var percentageDiv = $(".v-h5file-now", p);
                     var percentageNum = $(".v-h5file-num", p);
-
+console.log(evt.loaded)
                     if (evt.lengthComputable) {
                         $progressBar.max = evt.total;
                         $progressBar.value = evt.loaded;
