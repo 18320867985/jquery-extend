@@ -16,7 +16,6 @@ hqs v-h5File
 		var data = new FormData();
 		data.append('file-' + new Date().getTime().toString(), option.data);
 		var p = $(option.el).parents(".v-h5file-box");
-		console.log(data)
 
 		$.ajax({
 			url: option.url,
