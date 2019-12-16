@@ -19,7 +19,7 @@
 	    @param {function}opt.getXHR 获取xhr对象
 	    @param {number}opt.timeout // 超时  默认20ms
 		@param {string}opt.dataType // 回调结果处理模式 默认text
-		@param {string}opt.setRequestHeader  // setRequestHeader 设置请求头 例如setRequestHeader('Content-Type', "application/json"),
+		@param {string}opt.headers  // headers 默认值是{},
 	 */
 	var _ajaxSetup =$.ajaxSettings= {
 		type: "GET",
@@ -32,7 +32,7 @@
 		contentType: "application/x-www-form-urlencoded; charset=utf-8",
 		timeout: 20 * 1000,
 		progress: {},
-		setRequestHeader:function(){},
+		headers:{},
 		xhr:function(){
 			return Mobile.createXHR();
 		
@@ -239,12 +239,14 @@
 				postData = opt.data;
 			}
 		
+			// xhr.setRequestHeader
+			for(var propName in opt.headers){ xhr.setRequestHeader(propName, opt.headers[propName]);}
+			if(opt.contentType!==false){xhr.setRequestHeader('Content-Type', opt.contentType);}
+
 			if (opt.type.toUpperCase() === 'POST' || opt.type.toUpperCase() === 'PUT' || opt.type.toUpperCase() === 'DELETE') {
 				opt.url = opt.url.indexOf("?") === -1 ? opt.url + "?" + "_=" + Math.random() : opt.url + "&_=" + Math.random();
 
 				xhr.open(opt.type, opt.url, opt.async);
-				xhr.setRequestHeader=opt.setRequestHeader;
-				if(opt.contentType!=false){xhr.setRequestHeader('Content-Type', opt.contentType);}
 				xhr.send(postData);
 
 			} else if (opt.type.toUpperCase() === 'GET') {

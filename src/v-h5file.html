@@ -326,9 +326,9 @@
                         $(".v-h5file-src", p).val(data);
                       //  console.log(src);
                     }, //成功回调
-                    error: function () {
+                    error: function (err) {
                         $(".v-h5file-img", p).hide();
-                        alert("上传发生错误")
+                        alert(err)
                     }, //错误回调
 
 
@@ -337,7 +337,7 @@
                     var width = $(".v-h5file-bar", p).width();
                     var percentageDiv = $(".v-h5file-now", p);
                     var percentageNum = $(".v-h5file-num", p);
-console.log(evt.loaded)
+
                     if (evt.lengthComputable) {
                         $progressBar.max = evt.total;
                         $progressBar.value = evt.loaded;
