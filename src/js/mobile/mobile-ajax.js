@@ -4,7 +4,6 @@
 
 + function (Mobile) {
 
-
 	/* 封装ajax函数
 	    @param {string}opt.type http连接的方式，包括POST,GET PUT DELETE
 	    @param {string}opt.url 发送请求的url
@@ -13,12 +12,13 @@
 	    @param {function}opt.contentType   内容类型
 	    @param{function}opt.success ajax发送并接收成功调用的回调函数
 	    @param {function}opt.error ajax发送并接收error调用的回调函数
-	    @param {function}opt.getXHR 获取xhr对象
+	    @param {function}opt.xhr 获取xhr对象
 	    @param {number}opt.timeout // 超时  默认0
 		@param {string}opt.dataType // 回调结果处理模式 默认text
 		@param {string}opt.headers  // headers 默认值是{},
 	 */
-	var _ajaxSetup = $.ajaxSettings = {
+
+	var _ajaxSetup = Mobile.ajaxSettings = {
 		type: "GET",
 		url: '',
 		async: true,
@@ -28,7 +28,7 @@
 		dataType: "text",
 		contentType: "application/x-www-form-urlencoded; charset=utf-8",
 		timeout: 0,
-		progress: {},
+		//progress: {},
 		headers: {},
 		xhr: function () {
 			return Mobile.createXHR();
@@ -40,18 +40,18 @@
 	function _ajaxFun(url, type, data, _arguments) {
 		var success;
 		var error;
-		var progress;
+		//var progress;
 		if (typeof data === "object" && _arguments.length > 2) {
 			success = _arguments[2];
 			if (_arguments.length >= 3) {
 				error = _arguments[3];
-				progress = _arguments[4] || null;
+				//	progress = _arguments[4] || null;
 			}
 		} else if (typeof data === "function") {
 			success = data;
 			if (_arguments.length > 2) {
 				error = _arguments[2];
-				progress = _arguments[3] || null;
+				//progress = _arguments[3] || null;
 			}
 		}
 
@@ -62,7 +62,6 @@
 			_dataType = lastArg;
 		}
 
-
 		Mobile.ajax({
 			type: type,
 			url: url,
@@ -70,7 +69,7 @@
 			dataType: _dataType,
 			success: success,
 			error: error,
-			progress: progress
+			//progress: progress
 		});
 
 	}
@@ -176,7 +175,6 @@
 
 		},
 
-
 		ajaxSetup: function (options) {
 
 			options = typeof options === "object" ? options : {};
@@ -185,7 +183,6 @@
 
 		},
 		ajax: function (options) {
-
 
 			options = typeof options === "object" ? options : {};
 			var opt = $.extend({}, _ajaxSetup, options);
