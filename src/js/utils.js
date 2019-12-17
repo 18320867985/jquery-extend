@@ -322,52 +322,7 @@
             return arrs;
 
         },
-
-        // 计算天数的函数数组列表 《用于当前项目 -比价网》
-        getDateArray: function (o, list) {
-
-            var temp = [];
-            for (var i = 0; i < list.length; i++) {
-                var bl = false;
-                var v;
-                for (name in o) {
-                    if (list[i] === name) {
-                        v = parseFloat(o[name]);
-                        bl = true;
-                    }
-                }
-
-                if (bl) {
-                    temp.push({
-                        name: list[i],
-                        v: v
-                    });
-                }
-            }
-
-            return temp;
-
-        },
-
-        //把字符串转换成时间  《用于当前项目 -比价网》
-        dataObjToObjcetChart: function (list) {
-
-            list = list || [];
-            var arr = [];
-            for (var i = 0; i < list.length; i++) {
-                var item = list[i];
-                if (item) {
-                    var dts = item.name.split("-");
-                    var y = Number(dts[0]),
-                        m = Number(dts[1]) - 1,
-                        d = Number(dts[2]);
-                    timestamp = Date.UTC(y, m, d);
-                    arr.push([timestamp, item.v]);
-                }
-            }
-            return arr;
-        }
-
+ 
     };
 
     // 数组列表
@@ -942,10 +897,31 @@
 
     }; // 把转html换成文本
 
+    // 检查是否为移动端
+    window.isMobile=function () {
 
-    window.utils = {
+        var userAgentInfo = navigator.userAgent.toString().toLowerCase();
+        var Agents = ["Android", "iPhone",
+            "SymbianOS", "Windows Phone",
+            "iPad", "iPod"
+        ];
+        //console.log(userAgentInfo)
+        var flag = false;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v].toLowerCase()) > 0) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    };
 
-        urlpath: _urlPath,
+
+    
+    // 兼容IE8+
+
+    window.utils={
+        urlPath: _urlPath,
         cookie: _cookie,
         localStorage: _localStorage,
         sessionStorage:_sessionStorage,
@@ -958,7 +934,8 @@
         list: _list,
         date: _date,
         deHtml: _deHtml,
-        enHtml: _enHtml
+        enHtml: _enHtml,
+       
     };
 
 })();
