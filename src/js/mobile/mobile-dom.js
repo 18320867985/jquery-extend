@@ -793,8 +793,7 @@
 	});
 
 	// 可计算值的列表值
-	Mobile.numberList = ["left", "top", "right", "bottom", "width", "height", "max-width", "min-width", "max-height",
-		"min-height"
+	Mobile.numberList = ["left", "top", "right", "bottom", "width", "height", "max-width", "min-width", "max-height","min-height"
 	];
 
 	// 扩展实例方法
