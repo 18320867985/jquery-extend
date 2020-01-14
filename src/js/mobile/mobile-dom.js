@@ -3,7 +3,7 @@
  * 作者：hqs
  */
 
-(function(global, factory) {
+(function (global, factory){
 
 	//  cmd commonjs
 	if (typeof module === "object" && typeof module.exports === "object") {
@@ -71,7 +71,7 @@
 		y = typeof y === "number" ? y : parseFloat(y);
 		y = isNaN(y) ? 0 : y;
 		var fx = 20;
-		var speed = 20;
+        var speed = 100;
 
 		self.clearTimeId = self.clearTimeId || 0;
 		clearInterval(self.clearTimeId);
@@ -83,12 +83,10 @@
 			isElement = true;
 		}
 
-		var speed1 = time / fx;
 		var windowStartTop = (isElement ? self.scrollTop : parseFloat(window.pageYOffset)) || 0;
-
 		var speed2 = Math.abs(windowStartTop - y);
-		speed = speed2 / speed1;
-
+        speed = (speed2 / time) * fx;
+      
 		if (windowStartTop > y) {
 
 			self.clearTimeId = setInterval(function() {
@@ -120,6 +118,60 @@
 		}
     }
 
+
+    // scrollLeft 动画
+    function _scrollLeft(self, x, time) {
+
+        time = typeof time === "number" ? time : 400;
+        x = typeof x === "number" ? x : parseFloat(x);
+        x = isNaN(x) ? 0 : x;
+        var fx = 10;
+        var speed = 100;
+
+        self.clearTimeId = self.clearTimeId || 0;
+        clearInterval(self.clearTimeId);
+
+        var isElement = true;
+        if (self === window || self === document) {
+            isElement = false;
+        } else {
+            isElement = true;
+        }
+
+        var windowStartLeft = (isElement ? self.scrollLeft : parseFloat(window.pageXOffset)) || 0;
+        var speed2 = Math.abs(windowStartLeft - x);
+        speed = (speed2 / time) * fx;
+  
+        if (windowStartLeft > x) {
+
+            self.clearTimeId = setInterval(function () {
+                windowStartLeft = windowStartLeft - speed;
+                isElement ? self.scrollLeft = windowStartLeft : window.scrollTo(windowStartLeft,0);
+                //	console.log("scrolltop")
+                if ((windowStartLeft - speed) <= x) {
+                    // stop
+                    isElement ? self.scrollLeft = x : window.scrollTo(x,0);
+                    clearInterval(self.clearTimeId);
+                }
+            }, fx);
+        } else {
+            if (windowStartLeft === x) {
+                // stop
+                clearInterval(self.clearTimeId);
+                return;
+            }
+            self.clearTimeId = setInterval(function () {
+                windowStartLeft = windowStartLeft + speed;
+                isElement ? self.scrollLeft = windowStartLeft : window.scrollTo(windowStartLeft,0);
+                //console.log("scrolltop");
+                if (windowStartLeft + speed > x) {
+                    // stop
+                    isElement ? self.scrollLeft = x : window.scrollTo( x,0);
+                    clearInterval(self.clearTimeId);
+                }
+            }, fx);
+        }
+    }
     // 浅复制 parentObj 父元素 childObj子元素
     function _extend(parentObj, childObj) {
 
@@ -364,6 +416,7 @@
         },
 
         checkSelector: function (el, txt) {
+            if (!el) { return false; }
             txt = typeof txt === "string" ? txt : "";
             if (txt.trim() === "") {
                 return false;
@@ -922,9 +975,9 @@
 			var obj = m(this);
 			for (var i = 0; i < obj.length; i++) {
 				var _arr = obj[i].querySelectorAll(selector);
-				Mobile.each(_arr, function(i, v) {
-					arr.push(v);
-				})
+                Mobile.each(_arr, function (i, v) {
+                    arr.push(v);
+                });
 				delete obj[i];
 			}
 			delete obj.length;
@@ -1155,7 +1208,7 @@
 			for (var i = 0; i < obj.length; i++) {
 				var _arr = obj[i].parentElement;
 				if (_arr) {
-					arr.push(_arr)
+                    arr.push(_arr);
 				}
 				delete obj[i];
 			}
@@ -1181,13 +1234,13 @@
 
 				}
 
-			};
+			}
 			delete obj.length;
 			Array.prototype.push.apply(obj, arr);
 			return obj;
 		},
 
-		// closest 
+		// closest
 		closest: function(selector) {
 			selector = typeof selector === "string" ? $.trim( selector)  : "";
 			var arr = [];
@@ -1214,11 +1267,12 @@
 		// get return native dom 
 		get: function(index) {
 			if (typeof index !== "number") {
-				throw Error("index property must is number type")
+                throw Error("index property must is number type");
 			}
 
-			if (index >= this.length) {
-				throw Error("number  value max object length ");
+            if (index >= this.length) {
+                return null;
+				//throw Error("number  value max object length ");
 			}
 
 			return this[index];
@@ -1266,7 +1320,7 @@
 			Mobile.each(obj, function(i, v) {
 				var _prev = v.previousElementSibling;
 				if (_prev) {
-					arr.push(_prev)
+                    arr.push(_prev);
 				}
 				delete v[i];
 			});
@@ -1282,7 +1336,7 @@
 			Mobile.each(obj, function(i, v) {
 				var _next = v.nextElementSibling;
 				if (_next) {
-					arr.push(_next)
+                    arr.push(_next);
 				}
 				delete v[i];
 			});
@@ -1319,7 +1373,7 @@
 			for (var i = 0; i < obj.length; i++) {
 				var _length = (obj.length > 0) ? obj.length - 1 : 0;
 				if (i === _length) {
-					arr.push(obj[i])
+                    arr.push(obj[i]);
 				}
 				delete obj[i];
 			}
@@ -1746,7 +1800,7 @@
 				}
 			});
 			return this;
-		},
+        },
 
 		//  windowTop
 		windowTop: function(y, time) {
@@ -1791,19 +1845,58 @@
 
 				return this;
 			}
-		}
+        },
+
+       //  scrollLeft
+		scrollLeft: function (x, time) {
+
+            // get
+            if (arguments.length === 0) {
+                var _size = 0;
+                Mobile.each(this, function () {
+                    if (this === window || this === document) {
+                        _size = window.pageXOffset || 0;
+                    } else {
+                        _size = this.scrollLeft;
+                    }
+                    return false;
+                });
+                return _size;
+            } else {
+                Mobile.each(this, function () {
+                    _scrollLeft(this, x, time);
+                });
+
+
+                return this;
+            }
+        }
 
 	});
 
 	// 绑定事件
 	Mobile.fn.extend({
 
-		on: function(type) {
+        on: function (type) {
+
+            // tap是tuochstart,tuochmove,tuochend 集合封装
+            if (type === "tap") {
+                var tapAarrs = [];
+                for (var i = 0; i < arguments.length; i++) {
+                    if (i !== 0) {
+                        tapAarrs.push(arguments[i]);
+                    }
+                }
+             
+                this.tap.apply(this, tapAarrs);
+                return;
+            }
+
 			var $this = this;
 			var isonebind = $this.length > 0 && $this.bindOneElementEvent ? true : false; // m(el).one()只绑定一次事件
 			var handler = function() {};
 			var bl = false;
-			var obj = null;
+            var obj = null;
 			var el = "";
 
 			//  正常事件绑定
@@ -1831,13 +1924,13 @@
 				if(detail.length){
 					for(var i=0;i<detail.length;i++){
 						props.push(detail[i]);
-					};
+					}
 
 				}else{
 					props.push(detail);
 				}
 
-				handler.apply(event.target, props);
+				handler.apply(this, props);
 
 				// m(el).one()只绑定一次事件
 				if (isonebind) {
@@ -1848,9 +1941,11 @@
 			}
 
 			// 委托事件绑定
-			function f2(event) {
-
-                if (Mobile.checkSelector(event.target, el)) {
+            function f2(event) {
+  
+                var entrustObj = m(event.target).closest(el).get(0); //委托对象
+               // console.log(entrustObj);
+                if (entrustObj) {
 
                     if (type === "input") {
                         //delete event.data;
@@ -1873,12 +1968,13 @@
 					if(detail.length){
 						for(var i=0;i<detail.length;i++){
 							props.push(detail[i]);
-						};
+						}
 	
 					}else{
 						props.push(detail);
-					}
-					handler.apply(event.target, props);
+                    }
+                   
+                    handler.apply(entrustObj, props);
 
 					// m(el).one()只绑定一次事件
 					if (isonebind) {
@@ -1896,14 +1992,14 @@
 
 				Mobile.each(this, function() {
 					if (this.addEventListener) {
-						this.addEventListener(type, f, bl);
+						this.addEventListener(type, m.proxy(f,this), bl);
 					}
 					//ie8
-					//					else if(this.attachEvent) {
-					//						this.attachEvent("on" + type, f, bl)
-					//					} else {
-					//						this["on" + type] =f /*直接赋给事件*/
-					//					}
+					//else if(this.attachEvent) {
+					//	this.attachEvent("on" + type, f, bl)
+					//} else {
+					//	this["on" + type] =f /*直接赋给事件*/
+					//}
 				});
 
 				m.events.on(type, f);
@@ -1917,7 +2013,7 @@
 
 				Mobile.each(this, function() {
 					if (this.addEventListener) {
-						this.addEventListener(type, f, bl);
+                        this.addEventListener(type, m.proxy(f, this), bl);
 					}
 
 				});
@@ -1925,16 +2021,16 @@
 				m.events.on(type, f);
 			}
 
-
 			// 委托绑定事件
 			if (arguments.length >= 3 && typeof arguments[1] === "string" && typeof arguments[2] === "function") {
-				el = arguments[1].toString() || "".trim();
+				el = arguments[1].toString() || "";
 				handler = arguments[2] || function() {};
 				bl = typeof arguments[3] === "boolean" ? arguments[3] : false;
 
 				Mobile.each(this, function() {
-					if (this.addEventListener) {
-						this.addEventListener(type, f2, bl);
+                    if (this.addEventListener) {
+                     
+                        this.addEventListener(type, m.proxy(f2, this), bl);
 					}
 				});
 
@@ -1942,9 +2038,8 @@
 			}
 
 			// 委托绑定事件传object值
-			if (arguments.length >= 4 && typeof arguments[1] === "string" && typeof arguments[2] === "object" && typeof arguments[
-					3] === "function") {
-				el = arguments[1].toString() || "".trim();
+			if (arguments.length >= 4 && typeof arguments[1] === "string" && typeof arguments[2] === "object" && typeof arguments[3] === "function") {
+				el = arguments[1].toString() || "";
 				obj = arguments[2];
 				handler = arguments[3] || function() {};
 				bl = typeof arguments[4] === "boolean" ? arguments[4] : false;
@@ -1952,7 +2047,7 @@
 
 				Mobile.each(this, function() {
 					if (this.addEventListener) {
-						this.addEventListener(type, f2, bl);
+                        this.addEventListener(type, m.proxy(f2, this), bl);
 					}
 				});
 
@@ -2154,16 +2249,25 @@
 				var isDeleDageTarget = true; // 是否是委托事件
 
 				function start(event) {
-					event.preventDefault();
+					
 					isMOve = true;
 					isMOveFirst = true;
 					var touch = event.changedTouches[0];
 					startX = touch.clientX;
-					startY = touch.clientY;
+                    startY = touch.clientY;
+
+                    if (event.touches.length > 1) {
+                        isMOve = false;
+                        isMOveFirst = false;
+                       
+                    } else {
+                        isMOve = true;
+                        isMOveFirst = true;
+                    }
 				}
 
 				function move(event) {
-					event.preventDefault();
+			
 					var touch = event.changedTouches[0];
 					var nowX = touch.clientX;
 					var nowY = touch.clientY;
@@ -2176,13 +2280,14 @@
 				}
 
 				function end(event) {
-					event.preventDefault();
+					
 					var _target;
 					if (isDeleDageTarget) {
 						_target = this;
 					} else {
-						_target = event.target;
-					}
+                        _target = m(event.target).closest(deletage).get(0); //委托对象
+                    }
+                 
 					if (isMOve) {
 						if (typeof fn === "function") {
 							fn.call(_target, event);
@@ -2194,7 +2299,7 @@
 				if (args.length >= 1 && typeof args[0] === "function") {
 					fn = args[0];
 					bl = args[1] || false;
-					isDeleDageTarget = true;
+                    isDeleDageTarget = true;
 
 					m(this).on("touchstart", start, bl);
 					m(this).on("touchmove", move, bl);
@@ -2206,7 +2311,7 @@
 					deletage = args[0];
 					fn = args[1];
 					bl = args[2] || false;
-					isDeleDageTarget = false;
+                    isDeleDageTarget = false;
 
 					m(this).on("touchstart", deletage, start, bl);
 					m(this).on("touchmove", deletage, move, bl);
@@ -2218,7 +2323,8 @@
 					fn = args[1];
 					bl = args[2] || false;
 					var obj = args[0];
-					isDeleDageTarget = true;
+                    isDeleDageTarget = true;
+
 					m(this).on("touchstart", obj, start, bl);
 					m(this).on("touchmove", obj, move, bl);
 					m(this).on("touchend", obj, end, bl);

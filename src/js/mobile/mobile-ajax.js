@@ -26,7 +26,7 @@
 		success: function () {},
 		error: function () {},
 		dataType: "text",
-		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		contentType: "application/x-www-form-urlencoded;charset=utf-8",
 		timeout: 0,
 		//progress: {},
 		headers: {},
@@ -197,7 +197,7 @@
 						opt.error("timeout");
 
 					}, opt.timeout);
-				};
+				}
 			};
 
 			var xhr = null;
@@ -209,7 +209,7 @@
 
 			// 连接参数
 			var postData;
-			var reg = /application\/x-www-form-urlencoded/;
+            var reg = /application\/x-www-form-urlencoded/;
 
 			if (reg.test(opt.contentType)) {
 				postData = _JoinParams(opt.data);
@@ -222,15 +222,14 @@
 				xhr.setRequestHeader(propName, opt.headers[propName]);
 			}
 
-			// setting contentType
-			if (opt.contentType !== false) {
-				xhr.setRequestHeader('Content-Type', opt.contentType);
-			}
-
 			if (opt.type.toUpperCase() === 'POST' || opt.type.toUpperCase() === 'PUT' || opt.type.toUpperCase() === 'DELETE') {
 				opt.url = opt.url.indexOf("?") === -1 ? opt.url + "?" + "_=" + Math.random() : opt.url + "&_=" + Math.random();
 
-				xhr.open(opt.type, opt.url, opt.async);
+                xhr.open(opt.type, opt.url, opt.async);
+                // setting contentType
+                if (opt.contentType !== false) {
+                    xhr.setRequestHeader('Content-Type', opt.contentType);
+                }
 				abort();
 				xhr.send(postData);
 
@@ -240,8 +239,12 @@
 				}
 				opt.url = opt.url.indexOf("?") === -1 ? opt.url + "?" + "_=" + Math.random() + postData : opt.url + "&_=" +
 					Math.random() + postData;
-
-				xhr.open(opt.type, opt.url, opt.async);
+                
+                xhr.open(opt.type, opt.url, opt.async);
+                // setting contentType
+                if (opt.contentType !== false) {
+                    xhr.setRequestHeader('Content-Type', opt.contentType);
+                }
 				abort();
 				xhr.send(null);
 			}
