@@ -1798,15 +1798,15 @@
 
             Mobile.each(this, function () {
 
-                var displayType = $(this).data("display-type");
-                if (displayType) {
-                    $(this).hide();
-                } else {
-                    $(this).show();
-                }
-            });
-            return this;
-        },
+				var displayType=$(this).data("display-type");
+				if (displayType) {
+					$(this).hide();
+				} else {
+					$(this).show();
+				}
+			});
+			return this;
+		},
 
         //  windowTop
         windowTop: function (y, time) {
@@ -1831,22 +1831,22 @@
         //  scrollTop
         scrollTop: function (y, time) {
 
-            // get
-            if (arguments.length === 0) {
-                var _size = 0;
-                Mobile.each(this, function () {
-                    if (this === window || this === document) {
-                        _size = window.pageYOffset || 0;
-                    } else {
-                        _size = this.scrollTop;
-                    }
-                    return false;
-                });
-                return _size;
-            } else {
-                Mobile.each(this, function () {
-                    _scrollTop(this, y, time);
-                });
+			// get
+			if (arguments.length === 0) {
+				var _size = 0;
+				Mobile.each(this, function() {
+					if (this === window || this === document) {
+						_size = window.pageYOffset || 0;
+					} else {
+						_size = this.scrollTop;
+					}
+					return false;
+				});
+				return _size;
+			} else {
+				Mobile.each(this, function() {
+					_scrollTop(this, y, time);
+				});
 
                 return this;
             }
@@ -1873,22 +1873,10 @@
                 });
 
 
-                return this;
-            }
-        },
+				return this;
+			}
+		}
 
-        // stop 
-
-        stop: function () {
-            Mobile.each(this, function () {
-                var clearTimeId = this.clearTimeId || 0;
-                clearInterval(clearTimeId);
-
-            });
-
-            return this;
-        }
-        
 	});
 
 	// 绑定事件
@@ -1958,11 +1946,10 @@
 			}
 
 			// 委托事件绑定
-            function f2(event) {
+			function f2(event) {
 
-                var entrustObj = m(event.target).closest(el).get(0); //委托对象
-                if (entrustObj) {
-                 
+                if (Mobile.checkSelector(event.target, el)) {
+
                     if (type === "input") {
                         //delete event.data;
                         Object.defineProperty(event, 'data', {
@@ -1988,9 +1975,8 @@
 	
 					}else{
 						props.push(detail);
-                    }
-                   
-                    handler.apply(entrustObj, props);
+					}
+					handler.apply(event.target, props);
 
 					// m(el).one()只绑定一次事件
 					if (isonebind) {
