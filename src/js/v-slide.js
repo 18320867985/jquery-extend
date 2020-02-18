@@ -7,7 +7,7 @@
     'use strict';
 
     // define class
-    var VSlide = function (el,options) {
+    var VSlide = function (el, options) {
         this.options = options;
         this.el = el;
         this.running();
@@ -15,15 +15,15 @@
 
     VSlide.DEFAULTS = {
         time: 3000,
-        isTopbottom:false
-        
+        isTopbottom: false
+
     };
 
     VSlide.prototype.autoPlay = function () {
 
         var obj = this.el;
         var $this = this;
-      
+
         obj.clearAutoId = setInterval(function () {
             obj.index = (obj.index + 1) % (obj.length);
             $this.fadeImg(obj, obj.index, false);
@@ -32,7 +32,7 @@
     };
 
     VSlide.prototype.fadeImg = function (el, index, bl) {
-     
+
         var obj = this.el;
         var v = $(obj);
         var wrap = v.find(".v-slide-wrap");
@@ -46,7 +46,7 @@
         if (bl) {
             sildeTime = 0;
         }
-      
+
         if (this.options.isTopbottom) {
             $(obj).attr("data-topbottom", true);
             var _top = wrap.height() * index;
@@ -87,7 +87,7 @@
 
             });
         }
-    
+
         lis.eq(index).addClass("active");
         this.setRadius(index % (obj.length / 2));
 
@@ -102,32 +102,32 @@
     };
 
     VSlide.prototype.running = function () {
-       
+
         var $this = this;
         var obj = this.el;
         var bannerUl = $(obj).find(".v-slide-wrap ul");
         bannerUl[0].innerHTML += bannerUl[0].innerHTML;
 
+        obj.length = $(".v-slide-wrap ul li", $(obj)).length;
+        obj.index = obj.length / 2;
+
+        //setImgBackground(obj);
+        this.fadeImg($(obj), obj.index, true);
+
         // 一张图不能轮播
         if ($(".v-slide-wrap ul li", $(obj)).length <= 2) {
             return;
         }
-
-        obj.length = $(".v-slide-wrap ul li", $(obj)).length;
-        obj.index = obj.length / 2;
         obj.clearAutoId = 0;
-     
-        //setImgBackground(obj);
-        this.fadeImg($(obj), obj.index, true);
         this.autoPlay();
         obj.isclick = true;
-       
+
         $(".v-slide-wrap", $(obj)).hover(function () {
             $(".v-btn", $(obj)).stop().fadeIn();
             clearInterval(obj.clearAutoId);
         }, function () {
             $(".v-btn", $(obj)).stop().fadeOut();
-             $this.autoPlay(obj);
+            $this.autoPlay(obj);
         });
 
         $(".v-btn-l,.v-cst-btn-l", $(obj)).on("click", function () {
@@ -188,7 +188,7 @@
             }
 
         });
-      
+
 
     };
 
@@ -206,8 +206,8 @@
                 // 是否上下scroll
                 o.isTopbottom = $this.get(0).hasAttribute("data-topbottom") ? true : false;
                 var p = $.extend({}, o, options);
-              
-                $this.data('v-slide', data = new VSlide(this,p));
+
+                $this.data('v-slide', data = new VSlide(this, p));
             }
             if (typeof option === 'string') {
                 data[option]();
@@ -230,4 +230,3 @@
     });
 
 }();
-

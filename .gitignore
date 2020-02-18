@@ -14,8 +14,8 @@
 # Visual Studio  Dependency directory
 /.vs
 
-*.suo
-*.sqlite
+/**/*.suo
+/**/*.sqlite
 
 
 # ==============×Ô¶¨Òå ==============
@@ -24,6 +24,5 @@
 
 # static view css and js
 #src/static/css/view/*.css
-#src/static/js/view/*.js
 
 

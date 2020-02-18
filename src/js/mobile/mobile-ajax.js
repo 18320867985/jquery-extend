@@ -1,12 +1,8 @@
 /*
-    ajax
-    hqs
+      hqs-ajax
 */
 
-+function (Mobile) {
-
-	// init xhr
-	var _xhrCORS;
++ function (Mobile) {
 
 	/* 封装ajax函数
 	    @param {string}opt.type http连接的方式，包括POST,GET PUT DELETE
@@ -16,12 +12,13 @@
 	    @param {function}opt.contentType   内容类型
 	    @param{function}opt.success ajax发送并接收成功调用的回调函数
 	    @param {function}opt.error ajax发送并接收error调用的回调函数
-	    @param {function}opt.getXHR 获取xhr对象
-	    @param {number}opt.timeout // 超时  默认20ms
+	    @param {function}opt.xhr 获取xhr对象
+	    @param {number}opt.timeout // 超时  默认0
 		@param {string}opt.dataType // 回调结果处理模式 默认text
-		@param {string}opt.setRequestHeader  // setRequestHeader 设置请求头 例如setRequestHeader('Content-Type', "application/json"),
+		@param {string}opt.headers  // headers 默认值是{},
 	 */
-	var _ajaxSetup =$.ajaxSettings= {
+
+	var _ajaxSetup = Mobile.ajaxSettings = {
 		type: "GET",
 		url: '',
 		async: true,
@@ -29,13 +26,13 @@
 		success: function () {},
 		error: function () {},
 		dataType: "text",
-		contentType: "application/x-www-form-urlencoded; charset=utf-8",
-		timeout: 20 * 1000,
-		progress: {},
-		setRequestHeader:function(){},
-		xhr:function(){
+		contentType: "application/x-www-form-urlencoded;charset=utf-8",
+		timeout: 0,
+		//progress: {},
+		headers: {},
+		xhr: function () {
 			return Mobile.createXHR();
-		
+
 		}
 	};
 
@@ -43,18 +40,18 @@
 	function _ajaxFun(url, type, data, _arguments) {
 		var success;
 		var error;
-		var progress;
+		//var progress;
 		if (typeof data === "object" && _arguments.length > 2) {
 			success = _arguments[2];
 			if (_arguments.length >= 3) {
 				error = _arguments[3];
-				progress = _arguments[4] || null;
+				//	progress = _arguments[4] || null;
 			}
 		} else if (typeof data === "function") {
 			success = data;
 			if (_arguments.length > 2) {
 				error = _arguments[2];
-				progress = _arguments[3] || null;
+				//progress = _arguments[3] || null;
 			}
 		}
 
@@ -65,7 +62,6 @@
 			_dataType = lastArg;
 		}
 
-
 		Mobile.ajax({
 			type: type,
 			url: url,
@@ -73,7 +69,7 @@
 			dataType: _dataType,
 			success: success,
 			error: error,
-			progress: progress
+			//progress: progress
 		});
 
 	}
@@ -172,36 +168,12 @@
 		// create XHR Object
 		createXHR: function () {
 
-			if (_xhrCORS) {
-				return _xhrCORS;
-			}
-
 			if (window.XMLHttpRequest) {
-
 				//IE7+、Firefox、Opera、Chrome 和Safari
-				return _xhrCORS = new XMLHttpRequest();
-			} else if (window.ActiveXObject) {
-
-				//IE6 及以下
-				var versions = ['MSXML2.XMLHttp', 'Microsoft.XMLHTTP'];
-				for (var i = 0, len = versions.length; i < len; i++) {
-					try {
-						return _xhrCORS = new ActiveXObject(version[i]);
-
-					} catch (e) {
-						//跳过
-					}
-				}
-			} else {
-				throw new Error('浏览器不支持XHR对象！');
+				return new window.XMLHttpRequest();
 			}
 
 		},
-
-		getXhr: function () {
-			return this.createXHR();
-		},
-
 
 		ajaxSetup: function (options) {
 
@@ -212,39 +184,53 @@
 		},
 		ajax: function (options) {
 
-			var xhr = Mobile.createXHR();
-
 			options = typeof options === "object" ? options : {};
 			var opt = $.extend({}, _ajaxSetup, options);
-			try {
-				// IE
-				xhr.timeout = opt.timeout;
-			} catch (ex) {
-				console.log("IE");
-			}
 
-			xhr.xhrFields = opt.xhrFields || {};
-			var _xhrObj=opt.xhr();
-			if(typeof _xhrObj ==="object"){
-				xhr=_xhrObj;
+			// setting timeout
+			var abortTimeoutId = 0;
+			var abort = function () {
+				if (opt.timeout > 0) {
+					abortTimeoutId = setTimeout(function () {
+						xhr.onreadystatechange = function () {};
+						xhr.abort();
+						opt.error("timeout");
+
+					}, opt.timeout);
+				}
+			};
+
+			var xhr = null;
+			var _xhrObj = opt.xhr();
+			if (typeof _xhrObj === "object") {
+				xhr = _xhrObj;
 			}
-			
+			xhr.xhrFields = opt.xhrFields || {};
+
 			// 连接参数
 			var postData;
-			var reg = /application\/x-www-form-urlencoded/;
-	
+            var reg = /application\/x-www-form-urlencoded/;
+
 			if (reg.test(opt.contentType)) {
 				postData = _JoinParams(opt.data);
 			} else {
 				postData = opt.data;
 			}
-		
+
+			// xhr.setRequestHeader
+			for (var propName in opt.headers) {
+				xhr.setRequestHeader(propName, opt.headers[propName]);
+			}
+
 			if (opt.type.toUpperCase() === 'POST' || opt.type.toUpperCase() === 'PUT' || opt.type.toUpperCase() === 'DELETE') {
 				opt.url = opt.url.indexOf("?") === -1 ? opt.url + "?" + "_=" + Math.random() : opt.url + "&_=" + Math.random();
 
-				xhr.open(opt.type, opt.url, opt.async);
-				xhr.setRequestHeader=opt.setRequestHeader;
-				if(opt.contentType!=false){xhr.setRequestHeader('Content-Type', opt.contentType);}
+                xhr.open(opt.type, opt.url, opt.async);
+                // setting contentType
+                if (opt.contentType !== false) {
+                    xhr.setRequestHeader('Content-Type', opt.contentType);
+                }
+				abort();
 				xhr.send(postData);
 
 			} else if (opt.type.toUpperCase() === 'GET') {
@@ -253,26 +239,31 @@
 				}
 				opt.url = opt.url.indexOf("?") === -1 ? opt.url + "?" + "_=" + Math.random() + postData : opt.url + "&_=" +
 					Math.random() + postData;
-
-				xhr.open(opt.type, opt.url, opt.async);
+                
+                xhr.open(opt.type, opt.url, opt.async);
+                // setting contentType
+                if (opt.contentType !== false) {
+                    xhr.setRequestHeader('Content-Type', opt.contentType);
+                }
+				abort();
 				xhr.send(null);
 			}
 			xhr.onreadystatechange = function () {
 
 				if (xhr.readyState === 4) {
+					//xhr.onreadystatechange = function(){};
+					clearTimeout(abortTimeoutId);
 					if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
 						if (typeof opt.success === "function") {
 							try {
 								var res;
 								if (opt.dataType === "json") {
 									res = JSON.parse(xhr.responseText);
-								}
-							 	else if (opt.dataType === "javascript") {
+								} else if (opt.dataType === "javascript") {
 									res = xhr.responseText;
 									window.eval(xhr.responseText);
-								}
-								else{
-									res=xhr.responseText;
+								} else {
+									res = xhr.responseText;
 								}
 								opt.success(res, xhr.status, xhr.statusText);
 							} catch (e) {
@@ -312,47 +303,47 @@
 		},
 
 		// jsonp
-		jsonp: function (url, data) {
+		// jsonp: function (url, data) {
 
-			var callback;
-			if (typeof data === "function") {
-				callback = data;
-			} else if (arguments.length >= 3) {
-				callback = arguments[2];
-			}
+		// 	var callback;
+		// 	if (typeof data === "function") {
+		// 		callback = data;
+		// 	} else if (arguments.length >= 3) {
+		// 		callback = arguments[2];
+		// 	}
 
-			// 创建一个几乎唯一的id
-			var callbackName = "mobile" + (new Date()).getTime().toString().trim();
-			window[callbackName] = function (result) {
+		// 	// 创建一个几乎唯一的id
+		// 	var callbackName = "mobile" + (new Date()).getTime().toString().trim();
+		// 	window[callbackName] = function (result) {
 
-				// 创建一个全局回调处理函数
-				if (typeof callback === "function") {
-					callback(result);
-				}
-			};
+		// 		// 创建一个全局回调处理函数
+		// 		if (typeof callback === "function") {
+		// 			callback(result);
+		// 		}
+		// 	};
 
-			// 参数data对象字符
-			var params = [];
-			var postData = "";
-			if (typeof data === "object") {
+		// 	// 参数data对象字符
+		// 	var params = [];
+		// 	var postData = "";
+		// 	if (typeof data === "object") {
 
-				postData = _JoinParams(data);
-			}
+		// 		postData = _JoinParams(data);
+		// 	}
 
-			if (postData.length > 0) {
-				postData = "&" + postData;
-			}
-			url = url.indexOf("?") === -1 ? url + "?" + "callback=" + callbackName + postData : url + "&callback=" +
-				callbackName + postData;
+		// 	if (postData.length > 0) {
+		// 		postData = "&" + postData;
+		// 	}
+		// 	url = url.indexOf("?") === -1 ? url + "?" + "callback=" + callbackName + postData : url + "&callback=" +
+		// 		callbackName + postData;
 
-			// 创建Script标签并执行window[id]函数
-			var script = document.createElement("script");
-			script.setAttribute("id", callbackName);
-			script.setAttribute("src", url);
-			script.setAttribute("type", "text/javascript");
-			document.body.appendChild(script);
+		// 	// 创建Script标签并执行window[id]函数
+		// 	var script = document.createElement("script");
+		// 	script.setAttribute("id", callbackName);
+		// 	script.setAttribute("src", url);
+		// 	script.setAttribute("type", "text/javascript");
+		// 	document.body.appendChild(script);
 
-		}
+		// }
 
 	});
 
