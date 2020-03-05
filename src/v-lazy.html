@@ -63,7 +63,7 @@
         <h1>图片延迟加载v-lazy</h1>
         <div>
             <a class="btn-link" href="./js/v-lazy.js">查看 v-lazy.js</a>
-            <!--<a class="btn-link" href="./component-scss/v-lazy.scss">查看 v-lazy.scss</a>-->
+            <a class="btn-link" href="./component-scss/v-lazy.scss">查看 v-lazy.scss</a>
         </div>
         <ul>
 
@@ -114,8 +114,8 @@
 
         </ul>
 		
-		        <h3>window或document滚动到指定的元素触发</h3>
-            <pre>
+		      <h3>window或document滚动到指定的元素触发</h3>
+                 <pre>
 		            // 滚动到指定的元素触发
 		            $(window).vlazy("scrollemit"); 或 $(document).vlazy("scrollemit");
                     1.html：
@@ -123,7 +123,7 @@
                     2.元素触发事件
                     $("#v-lazy-emit-1f").on("v-lazy-scrollemit",function(event,el){});
                     
-		</pre>
+		        </pre>
 
         <h3>window或document滚动加载列表图片</h3>
         <pre>
@@ -131,7 +131,7 @@
             $(window).vlazy("scroll"); 或 $(document).vlazy("scroll");
             1.window 或 document对象 必须有 2.html属性 data-lazy="./img/0.jpg" class="v-lazy-img" 必须有
             &lt;img class="v-lazy-img"  src="./img/lazy.jpg" alt=""   data-lazy="./img/0.jpg" />
-</pre>
+        </pre>
 
         <!--加载大框-->
         <div class="w-pwr">
@@ -206,6 +206,12 @@
 						}
 
                         $(".w-pwr ._cnt").append(docf);
+
+                        if (pageObj.indexP === 1) {
+
+                            $(document).vlazy("init");   // 初始化第一次延迟加载
+                        }
+                          
                       
 						pageObj.indexP++;
 
