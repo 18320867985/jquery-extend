@@ -75,9 +75,9 @@
         <!--加载大框-->
         <div class="w-pwr">
             <div class="_cnt">
-                <img src="./img/1.jpg" class="" data-lazy="./img/1.jpg" style="opacity: 1;">
+                <!--<img src="./img/1.jpg" class="" data-lazy="./img/1.jpg" style="opacity: 1;">
                 <img src="./img/2.jpg" class="" data-lazy="./img/1.jpg" style="opacity: 1;">
-                <img src="./img/3.jpg" class="" data-lazy="./img/1.jpg" style="opacity: 1;">
+                <img src="./img/3.jpg" class="" data-lazy="./img/1.jpg" style="opacity: 1;">-->
             </div>
             <div class="_loading">正在加载...</div>
         </div>
@@ -104,7 +104,8 @@
             };
 
 			// 初始化数据
-			getData(pageObj);
+            getData(pageObj);
+          
             $(".w-pwr").vreachbottom(function(e, el) {
 					 	 //console.log("el:", el);
 					 	getData(pageObj);
@@ -133,6 +134,11 @@
 						}
 
                         $(".w-pwr ._cnt").append(docf);
+                        if (pageObj.indexP === 1) {
+                            
+                            $(".w-pwr").vlazy("init");     // 初始化第一次延迟加载
+                        }
+                          
                    
 						pageObj.indexP++;
 

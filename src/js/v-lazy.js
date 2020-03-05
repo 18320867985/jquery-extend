@@ -85,11 +85,12 @@
     };
 
     VLazy.prototype._scrollImgByElement = function () {
-
+    
         var $el = $(this.el);
         var $list = $el.find(".v-lazy-img");
         var el_h = $el.outerHeight();
         var len = $list.length;
+    
         if (len === 0) { return; }
         $list.each(function () {
             var $this = $(this);
@@ -112,6 +113,40 @@
             }
 
         });
+
+    };
+
+    VLazy.prototype.init = function () {
+
+
+        if (this.el === window || this.el === document) {
+
+            this._scrollImg();
+
+        }
+        else if (this.el.nodeType === 1) {
+            var $el = $(this.el);
+            var $list = $el.find(".v-lazy-img");
+            var len = $list.length;
+            if (len === 0) { return; }
+            $list.each(function () {
+
+                var $this = $(this);
+                if (!$this.data("bl")) {
+                    $this.data("bl", true);
+                    var _src = $this.attr("data-lazy") || "";
+                    $this.attr("src", _src);
+                    $this.removeClass("v-lazy-img");
+                    $this.on("load.v-lazy", function () {
+                        $this.css("opacity", 0).stop().animate({
+                            opacity: 1
+                        }, VLazy.DEFAULTS.timing);
+                    });
+                }
+            });
+        }
+
+       
 
     };
 
