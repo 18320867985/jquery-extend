@@ -808,7 +808,6 @@ window._vd = window.vd;
 
             }
 
-
         };
 
 		this.check = function (v) {
@@ -941,14 +940,12 @@ window._vd = window.vd;
                  var _obj=this.getObj(propName);
                 if(_obj){
                     o[objName]=_obj.val;
-                }
-              
+                }  
            }
 
            return o;
 
         }; // 根据对字符串转换成对象
-
 
     };
 
