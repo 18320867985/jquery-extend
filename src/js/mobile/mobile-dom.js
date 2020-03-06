@@ -1981,7 +1981,7 @@
 					var detail=event.detail;
 					props.push(event);
 	
-					if(detail.length){
+                    if (detail&&detail.length){
 						for(var i=0;i<detail.length;i++){
 							props.push(detail[i]);
 						}
