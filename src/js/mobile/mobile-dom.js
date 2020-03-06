@@ -1355,7 +1355,7 @@
 			var arr = [];
 			var obj = m(this);
 			Mobile.each(obj, function(i, v) {
-				var _children = v.parentElement.children;
+                var _children =v.parentElement&&v.parentElement.children||[];
 				var _index = m(v).index();
 
 				for (var y = 0; y < _children.length; y++) {
@@ -1506,7 +1506,7 @@
 
 			// set
 			else if (arguments.length === 1) {
-				var _value = arguments[0]
+                var _value = arguments[0];
 				Mobile.each(this, function() {
 					m(this).css("width", _value);
 
@@ -1888,7 +1888,7 @@
 
             return this;
         }
-        
+      
 	});
 
 	// 绑定事件
@@ -1938,7 +1938,7 @@
 				var detail=typeof event.detail ==="undefined"?{}:event.detail;
 				props.push(event);
 
-				if(detail.length){
+                if (detail&&detail.length){
 					for(var i=0;i<detail.length;i++){
 						props.push(detail[i]);
 					}
