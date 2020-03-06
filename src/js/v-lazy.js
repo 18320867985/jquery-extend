@@ -133,7 +133,7 @@
 			var el_h = $el.outerHeight();
 			$list.each(function() {
 				var elOffsetTop = this.offsetTop;
-				if (elOffsetTop > 0 && elOffsetTop < el_h) {
+				if (elOffsetTop >=0 && elOffsetTop < el_h) {
 					var $this = $(this);
 					if (!$this.data("bl")) {
 						$this.data("bl", true);
