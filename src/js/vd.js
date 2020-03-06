@@ -808,53 +808,48 @@ window._vd = window.vd;
 
             }
 
-
         };
 
-        this.check = function () {
-            var p = $(el).closest(".vd-box");
-            if (arguments.length >= 1) {
-                var el = arguments[0] || "";
-
-                var crt_el = p.find(".vd-item");
-                var name = crt_el.attr("name") || "";
-
-                for (var i = 0; i < this.arrs.length; i++) {
-                    var obj = this.arrs[i];
-                    if (obj.elName === name) {
-                        el = obj.el;
-                        this.checkElement(obj, el, false, false); // false 不去remote验证    isRadio不做比
-                        break;
-                    }
-
-                }
-
-                var valObj = this.getObj(name);
-                if (valObj && valObj.bl) {
-                    p.removeClass("vd-error");
-                    $(".vd-req", p).removeClass("vd-error");
-                    $(".vd-pattern", p).removeClass("vd-error");
-                    $(".vd-remote", p).removeClass("vd-error");
-                    $(".vd-compare", p).removeClass("vd-error");
-                    $(".vd-dep-btn ", p).removeClass("vd-error");
-                } else {
-                    p.addClass("vd-ok");
-
-                }
-
-                if (this.vdIsOk()) {
-                    $(this.formName).find(".vd-btn").removeClass("vd-error");
-                } else {
-                    //$(this.formName).find(".vd-btn").addClass("vd-error");
-                }
-                return;
-            }
-
-            this.addErrorStyle(false, false);
-            p = $(this.formName);
-            this._valStyle(p);
-
-        };
+		this.check = function (v) {
+                 if (!v) { return; }
+                 var p = $(v).closest(".vd-box");
+                 if (arguments.length >= 1) {
+                      var el = arguments[0] || "";
+     
+                     var crt_el = p.find(".vd-item");
+                     var name = crt_el.attr("name") || "";
+     
+                     for (var i = 0; i < this.arrs.length; i++) {
+                         var obj = this.arrs[i];
+                         if (obj.elName === name) {
+                             el = obj.el;
+                             this.checkElement(obj, el, false, false); // false 不去remote验证    isRadio不做比
+                             break;
+                         }
+     
+                     }
+     
+                     var valObj = this.getObj(name);
+                     if (valObj && valObj.bl) {
+                         p.removeClass("vd-error").addClass("vd-ok");
+                         $(".vd-req", p).removeClass("vd-error");
+                         $(".vd-pattern", p).removeClass("vd-error");
+                         $(".vd-remote", p).removeClass("vd-error");
+                         $(".vd-compare", p).removeClass("vd-error");
+                         $(".vd-dep-btn ", p).removeClass("vd-error");
+                     }
+                     //else {
+                     //    p.addClass("vd-ok");
+     
+                     //}
+     
+                     if (this.vdIsOk()) {
+                         $(this.formName).find(".vd-btn").removeClass("vd-error");
+                     } 
+                     return;
+                 }
+     
+             };
 
         this.validate = function () {
             this.isSuccess();
@@ -945,14 +940,12 @@ window._vd = window.vd;
                  var _obj=this.getObj(propName);
                 if(_obj){
                     o[objName]=_obj.val;
-                }
-              
+                }  
            }
 
            return o;
 
         }; // 根据对字符串转换成对象
-
 
     };
 
