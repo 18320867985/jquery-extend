@@ -91,8 +91,7 @@ hqs  v-reachottom 滚动到底部触发事件
     function Plugin(option,offsetBottom) {
 
         offsetBottom = typeof offsetBottom === "number" ? offsetBottom : isNaN(parseFloat(offsetBottom)) ? 0 : parseFloat(offsetBottom);
-        console.log(offsetBottom);
-
+     
         return this.each(function () {
 
             var $this = $(this);
