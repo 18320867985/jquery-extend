@@ -12,14 +12,16 @@
     };
 	
 	VDraggale.DEFAULTS = {
-       
+        handle : ".v-draggale-ttl"
+
     };
    
     VDraggale.prototype.running = function () {
 
         var option = this.options;
-        option.handle = option.handle || this;
+        option.handle = option.handle || VDraggale.DEFAULTS.handle;
         var $box = this.el;
+        console.log(option)
 
         $(option.handle).on("mousedown", function (event) {
             event.preventDefault();
@@ -28,6 +30,7 @@
             $this.bl = false;
 
             if (!$this.bl) {
+              
                 this.bl = true;
                 var _offset_top = parseInt($($box).offset().top);
                 var _offset_left = parseInt($($box).offset().left);
@@ -115,10 +118,7 @@
         });
     }
 
-
     var _vdraggale = $.fn.vdraggale;
     $.fn.vdraggale = Plugin;
 
-
- 
 }();

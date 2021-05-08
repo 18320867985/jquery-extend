@@ -138,15 +138,14 @@
       });
     }
 
-    var _vscrollspy = $.fn.vscrollspy;
-
-    $.fn.vscrollspy = Plugin;
-
     $(window).on('load.v-scrollspy', function () {
         $('[data-spy="v-scroll"]').each(function () {
             var $spy = $(this);
             Plugin.call($spy, $spy.data());
         });
     });
+
+    var _vscrollspy = $.fn.vscrollspy;
+    $.fn.vscrollspy = Plugin;
 
 }(jQuery);
