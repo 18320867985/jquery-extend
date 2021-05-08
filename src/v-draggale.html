@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	 
+	<head>
+		<meta charset="UTF-8">
+		    <title>弹框拖动-draggale</title>
+		<style type="text/css">
+			.v-draggale {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				z-index: 999;
+				
+				height: 400px;
+				width: 400px;
+				margin-left: -200px;
+				margin-top: -200px;
+				
+				background: white;
+				border: 1px solid #ddd;
+				
+				box-shadow: 2px 2px 2px  rgba(0,0,0,.075);
+			}
+			
+			.v-draggale-ttl {
+				position: static;
+				margin: 0;
+				height: 40px;
+				line-height: 40px;
+				padding-left: 20px;
+				background: #5bc0de;
+				
+				color: white;
+			}
+			
+			.content{
+				padding: 10px;
+				
+				
+				
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="v-draggale">
+			<h4 class="v-draggale-ttl">handle</h4>
+			<div class="content">
+				内容...
+			</div>
+		</div >
+
+
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		   <script src="js/v-draggale.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+
+			$(".v-draggale").vdraggale({
+				handle: ".v-draggale-ttl"
+			});
+			
+			
+		</script>
+	</body>
+
+</html>
