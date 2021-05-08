@@ -228,9 +228,6 @@
 		});
 	}
 
-	var _vlazy = $.fn.vlazy;
-	$.fn.vlazy = Plugin;
-
 	$(window).on("load.v-lazy", function() {
 		$("[data-toggle=v-lazy]").each(function() {
 			var $this = $(this);
@@ -241,5 +238,9 @@
 
 		});
 	});
+
+	var _vlazy = $.fn.vlazy;
+	$.fn.vlazy = Plugin;
+
 
 }();
