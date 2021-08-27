@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="Keywords" content="" />
+		<meta name="Description" content="" />
+		<title>轮播图-autoslide</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/all.css" />
+		<link rel="stylesheet" type="text/css" href="css/icon/iconfont.css" />
+		<style>
+			.container {
+            margin-top: 50px;
+            margin-bottom: 15px;
+        }
+
+
+        pre {
+            margin: 10px 0;
+        }
+
+        /*
+            轮播图大框设置高度和宽度
+        */
+        .v-autoslide-pwr {
+             width:1200px;
+             margin:0 auto;
+             height: 400px;
+        }
+        #v-autoslide-topbottom{
+             width: 800px;
+             border: 1px solid #ddd;
+        }
+        
+         
+        .v-autoslide a img{
+            height: 400px;
+            width: 1200px;
+
+        }
+    </style>
+	</head>
+
+    <body>
+
+        <div class="container ">
+            <h1>轮播图-autoslide</h1>
+            <div>
+                <a class="btn-link" href="./js/v-autoslide.js">查看 v-autoslide.js</a>
+                <a class="btn-link" href="./component-scss/v-autoslide.scss">查看 v-autoslide.scss</a>
+            </div>
+
+        </div>
+
+        <h3 class="container">默认左右轮播</h3>
+        <!--v-autoslide-->
+        <!--默认左右轮播-->
+        <div class="v-autoslide-pwr">
+
+            <div class="v-autoslide" data-time="3000"  data-toggle="v-autoslide"  id="v-autoslide-1">
+
+                <div class="v-autoslide-wrap">
+
+                    <ul class="clearfix">
+                        <li class="active">
+                            <a href="#"> <img src="./img/0.jpg" alt="" /></a>
+                        </li>
+                    </ul>
+                      
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+            <pre>
+
+           CSS: 
+
+        /*
+            轮播图大框设置高度和宽度
+        */
+        .v-autoslide-pwr {
+             width:1200px;
+             margin:0 auto;
+             height: 400px;
+        }
+        </pre>
+
+            <pre>
+          html:
+           &lt;--! data-toggle="v-autoslide" 的属性触发条件 -->
+        
+             &lt;div class="v-autoslide " >
+             
+                     &lt;div  class="v-autoslide-wrap">
+                         &lt;ul class="clearfix">
+                             &lt;li  class="active" >
+                                &lt;--!  内容部分 -->
+                                 &lt;a href="#">
+                                     &lt;img src="./img/0.jpg" alt="" />
+                                 &lt;/a>
+                             &lt;/li>
+                         &lt;/ul>
+                      
+                &lt;/div>
+            &lt;/div>
+         </pre>
+            <pre>
+            js:
+            // 触发v-autoslide轮播图
+            $(".v-autoslide").vautoslide({
+                isTopbottom:fasle  //  是否上下滚动
+            });
+
+        </pre>
+
+        </div>
+
+        <h3 class="container">上下轮播</h3>
+        <!--v-autoslide-->
+        <!--上下轮播-->
+        <div class="v-autoslide-pwr" id="v-autoslide-topbottom">
+
+            <div class="v-autoslide" data-topbottom  id="v-autoslide-2">
+
+                <div class="v-autoslide-wrap">
+
+                    <ul class="clearfix">
+                        <li class="active">
+                            <a href="#"> <img src="./img/0.jpg" alt="" /></a>
+                        </li>
+                    </ul>
+
+                
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+            <pre>
+                添加属性：
+                  &lt;div class="v-autoslide" data-topbottom>
+              </pre>
+
+            <pre>
+
+                // 触发v-autoslide-slide事件
+                // $("#v-autoslide-1").on("v-autoslide-slide", function (e, el,v) {
+                //    console.log("el",el);
+                //    console.log("value",v);
+                
+                // });
+        </pre>
+
+        
+        </div>
+        
+        </div>
+
+        <script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/v-message.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/v-autoslide.js" type="text/javascript" charset="utf-8"></script>
+     
+
+        <script type="text/javascript">
+            $(function () {
+
+                // 触发v-fade轮播图
+
+                //  $("#v-autoslide-1").vautoslide({
+                //     time: 5000,  
+                // });
+
+                $("#v-autoslide-2").vautoslide({
+                    isTopbottom:true
+                });
+                
+        
+                // 触发autoslide-slide事件
+                // $("#v-autoslide-1").on("v-autoslide-slide", function (e, el,v) {
+                //    console.log("el",el);
+                //    console.log("value",v);
+                
+                // });
+
+                
+            });
+        </script>
+    </body>
+
+</html>
